@@ -65,7 +65,7 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="${pageContext.request.contextPath }"><span>Home</span></a></li>
                 <!-- nav-bar 메뉴부분 -->
-                <li><a href="#"><span>메인화면</span></a></li>
+                <li><a href="${pageContext.request.contextPath }/accountBookView"><span>장부관리</span></a></li>
                 <li><a href="#"><span>주문하기</span></a></li>
                 <li><a href="#"><span>푸드트럭존 찾기</span></a></li>
                 <li><a href="#"><span>축제알리미</span></a></li>
