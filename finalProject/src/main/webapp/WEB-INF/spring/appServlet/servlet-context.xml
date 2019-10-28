@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven /> <!-- annotation이 지정된 것들을 추적한다. -->
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	<!-- InternalResourceViewResolver는 servlet에서 알아서 prefix와 suffix를 붙여서 view페이지를 찾게 도와준다.
+	ex) common/header만 쓰면 /WEB-INF/views/common/header.jsp 을 찾는다는 말 -->
+	
+	<context:component-scan base-package="com.kh.letEatGo" />
+	<!-- 설정된 기본패키지를 기준으로 소스를 찾는다. -->
+	
+<!-- 	
+	<beans:bean class="com.kh.spring.member.model.service.MemberServiceImpl"/>
+	Servlet-context.xmlbean등록 끝!!
+	따로 무엇인지 별도의 명시는 할 필요가 없다, 그저 autowired를 할 수 만 있게해주는 기능이기 때문에
+	controller,service,repository등을 명시하는것은 개발자가 알아보기 쉽게 표시하는 것
+-->
+	
+	<!-- 인터셉터 등록하기 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/memo/*"/> <!-- /** 은 전체파일을 의미하는 url값이다. -->
+			<exclude-mapping path="/member/*"/> <!-- 해당하는 맵핑값은 제외하고 interceptor를 적용한다 -->
+			<beans:bean class="com.kh.letEatGo.common.interceptor.LoggerInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/demo/*"/>
+			<mapping path="/board/*"/> <!-- 각각에 mapping값마다 여러개를 등록할 수 있다. -->
+			<beans:bean class="com.kh.letEatGo.common.interceptor.Logincheck"/>
+		</interceptor>
+	</interceptors>
+	<!-- dev에서 interceptor를 이용해서 admin으로 로그인했을 때만 수정 삭제가 가능하도록 설정한다. -->
+	
+	<!-- 파일업로드처리 resolver등록 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"> <!-- value값의 의미는 10MB의 크기를 의미한다. -->
+		
+		</beans:property>
+	</beans:bean>
+	
+	<!-- jsonView를 이용하기 위한 resolver와 bean등록 -->
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
+	
+	<!-- jacksonConverter 등록하기 -->
+	<beans:bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters">
+			<beans:list>
+				<beans:ref bean="jacksonMessageConverter"/>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+</beans:beans>
