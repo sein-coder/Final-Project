@@ -5,7 +5,6 @@
  	<jsp:param name="pageTitle" value="메인화면"/>
 </jsp:include>
 
-<section id="content">
 <div class="site-blocks-cover overlay" style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif);" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
@@ -38,15 +37,14 @@
                   <div class="col-lg-12 col-xl-2 ml-auto text-right">
                     <input type="submit" class="btn text-white btn-primary" value="검색하기">
                   </div>
-                  
                 </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
     </div>  
+<section id="content">
 
     
     <div class="site-section">
