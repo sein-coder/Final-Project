@@ -45,8 +45,6 @@
       </div>
     </div>  
 <section id="content">
-
-    
     <div class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
@@ -188,4 +186,18 @@
       </div>
     </div>
 </section>
+
+<!-- 텍스트 타이핑 효과 script -->
+  <script src="${pageContext.request.contextPath }/resources/js/typed.js"></script>
+            <script>
+            var typed = new Typed('.typed-words', {
+            strings: ["FAST"," FRESH"," DELICIOUS", " VARIETY"],
+            typeSpeed: 80,
+            backSpeed: 80,
+            backDelay: 4000,
+            startDelay: 1000,
+            loop: true,
+            showCursor: true
+            });
+            </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
