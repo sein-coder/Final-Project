@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
  	<jsp:param name="pageTitle" value="메인화면"/>

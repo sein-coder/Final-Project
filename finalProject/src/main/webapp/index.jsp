@@ -200,4 +200,9 @@
             showCursor: true
             });
             </script>
+  <script>
+  	$(function(){
+  		$(".site-navbar").css("background-color", "transparent");
+  	})
+  </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
