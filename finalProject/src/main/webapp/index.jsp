@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
- 	<jsp:param name="pageTitle" value="메인화면"/>
-</jsp:include>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <div class="site-blocks-cover overlay" style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif);" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
@@ -88,7 +86,7 @@
             <p class="color-black-opacity-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
           </div>
         </div>
-
+		
         <div class="row">
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
             <div class="how-it-work-step">
