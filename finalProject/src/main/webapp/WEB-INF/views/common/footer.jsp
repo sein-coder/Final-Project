@@ -52,18 +52,7 @@
   <script src="${pageContext.request.contextPath }/resources/js/rangeslider.min.js"></script>
   
 
-  <script src="${pageContext.request.contextPath }/resources/js/typed.js"></script>
-            <script>
-            var typed = new Typed('.typed-words', {
-            strings: ["FAST"," FRESH"," DELICIOUS", " VARIETY"],
-            typeSpeed: 80,
-            backSpeed: 80,
-            backDelay: 4000,
-            startDelay: 1000,
-            loop: true,
-            showCursor: true
-            });
-            </script>
+
 
   <script src="${pageContext.request.contextPath }/resources/js/main.js"></script>
   
