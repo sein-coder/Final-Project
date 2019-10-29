@@ -18,60 +18,62 @@
         
         <!-- 장부 구역 -->
         <div class="row justify-content-center mb-3">
-			<table id="tbl" class="table table-bordered table-hover">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">날짜</th>
-						<th scope="col">지역코드</th>
-						<th scope="col">분류</th>
-						<th scope="col">관</th>
-						<th scope="col">항</th>
-						<th scope="col">목</th>
-						<th scope="col">적요</th>
-						<th scope="col">수입</th>
-						<th scope="col">지출</th>
-						<th scope="col">잔액</th>
-					</tr>
-				</thead>
-				<tbody class="">
-					<tr>
-						<td scope="row">2019-10-29</td>
-						<td>A01</td>
-						<td>계좌?</td>
-						<td>관?</td>
-						<td>항??</td>
-						<td>목???</td>
-						<td>테스트데이터1</td>
-						<td><fmt:formatNumber value="10000000" type="currency"/></td>
-						<td><fmt:formatNumber value="50000" type="currency"/></td>
-						<td><fmt:formatNumber value="950000" type="currency"/></td>
-					</tr>
-					<tr>
-						<td scope="row">2019-10-30</td>
-						<td>A02</td>
-						<td>계좌?</td>
-						<td>관?</td>
-						<td>항??</td>
-						<td>목???</td>
-						<td>테스트데이터2</td>
-						<td><fmt:formatNumber value="1000" type="currency"/></td>
-						<td><fmt:formatNumber value="40000" type="currency"/></td>
-						<td><fmt:formatNumber value="650000" type="currency"/></td>
-					</tr>
-					<tr>
-						<td scope="row">2019-10-31</td>
-						<td>A03</td>
-						<td>계좌?</td>
-						<td>관?</td>
-						<td>항??</td>
-						<td>목?</td>
-						<td>테스트데이터3</td>
-						<td><fmt:formatNumber value="5000000" type="currency"/></td>
-						<td><fmt:formatNumber value="3000000" type="currency"/></td>
-						<td><fmt:formatNumber value="12350000" type="currency"/></td>
-					</tr>
-				</tbody>
-			</table>
+				<table id="tbl" class="table table-bordered table-hover" style="text-align: center;">
+					<thead style="background-color: #ffc9c9; color: #fff;">
+						<tr>
+							<th scope="col">날짜</th>
+							<th scope="col">지역코드</th>
+							<th scope="col">분류</th>
+							<th scope="col">항</th>
+							<th scope="col">목</th>
+							<th scope="col">적요</th>
+							<th scope="col">수입</th>
+							<th scope="col">지출</th>
+							<th scope="col">잔액</th>
+							<th scope="col" style="background-color: #fff; border-color: #fff;"></th>
+						</tr>
+					</thead>
+					<tbody id="tbody">
+						<tr>
+							<td scope="row">2019-10-29</td>
+							<td>A01</td>
+							<td>카드</td>
+							<td>항??</td>
+							<td>목???</td>
+							<td>테스트데이터1</td>
+							<td><fmt:formatNumber value="100000" type="currency"/></td>
+							<td><fmt:formatNumber value="50000" type="currency"/></td>
+							<td><fmt:formatNumber value="95000" type="currency"/></td>
+						</tr>
+						<tr>
+							<td scope="row">2019-10-30</td>
+							<td>A02</td>
+							<td>카드</td>
+							<td>항??</td>
+							<td>목???</td>
+							<td>테스트데이터2</td>
+							<td><fmt:formatNumber value="1000" type="currency"/></td>
+							<td><fmt:formatNumber value="40000" type="currency"/></td>
+							<td><fmt:formatNumber value="650000" type="currency"/></td>
+						</tr>
+						<tr>
+							<td scope="row">2019-10-31</td>
+							<td>A03</td>
+							<td>현금</td>
+							<td>항??</td>
+							<td>목?</td>
+							<td>테스트데이터3</td>
+							<td><fmt:formatNumber value="500000" type="currency"/></td>
+							<td><fmt:formatNumber value="300000" type="currency"/></td>
+							<td><fmt:formatNumber value="123500" type="currency"/></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="9" style="padding: 0;"><button class="btn btn-primary btn-block" onclick="addRow();">행 추가하기</button></td>
+						</tr>
+					</tfoot>
+				</table>
         </div>
         
         <!-- 간략정보 구역 -->
@@ -114,14 +116,7 @@
 
     </div>
     </div>
-	<table>
-		<tr>
-			<td>
-				<input type="text">			
-			</td>
-		</tr>
-	</table>
-	
+
 <!-- 구글 차트라이브리 이용 -->    
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>    
 
@@ -153,52 +148,69 @@
 
 <!-- 테이블에 대한 이벤트 -->
 <script type="text/javascript">
-	$("tr").dblclick(function(){
-		var data = $(this).children();
-		console.log(data[0].innerText)
-		
-		var maxlength = [9,3,4,4,4,4,19,12,12,12];
-		console.log(maxlength);
+	function addRow(){
+		var maxlength = [8,4,0,4,4,15,10,10,10];
+
+		var tbody = $("#tbody");
+		var tags = "<tr>";
 		
 		for(var i=0; i<maxlength.length; i++){
-			var input = '<input type="text" size='+(data.length+5)+' maxlength='+maxlength[i]+' value='+data+'>';	
-			data[i].innerHTML = input;
+			if(i==0){
+				tags += '<td><input type="date"></td>';
+			}
+			else if(i==2){
+				tags += '<td>';
+				tags += '<div class="btn-group">';
+				tags += '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분류</button>';
+				tags += '<div class="dropdown-menu">';
+			  	tags += '<a class="dropdown-item" href="#">현금</a>';
+			    tags += '<a class="dropdown-item" href="#">카드</a>';
+			    tags += '<a class="dropdown-item" href="#">계좌이체</a>';
+			    tags += '<a class="dropdown-item" href="#">기타</a>';
+			    tags += '</div></div>'
+				tags += '</td>';
+			}
+			else{
+				tags += '<td><input class="form-control" type="text" size='+maxlength[i]+' maxlength='+maxlength[i]+'></td>';				
+			}
 		}
-		/* if(data[0].innerText == $(this).parent().children()[0].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+5)+' maxlength="9" value='+data+'>';	
+		
+		tags += '<td style="background-color: #fff; border-color: #fff;"><button>추가</button></td>';
+		tags += "</tr>";
+		tbody.append(tags);
+	};
+
+	$("tr").one('dblclick',function(){
+		var data = $(this).children();
+		
+		var maxlength = [8,4,7,4,4,15,10,10,10];
+		if(data[0].innerText != '행 추가하기'){
+			for(var i=0; i<maxlength.length; i++){
+				var input;
+				if(i==0){
+					input = '<input type="date">'
+				}
+				else if(i==2){
+					input = '<div class="btn-group">';
+					input += '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+data[i].innerText+'</button>';
+					input += '<div class="dropdown-menu">';
+					input += '<a class="dropdown-item" href="#">현금</a>';
+					input += '<a class="dropdown-item" href="#">카드</a>';
+					input += '<a class="dropdown-item" href="#">계좌이체</a>';
+					input += '<a class="dropdown-item" href="#">기타</a>';
+					input += '</div></div>'
+				}
+				else if(i==5){
+					input = '<input type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';
+				}
+				else{
+					input = '<input type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';				
+				}
+				data[i].innerHTML = input;
+			}
+			var updateBtn = "<td style='background-color: #fff; border-color: #fff;'><button>수정</button></td>";
+			$(this).append(updateBtn);
 		}
-		else if(data[1].innerText == $(this).parent().children()[1].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+5)+' maxlength="3" value='+data+'>';	
-		}
-		else if(data[2].innerText == $(this).parent().children()[2].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+5)+' maxlength="4" value='+data+'>';	
-		}
-		else if(data[3].innerText == $(this).parent().children()[3].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+5)+' maxlength="4" value='+data+'>';	
-		}
-		else if(data[4].innerText == $(this).parent().children()[4].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+5)+' maxlength="4" value='+data+'>';	
-		}
-		else if(data[5].innerText == $(this).parent().children()[5].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+1)+' maxlength="4" value='+data+'>';	
-		}
-		else if(data[6].innerText == $(this).parent().children()[7].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+1)+' maxlength="19" value='+data+'>';	
-		}
-		else if(data[7].innerText == $(this).parent().children()[7].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+1)+' maxlength="12" value='+data+'>';	
-		}
-		else if(data[8].innerText == $(this).parent().children()[8].innerHTML){ 
-			var input = '<input type="text" size='+(data.length+1)+' maxlength="12" value='+data+'>';	
-		}
-		else{ 
-			var input = '<input type="text" size='+(data.length+1)+' maxlength="12" value='+data+'>';				
-		}
-		$(this)[0].innerHTML = input; */
-	});
-	
-	$("td").on('keydown',function(e){
-		$(this).children().attr('size',Number($(this).children().val().length)+1);
 	});
 	
 </script>
