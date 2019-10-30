@@ -50,10 +50,6 @@
   <script src="${pageContext.request.contextPath }/resources/js/bootstrap-datepicker.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/js/aos.js"></script>
   <script src="${pageContext.request.contextPath }/resources/js/rangeslider.min.js"></script>
-  
-
-
-
   <script src="${pageContext.request.contextPath }/resources/js/main.js"></script>
   
   </body>
