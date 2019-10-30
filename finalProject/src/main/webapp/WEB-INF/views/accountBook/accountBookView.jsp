@@ -163,10 +163,10 @@
 				tags += '<div class="btn-group">';
 				tags += '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분류</button>';
 				tags += '<div class="dropdown-menu">';
-			  	tags += '<a class="dropdown-item" href="#">현금</a>';
-			    tags += '<a class="dropdown-item" href="#">카드</a>';
-			    tags += '<a class="dropdown-item" href="#">계좌이체</a>';
-			    tags += '<a class="dropdown-item" href="#">기타</a>';
+			  	tags += '<button class="btn dropdown-item">현금</button>';
+			    tags += '<button class="btn dropdown-item">카드</button>';
+			    tags += '<button class="btn dropdown-item">계좌이체</button>';
+			    tags += '<button class="btn dropdown-item">기타</button>';
 			    tags += '</div></div>'
 				tags += '</td>';
 			}
@@ -194,10 +194,10 @@
 					input = '<div class="btn-group">';
 					input += '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+data[i].innerText+'</button>';
 					input += '<div class="dropdown-menu">';
-					input += '<a class="dropdown-item" href="#">현금</a>';
-					input += '<a class="dropdown-item" href="#">카드</a>';
-					input += '<a class="dropdown-item" href="#">계좌이체</a>';
-					input += '<a class="dropdown-item" href="#">기타</a>';
+					input += '<button class="btn dropdown-item">현금</button>';
+					input += '<button class="btn dropdown-item">카드</button>';
+					input += '<button class="btn dropdown-item">계좌이체</button>';
+					input += '<button class="btn dropdown-item">기타</button>';
 					input += '</div></div>'
 				}
 				else if(i==5){
@@ -212,6 +212,10 @@
 			$(this).append(updateBtn);
 		}
 	});
+	
+    $(".dropdown-item").on("click",function(){// a태그 클릭시 작동
+      console.log("실행");
+    });
 	
 </script>
     
