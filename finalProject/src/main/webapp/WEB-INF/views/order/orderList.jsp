@@ -39,12 +39,11 @@
 					<!-- 여기서 부터 DIV가 업체 리스트에 맞춰 반복되야함, image변경 필! -->
 					<div class="d-block d-md-flex listing-horizontal">
 						<!-- 푸드트럭 별 대표이미지 -->
-							<a href="#" class="img d-block" style="background-image: url('images/img_2.jpg')">
+							<a href="${path }/order/orderListView" class="img d-block" style="background-image: url('images/img_2.jpg')">
 								<span class="category">종류</span>
 							</a>
 							<div class="lh-content">
-								<a href="#" class="bookmark"><span class="icon-heart"></span></a>
-								<h3><a href="#">Jones Grill &amp; Restaurants</a></h3>
+								<h3><a href="${path }/order/orderListView">Jones Grill &amp; Restaurants</a></h3>
 								<p>대표메뉴가 올자리</p>
 								<p>
 								<!-- 별점 -->

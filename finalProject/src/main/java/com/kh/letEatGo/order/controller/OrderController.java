@@ -17,4 +17,9 @@ public class OrderController {
 	public String order() {
 		return "order/orderList";
 	}
+	
+	@RequestMapping("/order/orderListView")
+	public String orderList() {
+		return "order/orderListView";
+	}
 }
