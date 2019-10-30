@@ -38,52 +38,77 @@
                 </div>
               </form>
             </div>
+            
+            <div class="row align-items-stretch p-4">
+	          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+	            <a href="#" class="popular-category h-100">
+	              <span class="icon mb-3">
+	              	<img src="${pageContext.request.contextPath }/resources/icon/한식.png">
+	              </span>
+	              <span class="caption mb-2 d-block">한식</span>
+	              <span class="number">489</span>
+	            </a>
+	          </div>
+	          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+	            <a href="#" class="popular-category h-100">
+	              <span class="icon mb-3">
+	              	<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
+				  </span>
+	              <span class="caption mb-2 d-block">중식</span>
+	              <span class="number">482</span>
+	            </a>
+	          </div>
+	          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+	            <a href="#" class="popular-category h-100">
+	              <span class="icon mb-3">
+	              	<img src="${pageContext.request.contextPath }/resources/icon/일식.png">
+	              </span>
+	              <span class="caption mb-2 d-block">일식</span>
+	              <span class="number">191</span>
+	            </a>
+	          </div>
+        	  <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+	            <a href="#" class="popular-category h-100">
+	              <span class="icon mb-3">
+	              	<img src="${pageContext.request.contextPath }/resources/icon/양식.png">
+	              </span>
+	              <span class="caption mb-2 d-block">양식</span>
+	              <span class="number">395</span>
+	            </a>
+	          </div>
+	          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+	            <a href="#" class="popular-category h-100">
+	              <span class="icon mb-3">
+	              	<img src="${pageContext.request.contextPath }/resources/icon/디저트.png">
+	              </span>
+	              <span class="caption mb-2 d-block">디저트</span>
+	              <span class="number">124</span>
+	            </a>
+	          </div>
+	          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+	            <a href="#" class="popular-category h-100">
+	              <span class="icon mb-3">
+	              	<img src="${pageContext.request.contextPath }/resources/icon/기타.png">
+	              </span>
+	              <span class="caption mb-2 d-block">기타</span>
+	              <span class="number">187</span>
+	            </a>
+	          </div>
+      		</div>
+            
+            
           </div>
         </div>
       </div>
     </div>  
 <section id="content">
-    <div class="site-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">렛잇고만이 가능한 이유</h2>
-            <p class="color-black-opacity-5">청년층에 가장 핫한 사업인 푸드트럭. </p>
-          </div>
-        </div>
-
-        <div class="row align-items-stretch">
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="#" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-hotel"></span></span>
-              <span class="caption mb-2 d-block">Hotels</span>
-              <span class="number">4,89</span>
-            </a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="#" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-microphone"></span></span>
-              <span class="caption mb-2 d-block">Events</span>
-              <span class="number">482</span>
-            </a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="#" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-flower"></span></span>
-              <span class="caption mb-2 d-block">Spa</span>
-              <span class="number">194</span>
-            </a>
-          </div>
-      </div>
-    </div>
-    </div>
     
     <div class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">How It Works</h2>
-            <p class="color-black-opacity-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+            <h2 class="font-weight-light text-primary">Let Eat Go</h2>
+            <p class="color-black-opacity-5">사용자와 사업자 모두를 만족시키는 서비스</p>
           </div>
         </div>
 		
@@ -93,8 +118,8 @@
               <div class="img-wrap">
                 <img src="${pageContext.request.contextPath }/resources/images/step-1.svg" alt="Free website template by Free-Template.co" class="img-fluid">
               </div>
-              <span class="number">1</span>
-              <h3>Decide What To Do</h3>
+              <span class="number">하나</span>
+              <h3>사용자 관점의 이익</h3>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             </div>
           </div>
@@ -103,8 +128,8 @@
               <div class="img-wrap">
                 <img src="${pageContext.request.contextPath }/resources/images/step-2.svg" alt="Free website template by Free-Template.co" class="img-fluid">
               </div>
-              <span class="number">2</span>
-              <h3>Find What You Want</h3>
+              <span class="number">둘</span>
+              <h3>사업자 관점의 이익</h3>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             </div>
           </div>
@@ -113,8 +138,8 @@
               <div class="img-wrap">
                 <img src="${pageContext.request.contextPath }/resources/images/step-3.svg" alt="Free website template by Free-Template.co" class="img-fluid">
               </div>
-              <span class="number">3</span>
-              <h3>Explore Amazing Places</h3>
+              <span class="number">셋</span>
+              <h3>추구하는 가치</h3>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             </div>
           </div>
@@ -184,10 +209,25 @@
       </div>
     </div>
 </section>
+<!-- 메인 음식메뉴파트 hover이벤트 -->
+  <<script type="text/javascript">
+	  $(".popular-category").hover(function(){
+		  var img = $(this).children().eq(0).children();
+		  var imgName = img.attr("src").substring(img.attr("src").lastIndexOf('/')+1);
+		  img.attr("src","${pageContext.request.contextPath }/resources/icon/hover"+imgName);
+	  } ,
+	  function(){
+		  var img = $(this).children().eq(0).children();
+		  var imgName = img.attr("src").substring(img.attr("src").lastIndexOf('/')+1).replace('hover','');
+		  img.attr("src","${pageContext.request.contextPath }/resources/icon/"+imgName);
+	  }
+	  );
+  </script>
 
 <!-- 텍스트 타이핑 효과 script -->
   <script src="${pageContext.request.contextPath }/resources/js/typed.js"></script>
-            <script>
+  
+  <script>
             var typed = new Typed('.typed-words', {
             strings: ["FAST"," FRESH"," DELICIOUS", " VARIETY"],
             typeSpeed: 80,
@@ -203,4 +243,5 @@
   		$(".site-navbar").css("background-color", "transparent");
   	})
   </script>
+  
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
