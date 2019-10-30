@@ -68,7 +68,7 @@
                 <li><a href="#"><span>푸드트럭존 찾기</span></a></li>
                 <li><a href="#"><span>축제알리미</span></a></li>
                 <li><button class="btn btn-outline-primary">로그인</button></li>
-                <li><button class="btn btn-outline-primary">회원가입</button></li>
+                <li><button class="btn btn-outline-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.do'">회원가입</button></li>
               </ul>
             </nav>
           </div>
