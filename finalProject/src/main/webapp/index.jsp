@@ -165,161 +165,133 @@
 	<!-- 갤러리 시작 -->
 	<div class="site-section" style="padding: 0">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12 d-flex justify-content-center">
-					<button type="button"
-						class="btn btn-outline-black waves-effect filter" data-rel="all">All</button>
-					<button type="button"
-						class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button>
-					<button type="button"
-						class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button>
+				<div class="row">
+					<div class="col-md-12 d-flex justify-content-center">
+						<button type="button"
+							class="btn btn-outline-black waves-effect filter" data-rel="all">All</button>
+						<button type="button"
+							class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button>
+						<button type="button"
+							class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button>
+					</div>
+					<!-- Grid column -->
 				</div>
-				<!-- Grid column -->
-			</div>
-			<!-- Grid row -->
-			<div class="gallery" id="gallery">
+				<!-- Grid row -->
+				<div class="gallery" id="gallery" style="color: white;">
+				
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 2">
+						<figure class="effect-gallery">
+							<img class="img-fluid"
+								src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+								alt="Card image cap">
+							<figcaption>
+								<h2>
+									메뉴<span>부메뉴</span>
+								</h2>
+								<p>
+									<a href="#"><span class="icon icon-search"></span></a>
+								</p>
+							</figcaption>
+						</figure>
+					</div>
+					<!-- Grid column -->
 
-				<!-- Grid column -->
-				<div class="mb-3 pics animation all 2">
-					<img class="img-fluid"
-						src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
-						alt="Card image cap">
-				</div>
-				<!-- Grid column -->
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
+							alt="Card image cap">
+							<figcaption>
+								<h2>
+									메뉴<span>부메뉴</span>
+								</h2>
+								<p>
+									<a href="#"><span class="icon icon-search"></span></a>
+								</p>
+							</figcaption>
+						</figure>
+					</div>
+					<!-- Grid column -->
 
-				<!-- Grid column -->
-				<div class="mb-3 pics animation all 1">
-					<img class="img-fluid"
-						src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
-						alt="Card image cap">
-				</div>
-				<!-- Grid column -->
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
+							alt="Card image cap">
+							<figcaption>
+								<h2>
+									메뉴<span>부메뉴</span>
+								</h2>
+								<p>
+									<a href="#"><span class="icon icon-search"></span></a>
+								</p>
+							</figcaption>
+						</figure>
+					</div>
+					<!-- Grid column -->
 
-				<!-- Grid column -->
-				<div class="mb-3 pics animation all 1">
-					<img class="img-fluid"
-						src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
-						alt="Card image cap">
-				</div>
-				<!-- Grid column -->
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 2">
+						<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+							alt="Card image cap">
+							<figcaption>
+								<h2>
+									메뉴<span>부메뉴</span>
+								</h2>
+								<p>
+									<a href="#"><span class="icon icon-search"></span></a>
+								</p>
+							</figcaption>
+						</figure>
+					</div>
+					<!-- Grid column -->
 
-				<!-- Grid column -->
-				<div class="mb-3 pics animation all 2">
-					<img class="img-fluid"
-						src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-						alt="Card image cap">
-				</div>
-				<!-- Grid column -->
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 2">
+						<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+							alt="Card image cap">
+							<figcaption>
+								<h2>
+									메뉴<span>부메뉴</span>
+								</h2>
+								<p>
+									<a href="#"><span class="icon icon-search"></span></a>
+								</p>
+							</figcaption>
+						</figure>
+					</div>
+					<!-- Grid column -->
 
-				<!-- Grid column -->
-				<div class="mb-3 pics animation all 2">
-					<img class="img-fluid"
-						src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-						alt="Card image cap">
-				</div>
-				<!-- Grid column -->
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
+							alt="Card image cap">
+							<figcaption>
+								<h2>
+									메뉴<span>부메뉴</span>
+								</h2>
+								<p>
+									<a href="#"><span class="icon icon-search"></span></a>
+								</p>
+							</figcaption>
+						</figure>
+					</div>
+					<!-- Grid column -->
 
-				<!-- Grid column -->
-				<div class="mb-3 pics animation all 1">
-					<img class="img-fluid"
-						src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
-						alt="Card image cap">
-				</div>
-				<!-- Grid column -->
-
-			</div>
-			<!-- Grid row -->
-
-		</div>
-	</div>
-
-	<div class="grid">
-		<div class="row">
-			<div class="col-md-6">
-				<figure class="effect-gallery">
-					<img src="${path }/letEatGo/resources/images/person_1.jpg" />
-					<figcaption>
-						<h2>
-							메뉴<span>부메뉴</span>
-						</h2>
-						<p>
-							<a href="#"><span class="icon icon-search"></span></a>
-						</p>
-					</figcaption>
-				</figure>
-			</div>
-			<div class="col-md-6">
-				<figure class="effect-gallery">
-					<img src="${path }/letEatGo/resources/images/person_2.jpg" />
-					<figcaption>
-						<h2>
-							메뉴<span>부메뉴</span>
-						</h2>
-						<p>
-							<a href="#"><span class="icon icon-search"></span></a>
-						</p>
-					</figcaption>
-				</figure>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<figure class="effect-gallery">
-					<img src="${path }/letEatGo/resources/images/person_3.jpg" />
-					<figcaption>
-						<h2>
-							메뉴<span>부메뉴</span>
-						</h2>
-						<p>
-							<a href="#"><span class="icon icon-search"></span></a>
-						</p>
-					</figcaption>
-				</figure>
-			</div>
-			<div class="col-md-6">
-				<figure class="effect-gallery">
-					<img src="${path }/letEatGo/resources/images/person_4.jpg" />
-					<figcaption>
-						<h2>
-							메뉴<span>부메뉴</span>
-						</h2>
-						<p>
-							<a href="#"><span class="icon icon-search"></span></a>
-						</p>
-					</figcaption>
-				</figure>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<figure class="effect-gallery">
-					<img src="${path }/letEatGo/resources/images/person_5.jpg" />
-					<figcaption>
-						<h2>
-							메뉴<span>부메뉴</span>
-						</h2>
-						<p class="align-center">
-							<a href="#"><span class="icon icon-search"></span></a>
-						</p>
-					</figcaption>
-				</figure>
-			</div>
-			<div class="col-md-6">
-				<figure class="effect-gallery">
-					<img src="${path }/letEatGo/resources/images/img_4.jpg" />
-					<figcaption>
-						<h2>
-							메뉴<span>부메뉴</span>
-						</h2>
-						<p>
-							<a href="#"><span class="icon icon-search"></span></a>
-						</p>
-					</figcaption>
-				</figure>
+				<!-- Grid row -->
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- 팀원 소개 파트 -->
 	<div class="site-section bg-light" style="padding: 0">
 		<div class="container">
