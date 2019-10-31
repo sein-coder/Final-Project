@@ -120,7 +120,8 @@
               </div>
               <span class="number">하나</span>
               <h3>사용자 관점의 이익</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p>사용자들은 더욱 더 간편하게 싸고 맛있는 푸드트럭의 음식을 접할 수 있습니다. 
+              	또한 리뷰와 코멘트를 통해 사업자와 사용자간의 소통의 창구를 이용하여 더욱 질 좋은 음식을 추구할 수 있습니다.</p>
             </div>
           </div>
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
@@ -130,7 +131,7 @@
               </div>
               <span class="number">둘</span>
               <h3>사업자 관점의 이익</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p>푸드트럭 사업자분들은 간편한 방식으로 주문하는 추가적인 손님들의 유입과 </p>
             </div>
           </div>
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
@@ -161,21 +162,21 @@
           <div>
             <div class="testimonial">
               <figure class="mb-4">
-                <img src="${pageContext.request.contextPath }/resources/images/person_3_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
-                <p>Willie Smith</p>
+                <img src="${pageContext.request.contextPath }/resources/images/person_3_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3" style="max-width: 200px;">
+                <p>박세인</p>
               </figure>
-              <blockquote>
-                <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+              <blockquote style="font-size: 1rem;">
+                <p>&ldquo;안녕하세요 @@@조의 Let Eat Go프로젝트를 총괄하는 박세인이라고 합니다. <br> 부족한 실력으로 구현해보았지만 좋게 봐주셨으면 감사하겠습니다.&rdquo;</p>
               </blockquote>
             </div>
           </div>
           <div>
             <div class="testimonial">
               <figure class="mb-4">
-                <img src="${pageContext.request.contextPath }/resources/images/person_2_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
-                <p>Robert Jones</p>
+                <img src="${pageContext.request.contextPath }/resources/images/person_2_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3" style="max-width: 200px;">
+                <p>이지연</p>
               </figure>
-              <blockquote>
+              <blockquote style="font-size: 1rem;">
                 <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
               </blockquote>
             </div>
@@ -184,10 +185,10 @@
           <div>
             <div class="testimonial">
               <figure class="mb-4">
-                <img src="${pageContext.request.contextPath }/resources/images/person_4_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
-                <p>Peter Richmond</p>
+                <img src="${pageContext.request.contextPath }/resources/images/person_4_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3" style="max-width: 200px;">
+                <p>강보승</p>
               </figure>
-              <blockquote>
+              <blockquote style="font-size: 1rem;">
                 <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
               </blockquote>
             </div>
@@ -196,10 +197,32 @@
           <div>
             <div class="testimonial">
               <figure class="mb-4">
-                <img src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
-                <p>Bruce Rogers</p>
+                <img src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3" style="max-width: 200px;">
+                <p>유연성</p>
               </figure>
-              <blockquote>
+              <blockquote style="font-size: 1rem;">
+                <p>&ldquo;The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.&rdquo;</p>
+              </blockquote>
+            </div>
+           </div>
+           <div>
+             <div class="testimonial">
+              <figure class="mb-4">
+                <img src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3" style="max-width: 200px;">
+                <p>국푸름</p>
+              </figure>
+              <blockquote style="font-size: 1rem;">
+                <p>&ldquo;The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.&rdquo;</p>
+              </blockquote>
+            </div>
+           </div>
+           <div> 
+            <div class="testimonial">
+              <figure class="mb-4">
+                <img src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3" style="max-width: 200px;">
+                <p>박영진</p>
+              </figure>
+              <blockquote style="font-size: 1rem;">
                 <p>&ldquo;The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.&rdquo;</p>
               </blockquote>
             </div>
