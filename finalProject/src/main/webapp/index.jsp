@@ -116,37 +116,122 @@
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
             <div class="how-it-work-step">
               <div class="img-wrap">
-                <img src="${pageContext.request.contextPath }/resources/images/step-1.svg" alt="Free website template by Free-Template.co" class="img-fluid">
+                <img src="${pageContext.request.contextPath }/resources/images/소비자.png" alt="Free website template by Free-Template.co" class="img-fluid">
               </div>
               <span class="number">하나</span>
               <h3>사용자 관점의 이익</h3>
               <p>사용자들은 더욱 더 간편하게 싸고 맛있는 푸드트럭의 음식을 접할 수 있습니다. 
-              	또한 리뷰와 코멘트를 통해 사업자와 사용자간의 소통의 창구를 이용하여 더욱 질 좋은 음식을 추구할 수 있습니다.</p>
+              	또한 소통의 창구를 통해 개선된 질 좋은 음식을 맛 볼 수 있습니다.</p>
             </div>
           </div>
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
             <div class="how-it-work-step">
               <div class="img-wrap">
-                <img src="${pageContext.request.contextPath }/resources/images/step-2.svg" alt="Free website template by Free-Template.co" class="img-fluid">
+                <img src="${pageContext.request.contextPath }/resources/images/판매자.png" alt="Free website template by Free-Template.co" class="img-fluid" width="256px" height="256px">
               </div>
               <span class="number">둘</span>
               <h3>사업자 관점의 이익</h3>
-              <p>푸드트럭 사업자분들은 간편한 방식으로 주문하는 추가적인 손님들의 유입과 </p>
+              <p>푸드트럭 사업자분들은 간편한 방식으로 주문하는 추가적인 손님들의 유입 바라 볼 수 있습니다.
+              	또한 소통의 창구를 통해 소비자들의 니즈를 파악하고 개선하여 발전해 나갈 수 있습니다.</p>
             </div>
           </div>
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
             <div class="how-it-work-step">
               <div class="img-wrap">
-                <img src="${pageContext.request.contextPath }/resources/images/step-3.svg" alt="Free website template by Free-Template.co" class="img-fluid">
+                <img src="${pageContext.request.contextPath }/resources/images/가치.png" alt="Free website template by Free-Template.co" class="img-fluid">
               </div>
               <span class="number">셋</span>
               <h3>추구하는 가치</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p>사용자와 사업자의 니즈를 파악하기 쉽게 소통의 창구를 제공하고 이를 통해서 발전된 푸드트럭 문화를 만들어나가도록 하겠습니다.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
+    <!-- 갤러리 -->
+    <!-- 갤러리 시작 -->
+    <div class="site-section">
+      <div class="container">        
+        <div class="gallery col-md-10 offset-md-1">
+           <div class="grid">
+              <div class="row">
+                 <div class="col-md-6">
+                    <figure class="effect-gallery">
+                       <img src="${path }/letEatGo/resources/images/person_1.jpg"/>
+                       <figcaption>
+                          <h2>메뉴<span>부메뉴</span></h2>
+                          <p>
+                           <a href="#"><span class="icon icon-search"></span></a>                          
+                          </p>
+                       </figcaption>
+                    </figure>
+                 </div>
+                 <div class="col-md-6">
+                <figure class="effect-gallery">
+                  <img src="${path }/letEatGo/resources/images/person_2.jpg"/>
+                    <figcaption>
+                        <h2>메뉴<span>부메뉴</span></h2>
+                        <p>
+                          <a href="#"><span class="icon icon-search"></span></a>                          
+                        </p>
+                    </figcaption>
+                </figure>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-6">
+                <figure class="effect-gallery">
+                  <img src="${path }/letEatGo/resources/images/person_3.jpg"/>
+                    <figcaption>
+                        <h2>메뉴<span>부메뉴</span></h2>
+                        <p>
+                          <a href="#"><span class="icon icon-search"></span></a>                          
+                        </p>
+                    </figcaption>
+                </figure>
+                 </div>
+                 <div class="col-md-6">
+                <figure class="effect-gallery">
+                  <img src="${path }/letEatGo/resources/images/person_4.jpg"/>
+                    <figcaption>
+                        <h2>메뉴<span>부메뉴</span></h2>
+                        <p>
+                          <a href="#"><span class="icon icon-search"></span></a>                          
+                        </p>
+                    </figcaption>
+                </figure>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-6">
+                <figure class="effect-gallery">
+                  <img src="${path }/letEatGo/resources/images/person_5.jpg"/>
+                    <figcaption>
+                        <h2>메뉴<span>부메뉴</span></h2>
+                        <p class="align-center">
+                          <a href="#"><span class="icon icon-search"></span></a>                          
+                        </p>
+                    </figcaption>
+                </figure>
+                 </div>
+                 <div class="col-md-6">
+                <figure class="effect-gallery">
+                  <img src="${path }/letEatGo/resources/images/img_4.jpg"/>
+                    <figcaption>
+                        <h2>메뉴<span>부메뉴</span></h2>
+                        <p>
+                          <a href="#"><span class="icon icon-search"></span></a>                          
+                        </p>
+                    </figcaption>
+                </figure>
+	             </div>
+	          </div>
+	     </div>
+	  </div>
+	 </div>
+ </div>
+    
     
     <!-- 팀원 소개 파트 -->
     <div class="site-section bg-light">
