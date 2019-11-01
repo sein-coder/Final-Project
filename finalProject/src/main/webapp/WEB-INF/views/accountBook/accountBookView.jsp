@@ -156,18 +156,17 @@
 		
 		for(var i=0; i<maxlength.length; i++){
 			if(i==0){
-				tags += '<td><input type="date"></td>';
+				tags += '<td><input class="form-control" type="date"></td>';
 			}
 			else if(i==2){
 				tags += '<td>';
 				tags += '<div class="btn-group">';
-				tags += '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분류</button>';
-				tags += '<div class="dropdown-menu">';
-			  	tags += '<a class="dropdown-item" href="#">현금</a>';
-			    tags += '<a class="dropdown-item" href="#">카드</a>';
-			    tags += '<a class="dropdown-item" href="#">계좌이체</a>';
-			    tags += '<a class="dropdown-item" href="#">기타</a>';
-			    tags += '</div></div>'
+				tags += '<select class="form-control" style="background-color : #ffc9c9">분류';
+			  	tags += '<option value="">현금</option>';
+			    tags += '<option value="">카드</option>';
+			    tags += '<option value="">계좌이체</option>';
+			    tags += '<option value="">기타</option>';
+			    tags += '</select></div>'
 				tags += '</td>';
 			}
 			else{
@@ -188,17 +187,16 @@
 			for(var i=0; i<maxlength.length; i++){
 				var input;
 				if(i==0){
-					input = '<input type="date">'
+					input = '<input class="form-control" type="date">'
 				}
 				else if(i==2){
 					input = '<div class="btn-group">';
-					input += '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+data[i].innerText+'</button>';
-					input += '<div class="dropdown-menu">';
-					input += '<a class="dropdown-item" href="#">현금</a>';
-					input += '<a class="dropdown-item" href="#">카드</a>';
-					input += '<a class="dropdown-item" href="#">계좌이체</a>';
-					input += '<a class="dropdown-item" href="#">기타</a>';
-					input += '</div></div>'
+					input += '<select class="form-control" style="background-color : #ffc9c9">';
+					input += '<option value="">현금</option>';
+					input += '<option value="">카드</option>';
+					input += '<option value="">계좌이체</option>';
+					input += '<option value="">기타</option>';
+					input += '</select></div>'
 				}
 				else if(i==5){
 					input = '<input type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';
@@ -212,6 +210,10 @@
 			$(this).append(updateBtn);
 		}
 	});
+	
+    $(".dropdown-item").on("click",function(){// a태그 클릭시 작동
+      console.log("실행");
+    });
 	
 </script>
     
