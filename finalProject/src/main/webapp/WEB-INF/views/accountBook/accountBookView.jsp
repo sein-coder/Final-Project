@@ -7,6 +7,12 @@
 
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.min.js"></script>
 
+<style>
+	.table th,.table td, .table input{
+		padding: 0;
+	}
+</style>
+
 <section id="content">
     <div class="site-section">
       <div class="container">
@@ -21,6 +27,7 @@
 				<table id="tbl" class="table table-bordered table-hover" style="text-align: center;">
 					<thead style="background-color: #ffc9c9; color: #fff;">
 						<tr>
+							<th scope="col">번호</th>
 							<th scope="col">날짜</th>
 							<th scope="col">지역코드</th>
 							<th scope="col">분류</th>
@@ -31,11 +38,13 @@
 							<th scope="col">지출</th>
 							<th scope="col">잔액</th>
 							<th scope="col" style="background-color: #fff; border-color: #fff;"></th>
+							<th scope="col" style="background-color: #fff; border-color: #fff;"></th>
 						</tr>
 					</thead>
 					<tbody id="tbody">
 						<tr>
-							<td scope="row">2019-10-29</td>
+							<td scope="row">1</td>
+							<td>2019-10-29</td>
 							<td>A01</td>
 							<td>카드</td>
 							<td>항??</td>
@@ -46,7 +55,8 @@
 							<td><fmt:formatNumber value="95000" type="currency"/></td>
 						</tr>
 						<tr>
-							<td scope="row">2019-10-30</td>
+							<td scope="row">2</td>
+							<td>2019-10-30</td>
 							<td>A02</td>
 							<td>카드</td>
 							<td>항??</td>
@@ -57,7 +67,8 @@
 							<td><fmt:formatNumber value="650000" type="currency"/></td>
 						</tr>
 						<tr>
-							<td scope="row">2019-10-31</td>
+							<td scope="row">3</td>
+							<td>2019-10-31</td>
 							<td>A03</td>
 							<td>현금</td>
 							<td>항??</td>
@@ -68,9 +79,11 @@
 							<td><fmt:formatNumber value="123500" type="currency"/></td>
 						</tr>
 					</tbody>
-					<tfoot>
+					<tfoot id="tfoot">
 						<tr>
-							<td colspan="9" style="padding: 0;"><button class="btn btn-primary btn-block" onclick="addRow();">행 추가하기</button></td>
+							<td colspan="10" style="padding: 0;"><button
+									class="btn btn-primary btn-block" onclick="addRow();">행
+									추가하기</button></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -148,72 +161,125 @@
 
 <!-- 테이블에 대한 이벤트 -->
 <script type="text/javascript">
+
+	var flag = true;
+
 	function addRow(){
-		var maxlength = [8,4,0,4,4,15,10,10,10];
-
-		var tbody = $("#tbody");
-		var tags = "<tr>";
-		
-		for(var i=0; i<maxlength.length; i++){
-			if(i==0){
-				tags += '<td><input class="form-control" type="date"></td>';
-			}
-			else if(i==2){
-				tags += '<td>';
-				tags += '<div class="btn-group">';
-				tags += '<select class="form-control" style="background-color : #ffc9c9">분류';
-			  	tags += '<option value="">현금</option>';
-			    tags += '<option value="">카드</option>';
-			    tags += '<option value="">계좌이체</option>';
-			    tags += '<option value="">기타</option>';
-			    tags += '</select></div>'
-				tags += '</td>';
-			}
-			else{
-				tags += '<td><input class="form-control" type="text" size='+maxlength[i]+' maxlength='+maxlength[i]+'></td>';				
-			}
-		}
-		
-		tags += '<td style="background-color: #fff; border-color: #fff;"><button>추가</button></td>';
-		tags += "</tr>";
-		tbody.append(tags);
-	};
-
-	$("tr").one('dblclick',function(){
-		var data = $(this).children();
-		
-		var maxlength = [8,4,7,4,4,15,10,10,10];
-		if(data[0].innerText != '행 추가하기'){
+		if(flag) {
+			var maxlength = [3,8,4,0,4,4,15,10,10,10];
+	
+			var tbody = $("#tbody");
+			
+			var tags = "<tr>";
+			
 			for(var i=0; i<maxlength.length; i++){
-				var input;
 				if(i==0){
-					input = '<input class="form-control" type="date">'
+					tags += '<td scope="row" size='+maxlength[i]+'>4</td>'
 				}
-				else if(i==2){
-					input = '<div class="btn-group">';
-					input += '<select class="form-control" style="background-color : #ffc9c9">';
-					input += '<option value="">현금</option>';
-					input += '<option value="">카드</option>';
-					input += '<option value="">계좌이체</option>';
-					input += '<option value="">기타</option>';
-					input += '</select></div>'
+				else if(i==1){
+					tags += '<td><input class="form-control" type="date"></td>';
 				}
-				else if(i==5){
-					input = '<input type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';
+				else if(i==3){
+					tags += '<td>';
+					tags += '<div class="btn-group">';
+					tags += '<select class="form-control" style="background-color : #ffc9c9; padding : 0;">분류';
+				  	tags += '<option value="현금">현금</option>';
+				    tags += '<option value="카드">카드</option>';
+				    tags += '<option value="계좌이체">계좌이체</option>';
+				    tags += '<option value="기타">기타</option>';
+				    tags += '</select></div>'
+					tags += '</td>';
 				}
 				else{
-					input = '<input type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';				
+					tags += '<td><input class="form-control" type="text" size='+maxlength[i]+' maxlength='+maxlength[i]+'></td>';				
 				}
-				data[i].innerHTML = input;
 			}
-			var updateBtn = "<td style='background-color: #fff; border-color: #fff;'><button>수정</button></td>";
-			$(this).append(updateBtn);
+			
+			tags += '<td style="background-color: #fff; border-color: #fff;"><button class="btn">추가</button></td>';
+			tags += '<td style="background-color: #fff; border-color: #fff;"><button id="cancelBtn" class="btn" onclick="cancel(1);">취소</button></td>';
+			tags += "</tr>";
+			tbody.append(tags);
+			flag = false;
+		}else{
+			flagAlert();
+		}
+	};
+	
+	$("tr").on('dblclick',function(){
+		if(flag) {
+			var data = $(this).children();
+			var maxlength = [3,8,4,7,4,4,15,10,10,10];
+			if(data[0].innerText != '행 추가하기'){
+				for(var i=0; i<maxlength.length; i++){
+					var input;
+					
+					if(i==1){
+						input = '<input class="form-control" type="date" value='+data[i].innerText+'>';
+					}
+					else if(i==3){
+						input = '<div class="btn-group">';
+						input += '<select class="form-control" style="background-color : #ffc9c9">';
+						input += '<option value="현금">현금</option>';
+						input += '<option value="카드">카드</option>';
+						input += '<option value="계좌이체">계좌이체</option>';
+						input += '<option value="기타">기타</option>';
+						input += '</select></div>';
+					}
+					else{
+						input = '<input type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';				
+					}
+					
+					if(i!=0){
+						data[i].innerHTML = input;					
+					}
+					
+				}
+				var updateBtn = "<td style='background-color: #fff; border-color: #fff;'><button class='btn'>수정</button></td>";
+				var cancelBtn = '<td style="background-color: #fff; border-color: #fff;"><button id="cancelBtn" class="btn" onclick="cancel(2);">취소</button></td>';
+				$(this).append(updateBtn);
+				$(this).append(cancelBtn);
+			}
+			flag = false;
+		}else{
+			flagAlert();
 		}
 	});
 	
     $(".dropdown-item").on("click",function(){// a태그 클릭시 작동
       console.log("실행");
     });
+    
+    function flagAlert(){
+    	alert("현재 작업을 완료해주세요.");
+    }
+    
+    function cancel(num) {
+    	/* add */
+    	if(num==1){
+	    	$("#cancelBtn").parent().parent().remove();
+	    	flag = true;
+    	}
+    	/* update */
+    	else{
+    		var data = $("#cancelBtn").parent().parent().children();
+    		for(var i=0; i<data.length; i++){
+	    		if(i==0){
+	    			continue;
+	    		}else if(i==3){
+	    			var temp = data.eq(i).children().children().val();
+	    			data.eq(i).children().remove();
+	    			data.eq(i).append(temp);
+	    		}else{
+	    			var temp = data.eq(i).children().val();
+	    			data.eq(i).children().remove();
+	    			data.eq(i).append(temp);
+	    		}
+    		}
+    		
+	    	flag = true;
+    	}
+    };
+    
 	
 </script>
     
