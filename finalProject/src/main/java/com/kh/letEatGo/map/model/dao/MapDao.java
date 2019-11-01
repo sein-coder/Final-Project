@@ -1,5 +1,11 @@
 package com.kh.letEatGo.map.model.dao;
 
-public interface MapDao {
+import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+
+import com.kh.letEatGo.map.model.vo.PartnerCategory;
+
+public interface MapDao {
+	List<PartnerCategory> selectPermissionNo(SqlSessionTemplate session);
 }

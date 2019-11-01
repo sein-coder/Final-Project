@@ -40,13 +40,26 @@
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
      .info .link {color: #5085BB;} 
+     .popular-category2 {
+  background: #fff;
+  display: block;
+  text-align: center;
+  padding: 30px 10px;
+  border-radius: 7px;
+  background: #f8f9fa;
+  position: relative;
+  top: 0;
+  -webkit-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out; }
+.popular-category2:hover {
+    -webkit-box-shadow: 0 5px 30px -5px rgba(243, 129, 129, 0.5);
+    box-shadow: 0 5px 30px -5px rgba(243, 129, 129, 0.5); }
 </style>
-
-    <section id="content">
     <div class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-8">
-        <div class="col-md-2 text-center" style="border:2px solid #f38181; color:#f38181">푸드트럭존
+        <div class="col-md-2 text-center popular-category2" style="border:2px solid #f38181; color:#f38181">푸드트럭존
         <br><br>
         	<button type="button" class="btn btn-link" onclick="selectMap('밤도깨비야시장');">밤도깨비야시장</button>
          <br>
@@ -68,7 +81,6 @@
     </div>
     </div>        
             
-</section>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
@@ -172,7 +184,7 @@ function displayArea(area) {
                     '            <div class="desc">' + 
                     '                <div class="ellipsis">'+area.address+'</div>' + 
                     '                <div class="jibun ellipsis">'+area.address2+'</div>' + 
-                    '                <div><a href="'+area.page+'" target="_blank" class="link">축제더보기</a></div>' + 
+                    '                <div><a href="'+area.page+'" target="_self" class="link">축제더보기</a></div>' + 
                     '            </div>' + 
                     '        </div>' + 
                     '    </div>' +    
@@ -223,6 +235,7 @@ var callback = function(result, status) {
 };
 places.keywordSearch(document.getElementById("sample5_address").value, callback);
 }
+
 
 var positions = [
     {
@@ -300,7 +313,7 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     '            <div class="desc">' + 
     '                <div class="ellipsis">영업시간:'+positions[i].time+'</div>' + 
     '                <div class="jibun ellipsis">전화번호:'+positions[i].phone+'</div>' + 
-    '                <div><a href="${pageContext.request.contextPath}/foodTruck?foodTruck='+positions[i].title+'" target="_blank" class="link">홈페이지</a></div>' + 
+    '                <div><a href="${pageContext.request.contextPath}/foodTruck" target="_self" class="link">홈페이지</a></div>' + 
     '            </div>' + 
     '        </div>' + 
     '    </div>' +    
