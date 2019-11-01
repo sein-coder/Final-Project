@@ -42,8 +42,6 @@
      .info .link {color: #5085BB;} 
 </style>
 
-
-
     <section id="content">
     <div class="site-section">
       <div class="container">
@@ -70,7 +68,7 @@
     </div>
     </div>        
             
-
+</section>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
@@ -302,7 +300,7 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     '            <div class="desc">' + 
     '                <div class="ellipsis">영업시간:'+positions[i].time+'</div>' + 
     '                <div class="jibun ellipsis">전화번호:'+positions[i].phone+'</div>' + 
-    '                <div><a href="${pageContext.request.contextPath}/foodTruck'+positions[i].page+'" target="_blank" class="link">홈페이지</a></div>' + 
+    '                <div><a href="${pageContext.request.contextPath}/foodTruck?foodTruck='+positions[i].title+'" target="_blank" class="link">홈페이지</a></div>' + 
     '            </div>' + 
     '        </div>' + 
     '    </div>' +    
@@ -348,11 +346,7 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
 </script>
             
             
-          </div>
-        </div>
-      </div>
-    </div>  
     
     
-</section>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
