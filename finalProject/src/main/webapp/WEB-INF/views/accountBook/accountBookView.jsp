@@ -156,7 +156,7 @@
 		
 		for(var i=0; i<maxlength.length; i++){
 			if(i==0){
-				tags += '<td><input type="date"></td>';
+				tags += '<td><input class="form-control" type="date"></td>';
 			}
 			else if(i==2){
 				tags += '<td>';
@@ -187,7 +187,7 @@
 			for(var i=0; i<maxlength.length; i++){
 				var input;
 				if(i==0){
-					input = '<input type="date">'
+					input = '<input class="form-control" type="date">'
 				}
 				else if(i==2){
 					input = '<div class="btn-group">';
@@ -210,6 +210,10 @@
 			$(this).append(updateBtn);
 		}
 	});
+	
+    $(".dropdown-item").on("click",function(){// a태그 클릭시 작동
+      console.log("실행");
+    });
 	
 </script>
     
