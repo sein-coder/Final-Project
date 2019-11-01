@@ -61,7 +61,7 @@
           <div class="col-12 col-md-9 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href="${pageContext.request.contextPath }"><span>Home</span></a></li>
+                <li><a href="${pageContext.request.contextPath }"><span>Home</span></a></li>
                 <!-- nav-bar 메뉴부분 -->
                 <li><a href="${pageContext.request.contextPath }/accountBookView"><span>장부관리</span></a></li>
                 <li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
@@ -85,4 +85,14 @@
       </div>
       
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- hover event 추가 -->
+  <script>
+    $(function(){
+      $("nav>ul>li").hover(function(){
+        $(this).addClass("active");
+      }, function(){
+        $(this).removeClass("active");
+      })
+    });
+  </script>

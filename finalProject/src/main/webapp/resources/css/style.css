@@ -1977,7 +1977,17 @@ figure.effect-gallery:hover p span:empty {
     opacity: 1;
 }
 /* 갤러리 관련 설정 종료 */
-      
+
+/* waves-effect 효과(갤러리 버튼 효과 추가) */
+.waves-effect {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; }
       
       
       
