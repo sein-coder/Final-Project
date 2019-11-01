@@ -22,4 +22,9 @@ public class OrderController {
 	public String orderList() {
 		return "order/orderListView";
 	}
+	
+	@RequestMapping("/order/payment")
+	public String payment() {
+		return "order/payment";
+	}
 }

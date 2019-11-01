@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="pageTitle" value=""/>
+	<jsp:param name="pageTitle" value="주문페이지"/>
 </jsp:include>
 <section id="content" class="col-md-8 offset-md-2">
 	<!-- 업체 소개 영역 -->
@@ -37,7 +37,7 @@
     
     <div class="col-md-4 ml-auto">
     	<div class="bg-light">
-    		<form>
+    		<form action="${path }/order/payment" method="POST">
     			<table class="table-hover">
     				<tr>
     					<td><h3>주문리스트</h3></td>
@@ -65,12 +65,15 @@
 				<!-- 메뉴 반복 위치-->
 					<div class="col-md-4">
 						<!-- 메뉴 이미지 -->
-						<img/>
+						<img src="${path }/resources/images/person_1.jpg"/>
 						<!-- 메뉴설명  -->
 						<p>메뉴설명</p>
 						<div class="row">
-							<button><span class="icon icon-plus-circle"></span></button>
-							<button><span class="icon icon-minus-circle"></span></button>
+							<div class="qty mt-5">
+								<button><span class="icon icon-plus-circle"></span></button>
+								<input type="number" class="count" name="qty" value="0" readonly/>
+								<button><span class="icon icon-minus-circle"></span></button>
+							</div>
 						</div>
 					</div>
     			</div>
@@ -84,7 +87,7 @@
 			<ul class="comment-list">
 				<li class="comment">
 				<div class="vcard bio">
-					<img src="images/comment_vcard.jpg" alt="리뷰작성자 이미지">
+					<img src="${path }/resources/images/person_3.jpg" alt="리뷰작성자 이미지">
 				</div>
 				<div class="comment-body">
 					<h3>Jean Doe</h3>
@@ -97,7 +100,7 @@
 				<ul class="children">
 					<li class="comment">
 						<div class="vcard bio">
-						<img src="images/comment_vcard.jpg" alt="사장님 이미지">
+						<img src="${path }/resources/images/person_4.jpg" alt="사장님 이미지">
 						</div>
 					<div class="comment-body">
 						<h3>Jean Doe</h3>
@@ -111,4 +114,22 @@
               <!-- END comment-list -->
 	</div>
 </section>
+<script>
+	$(document).ready(function(){
+		$('.count').prop('disabled', true);
+		$(document).on('click', '.icon-plus-circle', function(){
+			$('.count').val(parseInt($('.count').val()) + 1);
+			if($('.count').val() > 20) {
+				alert('최대 주문량은 20개를 초과할 수 없습니다.');
+				$('.count').val(20);
+			}
+		});
+		$(document).on('click', '.icon-minus-circle', function(){
+			$('.count').val(parseInt($('.count').val()) - 1);
+			if($('.count').val() == 0){
+				$('.count').val(0);
+			}
+		});
+	})
+</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
