@@ -1,9 +1,11 @@
 package com.kh.letEatGo.member.model.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.kh.letEatGo.member.model.vo.Member;
 
+@Repository
 public class MemberDaoImpl implements MemberDao {
 
 	@Override

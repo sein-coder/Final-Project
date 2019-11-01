@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kh.letEatGo.member.model.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,6 +14,7 @@ public class MemberServiceImpl implements MemberService {
 	SqlSessionTemplate session;
 	@Autowired
 	MemberDao dao;
+	
 	@Override
 	public int insertMember(Member m) {
 		
