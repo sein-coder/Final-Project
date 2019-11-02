@@ -26,6 +26,10 @@
 	width: 100%;
 	height: 100%;
 }
+
+.table button{
+	color : white;
+}
 </style>
 
 <section id="content">
@@ -36,9 +40,9 @@
 			<div class="row mb-4 justify-content-start">
 				<h2>사용자(사업자)님의 장부</h2>
 			</div>
-
+			
 			<!-- 장부 구역 -->
-			<div class="row justify-content-center mb-3">
+			<div id="accountBookList" class="row justify-content-center mb-3">
 				<table id="tbl" class="table table-bordered table-hover"
 					style="text-align: center;">
 					<thead style="background-color: #ffc9c9; color: #fff;">
@@ -57,45 +61,25 @@
 								style="background-color: #fff; border-color: #fff;"></th>
 							<th scope="col"
 								style="background-color: #fff; border-color: #fff;"></th>
+							<th scope="col"
+								style="background-color: #fff; border-color: #fff;"></th>
 						</tr>
 					</thead>
 					<tbody id="tbody">
-						<tr>
-							<td scope="row">1</td>
-							<td>2019-10-29</td>
-							<td>A01</td>
-							<td>카드</td>
-							<td>항??</td>
-							<td>목???</td>
-							<td>테스트데이터1</td>
-							<td><fmt:formatNumber value="100000" type="currency" /></td>
-							<td><fmt:formatNumber value="50000" type="currency" /></td>
-							<td><fmt:formatNumber value="95000" type="currency" /></td>
-						</tr>
-						<tr>
-							<td scope="row">2</td>
-							<td>2019-10-30</td>
-							<td>A02</td>
-							<td>카드</td>
-							<td>항??</td>
-							<td>목???</td>
-							<td>테스트데이터2</td>
-							<td><fmt:formatNumber value="1000" type="currency" /></td>
-							<td><fmt:formatNumber value="40000" type="currency" /></td>
-							<td><fmt:formatNumber value="650000" type="currency" /></td>
-						</tr>
-						<tr>
-							<td scope="row">3</td>
-							<td>2019-10-31</td>
-							<td>A03</td>
-							<td>현금</td>
-							<td>항??</td>
-							<td>목?</td>
-							<td>테스트데이터3</td>
-							<td><fmt:formatNumber value="500000" type="currency" /></td>
-							<td><fmt:formatNumber value="300000" type="currency" /></td>
-							<td><fmt:formatNumber value="123500" type="currency" /></td>
-						</tr>
+						<c:forEach items="${list}" varStatus="i" var="ab">
+							<tr>
+								<td scope="row">${i.count }<input type="hidden" value="${ab.account_No }"></td>
+								<td>${ab.account_Date }</td>
+								<td>${ab.account_LocCode }</td>
+								<td>${ab.account_Type }</td>
+								<td>${ab.account_Clause }</td>
+								<td>${ab.account_Item }</td>
+								<td>${ab.account_Summary }</td>
+								<td><fmt:formatNumber value="${ab.account_Income }" type="currency" /></td>
+								<td><fmt:formatNumber value="${ab.account_Outcome }" type="currency" /></td>
+								<td><fmt:formatNumber value="${ab.account_Balance }" type="currency" /></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 					<tfoot id="tfoot">
 						<tr>
@@ -105,6 +89,9 @@
 						</tr>
 					</tfoot>
 				</table>
+				
+				${pageBar }
+				
 			</div>
 
 			<!-- 간략정보 구역 -->
@@ -113,7 +100,7 @@
 					<div class="d-flex justify-content-end">
 						<table class="table table-borderless">
 							<tr>
-								<td>최고수입 : <fmt:formatNumber value="10000000"
+								<td>최고수입 : <fmt:formatNumber value="100000"
 										type="currency" /></td>
 								<td>최저수입 : <fmt:formatNumber value="1000" type="currency" /></td>
 
@@ -154,7 +141,7 @@
 
 		</div>
 	</div>
-
+	<!-- 그래프 디자인 및 설정 -->
 	<script type="text/javascript">
 		var chart = bb.generate({
 			title : {
@@ -181,7 +168,7 @@
 				colors : {
 					data1 : "#f38181",
 					data2 : "#ffc9c9",
-					data3 : "f89d13"
+					data3 : "#f89d13"
 				},
 				labels : {
 					position : {
@@ -236,7 +223,11 @@
 
 		function addRow() {
 			if (flag) {
-				var maxlength = [ 3, 8, 4, 0, 4, 4, 15, 10, 10, 10 ];
+				var inputNames = ['account_No','account_Date','account_LocCode','account_Type',
+					'account_Clause','account_Item','account_Summary','account_Income','account_Outcome',
+					'account_Balance']
+				
+				var maxlength = [ 3, 8, 2, 7, 4, 4, 15, 8, 8, 8 ];
 
 				var tbody = $("#tbody");
 
@@ -244,13 +235,13 @@
 
 				for (var i = 0; i < maxlength.length; i++) {
 					if (i == 0) {
-						tags += '<td scope="row" size='+maxlength[i]+'>4</td>'
+						tags += '<td scope="row" size='+maxlength[i]+'>추가중</td>'
 					} else if (i == 1) {
-						tags += '<td><input class="form-control" type="date"></td>';
+						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date"></td>';
 					} else if (i == 3) {
 						tags += '<td>';
 						tags += '<div class="btn-group">';
-						tags += '<select class="form-control" style="background-color : #ffc9c9; padding : 0;">분류';
+						tags += '<select id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" style="background-color : #ffc9c9; padding : 0;">분류';
 						tags += '<option value="현금">현금</option>';
 						tags += '<option value="카드">카드</option>';
 						tags += '<option value="계좌이체">계좌이체</option>';
@@ -258,12 +249,12 @@
 						tags += '</select></div>'
 						tags += '</td>';
 					} else {
-						tags += '<td><input class="form-control" type="text" size='+maxlength[i]+' maxlength='+maxlength[i]+'></td>';
+						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="text" size='+maxlength[i]+' maxlength='+maxlength[i]+'></td>';
 					}
 				}
 
-				tags += '<td style="background-color: #fff; border-color: #fff;"><button class="btn">추가</button></td>';
-				tags += '<td style="background-color: #fff; border-color: #fff;"><button id="cancelBtn" class="btn" onclick="cancel(1);">취소</button></td>';
+				tags += '<td style="background-color: #fff; border-color: #fff;"><button class="btn btn-primary" onclick="insertAccountBook();">추가</button></td>';
+				tags += '<td style="background-color: #fff; border-color: #fff;"><button id="cancelBtn" class="btn btn-primary" onclick="cancel(1);">취소</button></td>';
 				tags += "</tr>";
 				tbody.append(tags);
 				flag = false;
@@ -272,50 +263,53 @@
 			}
 		};
 
-		$("tr")
-				.on(
-						'dblclick',
-						function() {
-							if (flag) {
-								var data = $(this).children();
-								var maxlength = [ 3, 8, 4, 7, 4, 4, 15, 10, 10,
-										10 ];
-								if (data[0].innerText != '행 추가하기') {
-									for (var i = 0; i < maxlength.length; i++) {
-										var input;
+		$("tr").on('dblclick',function() {
+			if (flag) {
+				var data = $(this).children();
+				var maxlength = [ 3, 8, 2, 7, 4, 4, 15, 8, 8, 8 ];
+				var inputNames = ['account_No','account_Date','account_LocCode','account_Type',
+					'account_Clause','account_Item','account_Summary','account_Income','account_Outcome',
+					'account_Balance']
+				if (data[0].innerText != '행 추가하기') {
+					for (var i = 0; i < maxlength.length; i++) {
+						var input;
 
-										if (i == 1) {
-											input = '<input class="form-control" type="date" value='+data[i].innerText+'>';
-										} else if (i == 3) {
-											input = '<div class="btn-group">';
-											input += '<select class="form-control" style="background-color : #ffc9c9">';
-											input += '<option value="현금">현금</option>';
-											input += '<option value="카드">카드</option>';
-											input += '<option value="계좌이체">계좌이체</option>';
-											input += '<option value="기타">기타</option>';
-											input += '</select></div>';
-										} else {
-											input = '<input type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';
-										}
+						if (i == 1) {
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" value='+data[i].innerText+'>';
+						} else if (i == 3) {
+							input = '<div class="btn-group">';
+							input += '<select id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" style="background-color : #ffc9c9">';
+							input += '<option value="현금">현금</option>';
+							input += '<option value="카드">카드</option>';
+							input += '<option value="계좌이체">계좌이체</option>';
+							input += '<option value="기타">기타</option>';
+							input += '</select></div>';
+						} else if (i == 7 || i == 8 || i == 9){
+							var money;
+							console.log(data[i].innerText);
+							money = replaceAll(data[i].innerText,",","");
+							money = money.substring(1,money.length);
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+money+'>';
+						} else {
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';
+						}
 
-										if (i != 0) {
-											data[i].innerHTML = input;
-										}
-
-									}
-									var updateBtn = "<td style='background-color: #fff; border-color: #fff;'><button class='btn'>수정</button></td>";
-									var cancelBtn = '<td style="background-color: #fff; border-color: #fff;"><button id="cancelBtn" class="btn" onclick="cancel(2);">취소</button></td>';
-									$(this).append(updateBtn);
-									$(this).append(cancelBtn);
-								}
-								flag = false;
-							} else {
-								flagAlert();
-							}
-						});
-
-		$(".dropdown-item").on("click", function() {// a태그 클릭시 작동
-			console.log("실행");
+						if (i != 0) {
+							data[i].innerHTML = input;
+						}
+					}
+					
+					var updateBtn = "<td style='background-color: #fff; border-color: #fff;'><button class='btn btn-primary' onclick='updateAccountBook(this);'>수정</button></td>";
+					var deleteBtn = "<td style='background-color: #fff; border-color: #fff;'><button class='btn btn-primary' onclick='deleteAccountBook(this);'>삭제</button></td>";
+					var cancelBtn = '<td style="background-color: #fff; border-color: #fff;"><button id="cancelBtn" class="btn btn-primary" onclick="cancel(2);">취소</button></td>';
+					$(this).append(updateBtn);
+					$(this).append(deleteBtn);
+					$(this).append(cancelBtn);
+				}
+				flag = false;
+			} else {
+				flagAlert();
+			}
 		});
 
 		function flagAlert() {
@@ -328,7 +322,7 @@
 				$("#cancelBtn").parent().parent().remove();
 				flag = true;
 			}
-			/* update */
+			/* update / delete */
 			else {
 				var data = $("#cancelBtn").parent().parent().children();
 				for (var i = 0; i < data.length; i++) {
@@ -336,6 +330,11 @@
 						continue;
 					} else if (i == 3) {
 						var temp = data.eq(i).children().children().val();
+						data.eq(i).children().remove();
+						data.eq(i).append(temp);
+					} else if (i == 7 || i == 8 || i == 9){
+						var temp = data.eq(i).children().val();
+						temp = preprocessing(temp);
 						data.eq(i).children().remove();
 						data.eq(i).append(temp);
 					} else {
@@ -348,7 +347,107 @@
 				flag = true;
 			}
 		};
+		
+		/* 금액 전처리용 
+			3자리마다 , 붙이고 \(원화표시) 추가 */
+		function preprocessing(num){
+			var len, point, str;
+			
+			num = num + "";
+			len = num.length;
+			point = num.length % 3;
+			
+			str = num.substring(0, point);
+			while(point < len) {
+				if(str != "") str += ","; 
+				str += num.substring(point, point + 3);
+				point += 3;
+			}
+			str = '\\'+str;
+			return str;
+		};
+		
+		/* ,를 모두 replace하는 함수 */
+		function replaceAll(str, searchStr, replaceStr) {
+			return str.split(searchStr).join(replaceStr);
+		};
+		
 	</script>
 
+	<!-- ajax통신 -->
+	<script>
+		function insertAccountBook(){
+			$.ajax({
+				url : "${pageContext.request.contextPath}/accountBook/insertAccountBook.do?partner_No=1234",
+				type : "post",
+				data : {
+					'account_Date':$("#account_Date").val(),
+					'account_LocCode':$("#account_LocCode").val(),
+					'account_Type':$("#account_Type").val(),
+					'account_Clause':$("#account_Clause").val(),
+					'account_Item':$("#account_Item").val(),
+					'account_Summary':$("#account_Summary").val(),
+					'account_Outcome':$("#account_Outcome").val(),
+					'account_Income':$("#account_Income").val(),
+					'account_Balance':$("#account_Balance").val()
+				},
+				success : function(data){
+					console.log("추가성공");
+					location.reload();
+				}
+			});
+		}
+		
+		function deleteAccountBook(id){
+			var account_No = $(id).parent().parent().children().eq(0).children().val();
+			$.ajax({
+				url : "${pageContext.request.contextPath}/accountBook/deleteAccountBook.do",
+				type : "post",
+				data : {
+					'account_No': account_No
+				},
+				success : function(data){
+					console.log("삭제성공");
+					location.reload();
+				}
+			});
+		}
+		
+		function updateAccountBook(id){
+			var account_No = $(id).parent().parent().children().eq(0).children().val();
+			$.ajax({
+				url : "${pageContext.request.contextPath}/accountBook/updateAccountBook.do",
+				type : "post",
+				data : {
+					'account_No': account_No,
+					'account_Date':$("#account_Date").val(),
+					'account_LocCode':$("#account_LocCode").val(),
+					'account_Type':$("#account_Type").val(),
+					'account_Clause':$("#account_Clause").val(),
+					'account_Item':$("#account_Item").val(),
+					'account_Summary':$("#account_Summary").val(),
+					'account_Outcome':$("#account_Outcome").val(),
+					'account_Income':$("#account_Income").val(),
+					'account_Balance':$("#account_Balance").val()
+				},
+				success : function(data){
+					console.log("수정성공");
+					location.reload();
+				}
+			});
+		}
+		
+	</script>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+
+
+
+
+
+
+
+
+
+

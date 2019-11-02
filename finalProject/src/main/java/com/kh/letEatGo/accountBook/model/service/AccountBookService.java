@@ -1,5 +1,17 @@
 package com.kh.letEatGo.accountBook.model.service;
 
-public interface AccountBookService {
+import java.util.List;
 
+import com.kh.letEatGo.accountBook.model.vo.AccountBook;
+
+public interface AccountBookService {
+	int selectAccountBookCount(int partner_No);
+	
+	List<AccountBook> selectAccountBookList(int partner_No, int cPage, int numPerPage);
+	
+	int insertAccountBook(AccountBook ab);
+	
+	int deleteAccountBook(int account_No);
+	
+	int updateAccountBook(AccountBook ab);
 }

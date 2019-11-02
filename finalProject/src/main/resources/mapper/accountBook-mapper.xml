@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="accountBook">
+	<select id="selectAccountBookCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM AccountBook WHERE Partner_No = #{partner_No}
+	</select>
+
+	<select id="selectAccountBookList" parameterType="_int" resultType="accountBook">
+		SELECT * FROM( 
+			SELECT ab.*, (Account_Income - Account_Outcome) as Account_Revenue 
+			FROM AccountBook ab 
+			WHERE Partner_No=#{partner_No})
+	</select>
+	
+	<insert id="insertAccountBook" parameterType="accountBook">
+		INSERT INTO AccountBook VALUES(SEQ_Account_No.nextval, #{account_Date}, #{account_LocCode}, 
+			#{account_Type}, #{account_Clause}, #{account_Item}, #{account_Summary},
+			#{account_Outcome}, #{account_Income}, #{account_Balance}, #{partner_No})
+	</insert>
+	
+	<delete id="deleteAccountBook" parameterType="_int">
+		DELETE FROM AccountBook WHERE Account_No = #{account_No}
+	</delete>
+	
+	<update id="updateAccountBook" parameterType="accountBook">
+		UPDATE AccountBook SET 
+			account_Date = #{account_Date}, 
+			account_LocCode = #{account_LocCode}, 
+			account_Type = #{account_Type}, 
+			account_Clause = #{account_Clause}, 
+			account_Item = #{account_Item}, 
+			account_Summary = #{account_Summary},
+			account_Outcome = #{account_Outcome}, 
+			account_Income = #{account_Income}, 
+			account_Balance = #{account_Balance}
+			WHERE Account_No = #{account_No}
+	</update>
+	
+</mapper>
