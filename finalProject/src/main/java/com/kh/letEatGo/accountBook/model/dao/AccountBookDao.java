@@ -11,6 +11,8 @@ public interface AccountBookDao {
 	
 	List<AccountBook> selectAccountBookList(SqlSessionTemplate session, int partner_No, int cPage, int numPerPage);
 	
+	List<AccountBook> selectAllAccountBookList(SqlSessionTemplate session, int partner_No);
+	
 	int insertAccountBook(SqlSessionTemplate session, AccountBook ab);
 	
 	int deleteAccountBook(SqlSessionTemplate session, int account_No);

@@ -30,6 +30,12 @@ public class AccountBookServiceImpl implements AccountBookService {
 	}
 
 	@Override
+	public List<AccountBook> selectAllAccountBookList(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectAllAccountBookList(session, partner_No);
+	}
+
+	@Override
 	public int insertAccountBook(AccountBook ab) {
 		// TODO Auto-generated method stub
 		return dao.insertAccountBook(session, ab);

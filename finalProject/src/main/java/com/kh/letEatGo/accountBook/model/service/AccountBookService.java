@@ -9,6 +9,8 @@ public interface AccountBookService {
 	
 	List<AccountBook> selectAccountBookList(int partner_No, int cPage, int numPerPage);
 	
+	List<AccountBook> selectAllAccountBookList(int partner_No);
+	
 	int insertAccountBook(AccountBook ab);
 	
 	int deleteAccountBook(int account_No);

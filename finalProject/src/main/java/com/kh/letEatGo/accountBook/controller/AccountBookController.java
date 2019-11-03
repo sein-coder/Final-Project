@@ -1,5 +1,7 @@
 package com.kh.letEatGo.accountBook.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,56 @@ public class AccountBookController {
 		int totalData = service.selectAccountBookCount(partner_No);		
 		List<AccountBook> list = service.selectAccountBookList(partner_No,cPage, numPerPage);
 		ModelAndView mv = new ModelAndView();
+		
+		List<AccountBook> alllist = service.selectAllAccountBookList(partner_No);
+		
+		if(alllist!=null) {
+			// 최대/최소/평균 수익,지출,순수익 구하기
+			List incomeList = new ArrayList();
+			List outcomeList = new ArrayList();
+			List revenueList = new ArrayList();
+			List<String> dateList = new ArrayList();
+			
+			int avgIncome = 0 , avgOutcome = 0 , avgRevenue = 0; //평균 수익 , 평균 지출 , 평균 순수익
+			
+			for(AccountBook ab : alllist) {
+				//리스트에 각 데이터별 추가
+				incomeList.add(ab.getAccount_Income());
+				outcomeList.add(ab.getAccount_Outcome());
+				revenueList.add(ab.getAccount_Revenue());
+				dateList.add(ab.getAccount_Date());
+				
+				//평균값 계산
+				avgIncome += ab.getAccount_Income();
+				avgOutcome += ab.getAccount_Outcome();
+				avgRevenue += ab.getAccount_Revenue();
+			}
+			System.out.println(dateList);
+			//각 갯수만큼 평균값 나누기
+			avgIncome /= incomeList.size();
+			avgOutcome /= outcomeList.size();
+			avgRevenue /= revenueList.size();
+			
+			//평균값
+			mv.addObject("avgIncome",avgIncome);
+			mv.addObject("avgOutcome",avgOutcome);
+			mv.addObject("avgRevenue",avgRevenue);
+			//최댓값
+			mv.addObject("maxIncome",Collections.max(incomeList));
+			mv.addObject("maxOutcome",Collections.max(outcomeList));
+			mv.addObject("maxRevenue",Collections.max(revenueList));
+			//최솟값
+			mv.addObject("minIncome",Collections.min(incomeList));
+			mv.addObject("minOutcome",Collections.min(outcomeList));
+			mv.addObject("minRevenue",Collections.min(revenueList));
+			
+			//그래프용 리스트 데이터 보내기
+			mv.addObject("incomeList",incomeList);
+			mv.addObject("outcomeList",outcomeList);
+			mv.addObject("revenueList",revenueList);
+			mv.addObject("dateList",dateList);
+		}
+		
 		mv.addObject("list",list);
 		mv.addObject("totalCount",totalData);
 		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerPage,"/accountBook/accountBookView?partner_No=1234"));

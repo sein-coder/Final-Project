@@ -25,6 +25,12 @@ public class AccountBookDaoImpl implements AccountBookDao {
 	}
 
 	@Override
+	public List<AccountBook> selectAllAccountBookList(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectList("accountBook.selectAllAccountBookList", partner_No);
+	}
+
+	@Override
 	public int insertAccountBook(SqlSessionTemplate session, AccountBook ab) {
 		// TODO Auto-generated method stub
 		return session.insert("accountBook.insertAccountBook",ab);

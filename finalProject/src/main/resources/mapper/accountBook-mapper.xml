@@ -9,7 +9,14 @@
 		SELECT * FROM( 
 			SELECT ab.*, (Account_Income - Account_Outcome) as Account_Revenue 
 			FROM AccountBook ab 
-			WHERE Partner_No=#{partner_No})
+			WHERE Partner_No=#{partner_No}) ORDER BY Account_Date ASC
+	</select>
+	
+	<select id="selectAllAccountBookList" parameterType="_int" resultType="accountBook">
+		SELECT * FROM( 
+			SELECT ab.*, (Account_Income - Account_Outcome) as Account_Revenue 
+			FROM AccountBook ab 
+			WHERE Partner_No=#{partner_No}) ORDER BY Account_Date ASC
 	</select>
 	
 	<insert id="insertAccountBook" parameterType="accountBook">

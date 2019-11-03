@@ -100,22 +100,18 @@
 					<div class="d-flex justify-content-end">
 						<table class="table table-borderless">
 							<tr>
-								<td>최고수입 : <fmt:formatNumber value="100000"
-										type="currency" /></td>
-								<td>최저수입 : <fmt:formatNumber value="1000" type="currency" /></td>
+								<td>최고수입 : <fmt:formatNumber value="${maxIncome }" type="currency" /></td>
+								<td>최저수입 : <fmt:formatNumber value="${minIncome }" type="currency" /></td>
 
 							</tr>
 							<tr>
-								<td>최고지출 : <fmt:formatNumber value="3000000"
-										type="currency" /></td>
-								<td>최저지출 : <fmt:formatNumber value="40000" type="currency" /></td>
+								<td>최고지출 : <fmt:formatNumber value="${maxOutcome }" type="currency" /></td>
+								<td>최저지출 : <fmt:formatNumber value="${minOutcome }" type="currency" /></td>
 
 							</tr>
 							<tr>
-								<td>평균수입 : <fmt:formatNumber value="1234323.5234"
-										type="currency" /></td>
-								<td>평균지출 : <fmt:formatNumber value="123234.23423"
-										type="currency" /></td>
+								<td>평균수입 : <fmt:formatNumber value="${avgIncome }" type="currency" /></td>
+								<td>평균지출 : <fmt:formatNumber value="${avgOutcome }" type="currency" /></td>
 							</tr>
 						</table>
 					</div>
@@ -142,7 +138,24 @@
 		</div>
 	</div>
 	<!-- 그래프 디자인 및 설정 -->
-	<script type="text/javascript">
+	<script type="text/javascript">		
+		//그래프 데이터 리스트형 전처리
+		var dateList = new Array();
+		<c:forEach items="${dateList}" var="item">
+			dateList.push("${item}");
+		</c:forEach>		
+		dateList.unshift("x");
+		
+		var incomeList = ${incomeList};
+		incomeList.unshift("data1");
+		console.log(incomeList);
+		
+		var outcomeList = ${outcomeList};		
+		outcomeList.unshift("data2");
+		
+		var revenueList = ${revenueList};
+		revenueList.unshift("data3");
+
 		var chart = bb.generate({
 			title : {
 				text : "일별 지출/수입/잔액 그래프"
@@ -150,11 +163,10 @@
 			data : {
 				x : "x",
 				columns : [
-						[ "x", '209-12-31', '2010-01-01', '2010-01-02',
-								'2010-01-03', '2010-01-04', '2010-01-05' ],
-						[ "data1", 30, 200, 100, 400, 150, 250 ],
-						[ "data2", 130, 100, 140, 200, 150, 50 ],
-						[ "data3", 130, 150, 200, 300, 200, 100 ] ],
+					dateList,
+					incomeList,
+					outcomeList,
+					revenueList ],
 				names : {
 					data1 : "수입",
 					data2 : "지출",
@@ -438,6 +450,13 @@
 		}
 		
 	</script>
+	
+	<!-- 페이징처리용 함수 -->
+	<script>
+	function fn_paging(cPage) {
+		location.href='${pageContext.request.contextPath}/accountBook/accountBookView?cPage='+cPage+'&partner_No=1234';
+	}
+	</script>";
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
