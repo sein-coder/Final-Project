@@ -274,34 +274,131 @@ scale
 
 
 (1);
+<<<<<<< HEAD
 }
 }
 /* 	버튼 css */
 .btn-sensitive:active, .btn-sensitive.active {
 	top: 1px;
 	margin-top: 4px;
+=======
+>>>>>>> refs/remotes/origin/jy
 }
+}
+
+/* 	버튼 css */
+.btn-sensitive:active, .btn-sensitive.active {
+	top: 1px;
+	margin-top: 4px;
+}
+
+/* 추천글 */
+body
+{
+	background:#00bcd4;
+}
+
+h1
+{
+	color:#fff;
+	margin:40px 0 60px 0;
+	font-weight:300;
+}
+
+.our-team-main
+{
+	width:100%;
+	height:auto;
+	border-bottom:5px #323233 solid;
+	background:#fff;
+	text-align:center;
+	border-radius:10px;
+	overflow:hidden;
+	position:relative;
+	transition:0.5s;
+	margin-bottom:28px;
+}
+
+
+.our-team-main img
+{
+	border-radius:50%;
+	margin-bottom:20px;
+	width: 90px;
+}
+
+.our-team-main h3
+{
+	font-size:20px;
+	font-weight:700;
+}
+
+.our-team-main p
+{
+	margin-bottom:0;
+}
+
+.team-back
+{
+	width:100%;
+	height:auto;
+	position:absolute;
+	top:0;
+	left:0;
+	padding:5px 15px 0 15px;
+	text-align:left;
+	background:#fff;
+	
+}
+
+.team-front
+{
+	width:100%;
+	height:auto;
+	position:relative;
+	z-index:10;
+	background:#fff;
+	padding:15px;
+	bottom:0px;
+	transition: all 0.5s ease;
+}
+
+.our-team-main:hover .team-front
+{
+	bottom:-200px;
+	transition: all 0.5s ease;
+}
+
+.our-team-main:hover
+{
+	border-color:#777;
+	transition:0.5s;
+}
+
+/*our-team-main*/
+
+
+
+
 </style>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="" />
 </jsp:include>
 <body>
 	<section id="content">
-		<div class="site-section">
-
+		<div class="site-section pb-0">
 			<div class="row">
-				<div class="col-1"
+
+				<!-- <div class="col-1"
 					style="padding-left: 10px; padding-right: 0; margin-top: 50px;">
 					<div class="container-fluid">
-						<!-- Brand and toggle get grouped for better mobile display -->
+						Brand and toggle get grouped for better mobile display
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle collapsed"
 								data-toggle="collapse"
 								data-target="#bs-example-navbar-collapse-1"
 								style="background-color: #f38181">여기</button>
 						</div>
- 
-						<!-- Collect the nav links, forms, and other content for toggling -->
 
 						<div class="collapse navbar-collapse"
 							id="bs-example-navbar-collapse-1"
@@ -348,17 +445,17 @@ scale
 									</ul></li>
 							</ul>
 						</div>
-						<!-- /.navbar-collapse -->
+						/.navbar-collapse
 					</div>
-					<!-- /.container-fluid -->
-				</div>
+					/.container-fluid
+				</div> -->
 
 
 
 				<!-- 새로운 뷰 -->
 
 				<div class="container" style="background-color: white;">
-					<div class="card col-md-11" style="border: 3px solid #ffc9c9;">
+					<div class="card col-md-12" style="border: 3px solid #ffc9c9;">
 
 						<div class="wrapper row" style="background-color: white;">
 							<div class="preview col-md-5">
@@ -393,7 +490,7 @@ scale
 
 							</div>
 							<div class="details col-md-7">
-								<h3 class="product-title">[11월]한강 고구마축제</h3>
+								<h3 class="product-title">[11월] 한강 고구마축제</h3>
 								<div class="rating">
 									<div class="stars">
 										<span class="fa fa-star checked"></span> <span
@@ -404,8 +501,12 @@ scale
 
 								</div>
 								<p class="product-description">
-									축제내용축제내용축제내용축제내용<br>축제내용축제내용축제내용축제내용<br>축제내용축제내용축제내용축제내용
-									<br>
+								<p class="text-break">
+									매년 11월, 매해 다른 콘셉트로 청계천 일대에 오색찬란한 등(燈)을 밝히는 서울의 겨울 대표 빛축제 <br>
+									<br> * 행사사진은 2018년도 축제 <br> [행사내용] 1구간 : 당신의 동화, 서울
+									2구간 : 서울, 동화를 만나다<br> 3구간 : 서울, 옛시간을 이야기하다 4구간 : 함께 꿈꾸는
+									동화, 서울 <br>
+									<br> [부대행사] 소망등 띄우기, 종이동화등 만들기, 복초롱등 만들기 체험 프로그램 <br>
 								</p>
 								<h4 class="price">
 									참가 요금: <span>$180</span>
@@ -424,6 +525,7 @@ scale
 								<div class="action">
 									<button class="add-to-cart btn btn-default" type="button">좋아요</button>
 								</div>
+
 
 							</div>							
 						</div>
@@ -464,12 +566,177 @@ scale
 							</div>
 							</div>
 						</div>
-					</div>
 
+					</div>
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="container">
+				<div class="col-md-12 mt-0 pt-0"
+					style="border: 3px solid #ffc9c9; border-top: 0px solid white;">
 
+					<!-- 더 보기 버튼 생성  -->
+					<div
+						class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
+						style="padding-left: 0; padding-right: 0;">
+						<input value="더보기"
+							onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display != ''){this.parentNode.getElementsByTagName('div')[0].style.display = '';this.value = '숨기기';}
+												else{this.parentNode.getElementsByTagName('div')[0].style.display = 'none'; this.value = '더보기';}"
+							type="button" class="btn btn-danger btn-block" />
+						<div style="display: none;">
+							<!-- 내용 추가 부분  -->
+							<table class="table">
+								<tr>
+									<td scope="row">
+										<div class="alert alert-danger1">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">시 작 일</a> <strong>시작일:</strong>
+											2019.11.05
+										</div>
+									</td>
+									<td>
+										<div class="alert alert-danger2">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">종 료 일</a> <strong>종료일:</strong>
+											2019.11.06
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td scope="row">
+										<div class="alert alert-danger3">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">전화번호</a> <strong>전화번호:</strong>
+											010-5923-7319
+										</div>
+									</td>
+									<td>
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">홈페이지</a> <strong>홈페이지:</strong>
+											www.naver.com
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td scope="row">
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">주 소</a> <strong>주소:</strong>
+											서울시 관악구 봉천동
+										</div>
+									</td>
+									<td>
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">주 최</a> <strong>주최:</strong>
+											서울시청
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">주 관</a> <strong>주관:</strong>
+											서울시 관악구
+										</div>
+									</td>
+									<td>
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">이용요금</a> <strong>이용요금:</strong>
+											무료
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--추천글 -->
+		   
+	<div class="container mt-5">
+	<div class="col-md-12">
+	<div class="row">
+	
+	<!--team-4-->
+	<div class="col-lg-4">
+	<div class="our-team-main">
+	
+	<div class="team-front">
+	<img src="http://placehold.it/110x110/4caf50/fff?text=Dilip" class="img-fluid" />
+	<h3>Dilip Kevat</h3>
+	<p>Web Designer</p>
+	</div>
+	
+	<div class="team-back">
+	<span>
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+	natoque penatibus et magnis dis parturient montes,
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+	natoque.
+	</span>
+	</div>
+	
+	</div>
+	</div>
+	<!--team-4-->
+	
+	<!--team-5-->
+	<div class="col-lg-4">
+	<div class="our-team-main">
+	
+	<div class="team-front">
+	<img src="http://placehold.it/110x110/e91e63/fff?text=Dilip" class="img-fluid" />
+	<h3>Dilip Kevat</h3>
+	<p>Web Designer</p>
+	</div>
+	
+	<div class="team-back">
+	<span>
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+	natoque penatibus et magnis dis parturient montes,
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+	natoque.
+	</span>
+	</div>
+	
+	</div>
+	</div>
+	<!--team-5-->
+	
+	<!--team-6-->
+	<div class="col-lg-4">
+	<div class="our-team-main">
+	
+	<div class="team-front">
+	<img src="http://placehold.it/110x110/2196f3/fff?text=Dilip" class="img-fluid" />
+	<h3>Dilip Kevat</h3>
+	<p>Web Designer</p>
+	</div>
+	
+	<div class="team-back">
+	<span>
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+	natoque penatibus et magnis dis parturient montes,
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+	natoque.
+	</span>
+	</div>
+	
+	</div>
+	</div>
+	<!--team-6-->
+	
+	
+	</div>
+	</div>
+	</div>
 	</section>
 </body>
 </html>
