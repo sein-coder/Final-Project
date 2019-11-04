@@ -47,6 +47,12 @@ public class AccountBookDaoImpl implements AccountBookDao {
 		// TODO Auto-generated method stub
 		return session.update("accountBook.updateAccountBook",ab);
 	}
+
+	@Override
+	public AccountBook selectAccountBook(SqlSessionTemplate session, AccountBook ab) {
+		// TODO Auto-generated method stub
+		return session.selectOne("accountBook.selectAccountBook",ab);
+	}
 	
 	
 	
