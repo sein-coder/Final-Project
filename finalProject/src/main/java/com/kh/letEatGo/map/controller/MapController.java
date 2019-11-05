@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.letEatGo.map.model.service.MapService;
+import com.kh.letEatGo.map.model.vo.Map;
 import com.kh.letEatGo.map.model.vo.PartnerCategory;
 
 @Controller
@@ -18,13 +22,32 @@ public class MapController {
 	//화면전환용 method
 	@RequestMapping("/map")
 	public String map(Model model) {
-		List<PartnerCategory> permissionNo=service.selectPermissionNo();
+		List<PartnerCategory> categoryList=service.categoryList();
 		
-		model.addAttribute("list",permissionNo);
+		 List<Map> maplist=service.selectMapList();
+		 
+		 model.addAttribute("maplist",maplist);
+		 
+		model.addAttribute("list",categoryList);
 		return "map/map";
 	}
 	
-	
+	@RequestMapping("/mapPosition")
+	@ResponseBody
+	public String selectPosition() {
+		List<PartnerCategory> categoryList=service.categoryList();
+		 ObjectMapper mapper=new ObjectMapper();
+		 String str="";
+		 try {
+			str=mapper.writeValueAsString(categoryList);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 System.out.println(str);
+		 return str;
+		 
+	}
 	
 	//화면전환용 method
 		@RequestMapping("/foodTruck")
