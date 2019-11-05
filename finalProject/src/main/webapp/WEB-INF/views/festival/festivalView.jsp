@@ -509,62 +509,25 @@ h1
 									<br> [부대행사] 소망등 띄우기, 종이동화등 만들기, 복초롱등 만들기 체험 프로그램 <br>
 								</p>
 								<h4 class="price">
-									참가 요금: <span>$180</span>
+									참가 요금: <span></span>
 								</h4>
 								<h4 class="price">
 									시작일: <span>2019.11.01</span><br> 종료일: <span>2019.11.30</span><br>
 
 								</h4>
 
+								<div class="action">
+									<button class="add-to-cart btn btn-default" type="button">좋아요</button>
+								</div>
 
 								<p class="vote">
 									<strong>91명</strong> 오늘 이 글에 좋아요를 누른 회원수 입니다. <strong>(87
 										votes)</strong>
 								</p>
 
-								<div class="action">
-									<button class="add-to-cart btn btn-default" type="button">좋아요</button>
-								</div>
 
 
 							</div>							
-						</div>
-						
-						<div class="row">
-							<div class="col-md-5"></div>
-							<div class="col-md-7 justify-content-center">
-							<!-- 더 보기 버튼 생성  -->
-							<div class="btn btn-default btn-pressure btn-sensitive col-md pl-5 pr-5 mt-2"
-								style="padding-left: 0;">
-								<input value="더보기"
-									onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display != ''){this.parentNode.getElementsByTagName('div')[0].style.display = '';this.value = '숨기기';}else{this.parentNode.getElementsByTagName('div')[0].style.display = 'none'; this.value = '더보기';}"
-									type="button" class="btn btn-danger btn-block" />
-								<div style="display: none;">
-										<!-- 내용 추가 부분  -->
-
-										<div class="alert alert-danger1">
-											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주관</a> <strong>Danger:</strong>
-											you shouldn't do an action!
-										</div>
-										<div class="alert alert-danger2">
-											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주최</a> <strong>Danger:</strong>
-											you shouldn't do an action!
-										</div>
-										<div class="alert alert-danger3">
-											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주소/신청서링크</a> <strong>Danger:</strong>
-											you shouldn't do an action!
-										</div>
-										<div class="alert alert-danger4">
-											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">전화번호</a> <strong>Danger:</strong>
-											you shouldn't do an action!
-										</div>
-								</div>
-							</div>
-							</div>
 						</div>
 
 					</div>
@@ -586,7 +549,7 @@ h1
 							type="button" class="btn btn-danger btn-block" />
 						<div style="display: none;">
 							<!-- 내용 추가 부분  -->
-							<table class="table">
+							<table class="table" style="margin:auto;text-align: left;">
 								<tr>
 									<td scope="row">
 										<div class="alert alert-danger1">
@@ -599,7 +562,7 @@ h1
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>종료일:</strong>
-											2019.11.06
+											2019.11.30
 										</div>
 									</td>
 								</tr>
@@ -608,7 +571,7 @@ h1
 										<div class="alert alert-danger3">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">전화번호</a> <strong>전화번호:</strong>
-											010-5923-7319
+											02-384-7319
 										</div>
 									</td>
 									<td>
@@ -669,17 +632,17 @@ h1
 	<div class="our-team-main">
 	
 	<div class="team-front">
-	<img src="http://placehold.it/110x110/4caf50/fff?text=Dilip" class="img-fluid" />
-	<h3>Dilip Kevat</h3>
-	<p>Web Designer</p>
+	<img src="http://placehold.it/110x110/4caf50/fff?text=ONE" class="img-fluid" />
+	<h3>태안 팜파스 축제</h3>
+	<p>2019.08.15~2019.11.25</p>
 	</div>
 	
 	<div class="team-back">
 	<span>
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-	natoque penatibus et magnis dis parturient montes,
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-	natoque.
+	11월 25일까지 충청남도 태안 청산수목원에서 진행되는 팜파스 축제. 
+	늦가을 낭만을 즐길 수 있는 팜파스 축제에는 키를 훌쩍 넘기는 큰 서양 억새들과 핑크뮬리 밭이 3군데나 펼쳐져 있습니다.
+	 이미 인생샷 명소로도 유명한 태안 팜파스 축제. 사진 뿐만 아니라 수생 정원과 나무 정원, 미로공원 등 다양한 볼거리와 휴식공간도 다양하니 남녀노소 방문하기 좋습니다. 
+
 	</span>
 	</div>
 	
@@ -692,17 +655,16 @@ h1
 	<div class="our-team-main">
 	
 	<div class="team-front">
-	<img src="http://placehold.it/110x110/e91e63/fff?text=Dilip" class="img-fluid" />
-	<h3>Dilip Kevat</h3>
-	<p>Web Designer</p>
+	<img src="http://placehold.it/110x110/e91e63/fff?text=TWO" class="img-fluid" />
+	<h3>순천만갈대축제</h3>
+	<p>2019.11.02~2019.11.04</p>
 	</div>
 	
 	<div class="team-back">
 	<span>
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-	natoque penatibus et magnis dis parturient montes,
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-	natoque.
+	160만 평의 황금빛 갈대밭과 690만 평의 드넓은 갯벌로 이루어진 순천만습지는 국내를 대표하는 연안습지입니다. 
+	계절마다 철새들이 찾아오는 천예의 자연 경관을 자랑하는 곳이기도 합니다. 이곳 순천만습지에서는 가을이면 매년 순천만갈대축제가 열립니다. 
+	올해로 20회를 맞이한 11월 축제 순천만갈대축제는 아침 선상투어, 가을음악회, 플리마켓 등 다채로운 볼거리 등을 경험할 수 있습니다. 
 	</span>
 	</div>
 	
@@ -715,17 +677,17 @@ h1
 	<div class="our-team-main">
 	
 	<div class="team-front">
-	<img src="http://placehold.it/110x110/2196f3/fff?text=Dilip" class="img-fluid" />
-	<h3>Dilip Kevat</h3>
-	<p>Web Designer</p>
+	<img src="http://placehold.it/110x110/2196f3/fff?text=THREE" class="img-fluid" />
+	<h3>포항구룡포과메기축제</h3>
+	<p>2019.11.10~2019.11.11</p>
 	</div>
 	
 	<div class="team-back">
 	<span>
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-	natoque penatibus et magnis dis parturient montes,
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-	natoque.
+	과메기 특산지로 알려진 구룡포. 이맘때쯤이면 구룡포에서는 큰 축제가 열립니다. 
+	바로 올해 21회를 맞이하는 포항구룡포과메기축제. 지역문화와 먹거리를 축제에 녹여 하나의 문화행사로 자리매김하고 있습니다.
+	11월 11일부터 12일까지의 기간 동안 민속놀이와 국악공연, 무료 시식회 등을 즐길 수 있습니다.
+
 	</span>
 	</div>
 	
@@ -735,6 +697,7 @@ h1
 	
 	
 	</div>
+	<button type="button" class="btn btn-outline-danger" style="text-align: center; margin: 0 auto;">목록</button>
 	</div>
 	</div>
 	</section>
