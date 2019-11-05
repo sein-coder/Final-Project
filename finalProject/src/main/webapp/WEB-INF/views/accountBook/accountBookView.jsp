@@ -201,7 +201,22 @@
 						tooltip : true
 					},
 					height : 40
+				},
+				y: {
+	                 tick: {
+	                 format: function(x) {
+		               	 d3.formatDefaultLocale({
+		          			  "decimal": ".",
+		          			  "thousands": ",",
+		          			  "grouping": [3],
+		          			  "currency": ["₩", ""]
+		          		 });
+		               	 
+		                 return d3.format("$,")(x); 
+		                 }
+	                 }
 				}
+
 			},
 			grid : {
 				x : {
@@ -215,16 +230,8 @@
 				enabled : true
 			},
 			bindto : "#barChart"
-		});
-
-		/* 1초후 불러오는 데이터셋 */
-		/* setTimeout(function() {
-			chart.load({
-			columns: [
-				["data3", 130, 150, 200, 300, 200, 100]
-			]
-		});
-		}, 1000); */
+		});		
+		
 	</script>
 
 
