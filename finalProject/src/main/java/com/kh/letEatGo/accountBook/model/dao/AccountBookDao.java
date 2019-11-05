@@ -18,4 +18,6 @@ public interface AccountBookDao {
 	int deleteAccountBook(SqlSessionTemplate session, int account_No);
 	
 	int updateAccountBook(SqlSessionTemplate session, AccountBook ab);
+	
+	AccountBook selectAccountBook(SqlSessionTemplate session, AccountBook ab);
 }

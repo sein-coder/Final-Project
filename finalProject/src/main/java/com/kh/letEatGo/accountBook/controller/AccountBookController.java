@@ -50,7 +50,7 @@ public class AccountBookController {
 				avgOutcome += ab.getAccount_Outcome();
 				avgRevenue += ab.getAccount_Revenue();
 			}
-			System.out.println(dateList);
+			
 			//각 갯수만큼 평균값 나누기
 			avgIncome /= incomeList.size();
 			avgOutcome /= outcomeList.size();
@@ -129,8 +129,31 @@ public class AccountBookController {
 		ab.setAccount_Balance(account_Balance);
 		
 		int result = service.updateAccountBook(ab);
+		mv.addObject("result",result);
 		mv.setViewName("jsonView");
 		return mv;
 	}
 	
+	@RequestMapping("/accountBook/checkDateData.do")
+	public ModelAndView checkDateData(String account_Date, int partner_No, int account_No) {
+		ModelAndView mv = new ModelAndView();
+		AccountBook ab = new AccountBook();
+		
+		ab.setAccount_Date(account_Date);
+		ab.setPartner_No(partner_No);
+		ab.setAccount_No(account_No);
+		
+		AccountBook resultAb = service.selectAccountBook(ab);
+		boolean result = resultAb!=null?false:true;
+		
+		if(result==false) {
+			if(resultAb.getAccount_No()==ab.getAccount_No()) {
+				result = true;
+			}
+		}
+		
+		mv.addObject("result",result);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 }
