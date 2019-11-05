@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
 <style>
 body {
 	font-family: 'open sans';
@@ -376,10 +371,6 @@ h1
 }
 
 /*our-team-main*/
-
-
-
-
 </style>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="" />
@@ -388,8 +379,7 @@ h1
 	<section id="content">
 		<div class="site-section pb-0">
 			<div class="row">
-
-				<!-- <div class="col-1"
+<!-- 				<div class="col-1"
 					style="padding-left: 10px; padding-right: 0; margin-top: 50px;">
 					<div class="container-fluid">
 						Brand and toggle get grouped for better mobile display
@@ -449,9 +439,7 @@ h1
 					</div>
 					/.container-fluid
 				</div> -->
-
-
-
+				
 				<!-- 새로운 뷰 -->
 
 				<div class="container" style="background-color: white;">
