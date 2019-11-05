@@ -52,6 +52,12 @@ public class AccountBookServiceImpl implements AccountBookService {
 		// TODO Auto-generated method stub
 		return dao.updateAccountBook(session, ab);
 	}
+
+	@Override
+	public AccountBook selectAccountBook(AccountBook ab) {
+		// TODO Auto-generated method stub
+		return dao.selectAccountBook(session, ab);
+	}
 	
 	
 	

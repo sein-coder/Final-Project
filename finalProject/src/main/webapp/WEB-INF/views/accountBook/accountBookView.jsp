@@ -148,7 +148,6 @@
 		
 		var incomeList = ${incomeList};
 		incomeList.unshift("data1");
-		console.log(incomeList);
 		
 		var outcomeList = ${outcomeList};		
 		outcomeList.unshift("data2");
@@ -249,7 +248,7 @@
 					if (i == 0) {
 						tags += '<td scope="row" size='+maxlength[i]+'>추가중</td>'
 					} else if (i == 1) {
-						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date"></td>';
+						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" onchange="checkDateData(this)"></td>';
 					} else if (i == 3) {
 						tags += '<td>';
 						tags += '<div class="btn-group">';
@@ -287,7 +286,7 @@
 						var input;
 
 						if (i == 1) {
-							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" value='+data[i].innerText+'>';
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" value='+data[i].innerText+' onchange="checkDateData(this)">';
 						} else if (i == 3) {
 							input = '<div class="btn-group">';
 							input += '<select id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" style="background-color : #ffc9c9">';
@@ -329,12 +328,14 @@
 		}
 
 		function cancel(num) {
-			/* add */
+			location.reload();
+			
+			/* add 
 			if (num == 1) {
 				$("#cancelBtn").parent().parent().remove();
 				flag = true;
 			}
-			/* update / delete */
+			 update / delete 
 			else {
 				var data = $("#cancelBtn").parent().parent().children();
 				for (var i = 0; i < data.length; i++) {
@@ -357,7 +358,8 @@
 				}
 
 				flag = true;
-			}
+			} */
+			
 		};
 		
 		/* 금액 전처리용 
@@ -412,6 +414,7 @@
 		
 		function deleteAccountBook(id){
 			var account_No = $(id).parent().parent().children().eq(0).children().val();
+			
 			$.ajax({
 				url : "${pageContext.request.contextPath}/accountBook/deleteAccountBook.do",
 				type : "post",
@@ -426,7 +429,7 @@
 		}
 		
 		function updateAccountBook(id){
-			var account_No = $(id).parent().parent().children().eq(0).children().val();
+			var account_No = $(id).parent().parent().children().eq(0).children().val();	
 			$.ajax({
 				url : "${pageContext.request.contextPath}/accountBook/updateAccountBook.do",
 				type : "post",
@@ -447,7 +450,32 @@
 					location.reload();
 				}
 			});
-		}
+			}
+		
+		function checkDateData(id){
+			var account_No = $(id).parent().parent().children().eq(0).children().val();
+			console.log(account_No);
+			if(typeof account_No == "undefined"){
+				account_No = -1;
+			}
+			console.log(account_No);
+ 			$.ajax({
+				url : "${pageContext.request.contextPath}/accountBook/checkDateData.do?partner_No=1234",
+				type : "post",
+				data : {
+					'account_Date':$(id).val(),
+					'account_No' : account_No
+				},
+				success : function(data){
+					if(data.result){
+						return false;
+					}else{
+						alert("중복되는 날짜가 존재합니다. 날짜를 다시 선택해주세요.")
+						$(id).val("");
+					}
+				}
+			}); 
+		};
 		
 	</script>
 	

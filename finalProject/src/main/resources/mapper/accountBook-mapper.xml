@@ -43,4 +43,9 @@
 			WHERE Account_No = #{account_No}
 	</update>
 	
+	<select id="selectAccountBook" parameterType="accountBook" resultType="accountBook">
+		SELECT * FROM AccountBook
+			WHERE account_Date = #{account_Date} AND partner_No = #{partner_No}
+	</select>
+	
 </mapper>

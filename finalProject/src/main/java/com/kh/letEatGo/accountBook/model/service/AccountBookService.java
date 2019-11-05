@@ -16,4 +16,6 @@ public interface AccountBookService {
 	int deleteAccountBook(int account_No);
 	
 	int updateAccountBook(AccountBook ab);
+	
+	AccountBook selectAccountBook(AccountBook ab);
 }
