@@ -154,7 +154,15 @@
 		
 		var revenueList = ${revenueList};
 		revenueList.unshift("data3");
-
+		
+		/* 그래프 원화 formatting */
+      	d3.formatDefaultLocale({
+ 			 "decimal": ".",
+ 			 "thousands": ",",
+ 			 "grouping": [3],
+ 			 "currency": ["₩", ""]
+ 		});
+		
 		var chart = bb.generate({
 			title : {
 				text : "일별 지출/수입/잔액 그래프"
@@ -184,6 +192,17 @@
 				labels : {
 					position : {
 						y : -5
+					},
+					format: {
+						data1 : function(x){			               	 
+							return d3.format('$,')(x);
+						},
+						data2 : function(x){			               	 
+							return d3.format('$,')(x);
+						},
+						data3 : function(x){		               	 
+							return d3.format('$,')(x);
+						},
 					}
 				}
 			},
@@ -205,13 +224,6 @@
 				y: {
 	                 tick: {
 	                 format: function(x) {
-		               	 d3.formatDefaultLocale({
-		          			  "decimal": ".",
-		          			  "thousands": ",",
-		          			  "grouping": [3],
-		          			  "currency": ["₩", ""]
-		          		 });
-		               	 
 		                 return d3.format("$,")(x); 
 		                 }
 	                 }
