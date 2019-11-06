@@ -3,6 +3,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.kh.letEatGo.member.model.vo.Member" alias="m"/>
+		<typeAlias type="com.kh.letEatGo.partner.model.vo.Partner" alias="p"/>
 		<typeAlias type="com.kh.letEatGo.common.type.StringArrayHandler" alias="strArray"/>
 	</typeAliases>
 </configuration>

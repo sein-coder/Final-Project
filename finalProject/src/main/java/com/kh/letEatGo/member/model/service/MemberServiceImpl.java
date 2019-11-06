@@ -20,6 +20,12 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dao.insertMember(session,m);
 	}
+
+	@Override
+	public Member selectMemberOne(Member m) {
+		
+		return dao.selectMemberOne(session,m);
+	}
 	
 
 }

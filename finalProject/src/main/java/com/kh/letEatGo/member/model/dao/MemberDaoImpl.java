@@ -14,4 +14,9 @@ public class MemberDaoImpl implements MemberDao {
 		return session.insert("member.insertMember",m);
 	}
 
+	@Override
+	public Member selectMemberOne(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectMember",m);
+	}
 }

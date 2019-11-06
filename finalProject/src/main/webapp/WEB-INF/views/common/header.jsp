@@ -38,7 +38,6 @@
   <body>
   
   <div class="site-wrap">
-
     <div class="site-mobile-menu">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -67,8 +66,9 @@
                 <li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
                 <li><a href="#"><span>푸드트럭존 찾기</span></a></li>
                 <li><a href="#"><span>축제알리미</span></a></li>
-                <li><button class="btn btn-outline-primary">로그인</button></li>
-                <li><button class="btn btn-outline-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.do'">회원가입</button></li>
+                <li><!-- <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="/viewChatting" onclick="viewChatting();">로그인</button> -->
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">로그인</button></li>
+                <li><button class="btn btn-outline-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/member/Enroll.do'">회원가입</button></li>
               </ul>
             </nav>
           </div>
@@ -81,8 +81,62 @@
           </div>
 
         </div>
-    	</header>
+    	</header>    
+		   
+
+    	<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">로그인</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+   <div class="container">
+      <div class="row">
+        <div class="col">
+          <p>로그인</p>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#member_log">사업자</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#partner_log">사용자</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="member_log">
+                <input type="text" placeholder="아이디"/>
+         		<input type="password" placeholder="비밀번호"/>
+         		<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}'">로그인</button>
+              </div>
+              <div class="tab-pane fade" id="partner_log">
+             	 <input type="text" placeholder="아이디"/>
+         		 <input type="password" placeholder="비밀번호"/>
+		         <button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/member/memberLogin.do'">로그인</button>
+		          	<div>
+		         </div>
+              </div>
+            </div>
+        </div>
       </div>
+    </div>
+  </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        </div>       
+          <button type="button" >페이스북</button>
+          <button type="button" >네이버</button>
+          <button type="button" >구글</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
       
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
