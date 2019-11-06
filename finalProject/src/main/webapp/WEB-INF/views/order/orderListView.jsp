@@ -6,6 +6,18 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="주문페이지"/>
 </jsp:include>
+<style>
+.star-rating {
+  line-height:32px;
+  font-size:1.25em;
+  
+}
+
+.star-rating .icon-star{
+  color: yellow;
+  transition : 0.5s;
+}
+</style>
 <section id="content" class="col-md-8 offset-md-2">
 	<!-- 업체 소개 영역 -->
     <div class="site-section ">
@@ -21,12 +33,14 @@
             <p>간단한 업체소개</p>
             <p class="mb-4">Adipisci dolore reprehenderit est et assumenda veritatis, ex voluptate odio consequuntur quo ipsa accusamus dicta laborum exercitationem aspernatur reiciendis perspiciatis!</p>
 			<p>
-				<!-- 별점 -->
-				<span class="icon-star text-warning"></span>
-				<span class="icon-star text-warning"></span>
-				<span class="icon-star text-warning"></span>
-				<span class="icon-star text-warning"></span>
-				<span class="icon-star text-secondary"></span>
+				<div class="star-rating">
+					<span class="icon-star" data-rating="1"></span>
+					<span class="icon-star" data-rating="2"></span>
+					<span class="icon-star" data-rating="3"></span>
+					<span class="icon-star" data-rating="4"></span>
+					<span class="icon-star" data-rating="5"></span>
+					<input type="hidden" name="whatever1" class="rating-value" value="3">
+				</div>
 				<span>(492 Reviews)</span>
 				<!-- 총 주문수, 리뷰수, 별점수 추가, 조회 수 -->
 			</p>
@@ -131,5 +145,22 @@
 			}
 		});
 	})
+
+var star_rating = $('.star-rating .icon-star');
+
+var SetRatingStar = function() {
+  return star_rating.each(function() {
+    if (parseInt(star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+      return $(this).removeClass('text-secondary').addClass('text-warning');
+    } else {
+      return $(this).removeClass('text-warning').addClass('text-secondary');
+    }
+  });
+};
+
+SetRatingStar();
+$(document).ready(function() {
+
+});
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

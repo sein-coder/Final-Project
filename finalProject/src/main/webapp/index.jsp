@@ -61,10 +61,12 @@
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
-							class="icon mb-3"> <img
-								src="${pageContext.request.contextPath }/resources/icon/중식.png">
-						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">482</span>
+						<a href="#" class="popular-category h-100"> 
+							<span class="icon mb-3">
+								<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
+							</span> 
+							<span class="caption mb-2 d-block">중식</span> 
+							<span class="number">482</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -450,14 +452,11 @@
 		loop : true,
 		showCursor : true
 	});
-</script>
-<script>
+
 	$(function() {
 		$(".site-navbar").css("background-color", "transparent");
 	})
-</script>
 
-<script>
 	$(function() {
 		var selectedClass = "";
 		$(".filter").click(
