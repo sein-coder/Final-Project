@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="map">
-<select id="selectList"  resultType="partnerCategory">
-	select PERMISSION_NO,XCODE,YCODE,NM,ADDR from PARTNER_CATEGORY
+<select id="selectList"  resultType="truckmap">
+	SELECT XCODE,YCODE,MAP_STRART_TIME,MAP_END_TIME,ADDR,ADDR_OLD FROM TRUCK_MAP
 </select>
-<select id="selectMapList" resultType="maplist">
-	select * from map
+<select id="selectMapList" resultType="zonemap">
+	SELECT IMG,ADDR,ADDR2,MAP_ZONE,XCODE1,XCODE2,XCODE3,XCODE4,YCODE1,YCODE2,YCODE3,YCODE4 FROM ZONE_MAP
 </select>
 
 </mapper>

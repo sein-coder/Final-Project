@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PartnerCategory {
-	private String permission_No;
+public class TruckMap {
 	private String xCode;
 	private String yCode;
-	private String nm;
 	private String addr;
+	private String addr_old;
+	private String map_Strart_Time;
+	private String map_End_Time;
 	
 	
 }

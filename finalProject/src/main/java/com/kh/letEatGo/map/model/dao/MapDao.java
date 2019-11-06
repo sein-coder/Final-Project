@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
-import com.kh.letEatGo.map.model.vo.Map;
-import com.kh.letEatGo.map.model.vo.PartnerCategory;
+import com.kh.letEatGo.map.model.vo.ZoneMap;
+import com.kh.letEatGo.map.model.vo.TruckMap;
 
 public interface MapDao {
-	List<PartnerCategory> categoryList(SqlSessionTemplate session);
-	List<Map> selectMapList(SqlSessionTemplate session);
+	List<TruckMap> categoryList(SqlSessionTemplate session);
+	List<ZoneMap> selectMapList(SqlSessionTemplate session);
 }

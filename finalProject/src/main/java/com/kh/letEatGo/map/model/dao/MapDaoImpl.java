@@ -5,19 +5,19 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.letEatGo.map.model.vo.Map;
-import com.kh.letEatGo.map.model.vo.PartnerCategory;
+import com.kh.letEatGo.map.model.vo.ZoneMap;
+import com.kh.letEatGo.map.model.vo.TruckMap;
 
 @Repository
 public class MapDaoImpl implements MapDao {
 
 	@Override
-	public List<PartnerCategory> categoryList(SqlSessionTemplate session) {
+	public List<TruckMap> categoryList(SqlSessionTemplate session) {
 		return session.selectList("map.selectList");
 	}
 
 	@Override
-	public List<Map> selectMapList(SqlSessionTemplate session) {
+	public List<ZoneMap> selectMapList(SqlSessionTemplate session) {
 		return session.selectList("map.selectMapList");
 	}
 	

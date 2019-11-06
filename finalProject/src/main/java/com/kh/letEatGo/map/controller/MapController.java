@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.letEatGo.map.model.service.MapService;
-import com.kh.letEatGo.map.model.vo.Map;
-import com.kh.letEatGo.map.model.vo.PartnerCategory;
+import com.kh.letEatGo.map.model.vo.ZoneMap;
+import com.kh.letEatGo.map.model.vo.TruckMap;
 
 @Controller
 public class MapController {
@@ -22,32 +22,29 @@ public class MapController {
 	//화면전환용 method
 	@RequestMapping("/map")
 	public String map(Model model) {
-		List<PartnerCategory> categoryList=service.categoryList();
-		
-		 List<Map> maplist=service.selectMapList();
+		List<TruckMap> truckList=service.categoryList();
+		List<ZoneMap> zonelist=service.selectMapList();
 		 
-		 model.addAttribute("maplist",maplist);
-		 
-		model.addAttribute("list",categoryList);
+		model.addAttribute("trucklist",truckList);
+		model.addAttribute("zonelist",zonelist);
 		return "map/map";
 	}
 	
-	@RequestMapping("/mapPosition")
-	@ResponseBody
-	public String selectPosition() {
-		List<PartnerCategory> categoryList=service.categoryList();
-		 ObjectMapper mapper=new ObjectMapper();
-		 String str="";
-		 try {
-			str=mapper.writeValueAsString(categoryList);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 System.out.println(str);
-		 return str;
-		 
-	}
+//	@RequestMapping("/truckPosition")
+//	@ResponseBody
+//	public String selectPosition() {
+//		List<TruckMap> trucklist=service.categoryList();
+//		 ObjectMapper mapper=new ObjectMapper();
+//		 String str="";
+//		 try {
+//			str=mapper.writeValueAsString(trucklist);
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		 System.out.println(str);
+//		 return str;
+//	}
 	
 	//화면전환용 method
 		@RequestMapping("/foodTruck")

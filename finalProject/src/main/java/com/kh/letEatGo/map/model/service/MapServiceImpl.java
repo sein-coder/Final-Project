@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.letEatGo.map.model.dao.MapDao;
-import com.kh.letEatGo.map.model.vo.Map;
-import com.kh.letEatGo.map.model.vo.PartnerCategory;
+import com.kh.letEatGo.map.model.vo.ZoneMap;
+import com.kh.letEatGo.map.model.vo.TruckMap;
 
 @Service
 public class MapServiceImpl implements MapService {
@@ -19,12 +19,12 @@ public class MapServiceImpl implements MapService {
 	private SqlSessionTemplate session;
 	
 	@Override
-	public List<PartnerCategory> categoryList() {
+	public List<TruckMap> categoryList() {
 		return dao.categoryList(session);
 	}
 
 	@Override
-	public List<Map> selectMapList() {
+	public List<ZoneMap> selectMapList() {
 		return dao.selectMapList(session);
 	}
 
