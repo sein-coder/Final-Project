@@ -192,7 +192,6 @@ function closeOverlay1() {
 	infowindow.setMap(null);     
 }
 
-
 function sample5_execDaumPostcode() {
 	 if (document.getElementById("sample5_address").value == ''){
 		 alert('위치를 입력해주세요. ex)강남');
@@ -239,7 +238,6 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     var markers=[];
     var overlays=[];
     
-    
     for(var i=0; i<positions.length; i++){
         var maker = new kakao.maps.Marker({
             map: map, // 마커를 표시할 지도
@@ -278,9 +276,9 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     
     overlays.push(overlay);
 
-    /* kakao.maps.event.addListener(markers[i], 'click', function() {
+   /*  kakao.maps.event.addListener(markers[i], 'click', function() {
     	overlays[i].setMap(map);
-    }); */
+    });  */
 
     function closeOverlay(i) {
    	overlays[i].setMap(null);     
@@ -288,15 +286,16 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     	
  	overlays[i].setMap(null); 
  	
- 	
     }
-	
-    console.log(overlays);
-    console.log(markers);
+    $.each(overlays,function(i,item){
+    	kakao.maps.event.addListener(markers[i], 'click', function() {
+    		overlays[i].setMap(map);
+    		}); 
+    });
+		
+  
     
-   
-    
-	   kakao.maps.event.addListener(markers[0], 'click', function() {
+	/* kakao.maps.event.addListener(markers[0], 'click', function() {
 	overlays[0].setMap(map);
 	}); 
 	 kakao.maps.event.addListener(markers[1], 'click', function() {
@@ -310,8 +309,8 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
 	});
 	kakao.maps.event.addListener(markers[4], 'click', function() {
 		overlays[4].setMap(map);
-	});     
-	
+	});      */
+	 
 
    
 </script>
