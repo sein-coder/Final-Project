@@ -60,12 +60,11 @@
 			</div>
 			<div class="site-mobile-menu-body"></div>
 		</div>
-		
+
 		<header class="site-navbar" role="banner">
 
 			<div class="container">
 				<div class="row align-items-center">
-
 					<div class="col-11 col-xl-3">
 						<a href="${pageContext.request.contextPath }"> <img
 							src="${pageContext.request.contextPath }/resources/images/logo.png"
@@ -82,10 +81,13 @@
 								<li><a
 									href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234"><span>장부관리</span></a></li>
 								<li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존 찾기</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/festival/festivaList"><span>축제알리미</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존
+											찾기</span></a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/festival/festivaList"><span>축제알리미</span></a></li>
 								<li>
-									<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">로그인</button>
+									<button type="button" class="btn btn-outline-primary"
+										data-toggle="modal" data-target="#myModal">로그인</button>
 								</li>
 								<li><button class="btn btn-outline-primary" type="button"
 										onclick="location.href='${pageContext.request.contextPath}/member/Enroll.do'">회원가입</button></li>
@@ -162,3 +164,14 @@
 		src="https://www.gstatic.com/charts/loader.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- hover event 추가 -->
+	<script>
+		$(function() {
+			$("nav>ul>li").hover(function() {
+				$(this).addClass("active");
+			}, function() {
+				$(this).removeClass("active");
+			})
+		});
+	</script>
