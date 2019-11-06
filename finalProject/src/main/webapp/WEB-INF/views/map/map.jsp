@@ -276,10 +276,6 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     
     overlays.push(overlay);
 
-   /*  kakao.maps.event.addListener(markers[i], 'click', function() {
-    	overlays[i].setMap(map);
-    });  */
-
     function closeOverlay(i) {
    	overlays[i].setMap(null);     
  	} 
@@ -292,25 +288,6 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     		overlays[i].setMap(map);
     		}); 
     });
-		
-  
-    
-	/* kakao.maps.event.addListener(markers[0], 'click', function() {
-	overlays[0].setMap(map);
-	}); 
-	 kakao.maps.event.addListener(markers[1], 'click', function() {
-		overlays[1].setMap(map);
-	});
-	kakao.maps.event.addListener(markers[2], 'click', function() {
-		overlays[2].setMap(map);
-	});
-	kakao.maps.event.addListener(markers[3], 'click', function() {
-		overlays[3].setMap(map);
-	});
-	kakao.maps.event.addListener(markers[4], 'click', function() {
-		overlays[4].setMap(map);
-	});      */
-	 
 
    
 </script>
