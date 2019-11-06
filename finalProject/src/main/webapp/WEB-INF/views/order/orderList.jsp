@@ -64,10 +64,10 @@
 				<div class="d-block d-md-flex listing-horizontal">
 					<!-- 푸드트럭 별 대표이미지 -->
 					<a href="${path }/order/orderListView" class="img d-block" style="background-image: url('${path}/resources/images/person_2.jpg')">
-						<span class="category"><c:out value="${pt.partner_menu }"/></span>
+						<span class="category"><c:out value="${pt.partner_Menu }"/></span>
 					</a>
 					<div class="lh-content">
-							<h3><a href="${path }/order/orderListView"><c:out value="${pt.partner_name }"/></a></h3>
+							<h3><a href="${path }/order/orderListView"><c:out value="${pt.partner_TruckName }"/></a></h3>
 							<p>대표메뉴가 올자리</p>
 							<!-- 별점 -->
 							<div class="row">
