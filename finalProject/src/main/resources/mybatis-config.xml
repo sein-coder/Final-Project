@@ -3,6 +3,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.kh.letEatGo.common.type.StringArrayHandler" alias="strArray"/>
+		<typeAlias type="com.kh.letEatGo.map.model.vo.TruckMap" alias="truckmap"/>
 		<typeAlias type="com.kh.letEatGo.accountBook.model.vo.AccountBook" alias="accountbook"/>
+		<typeAlias type="com.kh.letEatGo.map.model.vo.ZoneMap" alias="zonemap"/>
+		
+		
 	</typeAliases>
 </configuration>
