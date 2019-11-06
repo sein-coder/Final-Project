@@ -1,6 +1,10 @@
 package com.kh.letEatGo.festival.model.service;
 
-public interface FestivalService {
+import com.kh.letEatGo.festival.model.vo.Festival;
+
+public interface FestivalService{
+	
+	int insertFestival(Festival festival);
 	
 
 }
