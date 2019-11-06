@@ -85,6 +85,9 @@
 											찾기</span></a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/festival/festivaList"><span>축제알리미</span></a></li>
+								<li><a
+									href="#" onclick="permissionAPI();"><span>大화남</span></a></li>
+								
 								<li>
 									<button type="button" class="btn btn-outline-primary"
 										data-toggle="modal" data-target="#myModal">로그인</button>
@@ -102,7 +105,6 @@
 						</a>
 					</div>
 				</div>
-
 			</div>
 		</header>
 
@@ -175,3 +177,21 @@
 			})
 		});
 	</script>
+	
+	<script type="text/javascript">
+		function permissionAPI(){
+			console.log("api실행")
+			$.ajax({
+				url : "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/foodTruckInfo/1/510/",
+				type : "get",
+				data : {
+				},
+				success : function(data){
+					for(var i=0; i<data['foodTruckInfo']['row'].length; i++){
+						console.log(data['foodTruckInfo']['row'][i]['NM']+" : "+data['foodTruckInfo']['row'][i]['PERMISSION_NO']);						
+					}
+				}
+			});
+		}
+	</script>
+	
