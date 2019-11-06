@@ -51,6 +51,7 @@
 </head>
 <body>
 
+
 	<div class="site-wrap">
 		<div class="site-mobile-menu">
 			<div class="site-mobile-menu-header">
@@ -83,7 +84,7 @@
 									href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234"><span>장부관리</span></a></li>
 								<li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
 								<li><a href="#"><span>푸드트럭존 찾기</span></a></li>
-								<li><a href="#"><span>축제알리미</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/festival/festivaList"><span>축제알리미</span></a></li>
 								<li>
 									<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">로그인</button>
 								</li>
