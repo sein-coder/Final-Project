@@ -94,7 +94,6 @@
 								<li><a href="${pageContext.request.contextPath }/list.list"><span>회원
 											목록</span></a></li>
 								<li><a href="#" onclick="permissionAPI();"><span>大화남</span></a></li>
-
 								<li>
 									<button type="button" class="btn btn-outline-primary"
 										data-toggle="modal" data-target="#myModal">로그인</button>
@@ -195,7 +194,8 @@
 				},
 				success : function(data){
 					for(var i=0; i<data['foodTruckInfo']['row'].length; i++){
-						console.log(data['foodTruckInfo']['row'][i]['NM']+" : "+data['foodTruckInfo']['row'][i]['PERMISSION_NO']);						
+						console.log(data['foodTruckInfo']['row'][i]['NM']+" : "+data['foodTruckInfo']['row'][i]['PERMISSION_NO']+" : "+
+								data['foodTruckInfo']['row'][i]['XCODE']+" : "+data['foodTruckInfo']['row'][i]['YCODE']);						
 					}
 				}
 			});
