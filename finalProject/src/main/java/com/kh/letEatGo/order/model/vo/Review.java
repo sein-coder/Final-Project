@@ -6,18 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Order {
+public class Review {
 
+	private int review_no;
+	private String review_content;
+	private Date review_time;
+	private int review_star;
+	private String oriname_file;
+	private String rename_file;
 	private int order_no;
-	private String order_list;
-	private String add_request;
-	private int order_price;
-	private Date order_time;
-	private String reservation_yn;
-	private int partner_no;
 	private int member_no;
-	
 }
