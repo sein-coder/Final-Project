@@ -20,5 +20,29 @@ public class PageController {
 		mv.setViewName("mypage/partnerPage");
 		return mv;
 	}
+	
+	@RequestMapping("/list.list")
+	public ModelAndView list() {
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("mypage/list");
+		return mv;
+	}
+	
+	@RequestMapping("/partnerlist")
+	public ModelAndView partnerlist() {
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("mypage/partnerListPage");
+		return mv;
+				
+	}
+	@RequestMapping("/memberlist")
+	public ModelAndView memberlist() {
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("mypage/memberListPage");
+		return mv;
+				
+	}
+	
+	
 
 }

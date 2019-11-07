@@ -107,7 +107,7 @@
 
 	<div class="site-section" style="padding-top: 4em;">
 		<div class="container">
-			<div class="row justify-content-center mb-5">
+			<div class="row justify-content-center mb-8">
 				<div class="col-md-7 text-center border-primary">
 					<h2 class="font-weight-light text-primary">Let Eat Go</h2>
 					<p class="color-black-opacity-5">사용자와 사업자 모두를 만족시키는 서비스</p>

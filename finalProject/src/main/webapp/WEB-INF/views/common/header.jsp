@@ -70,6 +70,7 @@
                 <li><a href="${pageContext.request.contextPath }/calendar"><span>캘린더</span></a></li>
                 <li><a href="${pageContext.request.contextPath }/memberPage"><span>고객 페이지</span></a></li>
                 <li><a href="${pageContext.request.contextPath }/partnerPage"><span>사업자 페이지</span></a></li>
+                <li><a href="${pageContext.request.contextPath }/list.list"><span>회원 목록</span></a></li>
                 <li><button class="btn btn-outline-primary">로그인</button></li>
                 <li><button class="btn btn-outline-primary">회원가입</button></li>
               </ul>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,19 +28,23 @@
 	$(document).ready(function() {
 		setCalendar();
 	});
-
+	var calendar;
 	function setCalendar(){
 
 		var calendarEl = document.getElementById('calendar');
 
-		var calendar = new FullCalendar.Calendar(calendarEl, {
+		calendar = new FullCalendar.Calendar(calendarEl, {
 			plugins: [ 'dayGrid', 'timeGrid', 'list', 'interaction' ],
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
 			},
-			defaultView: 'timeGridWeek',
+			dateClick:function(){
+				var win=window.open("${pageContext.request.contextPath}/calendar/toDo.do","일정 입력","width=500,height=500");
+				
+			},
+			defaultView: 'dayGridMonth',
 			locale: 'ko',
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
@@ -47,19 +53,29 @@
 			minTime: '10:00:00',
 			maxTime: '24:00:00',
 			contentHeight: 'auto',
-			eventSources: [{
-				events: function(info, successCallback, failureCallback) {
-					$.getJSON( "selectEventList.json", function( data ) {						
-						successCallback(data);
-					});
-				}
+			selecttable:true,
+			selectHelper:true,
+			events: [
+				{
+				title:"11월 첫날",
+				start:'2019-11-01'
 			}]
 		});
+		
 				
 		calendar.render();
 
 	}
-	
+	function eventAdd(data){
+		//console.log(calendar);
+		//console.log(data);
+		calendar.addEvent(data);
+		//console.log(calendar.getEvents());
+		calendar.render();
+	}
+	function eventClick(data){
+		event.remove();
+	}
 	
 
 	</script>
@@ -67,5 +83,7 @@
 <body>
 	<h1>FullCalendar</h1>
 	<div id="calendar"></div>
+	
+	<button type="button" onclick="location.href='index.jsp'">메인 화면</button>
 </body>
 </html>
