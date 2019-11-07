@@ -420,6 +420,11 @@
 
 <!-- 메인 음식메뉴파트 hover이벤트 -->
 <script type="text/javascript">
+
+
+
+
+
 	$(".popular-category").hover(
 			function() {
 				var img = $(this).children().eq(0).children();
