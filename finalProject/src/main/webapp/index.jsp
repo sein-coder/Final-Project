@@ -61,10 +61,12 @@
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
-							class="icon mb-3"> <img
-								src="${pageContext.request.contextPath }/resources/icon/중식.png">
-						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">482</span>
+						<a href="#" class="popular-category h-100"> 
+							<span class="icon mb-3">
+								<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
+							</span> 
+							<span class="caption mb-2 d-block">중식</span> 
+							<span class="number">482</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -105,6 +107,7 @@
 </div>
 <section id="content">
 
+
 	<div class="site-section" style="padding-top: 4em;">
 		<div class="container">
 			<div class="row justify-content-center mb-5">
@@ -118,8 +121,7 @@
 				<div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
 					<div class="how-it-work-step">
 						<div class="img-wrap">
-							<img
-								src="${pageContext.request.contextPath }/resources/images/소비자.png"
+							<img src="${pageContext.request.contextPath }/resources/images/소비자.png"
 								alt="Free website template by Free-Template.co"
 								class="img-fluid">
 						</div>
@@ -168,11 +170,11 @@
 				<div class="row">
 					<div class="col-md-12 d-flex justify-content-center">
 						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="all">All</button>
+							class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
 						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button>
+							class="btn btn-outline-info waves-effect filter" data-rel="1">Festival</button>
 						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button>
+							class="btn btn-outline-info waves-effect filter" data-rel="2">Food</button>
 					</div>
 					<!-- Grid column -->
 				</div>
@@ -183,11 +185,11 @@
 					<div class="mb-3 pics animation all 2">
 						<figure class="effect-gallery">
 							<img class="img-fluid"
-								src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+								src="${pageContext.request.contextPath }/resources/images/main/11.jpg"
 								alt="Card image cap">
 							<figcaption>
 								<h2>
-									메뉴<span>부메뉴</span>
+									메뉴1<span>부메뉴1</span>
 								</h2>
 								<p>
 									<a href="#"><span class="icon icon-search"></span></a>
@@ -201,11 +203,11 @@
 					<div class="mb-3 pics animation all 1">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main/9.jpg"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
-									메뉴<span>부메뉴</span>
+									메뉴2<span>부메뉴2</span>
 								</h2>
 								<p>
 									<a href="#"><span class="icon icon-search"></span></a>
@@ -219,11 +221,11 @@
 					<div class="mb-3 pics animation all 1">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main/5.jpg"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
-									메뉴<span>부메뉴</span>
+									메뉴3<span>부메뉴3</span>
 								</h2>
 								<p>
 									<a href="#"><span class="icon icon-search"></span></a>
@@ -237,11 +239,11 @@
 					<div class="mb-3 pics animation all 2">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+							src="${pageContext.request.contextPath }/resources/images/main/12.jpg"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
-									메뉴<span>부메뉴</span>
+									메뉴4<span>부메뉴4</span>
 								</h2>
 								<p>
 									<a href="#"><span class="icon icon-search"></span></a>
@@ -255,11 +257,11 @@
 					<div class="mb-3 pics animation all 2">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+							src="${pageContext.request.contextPath }/resources/images/main/2.jpg"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
-									메뉴<span>부메뉴</span>
+									메뉴5<span>부메뉴5</span>
 								</h2>
 								<p>
 									<a href="#"><span class="icon icon-search"></span></a>
@@ -273,11 +275,11 @@
 					<div class="mb-3 pics animation all 1">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main/13.jpg"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
-									메뉴<span>부메뉴</span>
+									메뉴6<span>부메뉴6</span>
 								</h2>
 								<p>
 									<a href="#"><span class="icon icon-search"></span></a>
@@ -451,14 +453,11 @@
 		loop : true,
 		showCursor : true
 	});
-</script>
-<script>
+
 	$(function() {
 		$(".site-navbar").css("background-color", "transparent");
 	})
-</script>
 
-<script>
 	$(function() {
 		var selectedClass = "";
 		$(".filter").click(
