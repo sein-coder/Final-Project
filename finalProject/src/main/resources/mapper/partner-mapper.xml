@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="partner">
+  	<insert id="insertPartner" parameterType="partner">
+  		INSERT INTO PARTNER VALUES(seq_PARTNER_NO.nextval,#{partner_Id},#{partner_Password},#{partner_Name},#{partner_Age},#{partner_Address},#{partner_Email},#{partner_Phone},#{partner_Menu})
+  	</insert>
+</mapper>

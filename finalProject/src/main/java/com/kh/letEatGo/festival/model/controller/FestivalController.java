@@ -7,12 +7,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FestivalController {
 	
-	@RequestMapping("/festivalView")
-	public ModelAndView FestivalForm() {
+	@RequestMapping("/festival/festivaList")
+	public ModelAndView FestivalList() {
 		ModelAndView mv=new ModelAndView();
-		mv.setViewName("festival/festivalView");
+		mv.setViewName("festival/festivalList");
 		return mv;
 	}
-
-
+	
+	@RequestMapping("/festival/festivalForm")
+	public ModelAndView insertFestivalForm() {
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("/festival/festivalForm");
+		return mv;
+	}
+	
+	
+	
+	
 }
