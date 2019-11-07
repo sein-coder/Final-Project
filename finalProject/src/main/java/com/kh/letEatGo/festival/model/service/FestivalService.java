@@ -1,6 +1,16 @@
 package com.kh.letEatGo.festival.model.service;
 
-public interface FestivalService {
+import java.util.List;
+
+import com.kh.letEatGo.festival.model.vo.Festival;
+
+
+public interface FestivalService{
+	
+	int insertFestival(Festival festival);
+
+	List<Festival> selectFestival();
+	
 	
 
 }
