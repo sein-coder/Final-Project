@@ -11,13 +11,16 @@ import lombok.NoArgsConstructor;
 public class Partner {
 
 	private int partner_no;
-	private String partner_Id;
+	private String partner_id;
 	private String partner_password;
-	private String partner_name;
-	private String partner_age;
-	private String partner_address;
+	private String partner_truckname;
+	private String partner_profile_old;
+	private String partner_profile_re;
 	private String partner_email;
 	private String partner_phone;
-	private String partner_gender;
+	private String partner_address;
 	private String partner_menu;
+	private String partner_permission_no;
+	private double starCount;
+	private int reviewCount;
 }

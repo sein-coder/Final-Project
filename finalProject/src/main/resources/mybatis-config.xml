@@ -5,8 +5,8 @@
 		<typeAlias type="com.kh.letEatGo.common.type.StringArrayHandler" alias="strArray"/>
 		<typeAlias type="com.kh.letEatGo.accountBook.model.vo.AccountBook" alias="accountbook"/>
 		<typeAlias type="com.kh.letEatGo.order.model.vo.Order" alias="order"/>
+		<typeAlias type="com.kh.letEatGo.order.model.vo.Menu" alias="menu"/>
 		<typeAlias type="com.kh.letEatGo.partner.model.vo.Partner" alias="partner"/>
-		<typeAlias type="com.kh.letEatGo.partner.model.vo.PartnerCategory" alias="pc"/>
 		<typeAlias type="com.kh.letEatGo.member.model.vo.Member" alias="member"/>
 	</typeAliases>
 </configuration>
