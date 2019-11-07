@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-	<insert id="insertMember" parameterType="com.kh.letEatGo.member.model.vo.Member">
+	<insert id="insertMember" parameterType="m">
 		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,#{member_Id},#{member_Password},#{member_Name},#{member_Age},#{member_Address},#{member_Email},#{member_Phone},#{member_Gender})
 	</insert>
-	<select id="selectMemberOne" parameterType="m" resultType="com.kh.letEatGo.member.model.vo.Member">
-		select * from  Member WHERE MEMBERID=#{memberId}
+	<select id="selectMember" parameterType="m" resultType="com.kh.letEatGo.member.model.vo.Member">
+		select * from  Member WHERE MEMBER_ID=#{member_Id}
 	</select>
 
 </mapper>

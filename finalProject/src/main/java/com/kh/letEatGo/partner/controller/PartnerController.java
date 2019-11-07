@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.common.encrypt.MyEncrypt;
 import com.kh.letEatGo.partner.controller.PartnerController;
@@ -24,10 +25,7 @@ public class PartnerController {
 	@Autowired
 	PartnerService service;
 	
-	@RequestMapping("/partner/partnerEnrollEnd")
-	public String partnerEnroll() {
-		return "partner/partnerEnroll";
-	}
+
 	@RequestMapping("/partner/partnerEnrollEnd.do")
 	public String insertPartner(Partner p,Model model) {
 		  System.out.println(p);
@@ -45,11 +43,13 @@ public class PartnerController {
 		
 		int result=service.insertPartner(p);
 		String msg="";
-	 	String loc="/";
+	 	String loc="";
 	 if(result>0) {
 		 msg="회원가입완료!";
+		 loc="/";
 	 }else {
-		 msg="회원가입실패!"; 
+		 msg="회원가입실패!";
+		 loc="/member/memberEnrollEnd";
 	  } 
 	 	model.addAttribute("msg",msg);
 	 	model.addAttribute("loc",loc);
@@ -57,5 +57,19 @@ public class PartnerController {
 	 return "common/msg";
 //		return "partner/partnerEnroll";
 	}
+	@RequestMapping("/partner/partnerLogin.do")
+	public String partnerlogin() {
+		ModelAndView mv=new ModelAndView();
+		Partner result=service.selectPartnerOne();
+		mv.addObject("partner",result);
+		mv.setViewName("member/memberEnroll");
+		return "common/msg";
+		
+	}
+	@RequestMapping("/partner/partnerLogout.go")
+	public String partnerlogout() {
+		return "common/msg";
+	}
 	
 }
+
