@@ -62,13 +62,13 @@
 				<!-- 여기서 부터 DIV가 업체 리스트에 맞춰 반복되야함, image변경 필! -->
 				${list }
 				<c:forEach var="p" items="${list }">
-				<div class="d-block d-md-flex listing-horizontal">
+				<div class="d-block d-md-flex listing-horizontal" id="truck-container">
 					<!-- 푸드트럭 별 대표이미지 -->
-					<a href="${path }/order/orderListView?partner_No=${p.partner_No}" class="img d-block" style="background-image: url('${path}/resources/images/foodtruck/${p.profile_Old}')">
-						<span class="category"><c:out value="${p.partner_Menu }"/></span>
+					<a href="${path }/order/orderListView?partner_no=${p.partner_no}" class="img d-block" style="background-image: url('${path}/resources/images/foodtruck/${p.partner_profile_re }')">
+						<span class="category"><c:out value="${p.partner_menu }"/></span>
 					</a>
 					<div class="lh-content">
-							<h3><a href="${path }/order/orderListView?partner_No=${p.partner_No}"><c:out value="${p.partner_TruckName }"/></a></h3>
+							<h3><a href="${path }/order/orderListView?partner_no=${p.partner_no}"><c:out value="${p.partner_truckname }"/></a></h3>
 							<!-- 별점 -->
 							<div class="row">
 								<div class="star-rating">
@@ -77,7 +77,7 @@
 									<span class="icon-star" data-rating="3"></span>
 									<span class="icon-star" data-rating="4"></span>
 									<span class="icon-star" data-rating="5"></span>
-									<input type="hidden" name="starScore" class="rating-value" value="${p.starCount }">
+									<input type="hidden" name="starScore" class="rating-value" value="${p.starCount eq null}">
 								</div>
 							<span><c:out value="총 주문 건 수  ${p.reviewCount }건"/></span>
 							<!-- 총 주문수, 리뷰수, 별점수 추가, 조회 수 -->
@@ -114,7 +114,9 @@ var SetRatingStar = function() {
 
 SetRatingStar();
 $(document).ready(function() {
-
+	$("#truck-container").trigger('load', function(){
+		SetRatingStar();
+	});
 });
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
