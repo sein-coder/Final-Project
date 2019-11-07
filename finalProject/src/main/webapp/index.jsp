@@ -61,10 +61,12 @@
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
-							class="icon mb-3"> <img
-								src="${pageContext.request.contextPath }/resources/icon/중식.png">
-						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">482</span>
+						<a href="#" class="popular-category h-100"> 
+							<span class="icon mb-3">
+								<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
+							</span> 
+							<span class="caption mb-2 d-block">중식</span> 
+							<span class="number">482</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -119,8 +121,7 @@
 				<div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
 					<div class="how-it-work-step">
 						<div class="img-wrap">
-							<img
-								src="${pageContext.request.contextPath }/resources/images/소비자.png"
+							<img src="${pageContext.request.contextPath }/resources/images/소비자.png"
 								alt="Free website template by Free-Template.co"
 								class="img-fluid">
 						</div>
@@ -169,11 +170,11 @@
 				<div class="row">
 					<div class="col-md-12 d-flex justify-content-center">
 						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="all">All</button>
+							class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
 						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button>
+							class="btn btn-outline-info waves-effect filter" data-rel="1">Mountains</button>
 						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button>
+							class="btn btn-outline-info waves-effect filter" data-rel="2">Sea</button>
 					</div>
 					<!-- Grid column -->
 				</div>
@@ -452,14 +453,11 @@
 		loop : true,
 		showCursor : true
 	});
-</script>
-<script>
+
 	$(function() {
 		$(".site-navbar").css("background-color", "transparent");
 	})
-</script>
 
-<script>
 	$(function() {
 		var selectedClass = "";
 		$(".filter").click(

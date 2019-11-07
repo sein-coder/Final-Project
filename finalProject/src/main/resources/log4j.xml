@@ -15,8 +15,8 @@
 		<!-- xmllayout방식 -->
 		<!-- <layout class="org.apache.log4j.xml.XMLLayout"/> -->
 	</appender>
-	<appender class="org.apache.log4j.DailyRollingFileAppender" name="fileLogger" ><!-- log파일을 생성시킴 -->
-      <param name="file" value="C://Users//kbs1004//log//finalspring.log"/>
+	<appender class="org.apache.log4j.DailyRollingFileAppender" name="fil  eLogger" ><!-- log파일을 생성시킴 -->
+      <param name="file" value="C://Users//pc//log//finalspring.log"/>
       <param name="Append" value="true"/><!-- 로그가 찍을 때마다 계속 추가할 것이란 뜻 -->
       <param name="dataPattern" value=".yyyy-MM-dd"/><!-- 파일형식이 날짜찍히게 만든것 -->
       <layout class="org.apache.log4j.PatternLayout">
