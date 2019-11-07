@@ -73,8 +73,8 @@
           <div class="col-md-10 text-center border-primary">
            <!--  -->         
           <div class="col-md-8 offset-md-2  input-group mb-3 ">
-           <input type="text" id="sample5_address" placeholder="주소" class="col-md-10 form-control"  placeholder="Search">
-             <button class="col-md-2 btn btn-success icon icon-search" onclick="sample5_execDaumPostcode()"></button>
+           <input type="text" id="sample5_address" placeholder="주소를 입력하세요. ex)도깨비야시장" class="col-md-10 form-control"  placeholder="Search">
+             <button class="col-md-2 btn btn-success icon icon-search" style="background-color:#f38181; color:white;" onclick="sample5_execDaumPostcode()"></button>
          </div>
          
                   <br>
@@ -90,7 +90,7 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 <script>
-
+var positions=[];
 
 var areas=[];
 <c:forEach items="${zonelist}" var="zone">
@@ -112,7 +112,7 @@ areas.push(area);
 </c:forEach>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(37.5306475369695   ,126.928706300305), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.54909099361041   ,126.85577368044362), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
 
@@ -213,9 +213,7 @@ function selectMap(str) {
 	var callback = function(result, status) {
 	   if (status === kakao.maps.services.Status.OK) {
 	   	 var result = result[0];
-	       console.log(result);
 	       var coords = new kakao.maps.LatLng(result.y, result.x);
-	       console.log(result.y+" "+result.x);
 	       map.relayout();
 	       map.setCenter(coords);
 	   }
@@ -230,9 +228,7 @@ function selectMap(str) {
 	var callback = function(result, status) {
 	    if (status === kakao.maps.services.Status.OK) {
 	    	 var result = result[0];
-	        console.log(result);
 	        var coords = new kakao.maps.LatLng(result.y, result.x);
-	        console.log(result.y+" "+result.x);
 	        //mapContainer.style.display = "block";
 	        map.relayout();
 	        // 지도 중심을 변경한다.
@@ -245,19 +241,10 @@ function selectMap(str) {
 	places.keywordSearch(document.getElementById("sample5_address").value, callback);
 	}
 
-var positions=[];
-<c:forEach items="${trucklist}" var="truck">
-var position = 
-    {
-        title: '푸드트럭', 
-        latlng: new kakao.maps.LatLng("${truck.XCode}","${truck.YCode}"),
-        img : "",
-        time : 	"${truck.map_Strart_Time}"+"~"+"${truck.map_End_Time}",
-        phone : "12345"
-    }
-;
-positions.push(position);
-</c:forEach>
+
+
+
+
 
 // 마커 이미지의 이미지 주소입니다
 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -270,7 +257,7 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     
     var markers=[];
     var overlays=[];
-    
+    function getMaker(data){
     for(var i=0; i<positions.length; i++){
         var maker = new kakao.maps.Marker({
             map: map, // 마커를 표시할 지도
@@ -316,13 +303,56 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
  	overlays[i].setMap(null); 
  	
     }
+    }
     $.each(overlays,function(i,item){
     	kakao.maps.event.addListener(markers[i], 'click', function() {
     		overlays[i].setMap(map);
     		}); 
     });
+    
+    var position;
+    
+    $(function(){
+		$.ajax({
+			url : "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/foodTruckInfo/1/510/",
+			type : "get",
+			data : {
+			},
+			success : function(data){
+				for(var i=0; i<30; i++){		 			
+					position = 
+				    {
+				        title: '푸드트럭', 
+				        latlng: "",
+				        img : "",
+				        time : 	"",
+				        phone : "12345"
+				    }
+				;
+				var wtmX;
+				var wtmY;
+				var geocoder = new kakao.maps.services.Geocoder(),
+				wtmX = data['foodTruckInfo']['row'][i]['XCODE'],
+				wtmY = data['foodTruckInfo']['row'][i]['YCODE'];
 
-   
+				  var callback2 = function(result, status) {
+					if (status === kakao.maps.services.Status.OK) {
+					    position.latlng=new kakao.maps.LatLng(result[0].x,result[0].y);
+					    positions.push(position);
+					    getMaker(positions);
+					}
+					};
+					//WTM 좌표를 WGS84 좌표계의 좌표로 변환한다
+					geocoder.transCoord(wtmX, wtmY, callback2, {
+					input_coord: kakao.maps.services.Coords.WTM,
+					output_coord: kakao.maps.services.Coords.WGS84
+					});  
+
+				}
+			}
+		});
+	});
+    
 </script>
             
             
