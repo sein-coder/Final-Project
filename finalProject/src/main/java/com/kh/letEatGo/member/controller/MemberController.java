@@ -1,5 +1,7 @@
 package com.kh.letEatGo.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,10 @@ public class MemberController {
 	
 	@Autowired
 	MemberService service;
-//	@Autowired
-//	private BCryptPasswordEncoder pwEncoder;  //암호화 스프링에 bean으로 등록해야함
-//	@Autowired
-//	private MyEncrypt enc;
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;  //암호화 스프링에 bean으로 등록해야함
+	@Autowired
+	private MyEncrypt enc;
 	
 	@RequestMapping("/member/memberEnrollEnd")
 	public String memberEnrollEnd() {
@@ -34,17 +36,17 @@ public class MemberController {
 	  @RequestMapping("/member/memberEnrollEnd.do") 
 	  public String insertMember(Member m,Model model) {
 		  System.out.println(m);
-//		  m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
-//			logger.debug(m.getMember_Password());
-//			//전화번호, 주소, 이메일 암호화
-//			try {
-////				m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
-//				m.setMember_Email(enc.encrypt(m.getMember_Email()));
-//				m.setMember_Address(enc.encrypt(m.getMember_Address()));
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+		  m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
+			logger.debug(m.getMember_Password());
+			//전화번호, 주소, 이메일 암호화
+			try {
+				m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
+				m.setMember_Email(enc.encrypt(m.getMember_Email()));
+				m.setMember_Address(enc.encrypt(m.getMember_Address()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		 int result=service.insertMember(m); 
 		 	String msg="";
@@ -67,13 +69,30 @@ public class MemberController {
 	  }
 	  
 	  @RequestMapping("/member/memberLogin.do")
-	  public String login(Member m) {
+	  public ModelAndView login(Member m, HttpSession session) {
 		  ModelAndView mv=new ModelAndView();
-		  System.out.println(m);
-		  Member result=service.selectMemberOne(m);
-		  mv.addObject("member",result);
-		  mv.setViewName("member/memberEnroll");
-			return "common/msg";
+		  System.out.println(pwEncoder.encode("123123"));
+		  Member result = null;
+		  result = service.selectMemberOne(m);
+		  System.out.println(result);
+		  String msg="";
+		  String loc="";
+		  if(result != null) {
+			  if(!pwEncoder.matches(m.getMember_Password(), result.getMember_Password())) {
+				  // 로그인실패
+				  msg="로그인실패";
+			  } else {
+				  // 로그인성공
+				  msg="로그인성공";
+				  session.setAttribute("loginMember", result);		
+			  }
+		  } else {
+			  msg="로그인 안됨";
+		  }
+		  mv.addObject("msg", msg);
+		  mv.addObject("loc", loc);
+		  mv.setViewName("common/msg");
+		return mv;
 	  }
 	  
 	  

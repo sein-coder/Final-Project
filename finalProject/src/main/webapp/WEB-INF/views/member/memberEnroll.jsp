@@ -10,7 +10,7 @@
    <div class="container">
       <div class="row">
         <div class="col">
-          <p>로그인</p>
+          <p>회원가입</p>
             <ul class="nav nav-tabs">
               <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#login_partner">사업자</a>
@@ -21,27 +21,31 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade show active" id="login_partner">
-              	 <form action="${pageContext.request.contextPath }/partner/partnerEnrollEnd.do" method="post" onsubmit="return validate();" >
-				<input type="text" class="form-control" placeholder="영문숫자조합" id="partnerId" name="partner_Id" required/>
-				
+              	 <form action="${pageContext.request.contextPath }/partner/partnerEnrollEnd.do" method="post" onsubmit="return validate();"  enctype="multipart/form-data" >
+				<input type="text" class="form-control" placeholder="영문숫자조합" id="partnerId" name="partner_Id" />
+				<input type="text" class="form-control" placeholder="업체명" id="partnerName" name="partner_TruckName" />
+				<div>
+				<p>프로필사진</p>
+				<input type="file" name="upFile" id="file" class="inputfile">
+                </div>
 				<input type="password" class="form-control" placeholder="특수문자포함10자이상" id="partnerPw" name="partner_Password"/>
 				<input type="password" class="form-control" placeholder="특수문자포함10자이상" id="partnerPw2"/>
-				<input type="text" class="form-control" placeholder="이름" id="partnerName" name="partner_Name"/>
-				<input type="text" class="form-control" placeholder="나이" id="partnerAge" name="partner_Age"/>
 				<input type="text" class="form-control" placeholder="주소" id="partnerAddress" name="partner_Address"/> 
 				<input type="email" class="form-control" placeholder="이메일" id="partnerEmail" name="partner_Email"/>
-				<input type="tel" class="form-control" placeholder="전화번호" id="partnerPhone" name="partner_Phone" required/>
+				<input type="tel" class="form-control" placeholder="전화번호" id="partnerPhone" name="partner_Phone" />
 			    <div> 
 			      <label><input type="radio" name="partner_Menu" value="한식"> 한식 </label>
 			      <label><input type="radio" name="partner_Menu" value="중식"> 중식 </label>
 			      <label><input type="radio" name="partner_Menu" value="일식"> 일식 </label>
 			      <label><input type="radio" name="partner_Menu" value="양식"> 양식 </label>
 			    </div>
+			    <input type="number" class="form-control" placeholder="인허가번호" id="partner_Permission_No" name="partner_Permission_No" required/>
 			    <input type="submit" class="btn btn-outline-success" value="가입" >&nbsp;
 				<input type="reset" class="btn btn-outline-success" value="취소">
 				
 			</form>
               </div>
+              
               <div class="tab-pane fade" id="login_member">
                 <form action="${pageContext.request.contextPath }/member/memberEnrollEnd.do" method="post" onsubmit="return validate();">
 				<input type="text" class="form-control" placeholder="영문숫자조합" id="member_Id" name="member_Id" />
