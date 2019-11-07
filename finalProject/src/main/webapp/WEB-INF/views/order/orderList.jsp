@@ -64,21 +64,11 @@
 				<c:forEach var="p" items="${list }">
 				<div class="d-block d-md-flex listing-horizontal">
 					<!-- 푸드트럭 별 대표이미지 -->
-<<<<<<< HEAD
-					<a href="${path }/order/orderListView?partner_no=${p.partner_no}" class="img d-block" style="background-image: url('${path}/resources/images/foodtruck/${p.partner_profile_re }')">
-						<span class="category"><c:out value="${p.partner_menu }"/></span>
-=======
-					<a href="${path }/order/orderListView" class="img d-block" style="background-image: url('${path}/resources/images/person_2.jpg')">
-						<span class="category"><c:out value="${pt.partner_Menu }"/></span>
->>>>>>> branch 'master' of https://github.com/sein-coder/Final-Project
 					</a>
 					<div class="lh-content">
-<<<<<<< HEAD
-							<h3><a href="${path }/order/orderListView?partner_no=${p.partner_no}"><c:out value="${p.partner_truckname }"/></a></h3>
-=======
-							<h3><a href="${path }/order/orderListView"><c:out value="${pt.partner_TruckName }"/></a></h3>
+							<h3><a href="${path }/order/orderListView?partner_No=${p.partner_No}"><c:out value="${p.partner_Truckname }"/></a></h3>
+							<h3><a href="${path }/order/orderListView"><c:out value="${pt.partner_Truckname }"/></a></h3>
 							<p>대표메뉴가 올자리</p>
->>>>>>> branch 'master' of https://github.com/sein-coder/Final-Project
 							<!-- 별점 -->
 							<div class="row">
 								<div class="star-rating">
