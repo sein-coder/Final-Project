@@ -50,7 +50,6 @@
 
 </head>
 <body>
-
 	<div class="site-wrap">
 		<div class="site-mobile-menu">
 			<div class="site-mobile-menu-header">
@@ -85,9 +84,17 @@
 											찾기</span></a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/festival/festivaList"><span>축제알리미</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/calendar"><span>캘린더</span></a></li>
 								<li><a
-									href="#" onclick="permissionAPI();"><span>大화남</span></a></li>
-								
+									href="${pageContext.request.contextPath }/memberPage"><span>고객
+											페이지</span></a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/partnerPage"><span>사업자
+											페이지</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/list.list"><span>회원
+											목록</span></a></li>
+								<li><a href="#" onclick="permissionAPI();"><span>大화남</span></a></li>
+
 								<li>
 									<button type="button" class="btn btn-outline-primary"
 										data-toggle="modal" data-target="#myModal">로그인</button>
@@ -177,7 +184,7 @@
 			})
 		});
 	</script>
-	
+
 	<script type="text/javascript">
 		function permissionAPI(){
 			console.log("api실행")
@@ -194,4 +201,3 @@
 			});
 		}
 	</script>
-	
