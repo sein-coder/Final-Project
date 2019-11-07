@@ -4,7 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 <script
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.min.js"></script>
 
@@ -30,6 +32,39 @@
 .table button{
 	color : white;
 }
+.area {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 3px;
+    font-size: 12px;
+    top: -5px;
+    left: 15px;
+    padding:2px;
+}
+
+.info {
+    font-size: 12px;
+    padding: 5px;
+}
+.info .title {
+    font-weight: bold;
+}
+
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+     .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+     .info .link {color: #5085BB;}  
+
 </style>
 
 <section id="content">
@@ -130,8 +165,7 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-8">
-					<img alt="지도구역" class="img-fluid"
-						src="${pageContext.request.contextPath }/resources/images/서울지도.PNG">
+					<div id="map" style="width:100%;height:350px;"></div>
 				</div>
 			</div>
 
@@ -484,7 +518,109 @@
 	function fn_paging(cPage) {
 		location.href='${pageContext.request.contextPath}/accountBook/accountBookView?cPage='+cPage+'&partner_No=1234';
 	}
-	</script>";
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.5306475369695   ,126.928706300305), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
+    };
+
+// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption),
+    customOverlay = new kakao.maps.CustomOverlay({}),
+    infowindow = new kakao.maps.InfoWindow({removable: false});
+//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+var marker = new daum.maps.Marker({
+    /* position: new daum.maps.LatLng(37.537187, 127.005476), */
+    map: map
+})
+
+var places = new kakao.maps.services.Places();
+
+
+
+
+var positions = [
+    {
+        title: '막대그래프',//이름 
+        latlng: new kakao.maps.LatLng(37.52634778919655,126.93359546197759),//좌표
+        img : "",
+        time : 	"",
+        phone : ""
+    }
+];
+
+    
+    
+    var markers=[];
+    var overlays=[];
+    for(var i=0; i<positions.length; i++){
+	// 마커 이미지의 이미지 주소입니다
+	var imageSrc = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkwMc6bfZ7Q5n4UObzmIrU8h8W8m__SLdi53U98Aq561bGntx5Ww&s"; 
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 100); //10,0000 × 0.001 = 10
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+        var maker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng, // 마커를 표시할 위치
+            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+            image : markerImage // 마커 이미지 
+        })	
+        
+        markers.push(maker);
+    var content = '<div class="wrap">' + 
+    '    <div class="info">' + 
+    '        <div class="title">' + 
+    			positions[i].title + 
+    '            <div class="close" onclick="closeOverlay('+i+')" title="닫기"></div>' + 
+    '        </div>' + 
+    '        <div class="body">' + 
+    '            <div class="img">' +
+    '                <img src="'+positions[i].img+'" width="73" height="70">' +
+    '           </div>' + 
+    '            <div class="desc">' + 
+    '                <div class="ellipsis">'+positions[i].time+'</div>' + 
+    '                <div class="jibun ellipsis">'+positions[i].phone+'</div>' + 
+    '                <div><a href="" class="link">ㅇㅇ</a></div>' + 
+    '            </div>' + 
+    '        </div>' + 
+    '    </div>' +    
+    '</div>';
+    
+    
+    var overlay = new kakao.maps.CustomOverlay({
+   	content: content,
+   	map: map,
+   	position: markers[i].getPosition()       
+   	});
+    overlays.push(overlay);
+    
+    function closeOverlay(i) {
+   	overlays[i].setMap(null);     
+   		} 
+    	
+ 	overlays[i].setMap(null); 
+ 	
+    }
+
+    $.each(overlays,function(i,item){
+    	kakao.maps.event.addListener(markers[i], 'click', function() {
+    		overlays[i].setMap(map);
+    		}); 
+    });
+	
+	
+	</script>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 

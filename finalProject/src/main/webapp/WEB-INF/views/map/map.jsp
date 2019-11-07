@@ -40,6 +40,21 @@
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
      .info .link {color: #5085BB;}  
+      .popular-category2 {
+  background: #fff;
+  display: block;
+  text-align: center;
+  padding: 30px 10px;
+  border-radius: 7px;
+  background: #f8f9fa;
+  position: relative;
+  top: 0;
+  -webkit-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out; }
+.popular-category2:hover {
+    -webkit-box-shadow: 0 5px 30px -5px rgba(243, 129, 129, 0.5);
+    box-shadow: 0 5px 30px -5px rgba(243, 129, 129, 0.5); }
 </style>
 <body>
 <!-- 지도를 표시할 div 입니다 -->
@@ -48,10 +63,12 @@
       <div class="container">
         <div class="row justify-content-center mb-8">
         <div class="col-md-2 text-center popular-category2" style="border:2px solid #f38181; color:#f38181">푸드트럭존
-        <br><br>
-           <button type="button" class="btn btn-link" onclick="selectMap('밤도깨비야시장');">밤도깨비야시장</button>
-         <br>
+        <br>
         
+         <c:forEach items="${zonelist}" var="zone">
+        <br>
+            <button type="button" class="btn btn-link" onclick="selectMap('${zone.addr}');">${zone.map_Zone}</button> 
+		</c:forEach>       
         </div>
           <div class="col-md-10 text-center border-primary">
            <!--  -->         
@@ -192,25 +209,41 @@ function closeOverlay1() {
 	infowindow.setMap(null);     
 }
 
-function sample5_execDaumPostcode() {
-	 if (document.getElementById("sample5_address").value == ''){
-		 alert('위치를 입력해주세요. ex)강남');
+function selectMap(str) {
+	var callback = function(result, status) {
+	   if (status === kakao.maps.services.Status.OK) {
+	   	 var result = result[0];
+	       console.log(result);
+	       var coords = new kakao.maps.LatLng(result.y, result.x);
+	       console.log(result.y+" "+result.x);
+	       map.relayout();
+	       map.setCenter(coords);
+	   }
 	};
-var callback = function(result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-    	 var result = result[0];
-        var coords = new kakao.maps.LatLng(result.y, result.x);
-        //mapContainer.style.display = "block";
-        map.relayout();
-        // 지도 중심을 변경한다.
-        map.setCenter(coords);
-        // 마커를 결과값으로 받은 위치로 옮긴다.
-        /* marker.setPosition(coords) */
-    }
-    
-};
-places.keywordSearch(document.getElementById("sample5_address").value, callback);
-}
+	places.keywordSearch(str, callback);
+	}
+
+	function sample5_execDaumPostcode() {
+		 if (document.getElementById("sample5_address").value == ''){
+			 alert('위치를 입력해주세요. ex)강남');
+		};
+	var callback = function(result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+	    	 var result = result[0];
+	        console.log(result);
+	        var coords = new kakao.maps.LatLng(result.y, result.x);
+	        console.log(result.y+" "+result.x);
+	        //mapContainer.style.display = "block";
+	        map.relayout();
+	        // 지도 중심을 변경한다.
+	        map.setCenter(coords);
+	        // 마커를 결과값으로 받은 위치로 옮긴다.
+	        /* marker.setPosition(coords) */
+	    }
+	    
+	};
+	places.keywordSearch(document.getElementById("sample5_address").value, callback);
+	}
 
 var positions=[];
 <c:forEach items="${trucklist}" var="truck">
