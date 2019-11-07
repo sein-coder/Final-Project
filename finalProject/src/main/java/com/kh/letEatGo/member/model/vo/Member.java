@@ -8,14 +8,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
-
-	private int member_no;
-	private String member_id;
-	private String member_password;
-	private String member_name;
-	private String member_age;
-	private String member_address;
-	private String member_email;
-	private String member_phone;
-	private String member_gender;
+	private int member_No;
+	private String member_Id;
+	private String member_Password;
+	private String member_Name;
+	private String member_Age;
+	private String member_Address;
+	private String member_Email;
+	private String member_Phone;
+	private String member_Gender;
 }
