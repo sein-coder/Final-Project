@@ -67,55 +67,7 @@
 		<header class="site-navbar" role="banner">
 
 			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-11 col-xl-3">
-						<a href="${pageContext.request.contextPath }"> <img
-							src="${pageContext.request.contextPath }/resources/images/logo.png"
-							class="img-fluid" />
-						</a>
-					</div>
-					<div class="col-12 col-md-9 d-none d-xl-block">
-						<nav class="site-navigation position-relative text-right"
-							role="navigation">
-							<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-								<li class="active"><a
-									href="${pageContext.request.contextPath }"><span>Home</span></a></li>
-								<!-- nav-bar 메뉴부분 -->
-								<li><a
-									href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234"><span>장부관리</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존
-											찾기</span></a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/festival/festivaList"><span>축제알리미</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/calendar"><span>캘린더</span></a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/memberPage"><span>고객
-											페이지</span></a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/partnerPage"><span>사업자
-											페이지</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/list.list"><span>회원
-											목록</span></a></li>
-								<!-- <li><a href="#" onclick="permissionAPI();"><span>大화남</span></a></li> -->
-								<li>
-									<button type="button" class="btn btn-outline-primary"
-										data-toggle="modal" data-target="#myModal">로그인</button>
-								</li>
-								<li><button class="btn btn-outline-primary" type="button"
-										onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
-							</ul>
-						</nav>
-					</div>
-
-					<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
-						style="position: relative; top: 3px;">
-						<a href="#" class="site-menu-toggle js-menu-toggle text-white">
-							<span class="icon-menu h3"></span>
-						</a>
-					</div>
-				</div>
-				<div class="row d-flex justify-content-end">					
+				<div class="row d-flex justify-content-end">			
 					<div class="wrap">
 					
 					  <div class="player paused">
@@ -127,8 +79,8 @@
 					      <div class="cover"></div>
 					    </div>
 					    
-					    <div class="description">
-					      <div class="title">Something from nothing  </div>
+					    <div class="description align-middle">
+					      Something from nothing
 					    </div>
 					    
 					    <div class="visualizer">
@@ -183,8 +135,8 @@
 					      
 					    <div class="play-button">
 					      <div class="lp-background"></div>
-					      <i class="mdi mdi-play"></i>
-					      <i class="mdi mdi-pause"></i>
+					      <i class="mdi mdi-play" style="position: absolute; top: 15%; right: 9%;"></i>
+					      <i class="mdi mdi-pause" style="position: absolute; top: 16%; right: 10%;"></i>
 					    </div>
 					    
 					    <div class="time-indicator">
@@ -195,7 +147,58 @@
 					    
 					  </div>
 					  
-					</div>	
+					</div>
+				</div>
+				
+				<div class="row align-items-center">
+					<div class="col-11 col-xl-3">
+						<a href="${pageContext.request.contextPath }"> <img
+							src="${pageContext.request.contextPath }/resources/images/logo.png"
+							class="img-fluid" />
+						</a>
+					</div>
+					<div class="col-12 col-md-9 d-none d-xl-block">
+						<nav class="site-navigation position-relative text-right"
+							role="navigation">
+							<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+								<li class="active"><a
+									href="${pageContext.request.contextPath }"><span>Home</span></a></li>
+								<!-- nav-bar 메뉴부분 -->
+								<li><a
+									href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234"><span>장부관리</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존
+											찾기</span></a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/festival/festivaList"><span>축제알리미</span></a></li>
+									
+<%-- 								<li><a href="${pageContext.request.contextPath }/calendar"><span>캘린더</span></a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/memberPage"><span>고객
+											페이지</span></a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/partnerPage"><span>사업자
+											페이지</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/list.list"><span>회원
+											목록</span></a></li> --%>
+								<!-- <li><a href="#" onclick="permissionAPI();"><span>大화남</span></a></li> -->
+								
+								<li>
+									<button type="button" class="btn btn-outline-primary"
+										data-toggle="modal" data-target="#myModal">로그인</button>
+								</li>
+								<li><button class="btn btn-outline-primary" type="button"
+										onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
+							</ul>
+						</nav>
+					</div>
+
+					<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
+						style="position: relative; top: 3px;">
+						<a href="#" class="site-menu-toggle js-menu-toggle text-white">
+							<span class="icon-menu h3"></span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</header>
