@@ -1989,5 +1989,12 @@ figure.effect-gallery:hover p span:empty {
   user-select: none;
   -webkit-tap-highlight-color: transparent; }
       
-      
+site-blocks-padding {
+	min-height: 3em;
+	@media(max-width:992px){
+		site-blocks-padding mobile{
+			min-height: 8em;
+		}
+	}
+}
       

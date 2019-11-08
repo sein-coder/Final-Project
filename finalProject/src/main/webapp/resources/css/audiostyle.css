@@ -91,7 +91,6 @@ body .player .play-button, html .player .play-button {
 }
 body .player .play-button .lp-background, html .player .play-button .lp-background {
   transition: all 0.35s ease;
-  background: url("http://i65.tinypic.com/v5wy3b.png");
   background-size: cover;
   animation: spin 1s infinite linear;
   width: 100%;

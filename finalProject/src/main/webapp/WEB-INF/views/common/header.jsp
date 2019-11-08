@@ -277,6 +277,8 @@
 			}, function() {
 				$(this).removeClass("active");
 			})
+			
+			$('.lp-background').css('background-image', 'url(${pageContext.request.contextPath}/resources/music/lp.png)');
 		});
 	</script>
 

@@ -1,5 +1,6 @@
 package com.kh.letEatGo.order.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -34,19 +35,16 @@ public class OrderController {
 		
 		int totalCount = service.selectCount();
 		
-		List<Menu> menuList = null;
+		List<List<Menu>> menuList = new ArrayList();
 				
 		List<Partner> list = service.selectTruckList(cPage, numPerPage);
-		System.out.println(list);
 		for(Partner p : list) {
-			menuList = service.selectMenu(p.getPartner_No());
-			p.setStarCount(0);
-			p.setReviewCount(0);
+			menuList.add(service.selectMenu(p.getPartner_No()));
 			p.setStarCount(service.selectStar(p.getPartner_No()));
 			p.setReviewCount(service.selectReviewCount(p.getPartner_No()));
-			System.out.println(p.getStarCount());
-			System.out.println(p.getReviewCount());
 		}
+		
+		System.out.println(menuList);
 		
 		mv.addObject("list", list);
 		mv.addObject("menuList", menuList);
