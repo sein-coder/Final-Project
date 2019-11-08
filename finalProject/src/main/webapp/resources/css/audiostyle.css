@@ -35,7 +35,7 @@ body *, body *:before, body *:after, html *, html *:before, html *:after {
 body .player, html .player {
   margin-top: 1.5rem;
   width: 320px;	
-  border-bottom: 4px #ccc solid;
+  border-bottom: 0px #ccc solid;
   position: relative;
   color: white;
   text-align: left;
