@@ -1,5 +1,6 @@
 package com.kh.letEatGo.festival.model.controller;
 
+import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class FestivalController {
 	@Autowired
 	private FestivalService service;
 	
-	@RequestMapping("/festival/festivaList")
+	@RequestMapping("/festival/festivalList")
 	public ModelAndView selectfestival() {
 		ModelAndView mv=new ModelAndView();
 	
@@ -56,8 +57,39 @@ public class FestivalController {
 		return mv;
 	}
 	
+	@RequestMapping("/festival/festivalView")
+	public ModelAndView selectFestivalOne(int festival_No) {
+		ModelAndView mv=new ModelAndView();
+		Festival festival=service.selectFestivalOne(festival_No);
+		mv.addObject("festival",festival);
+		mv.setViewName("festival/festivalView");
+		
+		System.out.println(mv);
+		
+		return mv;
+	}
 	
-	
-	
+	@RequestMapping("/festival/deleteFestival")
+	public ModelAndView deleteFestival(int festival_No) {
+		
+		ModelAndView mv=new ModelAndView();
+		int result=service.deleteFestival(festival_No);
+		
+		String msg="";
+		String loc="/festival/festivalList";
+		
+		if(result>0) {
+			msg="삭제를 성공하였습니다.";
+		}else {
+			msg="삭제를 실패하였습니다.";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
 	
 }

@@ -30,7 +30,18 @@ public class FestivalServiceImpl implements FestivalService {
 		
 		return dao.selectFestival(session);
 	}
+
+	@Override
+	public Festival selectFestivalOne(int festival_No) {
+		return dao.selectFestivalOne(session,festival_No);
+	}
 	
+	@Override
+	public int deleteFestival(int festival_No) {
+		int result=0;
+		result=dao.deleteFestival(session, festival_No);
+		return result;
+	}
 	
 
 }

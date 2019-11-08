@@ -370,7 +370,7 @@ textarea {
         $("input").change(function(){
         	if($(this).val()!=""){
         		console.log("채워짐 뭔가");
-        		var img = "<img src='like.png' alt='check' width='100px' height='100px'/>"
+        		var img = "<img src='https://media.istockphoto.com/vectors/tick-icon-vector-symbol-marker-red-checkmark-isolated-on-white-icon-vector-id897303186?k=6&m=897303186&s=170667a&w=0&h=Z5Z6OQfZFwns6G5saUzBQMSpBviQaKPqISaU6_dcRKY=' alt='check' width='100px' height='100px'/>"
         		$(this).parent().append(img);
         	}
         });

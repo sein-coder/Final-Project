@@ -19,6 +19,17 @@ public class FestivalDaoImpl implements FestivalDao {
 	public List<Festival> selectFestival(SqlSessionTemplate session) {
 		return session.selectList("festival.selectFestival");
 	}
+	
+	@Override
+	public Festival selectFestivalOne(SqlSessionTemplate session, int festival_No) {
+		return session.selectOne("festival.selectFestivalOne",festival_No);
+	}
+	
+	@Override
+	public int deleteFestival(SqlSessionTemplate session,int festival_No) {
+		return session.delete("festival.deleteFestival", festival_No);
+	}
+	
 
 	
 }
