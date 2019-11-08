@@ -170,6 +170,7 @@
     </div>
   </div>
         <!-- Modal footer -->
+        <input type=""  name="Id_find"/>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">페이스북</button>
           <button type="button" class="btn btn-primary">네이버</button>
