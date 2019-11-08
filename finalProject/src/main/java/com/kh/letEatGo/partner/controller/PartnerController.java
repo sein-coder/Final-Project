@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -102,21 +104,38 @@ public class PartnerController {
 	}
 	
 	@RequestMapping("/partner/partnerLogin.do")
-	public String partnerlogin(Partner p) {
+	public ModelAndView partnerlogin(Partner p,HttpSession session) {
 		ModelAndView mv=new ModelAndView();
 		Partner result=service.selectPartnerOne(p);
-		mv.addObject("partner",result);
-		mv.setViewName("member/memberEnroll");
-		return "common/msg";
-		
+		String msg="";
+		String loc="";
+			if(result != null) {
+				  if(!pwEncoder.matches(p.getPartner_Password(), result.getPartner_Password())) {
+					  // 로그인실패
+					  msg="로그인실패";
+				  } else {
+					  // 로그인성공
+					  msg="로그인성공";
+					  session.setAttribute("loginMember", result);		
+				  }
+			  } else {
+				  msg="로그인 안됨";
+			  }
+			  mv.addObject("msg", msg);
+			  mv.addObject("loc", loc);
+			  mv.setViewName("common/msg");
+			  return mv;
+		  }
+	@RequestMapping("/partner/partnerLogout.do")
+	public String partnerlogout(HttpSession session,SessionStatus s) {
+
+		if(!s.isComplete()) {
+			s.setComplete();//로그아웃 SessionAttributes
+			session.invalidate();
+			
 	}
-//	@RequestMapping("/partner/partnerLogout.do")
-//	public String partnerlogout(HttpSession session,SessionStatus s) {
-//
-//		if(!s.isComplete()) {
-//			s.setComplete();//로그아웃 SessionAttributes
-//			session.invalidate();
-//	}
-//	
+		return "redirect:/";
+	}
+		
 }
 

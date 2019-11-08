@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.common.encrypt.MyEncrypt;
@@ -94,6 +95,15 @@ public class MemberController {
 		  mv.setViewName("common/msg");
 		return mv;
 	  }
-	  
+//	  @RequestMapping("/member/memberLogout.do")
+//		public String logout(HttpSession session,SessionStatus s) {
+//			
+//			if(!s.isComplete()) {
+//				s.setComplete();//로그아웃 SessionAttributes
+//				session.invalidate();
+//			}
+//			return "";
+//		}
+//	  
 	  
 }

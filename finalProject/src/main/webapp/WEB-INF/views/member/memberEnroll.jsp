@@ -23,7 +23,7 @@
               <div class="tab-pane fade show active" id="login_partner">
               	 <form action="${pageContext.request.contextPath }/partner/partnerEnrollEnd.do" method="post" onsubmit="return validate();"  enctype="multipart/form-data" >
 				<input type="text" class="form-control" placeholder="영문숫자조합" id="partnerId" name="partner_Id" />
-				<input type="text" class="form-control" placeholder="업체명" id="partnerName" name="partner_TruckName" />
+				<input type="text" class="form-control" placeholder="업체명" id="partnerName" name="partner_TruckName"/>
 				<div>
 				<p>프로필사진</p>
 				<input type="file" name="upFile" id="file" class="inputfile">
