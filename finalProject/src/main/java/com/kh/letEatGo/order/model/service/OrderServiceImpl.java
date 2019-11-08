@@ -32,20 +32,20 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Menu> selectMenu(int partner_no) {
-		List<Menu> menuList = dao.selectMenu(session, partner_no);
+	public List<Menu> selectMenu(int partner_No) {
+		List<Menu> menuList = dao.selectMenu(session, partner_No);
 		return menuList;
 	}
 
 	@Override
-	public double selectStar(int partner_no) {
-		double starCount = dao.selectStar(session, partner_no);
+	public double selectStar(int partner_No) {
+		double starCount = dao.selectStar(session, partner_No);
 		return starCount;
 	}
 
 	@Override
-	public int selectReviewCount(int partner_no) {
-		int reviewCount = dao.selectReviewCount(session, partner_no);
+	public int selectReviewCount(int partner_No) {
+		int reviewCount = dao.selectReviewCount(session, partner_No);
 		return reviewCount;
 	}
 

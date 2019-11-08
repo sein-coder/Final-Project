@@ -39,8 +39,12 @@ public class OrderController {
 		List<Partner> list = service.selectTruckList(cPage, numPerPage);
 		for(Partner p : list) {
 			menuList = service.selectMenu(p.getPartner_No());
+			p.setStarCount(0);
+			p.setReviewCount(0);
 			p.setStarCount(service.selectStar(p.getPartner_No()));
 			p.setReviewCount(service.selectReviewCount(p.getPartner_No()));
+			System.out.println(p.getStarCount());
+			System.out.println(p.getReviewCount());
 		}
 		
 		mv.addObject("list", list);

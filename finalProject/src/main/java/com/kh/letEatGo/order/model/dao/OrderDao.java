@@ -11,7 +11,7 @@ public interface OrderDao {
 
 	int selectCount(SqlSessionTemplate session);
 	List<Partner> selectTruckList(SqlSessionTemplate session, int cPage, int numPerPage);
-	List<Menu> selectMenu(SqlSessionTemplate session, int partner_no);
-	double selectStar(SqlSessionTemplate session, int partner_no);
-	int selectReviewCount(SqlSessionTemplate session, int partner_no);
+	List<Menu> selectMenu(SqlSessionTemplate session, int partner_No);
+	double selectStar(SqlSessionTemplate session, int partner_No);
+	int selectReviewCount(SqlSessionTemplate session, int partner_No);
 }

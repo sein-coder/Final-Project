@@ -42,7 +42,7 @@
 							<button class="btn btn-primary" id="dessert_menu" onClick="findMenu(디저트)">디저트</button>
 							<label for="else_menu"></label>
 							<button class="btn btn-primary" id="else_menu" onClick="findMenu(기타)">기타</button>
-						</div>
+						</div> 
 						<label for="easySearch">상세검색</label>
 						<div class="" id="easySearch">
 							<button class="btn btn-outline-primary">평점 높은 순</button>
@@ -60,15 +60,14 @@
 	  	<div class="row">
 			<div class="col-md-8 offset-md-2">
 				<!-- 여기서 부터 DIV가 업체 리스트에 맞춰 반복되야함, image변경 필! -->
-				${list }
-				<c:forEach var="p" items="${list }">
+				<c:forEach var="p" items="${list }" varStatus="v">
 				<div class="d-block d-md-flex listing-horizontal" id="truck-container">
 					<!-- 푸드트럭 별 대표이미지 -->
-					<a href="${path }/order/orderListView?partner_no=${p.partner_no}" class="img d-block" style="background-image: url('${path}/resources/images/foodtruck/${p.partner_profile_re }')">
-						<span class="category"><c:out value="${p.partner_menu }"/></span>
+					<a href="${path }/order/orderListView?partner_No=${p.partner_No}" class="img d-block" style="background-image: url('${path}/resources/images/foodtruck/${p.profile_Re }')">
+						<span class="category"><c:out value="${p.partner_Menu }"/></span>
 					</a>
 					<div class="lh-content">
-							<h3><a href="${path }/order/orderListView?partner_no=${p.partner_no}"><c:out value="${p.partner_truckname }"/></a></h3>
+							<h3><a href="${path }/order/orderListView?partner_No=${p.partner_No}"><c:out value="${p.partner_TruckName }"/></a></h3>
 							<!-- 별점 -->
 							<div class="row">
 								<div class="star-rating">
@@ -77,7 +76,8 @@
 									<span class="icon-star" data-rating="3"></span>
 									<span class="icon-star" data-rating="4"></span>
 									<span class="icon-star" data-rating="5"></span>
-									<input type="hidden" name="starScore" class="rating-value" value="${p.starCount eq null}">
+									<input type="hidden" name="starScore" class="rating-value" value="${p.starCount}">
+									<input type="hidden" name="data_No" value="${v.index}"/>
 								</div>
 							<span><c:out value="총 주문 건 수  ${p.reviewCount }건"/></span>
 							<!-- 총 주문수, 리뷰수, 별점수 추가, 조회 수 -->
@@ -94,7 +94,7 @@
 <script>
 var star_rating = $('.star-rating .icon-star');
 
-var SetRatingStar = function() {
+var setRatingStar = function() {
   return star_rating.each(function() {
     if (parseInt(star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
       return $(this).removeClass('text-secondary').addClass('text-warning');
@@ -104,19 +104,22 @@ var SetRatingStar = function() {
   });
 };
 
+/* 트럭마다 별점 표시, 총 리뷰 갯수가 달라야하는데 같은 문제 해결해야함
+$('#truck-container').on('load', function(){
+	setRatingStar($('.star_rating').children().last().val);
+});
+*
+*/
 /* 별점 클릭 이벤트
 	star_rating.on('click', function() {
   star_rating.siblings('input.rating-value').val($(this).data('rating'));
   return SetRatingStar();
 }); 
-
 */
 
-SetRatingStar();
-$(document).ready(function() {
-	$("#truck-container").trigger('load', function(){
-		SetRatingStar();
-	});
-});
+// 검색 filter 
+function findMenu(menu){
+	
+}
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
