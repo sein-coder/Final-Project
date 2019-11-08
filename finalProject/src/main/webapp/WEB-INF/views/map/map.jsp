@@ -319,36 +319,40 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
 			data : {
 			},
 			success : function(data){
-				for(var i=0; i<30; i++){		 			
-					position = 
-				    {
-				        title: '푸드트럭', 
-				        latlng: "",
-				        img : "",
-				        time : 	"",
-				        phone : "12345"
-				    }
-				;
-				var wtmX;
-				var wtmY;
-				var geocoder = new kakao.maps.services.Geocoder(),
-				wtmX = data['foodTruckInfo']['row'][i]['XCODE'],
-				wtmY = data['foodTruckInfo']['row'][i]['YCODE'];
-
-				  var callback2 = function(result, status) {
-					if (status === kakao.maps.services.Status.OK) {
-					    position.latlng=new kakao.maps.LatLng(result[0].x,result[0].y);
-					    positions.push(position);
-					    getMaker(positions);
-					}
+				var xcode = [];
+				var ycode = [];
+				for(var i=0; i<5; i++){		 			
+					var wtmX = data['foodTruckInfo']['row'][i]['XCODE'];
+					var wtmY = data['foodTruckInfo']['row'][i]['YCODE'];
+					
+					xcode.push(wtmX);
+					ycode.push(wtmY);
+					
+				}
+					
+				console.log(xcode);
+				console.log(ycode);
+				
+				var geocoder = new kakao.maps.services.Geocoder();
+/* 					
+					
+					
+					var callback2 = function(result, status) {
+						if (status === kakao.maps.services.Status.OK) {
+							po.latlng=new kakao.maps.LatLng(result[0].x,result[0].y);
+							
+							list.push(po);
+							
+							getMaker(po);
+							
+							console.log(list);
+						}
 					};
 					//WTM 좌표를 WGS84 좌표계의 좌표로 변환한다
 					geocoder.transCoord(wtmX, wtmY, callback2, {
-					input_coord: kakao.maps.services.Coords.WTM,
-					output_coord: kakao.maps.services.Coords.WGS84
-					});  
-
-				}
+						input_coord: kakao.maps.services.Coords.WTM,
+						output_coord: kakao.maps.services.Coords.WGS84
+					});   */
 			}
 		});
 	});
