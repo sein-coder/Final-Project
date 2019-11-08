@@ -37,6 +37,7 @@ public class OrderController {
 		List<Menu> menuList = null;
 				
 		List<Partner> list = service.selectTruckList(cPage, numPerPage);
+		System.out.println(list);
 		for(Partner p : list) {
 			menuList = service.selectMenu(p.getPartner_No());
 			p.setStarCount(0);

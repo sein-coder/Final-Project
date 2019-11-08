@@ -22,4 +22,14 @@ public class PartnerServiceImpl implements PartnerService {
 		return dao.insertPartner(session,p);
 	}
 
+
+
+	@Override
+	public Partner selectPartnerOne(Partner p) {
+		
+		return dao.selectPartnerOne(session,p);
+	}
+
+
+	
 }
