@@ -199,35 +199,6 @@
 						</nav>
 					</div>
 
-               <div class="col-11 col-xl-3">
-                  <a href="${pageContext.request.contextPath }"> <img
-                     src="${pageContext.request.contextPath }/resources/images/logo.png"
-                     class="img-fluid" />
-                  </a>
-               </div>
-               <div class="col-12 col-md-9 d-none d-xl-block">
-                  <nav class="site-navigation position-relative text-right"
-                     role="navigation">
-                     <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <li class="active"><a
-                           href="${pageContext.request.contextPath }"><span>Home</span></a></li>
-                        <!-- nav-bar 메뉴부분 -->
-                        <li><a
-                           href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234"><span>장부관리</span></a></li>
-                        <li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
-                        <li><a href="#"><span>푸드트럭존 찾기</span></a></li>
-                        <li><a href="#"><span>축제알리미</span></a></li>
-                        <li><a href="${pageContext.request.contextPath }/pageList"><span>페이지 리스트</span></a></li>
-                        
-                        <li>
-                           <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">로그인</button>
-                        </li>
-                        <li><button class="btn btn-outline-primary" type="button"
-                              onclick="location.href='${pageContext.request.contextPath}/member/Enroll.do'">회원가입</button></li>
-                     </ul>
-                  </nav>
-               </div>
-
                <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
                   style="position: relative; top: 3px;">
                   <a href="#" class="site-menu-toggle js-menu-toggle text-white">

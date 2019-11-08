@@ -30,10 +30,8 @@ $('.play-button').on('click', function() {
     clearInterval(playRunner);
     playRunner = null;
     $time.text(calculateTime(songLength, 100));
-    $("#audio").pause();
   } else {
     percentage = 0;
-    $("#audio").play();
     go();
   }
 });
