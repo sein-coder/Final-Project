@@ -1,5 +1,9 @@
 package com.kh.letEatGo.partner.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.letEatGo.common.encrypt.MyEncrypt;
 import com.kh.letEatGo.partner.controller.PartnerController;
@@ -57,5 +62,17 @@ public class PartnerController {
 	 return "common/msg";
 //		return "partner/partnerEnroll";
 	}
+	  @RequestMapping("/partner/updatePartner") //파트너 회원 정보 수정
+	  public String updateMember(Partner p,Model model) {
+		  System.out.println("수정");
+		  
+		  return "";
+	  }
+	  @RequestMapping("/partner/deletePartner") //파트너 회원 탈퇴
+	  public String deleteMember(Partner p,Model model) {
+		  System.out.println("삭제");
+		  
+		  return "";
+	  }
 	
 }

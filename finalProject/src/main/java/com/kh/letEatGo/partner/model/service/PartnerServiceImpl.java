@@ -1,5 +1,7 @@
 package com.kh.letEatGo.partner.model.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +23,17 @@ public class PartnerServiceImpl implements PartnerService {
 		
 		return dao.insertPartner(session,p);
 	}
+
+
+
+	@Override
+	public Partner selectPartnerOne(Partner p) {
+		return dao.selectPartnerOne(session,p);
+	}
+
+
+	
+	
+	
 
 }

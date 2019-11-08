@@ -1,5 +1,9 @@
 package com.kh.letEatGo.member.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.common.encrypt.MyEncrypt;
 import com.kh.letEatGo.member.model.service.MemberService;
 import com.kh.letEatGo.member.model.vo.Member;
 
+@SessionAttributes(value= {"loginMember","msg"}) //여기들어가는 값은 배열로 받을 수 있음 키값이 들어감
 @Controller
 public class MemberController {
 	private Logger logger=LoggerFactory.getLogger(MemberController.class);
@@ -73,6 +80,19 @@ public class MemberController {
 	  public String login() {
 		  ModelAndView mv=new ModelAndView();
 		return "";
+	  }
+	  
+	  @RequestMapping("/member/updateMember") //멤버 회원 정보 수정
+	  public String updateMember(Member m,Model model) {
+		  System.out.println("수정");
+		  
+		  return "";
+	  }
+	  @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
+	  public String deleteMember(Member m,Model model) {
+		  System.out.println("삭제");
+		  
+		  return "";
 	  }
 	  
 }

@@ -4,4 +4,12 @@
   	<insert id="insertPartner" parameterType="partner">
   		INSERT INTO PARTNER VALUES(seq_PARTNER_NO.nextval,#{partner_Id},#{partner_Password},#{partner_Name},#{partner_Age},#{partner_Address},#{partner_Email},#{partner_Phone},#{partner_Menu})
   	</insert>
+  	
+  	<select id="selectPartnerOne" parameterType="partner" resultType="partner">
+  	 select * from partner 
+  	 <!--  WHERE PARTNERID=#{partnerId}-->
+  	</select>
+  
+  	
+  	
 </mapper>

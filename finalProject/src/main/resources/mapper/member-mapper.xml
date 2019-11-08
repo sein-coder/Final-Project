@@ -5,7 +5,8 @@
 		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,#{member_Id},#{member_Password},#{member_Name},#{member_Age},#{member_Address},#{member_Email},#{member_Phone},#{member_Gender})
 	</insert>
 	<select id="selectMemberOne" parameterType="member" resultType="member">
-		select * from  Member WHERE MEMBERID=#{memberId}
+		select * from Member 
+		<!--  WHERE MEMBERID=#{member_Id}-->
 	</select>
 
 </mapper>

@@ -92,7 +92,7 @@
          <scope>runtime</scope>
       </dependency>
 
-<<<<<<< HEAD
+
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -242,8 +242,8 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>        
-	</dependencies>
-=======
+	
+
       <!-- @Inject -->
       <dependency>
          <groupId>javax.inject</groupId>
@@ -387,7 +387,7 @@
          <scope>test</scope>
       </dependency>        
    </dependencies>
->>>>>>> refs/remotes/origin/master
+
     <build>
         <plugins>
             <plugin>
