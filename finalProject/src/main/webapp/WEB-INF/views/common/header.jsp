@@ -174,7 +174,7 @@
 								<li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존
 											찾기</span></a></li>
 								<li><a
-									href="${pageContext.request.contextPath }/festival/festivaList"><span>축제알리미</span></a></li>
+									href="${pageContext.request.contextPath }/festival/festivalList"><span>축제알리미</span></a></li>
 									
 <%-- 								<li><a href="${pageContext.request.contextPath }/calendar"><span>캘린더</span></a></li>
 								<li><a
