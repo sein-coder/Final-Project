@@ -159,26 +159,32 @@ button#btn-write {
 					<h3>Bootstrap 3.3.0</h3>
 					<p>렛.잇.고와 함께 하세요</p>
 				</div>
-				<div>
-					<input type="button" value="축제등록" id='btn-add'
-						class='btn btn-outline-success'
-						onclick='location.href="${path}/festival/festivalForm"' />
+				<div style="background-color:#f38181 ">
+					<nav class="site-navigation position-relative text-right" role="navigation">
+						<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block" >
+							<li class="active"><a
+								href="${pageContext.request.contextPath}/festival/festivalForm"><span>축제
+										등록</span></a></li>
+						</ul>
+					</nav>
 				</div>
+
+
 
 				<div class="carousel slide" id="myCarousel">
 					<div class="carousel-inner">
 						<c:if test="${not empty list }">
 							<c:forEach items="${list}" var="v" varStatus="s">
-							<c:if test="${s.first }">
-								<div class="item active">
-								<ul class="thumbnails">																									
-							</c:if>
-							
-							<c:if test="${!s.first&&s.count%4==1 }">
-								<div class="item">
-								<ul class="thumbnails">						
-							</c:if>
-							
+								<c:if test="${s.first }">
+									<div class="item active">
+										<ul class="thumbnails">
+								</c:if>
+
+								<c:if test="${!s.first&&s.count%4==1 }">
+									<div class="item">
+										<ul class="thumbnails">
+								</c:if>
+
 								<li class="col-sm-3" style="border: 5px solid #ffc9c9">
 									<div class="fff">
 										<div class="thumbnail">
@@ -188,38 +194,40 @@ button#btn-write {
 											<p>${v.festival_Title }</p>
 											<p>${v.festival_StartDate }~${v.festival_EndDate }</p>
 											<p>${s.count}</p>
-											<Input type="hidden" value="${v.festival_No}"> <a
-												class="btn btn-mini" href="#">» Read More</a>
+											<Input type="hidden" name="festival_No"> <a
+												class="btn btn-mini"
+												onclick='location.href="${path}/festival/festivalView?festival_No=${v.festival_No }"'>»
+												Read More</a>
 										</div>
 									</div>
 								</li>
-								
+
 								<c:if test="${s.count%4==0||s.last}">
-									</ul>
-									</div>
-								</c:if>
-
-								
-							</c:forEach>
-						</c:if>
-					</div>
-
-
-				<nav>
-					<ul class="control-box pager">
-						<li><a data-slide="prev" href="#myCarousel" class=""><i
-								class="glyphicon glyphicon-chevron-left"></i></a></li>
-						<li><a data-slide="next" href="#myCarousel" class=""><i
-								class="glyphicon glyphicon-chevron-right"></i></a></li>
-					</ul>
-				</nav>
-				<!-- /.control-box -->
-
+				</ul>
 			</div>
-			<!-- /#myCarousel -->
+			</c:if>
 
+
+			</c:forEach>
+			</c:if>
 		</div>
-		<!-- /.col-xs-12 -->
+
+
+		<nav>
+			<ul class="control-box pager">
+				<li><a data-slide="prev" href="#myCarousel" class=""><i
+						class="glyphicon glyphicon-chevron-left"></i></a></li>
+				<li><a data-slide="next" href="#myCarousel" class=""><i
+						class="glyphicon glyphicon-chevron-right"></i></a></li>
+			</ul>
+		</nav>
+		<!-- /.control-box -->
+
+	</div>
+	<!-- /#myCarousel -->
+
+	</div>
+	<!-- /.col-xs-12 -->
 
 	</div>
 	<!-- /.container -->
