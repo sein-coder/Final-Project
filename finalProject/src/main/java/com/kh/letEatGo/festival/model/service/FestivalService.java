@@ -10,6 +10,11 @@ public interface FestivalService{
 	int insertFestival(Festival festival);
 
 	List<Festival> selectFestival();
+
+	Festival selectFestivalOne(int festival_No);
+	
+	int deleteFestival(int festival_No);
+	
 	
 	
 

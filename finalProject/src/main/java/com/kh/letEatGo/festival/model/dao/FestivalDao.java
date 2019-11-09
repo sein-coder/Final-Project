@@ -11,4 +11,8 @@ public interface FestivalDao {
 	int insertFestival(SqlSessionTemplate session,Festival festival);
 
 	List<Festival> selectFestival(SqlSessionTemplate session);
+
+	Festival selectFestivalOne(SqlSessionTemplate session, int festival_No);
+
+	int deleteFestival(SqlSessionTemplate session, int festival_No);
 }

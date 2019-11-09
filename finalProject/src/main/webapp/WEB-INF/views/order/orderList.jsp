@@ -98,6 +98,7 @@
 							<h3><a href="${path }/order/orderListView?partner_No=${p.partner_No}"><c:out value="${p.partner_TruckName }"/></a></h3>
 							<!-- 별점 -->
 							<div class="row">
+							<span>리뷰 별점</span>
 								<div class="star-rating">
 									<span class="icon-star" data-rating="1"></span>
 									<span class="icon-star" data-rating="2"></span>
@@ -105,14 +106,15 @@
 									<span class="icon-star" data-rating="4"></span>
 									<span class="icon-star" data-rating="5"></span>
 									<input type="hidden" name="starScore" class="rating-value" value="${p.starCount}">
-									<input type="hidden" name="data_No" value="${v.index}"/>
 								</div>
 								<div class="row">
 								<c:forEach var="img" items="${menuList[v.count-1] }">
 										<img class="img-fluid" src="${path }/resources/images/menu/${img.menu_Oriname_File }"/>
 								</c:forEach>
 								</div>
-							<span><c:out value="총 주문 건 수  ${p.reviewCount }건"/></span>
+								<div class="row">
+									<span><c:out value="총 주문 건 수  ${p.reviewCount }건"/></span>
+								</div>
 							<!-- 총 주문수, 리뷰수, 별점수 추가, 조회 수 -->
 						</div>
 					</div>
