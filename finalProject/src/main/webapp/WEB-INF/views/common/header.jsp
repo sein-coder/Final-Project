@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
 <title>LetEatGo●푸드트럭의 모든 것</title>
 <meta charset="utf-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -17,39 +17,40 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/audiostyle.css">
 
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath }/resources/images/favicon-32x32.png">
+   href="${pageContext.request.contextPath }/resources/images/favicon-32x32.png">
 
 <link href="https://fonts.googleapis.com/css?family=Rubik:400,700"
-	rel="stylesheet">
+   rel="stylesheet">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/fonts/icomoon/style.css">
+   href="${pageContext.request.contextPath }/resources/fonts/icomoon/style.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+   href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/magnific-popup.css">
+   href="${pageContext.request.contextPath }/resources/css/magnific-popup.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/jquery-ui.css">
+   href="${pageContext.request.contextPath }/resources/css/jquery-ui.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/owl.carousel.min.css">
+   href="${pageContext.request.contextPath }/resources/css/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/owl.theme.default.min.css">
+   href="${pageContext.request.contextPath }/resources/css/owl.theme.default.min.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/bootstrap-datepicker.css">
+   href="${pageContext.request.contextPath }/resources/css/bootstrap-datepicker.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/fonts/flaticon/font/flaticon.css">
+   href="${pageContext.request.contextPath }/resources/fonts/flaticon/font/flaticon.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/aos.css">
+   href="${pageContext.request.contextPath }/resources/css/aos.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/rangeslider.css">
+   href="${pageContext.request.contextPath }/resources/css/rangeslider.css">
 
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css">
+
 
 </head>
 <body>
@@ -64,60 +65,17 @@
 			<div class="site-mobile-menu-body"></div>
 		</div>
 
-		<header class="site-navbar" role="banner">
+
+      <header class="site-navbar" role="banner">
 
 			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-11 col-xl-3">
-						<a href="${pageContext.request.contextPath }"> <img
-							src="${pageContext.request.contextPath }/resources/images/logo.png"
-							class="img-fluid" />
-						</a>
-					</div>
-					<div class="col-12 col-md-9 d-none d-xl-block">
-						<nav class="site-navigation position-relative text-right"
-							role="navigation">
-							<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-								<li class="active"><a
-									href="${pageContext.request.contextPath }"><span>Home</span></a></li>
-								<!-- nav-bar 메뉴부분 -->
-								<li><a
-									href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234"><span>장부관리</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존
-											찾기</span></a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/festival/festivalList"><span>축제알리미</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/calendar"><span>캘린더</span></a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/memberPage"><span>고객
-											페이지</span></a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/partnerPage"><span>사업자
-											페이지</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/list.list"><span>회원
-											목록</span></a></li>
-								<!-- <li><a href="#" onclick="permissionAPI();"><span>大화남</span></a></li> -->
-								<li>
-									<button type="button" class="btn btn-outline-primary"
-										data-toggle="modal" data-target="#myModal">로그인</button>
-								</li>
-								<li><button class="btn btn-outline-primary" type="button"
-										onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
-							</ul>
-						</nav>
-					</div>
+				<div class="row d-flex justify-content-end">			
 
-					<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
-						style="position: relative; top: 3px;">
-						<a href="#" class="site-menu-toggle js-menu-toggle text-white">
-							<span class="icon-menu h3"></span>
-						</a>
-					</div>
-				</div>
-				<div class="row d-flex justify-content-end">					
 					<div class="wrap">
-					
+					  <audio id="audio">
+						  <source src="${pageContext.request.contextPath }/resources/music/Let It Go.mp3">
+					  </audio>
+					  
 					  <div class="player paused">
 					  
 					    <div class="progress-bar">
@@ -127,8 +85,8 @@
 					      <div class="cover"></div>
 					    </div>
 					    
-					    <div class="description">
-					      <div class="title">Something from nothing  </div>
+					    <div class="description align-middle">
+					      Something from nothing
 					    </div>
 					    
 					    <div class="visualizer">
@@ -183,8 +141,8 @@
 					      
 					    <div class="play-button">
 					      <div class="lp-background"></div>
-					      <i class="mdi mdi-play"></i>
-					      <i class="mdi mdi-pause"></i>
+					      <i class="mdi mdi-play" style="position: absolute; top: 15%; right: 9%;"></i>
+					      <i class="mdi mdi-pause" style="position: absolute; top: 20%; right: 20%;"></i>
 					    </div>
 					    
 					    <div class="time-indicator">
@@ -195,11 +153,62 @@
 					    
 					  </div>
 					  
-					</div>	
+					</div>
 				</div>
-			</div>
-		</header>
+				
+				<div class="row align-items-center">
+					<div class="col-11 col-xl-3">
+						<a href="${pageContext.request.contextPath }"> <img
+							src="${pageContext.request.contextPath }/resources/images/logo.png"
+							class="img-fluid" />
+						</a>
+					</div>
+					<div class="col-12 col-md-9 d-none d-xl-block">
+						<nav class="site-navigation position-relative text-right"
+							role="navigation">
+							<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+								<li class="active"><a
+									href="${pageContext.request.contextPath }"><span>Home</span></a></li>
+								<!-- nav-bar 메뉴부분 -->
+								<li><a
+									href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234"><span>장부관리</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존
+											찾기</span></a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/festival/festivalList"><span>축제알리미</span></a></li>
+								<c:if test="${empty loginMember }">
+								<li>
+									<button type="button" class="btn btn-outline-primary"
+										data-toggle="modal" data-target="#myModal">로그인</button>
+								</li>
+								<li><button class="btn btn-outline-primary" type="button"
+										onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
+								</c:if>
+								<c:if test="${not empty loginMember }">
+								<li>
+									<button class="btn btn-outline-primary"
+										type="button"
+										onclick="">마이페이지</button>
+								</li>
+								<li><button class="btn btn-outline-primary"
+										type="button"
+										onclick="location.href='${pageContext.request.contextPath}/partner/partnerLogout.do'">로그아웃</button></li>			
+								</c:if>
+							</ul>
+						</nav>
+					</div>
 
+               <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
+                  style="position: relative; top: 3px;">
+                  <a href="#" class="site-menu-toggle js-menu-toggle text-white">
+                     <span class="icon-menu h3"></span>
+                  </a>
+               </div>
+            </div>
+
+         </div>
+      </header>
 
 		<!-- 모달창 -->
     	<div class="modal fade" id="myModal">
@@ -250,6 +259,7 @@
     </div>
   </div>
         <!-- Modal footer -->
+        <input type=""  name="Id_find"/>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">페이스북</button>
           <button type="button" class="btn btn-primary">네이버</button>
@@ -260,6 +270,7 @@
     </div>
   </div>
 </div>
+
 
 	<script type="text/javascript"
 		src="https://www.gstatic.com/charts/loader.js"></script>
@@ -274,6 +285,8 @@
 			}, function() {
 				$(this).removeClass("active");
 			})
+			
+			$('.lp-background').css('background-image', 'url(${pageContext.request.contextPath}/resources/music/lp.png)');
 		});
 	</script>
 
@@ -303,3 +316,4 @@
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
     <script src="${pageContext.request.contextPath }/resources/js/audio.js"></script>
+

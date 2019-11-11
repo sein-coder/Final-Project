@@ -26,10 +26,6 @@ public class PartnerServiceImpl implements PartnerService {
 
 	@Override
 	public Partner selectPartnerOne(Partner p) {
-		
 		return dao.selectPartnerOne(session,p);
 	}
-
-
-	
 }

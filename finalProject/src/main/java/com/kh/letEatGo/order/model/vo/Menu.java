@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class Menu {
 
-	private int menu_no;
-	private String menu_name;
-	private int menu_price;
-	private String menu_oriname_file;
-	private String menu_rename_file;
-	private int partner_no;
+	private int menu_No;
+	private String menu_Name;
+	private int menu_Price;
+	private String menu_Oriname_File;
+	private String menu_Rename_File;
+	private int partner_No;
 }

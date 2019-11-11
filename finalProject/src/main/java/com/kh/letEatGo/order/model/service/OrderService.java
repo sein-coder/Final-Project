@@ -9,7 +9,7 @@ public interface OrderService {
 
 	int selectCount();
 	List<Partner> selectTruckList(int cPage, int numPerPage);
-	List<Menu> selectMenu(int partner_no);
-	double selectStar(int partner_no);
-	int selectReviewCount(int partner_no);
+	List<Menu> selectMenu(int partner_No);
+	double selectStar(int partner_No);
+	int selectReviewCount(int partner_No);
 }

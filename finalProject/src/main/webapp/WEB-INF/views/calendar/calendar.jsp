@@ -3,6 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+ div#calendar{
+   
+   width:70%;
+   
+   
+   
+ }
+
+</style>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <meta charset="utf-8">
 <title>Full Calendar Example</title>
 
@@ -81,9 +92,16 @@
 	</script>
 </head>
 <body>
-	<h1>FullCalendar</h1>
-	<div id="calendar"></div>
+<div class="site-section">
+   <div class="container">
+      <div class="row justify-content-center mb-8">
 	
-	<button type="button" onclick="location.href='index.jsp'">메인 화면</button>
+	<div id="calendar"></div>
+	  </div>
+   </div>
+</div>
+	
+	
 </body>
 </html>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

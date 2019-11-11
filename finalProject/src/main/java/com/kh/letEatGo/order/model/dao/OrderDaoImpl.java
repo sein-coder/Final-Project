@@ -19,15 +19,27 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public double selectStar(SqlSessionTemplate session, int partner_no) {
-		double starCount = session.selectOne("order.selectStar", partner_no);
-		return starCount;
+	public double selectStar(SqlSessionTemplate session, int partner_No) {
+		double starCount = 0;
+		double result = session.selectOne("order.selectStar", partner_No);
+		if(result != 0) {
+			starCount = result;
+			return starCount;
+		} else {
+			return starCount;
+		}
 	}
 
 	@Override
-	public int selectReviewCount(SqlSessionTemplate session, int partner_no) {
-		int reviewCount = session.selectOne("order.selectReviewCount", partner_no);
-		return reviewCount;
+	public int selectReviewCount(SqlSessionTemplate session, int partner_No) {
+		int reviewCount = 0;
+		int result = session.selectOne("order.selectReviewCount", partner_No);
+		if(result != 0) {
+			reviewCount = result;
+			return reviewCount;
+		} else {
+			return reviewCount;
+		}
 	}
 
 	@Override
@@ -38,8 +50,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<Menu> selectMenu(SqlSessionTemplate session, int partner_no) {
-		List<Menu> menuList = session.selectList("order.selectMenu", partner_no);
+	public List<Menu> selectMenu(SqlSessionTemplate session, int partner_No) {
+		List<Menu> menuList = session.selectList("order.selectMenu", partner_No);
 		return menuList;
 	}
 

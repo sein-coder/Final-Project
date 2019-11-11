@@ -19,11 +19,12 @@ function go() {
     if (percentage > 100) percentage = 0;
     $progressBarRunner.css('width', percentage + '%');
 
-    $time.text(calculateTime(songLength, percentage));
+    $time.text(calculateTime(songLength, percentage));    
   }, 250);
 };
 
 $('.play-button').on('click', function() {
+  console.log("onclick실행")
   $player.toggleClass('paused').toggleClass('playing');
   if (playRunner) {
     clearInterval(playRunner);
@@ -39,7 +40,6 @@ $('.progress-bar').on('click', function(e) {
   var posY = $(this).offset().left;
   var clickY = e.pageX - posY;
   var width = $(this).width();
-
   percentage = clickY / width * 100;
 });
 

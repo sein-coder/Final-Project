@@ -31,8 +31,8 @@ public class FestivalDaoImpl implements FestivalDao {
 	}
 
 	@Override
-	public int updateFestival(SqlSessionTemplate session, int festival_No) {
-		return session.update("festival.updateFestival", festival_No);
+	public int updateFestival(SqlSessionTemplate session, Festival festival) {
+		return session.update("festival.updateFestival", festival);
 	}
 	
 	

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
@@ -106,16 +106,14 @@ textarea {
 }*/
 /* 해시태그  */
 
-
-
 </style>
-<body>
+    <body>
 
 
 	<section id="content">
 		<form
 			id="frm"
-			action="${pageContext.request.contextPath}/festival/festivalFormEnd.do"
+			action="${pageContext.request.contextPath}/festival/updateFestival"
 			method="post">
 
 			<div class="site-section pb-0">
@@ -142,7 +140,7 @@ textarea {
 								</div>
 								<div class="details col-md-7">
 									<h3 class="product-title">
-										<input id="festival_Title" name="festival_Title" type="text" placeholder="00축제">
+										<input id="festival_Title" name="festival_Title" type="text" value="${festival.festival_Title }" placeholder="00축제" >
 									</h3>
 									<div class="rating">
 										<div class="stars">
@@ -156,7 +154,7 @@ textarea {
 									<p class="product-description" />
 
 									<div>
-										<textarea name="festival_Content" id="festival_Content" cols="40"
+										<textarea name="festival_Content" id="festival_Content" value="${festival.festival_Content }" cols="40"
 											rows="40" placeholder="축제 내용을 입력하세요"></textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
@@ -168,7 +166,7 @@ textarea {
 										<p>해시태그 :</p>
 
 										<div class="content">
-											<input type="hidden" value="" name="festival_Hashtag"
+											<input type="hidden" value="" name="festival_Hashtag" value="${festival.festival_Hashtag}"
 												id="festival_Hashtag" />
 											<ul id="tag-list">
 											</ul>
@@ -204,14 +202,14 @@ textarea {
 										<div class="alert alert-danger1">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-											<input id="festival_StartDate" name="festival_StartDate" type="date" />
+											<input id="festival_StartDate" name="festival_StartDate" type="date" value="${festival.festival_StartDate}" />
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-											<input id="festival_EndDate" name="festival_EndDate" type="date" />
+											<input id="festival_EndDate" name="festival_EndDate" type="date" value="${festival.festival_EndDate}" />
 										</div>
 									</td>
 								</tr>
@@ -220,15 +218,15 @@ textarea {
 										<div class="alert alert-danger3">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">전화번호</a> <strong>:</strong>
-											<input type="tel" id="festival_Phone" name="festival_Phone"
-												pattern="[0-9]{3}-[0-9]{3}{4}-[0-9]{4}" required>
+											<input type="tel" id="festival_Phone" name="festival_Phone"  value="${festival.festival_Phone}"
+												pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">홈페이지</a> <strong>:</strong>
-											<input type="url" id="festival_Homepage" name="festival_Homepage">
+											<input type="url" id="festival_Homepage" name="festival_Homepage" value="${festival.festival_Homepage}">
 
 										</div>
 									</td>
@@ -238,7 +236,7 @@ textarea {
 										<div class="alert alert-danger4" style="display: inline-block">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 소</a> <strong>:</strong> <input
-												type="text" name="festival_Address" id="festival_Address">
+												type="text" name="festival_Address" id="festival_Address" value="${festival.festival_Address}" >
 										</div>
 
 									</td>
@@ -246,7 +244,7 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 최</a> <strong>:</strong> <input
-												type="text" name="festival_Host" id="festival_Host">
+												type="text" name="festival_Host" id="festival_Host" value="${festival.festival_Host}" >
 										</div>
 									</td>
 								</tr>
@@ -255,14 +253,14 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 관</a> <strong>:</strong> <input
-												type="text" name="festival_Sub" id="festival_Sub">
+												type="text" name="festival_Sub" id="festival_Sub" value="${festival.festival_Sub}">
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">이용요금</a> <strong>:</strong>
-											<input type="text" name="festival_Price" id="festival_Price">
+											<input type="text" name="festival_Price" id="festival_Price" value="${festival.festival_Price}" >
 										</div>
 									</td>
 								</tr>
@@ -381,3 +379,9 @@ textarea {
 
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    
+    
+    
+    
+    
+    

@@ -555,7 +555,7 @@ h1 {
 		</div>
 		<div>
 			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
-				onclick="location.href='${pageContext.request.contextPath}/festivl/updateFestival?festival_No=${festival.festival_No }'">수정</button>
+				onclick="location.href='${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }'">수정</button>
 		</div>
 	</div>
 	<!--추천글 -->

@@ -92,12 +92,23 @@ public class FestivalController {
 	}
 	
 	@RequestMapping("/festival/updateFestival")
-	public ModelAndView updateFestival(int festival_No) {
+	public ModelAndView updateFestival(Festival festival) {
 		ModelAndView mv=new ModelAndView();
 		
-		int result=service.updateFestival(festival_No);
+		int result=service.updateFestival(festival);
 		
-		mv.setViewName("festival/festivalForm");
+		String msg="";
+		String loc="/festival/festivalView";
+		
+		if(result>0) {
+			msg="";
+		}else {
+			msg="작성자만 수정이 가능합니다";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
 		return mv;
 		
 	}
