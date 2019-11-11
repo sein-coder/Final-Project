@@ -9,22 +9,17 @@
 
 
 
-
 <div class="site-section">
    <div class="container">
       <div class="row justify-content-center mb-8">
-      
-      
-      <li><a href="${pageContext.request.contextPath }/memberPage"><span>고객 페이지</span></a></li>
-      <li><a href="${pageContext.request.contextPath }/partnerPage?Partner_Id=${loginMember.partner_Id}"><span>사용자 페이지</span></a></li>
-      <li><a href="${pageContext.request.contextPath }/adminPage"><span>관리자 페이지</span></a></li>
-      
-        </div>
+       <div class="col">
+<form method="post">
+    <input type="text" name="member_Id" value="${loginMember.member_Id}">
+    <input type="text" name="member_Password" value="${loginMember.member_Password}">
+    <button type="submit">탈퇴</button>
+</form> 
+      </div>
+    </div>
    </div>
 </div>
-
-
-
-
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

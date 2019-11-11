@@ -5,7 +5,7 @@
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,#{member_Id},#{member_Password},#{member_Email},#{member_Phone})
 	</insert>
-	<select id="selectMember" parameterType="member" resultType="member">
+	<select id="selectMemberOne" parameterType="member" resultType="member">
 		select * from  Member WHERE MEMBER_ID=#{member_Id}
 	</select>
 	
@@ -15,9 +15,6 @@
 	  UPDATE MEMBER SET 
 	                    MEMBER_ID=#{member_Id},
 	                    MEMBER_PASSWORD=#{member_Password},
-	                    MEMBER_NAME=#{member_Name},
-	                    MEMBER_AGE=#{member_Age},
-	                    MEMBER_ADDRESS=#{member_Address},
 	                    MEMBER_EMAIL=#{member_Email},
 	                    MEMBER_PHONE=#{member_Phone}
 	                    
@@ -25,5 +22,8 @@
 	</update> 
 	
 	<!-- 회원 탈퇴 -->
+	<delete id="deleteMemberPage">
+	  DELETE FROM MEMBER WHERE MEMBER_ID=#{member_Id} and MEMBER_PASSWORD=#{member_Password}
+	</delete>
 
 </mapper>

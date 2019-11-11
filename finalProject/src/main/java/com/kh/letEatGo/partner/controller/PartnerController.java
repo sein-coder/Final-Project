@@ -109,23 +109,12 @@ public class PartnerController {
 	 	mv.setViewName("common/msg");
 		return mv;
 	}
-	  @RequestMapping("/partner/updatePartner") //파트너 회원 정보 수정
-	  public String updateMember(Partner p,Model model) {
-		  System.out.println("수정");
-		  
-		  return "";
-	  }
-	  @RequestMapping("/partner/deletePartner") //파트너 회원 탈퇴
-	  public String deleteMember(Partner p,Model model) {
-		  System.out.println("삭제");
-		  
-		  return "";
-	  }
 	
 	@RequestMapping("/partner/partnerLogin.do")
 	public ModelAndView partnerlogin(Partner p,HttpSession session) {
 		ModelAndView mv=new ModelAndView();
-		Partner result=service.selectPartnerOne(p);
+		Partner result=null;
+		result=service.selectPartnerOne(p);
 		String msg="";
 		String loc="";
 			if(result != null) {

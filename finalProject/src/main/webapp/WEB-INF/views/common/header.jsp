@@ -64,8 +64,6 @@
 			</div>
 			<div class="site-mobile-menu-body"></div>
 		</div>
-
-
       <header class="site-navbar" role="banner">
 
 			<div class="container">
@@ -187,10 +185,9 @@
 								</c:if>
 								<c:if test="${not empty loginMember }">
 								<li>
-									<button class="btn btn-outline-primary"
-										type="button"
-										onclick="">마이페이지</button>
+									<a href="${pageContext.request.contextPath }/pageList"><span>마이 페이지</span></a>
 								</li>
+								
 								<li><button class="btn btn-outline-primary"
 										type="button"
 										onclick="location.href='${pageContext.request.contextPath}/partner/partnerLogout.do'">로그아웃</button></li>			

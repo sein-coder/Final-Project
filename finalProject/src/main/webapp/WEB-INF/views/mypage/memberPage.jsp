@@ -15,8 +15,15 @@
 <script>
   $(document).ready(function(){
 	  $("#btnUpdate").click(function(){
-		  document.updateMember.action="${path}/member/updateMember";
+		  document.updateMember.action="${path}/member/updateMember"; //쿼리스트링으로 아이디를 넘겨버리면 DB에 아이디가 2개가 저장되어버렸음
 		  document.updateMember.submit();
+	  });
+  });
+  
+  $(document).ready(function(){
+	  $("#btnDelete").click(function(){
+		  document.deleteMember.action="${path}/member/deleteMember";
+		  document.deleteMember.submit();
 	  });
   });
  
@@ -26,40 +33,37 @@
 <div class="site-section">
    <div class="container">
       <div class="row justify-content-center mb-8">
+        <div class="col">
+      
+      
+      
       <form name="updateMember" method="post">
       <table class="table" id="tbl-dev">
         <tr>
 			<th scope="col">아이디</th>
-			<td><input name="memberId" value="${member.member_Id}" readonly="readonly"></td>
+			<td><input name="member_Id" value="${member.member_Id}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<th scope="col">이름</th>
-			<td><input name="memberName" value="${member.member_Name}"></td>
-		</tr>
-		<tr>
-			<th scope="col">나이</th>
-			<td><input name="memberAge" value="${member.member_Age}"></td>
-		</tr>
-		<tr>
-			<th scope="col">주소</th>
-			<td><input name="memberAddress" value="${member.member_Address}"></td>
+			<th scope="col">비밀번호</th>
+			<td><input name="member_Password" value="${member.member_Password}"></td>
 		</tr>
 		<tr>
 			<th scope="col">이메일</th>
-			<td><input name="memberEmail" value="${member.member_Email}"></td>
+			<td><input name="member_Email" value="${member.member_Email}"></td>
 		</tr>
 		<tr>
 			<th scope="col">연락처</th>
-			<td><input name="memberPhone" value="${member.member_Phone}"></td>
+			<td><input name="member_Phone" value="${member.member_Phone}"></td>
 		</tr>
 		<tr>
-			<th scope="col">성별</th>
-			<td><input name="memberGender" value='${member.member_Gender eq "M"?"남":"여"}'></td>
+		  <td colspan="2" align="center">
+		     <input type="button" value="수정" id="btnUpdate">
+		     <li><a href="deleteMember">회원 탈퇴</a></li>
+		  </td>
 		</tr>
 	 </table>
-	  <button type="submit" id="btnUpdate" class="updateMember">수정</button>
-	 
 	    </form>
+	    </div>
       </div>
    </div>
 </div>

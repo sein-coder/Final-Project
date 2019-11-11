@@ -73,10 +73,8 @@ public class MemberController {
 	  @RequestMapping("/member/memberLogin.do")
 	  public ModelAndView login(Member m, HttpSession session) {
 		  ModelAndView mv=new ModelAndView();
-		  System.out.println(pwEncoder.encode("123123"));
 		  Member result = null;
 		  result = service.selectMemberOne(m);
-		  System.out.println(result);
 		  String msg="";
 		  String loc="";
 		  if(result != null) {
