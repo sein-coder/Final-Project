@@ -118,7 +118,7 @@
 			type : "get",
 			data : {"partner_Id":partner_Id},
 			success : function(data) {
-console.log(data);							
+console.log("1 = 중복o / 0 = 중복x : "+data);							
 				if (data == 1) {
 						// 1 : 아이디가 중복되는 문구
 						$("#id_check").text("사용중인 아이디입니다 ");
