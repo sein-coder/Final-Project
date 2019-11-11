@@ -63,7 +63,7 @@ public class OrderController {
 		// 트럭 상세페이지에 필요한 데이터 조회
 		Partner result = service.selectTruck(p.getPartner_No());
 		result.setStarCount(service.selectStar(p.getPartner_No()));
-
+		result.setReviewCount(service.selectReviewCount(p.getPartner_No()));
 		List<Menu> list = service.selectMenu(p.getPartner_No());
 		List<Review> reviewList = service.selectReview(p.getPartner_No());
 

@@ -51,25 +51,25 @@ public class PageController {
 		return "mypage/adminPage";
 	}
 	
-	@RequestMapping("/member/updateMember") //멤버 회원 정보 수정
-	public String updateMemberPage(Member m,Model model) {
-		int result=member_service.updateMemberPage(m);
-		
-		System.out.println(result);
-		
-		String msg="";
-		String loc="/";
-		if(result>0) {
-			msg="정보 수정 성공";
-		}else {
-			msg="정보 수정 실패";
-		}
-		model.addAttribute("msg",msg);
-		model.addAttribute("loc",loc);
-		
-		return "common/msg";
-		
-	}
+//	@RequestMapping("/member/updateMember") //멤버 회원 정보 수정
+//	public String updateMemberPage(Member m,Model model) {
+//		int result=member_service.updateMemberPage(m);
+//		
+//		System.out.println(result);
+//		
+//		String msg="";
+//		String loc="/";
+//		if(result>0) {
+//			msg="정보 수정 성공";
+//		}else {
+//			msg="정보 수정 실패";
+//		}
+//		model.addAttribute("msg",msg);
+//		model.addAttribute("loc",loc);
+//		
+//		return "common/msg";
+//		
+//	}
 	
 //	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
 //	  public String deleteMember(Member m,Model model) {
