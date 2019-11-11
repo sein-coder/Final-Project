@@ -8,6 +8,7 @@
 		<typeAlias type="com.kh.letEatGo.order.model.vo.Order" alias="order"/>
 		<typeAlias type="com.kh.letEatGo.order.model.vo.Menu" alias="menu"/>
 		<typeAlias type="com.kh.letEatGo.partner.model.vo.Partner" alias="partner"/>
+		<typeAlias type="com.kh.letEatGo.order.model.vo.Review" alias="review"/>
 		<typeAlias type="com.kh.letEatGo.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.kh.letEatGo.map.model.vo.ZoneMap" alias="zonemap"/>
 		<typeAlias type="com.kh.letEatGo.map.model.vo.TruckMap" alias="truckmap"/>
