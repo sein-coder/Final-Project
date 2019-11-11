@@ -124,7 +124,6 @@
 		</div>
 		<!-- 페이징 처리 -->
 		${pageBar }
-	</div>
 </section>
 
 <script>
@@ -141,5 +140,6 @@ $(document).ready(function(){
 	      })
 	   });
 	});
+	
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

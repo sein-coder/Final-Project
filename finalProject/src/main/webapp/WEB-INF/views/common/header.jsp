@@ -46,12 +46,8 @@
    href="${pageContext.request.contextPath }/resources/css/aos.css">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath }/resources/css/rangeslider.css">
-
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css">
-
-
 </head>
 <body>
 
@@ -310,5 +306,9 @@
 
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
+<<<<<<< HEAD
     <script src="${pageContext.request.contextPath }/resources/js/audio.js"></script>
 
+=======
+    <script src="${pageContext.request.contextPath }/resources/js/audio.js"></script>
+>>>>>>> refs/remotes/origin/sein
