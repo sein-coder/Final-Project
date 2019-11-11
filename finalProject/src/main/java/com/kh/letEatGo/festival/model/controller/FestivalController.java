@@ -1,6 +1,5 @@
 package com.kh.letEatGo.festival.model.controller;
 
-import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.festival.model.service.FestivalService;
 import com.kh.letEatGo.festival.model.vo.Festival;
-import com.kh.spring.board.model.vo.Attachment;
+//import com.kh.spring.board.model.vo.Attachment;
 
 
 
@@ -47,51 +46,51 @@ public class FestivalController {
 		return mv;
 	}
 	
-	@RequestMapping("/festival/festivalFormEnd.do")
-	public ModelAndView insertFestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
-		ModelAndView mv=new ModelAndView();		
-		int result=service.insertFestival(festival);
-		
-		
-		String saveDir = req.getSession().getServletContext()
-				.getRealPath("/resources/upload/festival");
-		
-		File dir=new File(saveDir);
-		if(!dir.exists()) logger.debug("폴더생성 "+dir.mkdirs());
-		
-		for(MultipartFile f:upFile) {
-			MultipartFile f=new File
-			if(!f.isEmpty()) {
-				
-				String oriFileName=f.getOriginalFilename();
-				
-				try {
-					//transferTo는 multipart가 제공
-					f.transferTo(new File(saveDir+"/"));
-				}catch(IOException e) {
-					e.printStackTrace();
-				}
-				Attachment at=new Attachment();
-				at.setOriginalFileName(oriFileName);
-				list.add(at);
-			}
-		}
-		
-		String msg="";
-		String loc="/festival/festivalList";
-		
-		if(result>0) {
-			msg="축제 등록을 성공하셨습니다.";
-		}else {
-			msg="축제 등록을 실패하셨습니다.";
-		}
-		
-		mv.addObject("msg",msg);
-		mv.addObject("loc",loc);
-		
-		mv.setViewName("common/msg");
-		return mv;
-	}
+//	@RequestMapping("/festival/festivalFormEnd.do")
+//	public ModelAndView insertFestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
+//		ModelAndView mv=new ModelAndView();		
+//		int result=service.insertFestival(festival);
+//		
+//		
+//		String saveDir = req.getSession().getServletContext()
+//				.getRealPath("/resources/upload/festival");
+//		
+//		File dir=new File(saveDir);
+//		if(!dir.exists()) logger.debug("폴더생성 "+dir.mkdirs());
+//		
+//		for(MultipartFile f:upFile) {
+//			MultipartFile f=new File
+//			if(!f.isEmpty()) {
+//				
+//				String oriFileName=f.getOriginalFilename();
+//				
+//				try {
+//					//transferTo는 multipart가 제공
+//					f.transferTo(new File(saveDir+"/"));
+//				}catch(IOException e) {
+//					e.printStackTrace();
+//				}
+//				Attachment at=new Attachment();
+//				at.setOriginalFileName(oriFileName);
+//				list.add(at);
+//			}
+//		}
+//		
+//		String msg="";
+//		String loc="/festival/festivalList";
+//		
+//		if(result>0) {
+//			msg="축제 등록을 성공하셨습니다.";
+//		}else {
+//			msg="축제 등록을 실패하셨습니다.";
+//		}
+//		
+//		mv.addObject("msg",msg);
+//		mv.addObject("loc",loc);
+//		
+//		mv.setViewName("common/msg");
+//		return mv;
+//	}
 	
 	@RequestMapping("/festival/festivalView")
 	public ModelAndView selectFestivalOne(int festival_No) {
