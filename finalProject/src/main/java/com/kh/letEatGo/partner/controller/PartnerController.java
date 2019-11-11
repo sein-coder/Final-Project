@@ -1,5 +1,6 @@
 package com.kh.letEatGo.partner.controller;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -109,6 +111,18 @@ public class PartnerController {
 	 	mv.setViewName("common/msg");
 		return mv;
 	}
+	  @RequestMapping("/partner/updatePartner") //파트너 회원 정보 수정
+	  public String updateMember(Partner p,Model model) {
+		  System.out.println("수정");
+		  
+		  return "";
+	  }
+	  @RequestMapping("/partner/deletePartner") //파트너 회원 탈퇴
+	  public String deleteMember(Partner p,Model model) {
+		  System.out.println("삭제");
+		  
+		  return "";
+	  }
 	
 	@RequestMapping("/partner/partnerLogin.do")
 	public ModelAndView partnerlogin(Partner p,HttpSession session) {

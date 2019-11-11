@@ -48,7 +48,8 @@ body {
 		25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe
 		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
 		87.5%, #62c2e4 87.5%, #62c2e4)
- */}
+ */
+}
 
 .thumbnails li>.fff .caption {
 	background: #fff !important;
@@ -131,14 +132,14 @@ li {
 	background: #ff5e99;
 	color: #FFFFFF;
 }
-button#btn-write{
+
+button#btn-write {
 	background: #f38181;
 	color: #FFF;
 	margin-bottom: 10px;
 	margin-left: 0px;
 	float: right;
 }
-
 </style>
 
 <link
@@ -150,222 +151,95 @@ button#btn-write{
 
 <section>
 	<div class="site-section">
-	<!------ Include the above in your HEAD tag ---------->
-	<div class="container">
-		<div class="col-xs-12">
+		<!------ Include the above in your HEAD tag ---------->
+		<div class="container">
+			<div class="col-xs-12">
 
-			<div class="page-header">
-				<h3>Bootstrap 3.3.0</h3>
-				<p>렛.잇.고와 함께 하세요</p>
-			</div>
-			<div>
-			<input type="button" value="축제등록" id='btn-add' class='btn btn-outline-success' onclick='location.href="${path}/festival/festivalForm"'/>
-			</div>
-
-			<div class="carousel slide" id="myCarousel" >
-				<div class="carousel-inner">
-					<div class="item active">
-						<ul class="thumbnails">
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
+				<div class="page-header">
+					<h3>Bootstrap 3.3.0</h3>
+					<p>렛.잇.고와 함께 하세요</p>
+				</div>
+				<div style="background-color:#f38181 ">
+					<nav class="site-navigation position-relative text-right" role="navigation">
+						<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block" >
+							<li class="active"><a
+								href="${pageContext.request.contextPath}/festival/festivalForm"><span>축제
+										등록</span></a></li>
 						</ul>
-					</div>
-					<!-- /Slide1 -->
-					<div class="item">
-						<ul class="thumbnails">
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<!-- /Slide2 -->
-					<div class="item">
-						<ul class="thumbnails">
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-									<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-							<li class="col-sm-3" style="border:5px solid #ffc9c9">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>축제 제목</h4>
-										<p>축제 기간</p>
-										<p>#해시태그</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<!-- /Slide3 -->
+					</nav>
 				</div>
 
 
-				<nav>
-					<ul class="control-box pager">
-						<li><a data-slide="prev" href="#myCarousel" class=""><i
-								class="glyphicon glyphicon-chevron-left"></i></a></li>
-						<li><a data-slide="next" href="#myCarousel" class=""><i
-								class="glyphicon glyphicon-chevron-right"></i></a></li>
-					</ul>
-				</nav>
-				<!-- /.control-box -->
 
+				<div class="carousel slide" id="myCarousel">
+					<div class="carousel-inner">
+						<c:if test="${not empty list }">
+							<c:forEach items="${list}" var="v" varStatus="s">
+								<c:if test="${s.first }">
+									<div class="item active">
+										<ul class="thumbnails">
+								</c:if>
+
+								<c:if test="${!s.first&&s.count%4==1 }">
+									<div class="item">
+										<ul class="thumbnails">
+								</c:if>
+
+								<li class="col-sm-3" style="border: 5px solid #ffc9c9">
+									<div class="fff">
+										<div class="thumbnail">
+											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+										</div>
+										<div class="caption">
+											<p>${v.festival_Title }</p>
+											<p>${v.festival_StartDate }~${v.festival_EndDate }</p>
+											<p>${s.count}</p>
+											<Input type="hidden" name="festival_No"> <a
+												class="btn btn-mini"
+												onclick='location.href="${path}/festival/festivalView?festival_No=${v.festival_No }"'>»
+												Read More</a>
+										</div>
+									</div>
+								</li>
+
+								<c:if test="${s.count%4==0||s.last}">
+				</ul>
 			</div>
-			<!-- /#myCarousel -->
+			</c:if>
 
+
+			</c:forEach>
+			</c:if>
 		</div>
-		<!-- /.col-xs-12 -->
+
+
+		<nav>
+			<ul class="control-box pager">
+				<li><a data-slide="prev" href="#myCarousel" class=""><i
+						class="glyphicon glyphicon-chevron-left"></i></a></li>
+				<li><a data-slide="next" href="#myCarousel" class=""><i
+						class="glyphicon glyphicon-chevron-right"></i></a></li>
+			</ul>
+		</nav>
+		<!-- /.control-box -->
+
+	</div>
+	<!-- /#myCarousel -->
+
+	</div>
+	<!-- /.col-xs-12 -->
 
 	</div>
 	<!-- /.container -->
 	</div>
-<script>
-//Carousel Auto-Cycle
-$(document).ready(function() {
-  $('.carousel').carousel({
-    interval: 6000
-  })
-});
-
-</script>
+	<script>
+		//Carousel Auto-Cycle
+		$(document).ready(function() {
+			$('.carousel').carousel({
+				interval : 6000
+			})
+		});
+	</script>
 
 </section>
 

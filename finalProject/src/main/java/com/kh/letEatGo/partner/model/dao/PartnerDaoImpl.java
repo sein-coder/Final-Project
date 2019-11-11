@@ -17,8 +17,7 @@ public class PartnerDaoImpl implements PartnerDao {
 	public Partner selectPartnerOne(SqlSessionTemplate session, Partner p) {
 		// TODO Auto-generated method stub
 		return session.selectOne("partner.selectPartner",p);
-	}
 
+	}	
 
-	
 }

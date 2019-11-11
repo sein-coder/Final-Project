@@ -1,0 +1,57 @@
+package com.kh.letEatGo.page.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.letEatGo.member.model.service.MemberService;
+import com.kh.letEatGo.member.model.vo.Member;
+import com.kh.letEatGo.partner.model.service.PartnerService;
+import com.kh.letEatGo.partner.model.vo.Partner;
+
+@SessionAttributes(value= {"loginMember","msg"}) //여기들어가는 값은 배열로 받을 수 있음 키값이 들어감
+@Controller
+public class PageController {
+	
+	@Autowired
+	MemberService service;
+	@Autowired
+	PartnerService service2;
+	
+	@RequestMapping("/memberPage")
+	public String memberPage(Member m,Model model) {
+		Member result=service.selectMemberOne(m);
+		model.addAttribute("member",result);
+		
+		
+		return "mypage/memberPage";
+	}
+	
+	@RequestMapping("/partnerPage")
+	public String partnerPage(Partner p,Model model) {
+		Partner result2=service2.selectPartnerOne(p);
+		model.addAttribute("partner",result2);
+		
+		
+		return "mypage/partnerPage";
+	}
+	
+	@RequestMapping("/pageList")
+	public String pageList() {
+		return "mypage/list";
+	}
+	
+	@RequestMapping("/adminPage")
+	public String adminPage() {
+		return "mypage/adminPage";
+	}
+	
+
+	
+
+}

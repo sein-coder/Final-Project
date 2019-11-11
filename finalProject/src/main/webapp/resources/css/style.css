@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5,
   @media (min-width: 768px) {
     .site-section {
       padding: 2em 0;
-      padding-top: 10em; } }
+      padding-top: 12em; } }
   .site-section.site-section-sm {
  	
     padding: 6em 0; }
@@ -1989,5 +1989,12 @@ figure.effect-gallery:hover p span:empty {
   user-select: none;
   -webkit-tap-highlight-color: transparent; }
       
-      
+site-blocks-padding {
+	min-height: 3em;
+	@media(max-width:992px){
+		site-blocks-padding mobile{
+			min-height: 8em;
+		}
+	}
+}
       

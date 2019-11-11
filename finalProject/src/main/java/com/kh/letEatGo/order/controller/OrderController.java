@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.common.page.PageFactory;
 import com.kh.letEatGo.order.model.service.OrderService;
+import com.kh.letEatGo.order.model.vo.Menu;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
 @Controller
@@ -33,14 +34,20 @@ public class OrderController {
 		int numPerPage = 5;
 		
 		int totalCount = service.selectCount();
-		// return 할 result
-		List<Object> result = new ArrayList();
 		
+		List<List<Menu>> menuList = new ArrayList();
+				
 		List<Partner> list = service.selectTruckList(cPage, numPerPage);
 		for(Partner p : list) {
-			
+			menuList.add(service.selectMenu(p.getPartner_No()));
+			p.setStarCount(service.selectStar(p.getPartner_No()));
+			p.setReviewCount(service.selectReviewCount(p.getPartner_No()));
 		}
+		
+		System.out.println(menuList);
+		
 		mv.addObject("list", list);
+		mv.addObject("menuList", menuList);
 		mv.addObject("totalCount", totalCount);
 		mv.addObject("pageBar", PageFactory.getPageBar(totalCount, cPage, numPerPage, "/letEatGo/order/orderList"));
 		mv.setViewName("order/orderList");

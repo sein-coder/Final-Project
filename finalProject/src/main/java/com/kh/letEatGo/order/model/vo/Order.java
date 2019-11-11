@@ -16,8 +16,7 @@ public class Order {
 	private String add_request;
 	private int order_price;
 	private Date order_time;
-	private String pay_yn;
-	private String delivery_yn;
+	private String reservation_yn;
 	private int partner_no;
 	private int member_no;
 	

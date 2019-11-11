@@ -111,11 +111,11 @@
   </div>
 </section>
 <script>
-	/* $("#partner_Id").blur(function(){
+	$("#partner_Id").blur(function(){
 		var partner_Id = $('#partner_Id').val();
 		$.ajax({
-			url : '${pageContext.request.contextPath}/partner/checkId.do?partner_Id'=+partner_Id,
-			type="get",
+			url : '${pageContext.request.contextPath}/partner/checkId.do?partner_Id='+partner_Id,
+			type : "get",
 			data : {"partner_Id":partner_Id},
 			success : function(data) {
 console.log(data);							
@@ -149,7 +149,6 @@ console.log(data);
 				}
 			});
 		});
-		 */
 /* 	function LoadImg(value) 
 	{
 		if(value.files && value.files[0]) 

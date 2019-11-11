@@ -7,4 +7,13 @@
   <select id="selectTruckList" resultType="partner">
   	SELECT * FROM PARTNER
   </select>
+  <select id="selectMenu" parameterType="_int" resultType="menu">
+	SELECT * FROM MENU WHERE PARTNER_NO = #{partner_No}  
+  </select>
+  <select id="selectStar" parameterType="_int" resultType="_double">
+  	SELECT AVG(REVIEW_STAR) FROM REVIEW WHERE PARTNER_NO = #{partner_No}
+  </select>
+  <select id="selectReviewCount" parameterType="_int" resultType="_int">
+  	SELECT COUNT(*) FROM REVIEW WHERE PARTNER_NO = #{partner_No}
+  </select>
 </mapper>
