@@ -19,9 +19,9 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 public class PageController {
 	
 	@Autowired
-	MemberService service;
+	MemberService member_service;
 	@Autowired
-	PartnerService service2;
+	PartnerService partner_service;
 	
 	@RequestMapping("/memberPage")
 	public String memberPage(Member m,Model model) {
@@ -54,7 +54,9 @@ public class PageController {
 	@RequestMapping("/member/updateMember") //멤버 회원 정보 수정
 	public String updateMemberPage(Member m,Model model) {
 		int result=service.updateMemberPage(m);
+		
 		System.out.println(result);
+		
 		String msg="";
 		String loc="/";
 		if(result>0) {
