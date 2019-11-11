@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,15 +14,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.letEatGo.common.encrypt.MyEncrypt;
 import com.kh.letEatGo.partner.model.service.PartnerService;
 import com.kh.letEatGo.partner.model.vo.Partner;
+
+
 
 
 @SessionAttributes(value= {"loginMember","msg"})
@@ -136,6 +143,17 @@ public class PartnerController {
 	}
 		return "redirect:/";
 	}
-		
+	@RequestMapping(value="/partner/checkId.do", method= RequestMethod.GET)
+	@ResponseBody
+		public void checkId(Partner p,
+		HttpServletResponse res) {
+	Partner result=service.selectPartnerOne(p);
+	boolean flag=result!=null?false:true;
+	res.setContentType("application/json;charset=utf-8");
+	try {
+		res.getOutputStream().print(flag);
+	} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
-
