@@ -63,8 +63,7 @@ public class FestivalController {
 		Festival festival=service.selectFestivalOne(festival_No);
 		mv.addObject("festival",festival);
 		mv.setViewName("festival/festivalView");
-		
-		System.out.println(mv);
+	
 		
 		return mv;
 	}
@@ -90,6 +89,17 @@ public class FestivalController {
 		mv.setViewName("common/msg");
 		
 		return mv;
+	}
+	
+	@RequestMapping("/festival/updateFestival")
+	public ModelAndView updateFestival(int festival_No) {
+		ModelAndView mv=new ModelAndView();
+		
+		int result=service.updateFestival(festival_No);
+		
+		mv.setViewName("festival/festivalForm");
+		return mv;
+		
 	}
 	
 }

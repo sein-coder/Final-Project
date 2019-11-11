@@ -42,6 +42,15 @@ public class FestivalServiceImpl implements FestivalService {
 		result=dao.deleteFestival(session, festival_No);
 		return result;
 	}
+
+	@Override
+	public int updateFestival(int festival_No) {
+		int result=0;
+		result=dao.updateFestival(session, festival_No);
+		return result;
+	}
+
+	
 	
 
 }

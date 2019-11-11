@@ -9,7 +9,7 @@
   	)
   </insert>
   <select id="selectFestival" resultType="festival">
-  	SELECT * FROM FESTIVAL
+  	SELECT * FROM FESTIVAL ORDER BY Festival_No DESC
   </select>
   <select id="selectFestivalOne" parameterType="_int" resultType="festival">
   	SELECT * FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
@@ -17,5 +17,12 @@
   <delete id="deleteFestival" parameterType="_int">
   	Delete FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
   </delete>
+  <update id="updateFestival" parameterType="_int">
+  	update FESTIVAL 
+  	
+  	SET Festival_No    
+  	
+  	WHERE FESTIVAL_NO=#{festival_No}
+  </update>
 
 </mapper>
