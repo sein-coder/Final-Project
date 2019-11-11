@@ -45,7 +45,6 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.10.0/jackson-core-2.10.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/junit/junit/4.7/junit-4.7.jar" enabled="true" runInBatchMode="false"/>
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
     <factorypathentry kind="EXTJAR" id="D:\Server\apache-tomcat-8.5.43-windows-x64\apache-tomcat-8.5.43\lib\annotations-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="D:\Server\apache-tomcat-8.5.43-windows-x64\apache-tomcat-8.5.43\lib\catalina-ant.jar" enabled="true" runInBatchMode="false"/>
@@ -74,7 +73,5 @@
     <factorypathentry kind="EXTJAR" id="D:\Server\apache-tomcat-8.5.43-windows-x64\apache-tomcat-8.5.43\lib\tomcat-websocket.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="D:\Server\apache-tomcat-8.5.43-windows-x64\apache-tomcat-8.5.43\lib\websocket-api.jar" enabled="true" runInBatchMode="false"/>
 >>>>>>> refs/heads/master
-=======
->>>>>>> branch 'master' of https://github.com/sein-coder/Final-Project
     <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="true" runInBatchMode="false"/>
 </factorypath>

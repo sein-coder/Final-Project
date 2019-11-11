@@ -142,7 +142,7 @@
 					    <div class="play-button">
 					      <div class="lp-background"></div>
 					      <i class="mdi mdi-play" style="position: absolute; top: 15%; right: 9%;"></i>
-					      <i class="mdi mdi-pause" style="position: absolute; top: 20%; right: 20%;"></i>
+					      <i class="mdi mdi-pause" style="position: absolute; top: 16%; right: 10%;"></i>
 					    </div>
 					    
 					    <div class="time-indicator">
@@ -177,24 +177,24 @@
 											찾기</span></a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/festival/festivalList"><span>축제알리미</span></a></li>
-								<c:if test="${empty loginMember }">
+									
+<%-- 								<li><a href="${pageContext.request.contextPath }/calendar"><span>캘린더</span></a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/memberPage"><span>고객
+											페이지</span></a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/partnerPage"><span>사업자
+											페이지</span></a></li>
+								<li><a href="${pageContext.request.contextPath }/list.list"><span>회원
+											목록</span></a></li> --%>
+								<!-- <li><a href="#" onclick="permissionAPI();"><span>大화남</span></a></li> -->
+								
 								<li>
 									<button type="button" class="btn btn-outline-primary"
 										data-toggle="modal" data-target="#myModal">로그인</button>
 								</li>
 								<li><button class="btn btn-outline-primary" type="button"
 										onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
-								</c:if>
-								<c:if test="${not empty loginMember }">
-								<li>
-									<button class="btn btn-outline-primary"
-										type="button"
-										onclick="">마이페이지</button>
-								</li>
-								<li><button class="btn btn-outline-primary"
-										type="button"
-										onclick="location.href='${pageContext.request.contextPath}/partner/partnerLogout.do'">로그아웃</button></li>			
-								</c:if>
 							</ul>
 						</nav>
 					</div>
@@ -259,7 +259,6 @@
     </div>
   </div>
         <!-- Modal footer -->
-        <input type=""  name="Id_find"/>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">페이스북</button>
           <button type="button" class="btn btn-primary">네이버</button>

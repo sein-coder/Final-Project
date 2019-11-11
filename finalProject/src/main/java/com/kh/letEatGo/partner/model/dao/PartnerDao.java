@@ -10,5 +10,4 @@ public interface PartnerDao {
 	
 	Partner selectPartnerOne(SqlSessionTemplate session,Partner p);
 
-
 }
