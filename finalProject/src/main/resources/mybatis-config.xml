@@ -12,5 +12,6 @@
 		<typeAlias type="com.kh.letEatGo.map.model.vo.ZoneMap" alias="zonemap"/>
 		<typeAlias type="com.kh.letEatGo.map.model.vo.TruckMap" alias="truckmap"/>
 		<typeAlias type="com.kh.letEatGo.calendar.model.vo.Calendar" alias="calendar"/>
+		<typeAlias type="com.kh.letEatGo.order.model.vo.Review" alias="review"/>
 	</typeAliases>
 </configuration>
