@@ -8,15 +8,16 @@
 	rel="stylesheet" type="text/css">
 
 <div class="site-blocks-cover overlay"
-	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif);"
+	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif); 
+	min-height: 750px;"
 	data-aos="fade" data-stellar-background-ratio="0.5">
 	<div class="container">
-		<div class="row align-items-center justify-content-center text-center">
+		<div class="row align-items-center justify-content-center text-center" style="min-height: 750px;">
 
 			<div class="col-md-10">
 
 				<!-- 텍스트 타이핑 효과 -->
-				<div class="row justify-content-center mb-4">
+				<div class="row justify-content-center mb-4" style="margin-top: 9rem!important">
 					<div class="col-md-12 text-center">
 						<h1 data-aos="fade-up">
 							렛잇고만의 <span class="typed-words"></span> 푸드트럭
@@ -185,7 +186,7 @@
 					<div class="mb-3 pics animation all 2">
 						<figure class="effect-gallery">
 							<img class="img-fluid"
-								src="${pageContext.request.contextPath }/resources/images/main/11.jpg"
+								src="${pageContext.request.contextPath }/resources/images/main_Data/S_2.png"
 								alt="Card image cap">
 							<figcaption>
 								<h2>
@@ -203,7 +204,7 @@
 					<div class="mb-3 pics animation all 1">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/9.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_1.png"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
@@ -221,7 +222,7 @@
 					<div class="mb-3 pics animation all 1">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/5.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_4.png"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
@@ -239,7 +240,7 @@
 					<div class="mb-3 pics animation all 2">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/12.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_6.png"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
@@ -257,7 +258,7 @@
 					<div class="mb-3 pics animation all 2">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/2.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_1.png"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
@@ -275,7 +276,7 @@
 					<div class="mb-3 pics animation all 1">
 						<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/13.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_3.png"
 							alt="Card image cap">
 							<figcaption>
 								<h2>
@@ -477,6 +478,20 @@
 					}, 300);
 				});
 	});
+</script>
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/loadingMainData.do",
+				type : "post",
+				success: function(data){
+					console.log(data.slist);
+					console.log(data.llist);
+				}
+			});
+		});
+	
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

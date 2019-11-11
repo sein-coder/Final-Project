@@ -21,11 +21,12 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public double selectStar(SqlSessionTemplate session, int partner_No) {
 		double starCount = 0;
-		double result = session.selectOne("order.selectStar", partner_No);
-		if(result != 0) {
-			starCount = result;
-			return starCount;
-		} else {
+		try {
+			double result = session.selectOne("order.selectStar", partner_No);
+			return result;
+		}
+		catch(NullPointerException e) {
+			starCount = 0;
 			return starCount;
 		}
 	}

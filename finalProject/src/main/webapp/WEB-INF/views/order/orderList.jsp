@@ -99,13 +99,12 @@
 							<!-- 별점 -->
 							<div class="row">
 								<div class="star-rating">
+									<input type="hidden" name="data_No" id="${v.index}" value="${p.starCount}"/>
 									<span class="icon-star" data-rating="1"></span>
 									<span class="icon-star" data-rating="2"></span>
 									<span class="icon-star" data-rating="3"></span>
 									<span class="icon-star" data-rating="4"></span>
 									<span class="icon-star" data-rating="5"></span>
-									<input type="hidden" name="starScore" class="rating-value" value="${p.starCount}">
-									<input type="hidden" name="data_No" value="${v.index}"/>
 								</div>
 								<div class="row">
 								<c:forEach var="img" items="${menuList[v.count-1] }">
@@ -122,39 +121,24 @@
 		</div>
 		<!-- 페이징 처리 -->
 		${pageBar }
-	</div>
 </section>
 
 <script>
-var star_rating = $('.star-rating .icon-star');
-
-var setRatingStar = function() {
-	console.log("asdadasda");
-  return star_rating.each(function() {
-	  console.log(star_rating.siblings('input'));
-	console.log(star_rating.siblings('input.rating-value').val());
-    if (parseInt(star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-      return $(this).removeClass('text-secondary').addClass('text-warning');
-    } 
-    else {
-      return $(this).removeClass('text-warning').addClass('text-secondary');
-    }
-  });
-};
-
-/* 트럭마다 별점 표시, 총 리뷰 갯수가 달라야하는데 같은 문제 해결해야함
-$('#truck-container').on('load', function(){
-	setRatingStar($('.star_rating').children().last().val);
+$(document).ready(function(){
+	console.log("실행");
+	$("input[name=data_No]").each(function(){
+		var starCount = $(this).val();
+		$($(this).siblings()).each(function(){
+			if(starCount >= $(this).data('rating')){
+				return $(this).removeClass('text-secondary').addClass('text-warning');
+			}else{
+				return $(this).removeClass('text-warning').addClass('text-secondary');
+			}
+		})
+	});
 });
-*
-*/
-/* 별점 클릭 이벤트
-	star_rating.on('click', function() {
-  star_rating.siblings('input.rating-value').val($(this).data('rating'));
-  return SetRatingStar();
-}); 
-*/
-setRatingStar();
+
+/* setRatingStar(); */
 // 검색 filter 
 function findMenu(menu){
 	
