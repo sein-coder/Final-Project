@@ -23,48 +23,48 @@
 <section id="content">
 	<div class="site-section">
 		<div class="filter-container bg-light col-md-8 offset-md-2">
-			<form action="" method="post">
+			<form action="${path }/order/searchConsole" method="post">
 				<div class="row">
 					<div class="form-group col-*-8">
 						<div class="row" id="menuSearch">
 							<label for="foodSearch"><span class="icon icon-cutlery"></span> 메뉴검색</label>
-							<input type="text" name="foodSearch" id="foodSearch"/>
+							<input type="text" name="menu_Name" id="menu_Name"/>
 						</div>
 						<div class="row">
 						<label for="menuFind">카테고리 검색</label>
 							<div class="form-check" id="menuFind">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="한식"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="한식"/>
 									한식
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="중식"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="중식"/>
 									중식
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="일식"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="일식"/>
 									일식
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="양식"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="양식"/>
 									양식
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="디저트"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="디저트"/>
 									디저트
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="기타"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="기타"/>
 									기타
 								</label>
 							</div>
@@ -78,7 +78,7 @@
 						</div>	
 					</div>
 					<div class="col-*-4 float-right">
-						<input type="button" value="검색" class="btn btn-outline-warning">
+						<input type="submit" value="검색" class="btn btn-outline-warning">
 					</div>
 					</div>
 				</form>
@@ -105,7 +105,7 @@
 									<span class="icon-star" data-rating="3"></span>
 									<span class="icon-star" data-rating="4"></span>
 									<span class="icon-star" data-rating="5"></span>
-									<input type="hidden" name="starScore" class="rating-value" value="${p.starCount}">
+									<%-- <input type="hidden" name="starScore" class="rating-value" value="${p.starCount}"> --%>
 								</div>
 								<div class="row">
 								<c:forEach var="img" items="${menuList[v.count-1] }">

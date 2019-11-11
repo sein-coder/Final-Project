@@ -29,19 +29,18 @@
             <img src="images/img_1.jpg" alt="업체사진" class="img-fluid rounded">
           </div>
           <div class="col-md-5 ml-auto">
-            <h2 class="text-primary mb-3">업체명이 오는 자리</h2>
-            <p>간단한 업체소개</p>
-            <p class="mb-4">Adipisci dolore reprehenderit est et assumenda veritatis, ex voluptate odio consequuntur quo ipsa accusamus dicta laborum exercitationem aspernatur reiciendis perspiciatis!</p>
+            <h2 class="text-primary mb-3">${partner.partner_TruckName }</h2>
 			<p>
-				<div class="star-rating">
+				<label for="truck-star">평균 별점</label>
+				<div class="star-rating" id="truck-star">
 					<span class="icon-star" data-rating="1"></span>
 					<span class="icon-star" data-rating="2"></span>
 					<span class="icon-star" data-rating="3"></span>
 					<span class="icon-star" data-rating="4"></span>
 					<span class="icon-star" data-rating="5"></span>
-					<input type="hidden" name="whatever1" class="rating-value" value="3">
+					<input type="hidden" name="star-score" class="rating-value" value="${p.starCount }">
 				</div>
-				<span>(492 Reviews)</span>
+				<span>${p.reviewCount }</span>
 				<!-- 총 주문수, 리뷰수, 별점수 추가, 조회 수 -->
 			</p>
           </div>

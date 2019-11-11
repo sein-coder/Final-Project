@@ -7,5 +7,9 @@
 	<select id="selectMember" parameterType="member" resultType="member">
 		select * from  Member WHERE MEMBER_ID=#{member_Id}
 	</select>
+	<select id="selectMemberOne" parameterType="member" resultType="member">
+		select * from Member 
+		<!--  WHERE MEMBERID=#{member_Id}-->
+	</select>
 
 </mapper>

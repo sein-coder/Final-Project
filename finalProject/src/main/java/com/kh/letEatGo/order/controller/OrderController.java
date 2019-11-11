@@ -56,9 +56,12 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/order/orderListView")
-	public String orderList() {
-		
-		return "order/orderListView";
+	public ModelAndView orderList(Partner p) {
+		ModelAndView mv = new ModelAndView();
+		Partner p 
+		mv.addObject("partner", p);
+		mv.setViewName("order/orderListView");
+		return mv;
 	}
 	
 	@RequestMapping("/order/payment")
@@ -66,5 +69,13 @@ public class OrderController {
 		return "order/payment";
 	}
 	
-
+	/*
+	 * @RequestMapping("/order/searchConsole") public List<Partner> searchConsole(
+	 * 
+	 * @RequestParam(value="menu_Name", required=false)String menu_Name,
+	 * 
+	 * @RequestParam(value="partner_Menu", required=false)String partner_Menu ){
+	 * List<Partner> list = service.selectTruckList(cPage, numPerPage); return list;
+	 * }
+	 */
 }
