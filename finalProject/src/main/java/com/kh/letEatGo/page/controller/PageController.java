@@ -25,7 +25,7 @@ public class PageController {
 	
 	@RequestMapping("/memberPage")
 	public String memberPage(Member m,Model model) {
-		Member result=service.selectMemberOne(m);
+		Member result=member_service.selectMember(m);
 		model.addAttribute("member",result);
 		
 		
@@ -34,7 +34,7 @@ public class PageController {
 	
 	@RequestMapping("/partnerPage")
 	public String partnerPage(Partner p,Model model) {
-		Partner result2=service2.selectPartnerOne(p);
+		Partner result2=partner_service.selectPartnerOne(p);
 		model.addAttribute("partner",result2);
 		
 		
@@ -53,7 +53,7 @@ public class PageController {
 	
 	@RequestMapping("/member/updateMember") //멤버 회원 정보 수정
 	public String updateMemberPage(Member m,Model model) {
-		int result=service.updateMemberPage(m);
+		int result=member_service.updateMemberPage(m);
 		
 		System.out.println(result);
 		
@@ -73,7 +73,7 @@ public class PageController {
 	
 	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
 	  public String deleteMember(Member m,Model model) {
-		 int result=service.deleteMember(m);
+		 int result=member_service.deleteMember(m);
 		    String msg="";
 			String loc="/";
 			if(result>0) {

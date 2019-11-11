@@ -38,7 +38,7 @@
 	<!-- 인터셉터 등록하기 -->
 	<interceptors>
 		<interceptor>
-			<mapping path="/memo/*"/> <!-- /** 은 전체파일을 의미하는 url값이다. -->
+			<mapping path="/member/*"/> <!-- /** 은 전체파일을 의미하는 url값이다. -->
 			<exclude-mapping path="/member/*"/> <!-- 해당하는 맵핑값은 제외하고 interceptor를 적용한다 -->
 			<beans:bean class="com.kh.letEatGo.common.interceptor.LoggerInterceptor"/>
 		</interceptor>
@@ -74,10 +74,7 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
-	
-	
-	
-<annotation-driven>
+	<annotation-driven>
 	       <message-converters>
 	           <beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
 	               <beans:property name="supportedMediaTypes">
@@ -89,4 +86,5 @@
 	           </beans:bean>
 	       </message-converters>
    </annotation-driven>
+
 </beans:beans>

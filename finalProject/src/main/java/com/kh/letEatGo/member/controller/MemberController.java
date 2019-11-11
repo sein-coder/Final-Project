@@ -1,8 +1,6 @@
 package com.kh.letEatGo.member.controller;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +16,9 @@ import com.kh.letEatGo.common.encrypt.MyEncrypt;
 import com.kh.letEatGo.member.model.service.MemberService;
 import com.kh.letEatGo.member.model.vo.Member;
 
+
 @SessionAttributes(value= {"loginMember","msg"}) //여기들어가는 값은 배열로 받을 수 있음 키값이 들어감
+
 @Controller
 public class MemberController {
 	private Logger logger=LoggerFactory.getLogger(MemberController.class);
@@ -32,10 +30,6 @@ public class MemberController {
 	@Autowired
 	private MyEncrypt enc;
 	
-	@RequestMapping("/member/Enroll.do")
-	public String memberEnroll() {
-		return "member/Enroll";
-	}
 	@RequestMapping("/member/memberEnrollEnd")
 	public String memberEnrollEnd() {
 		return "member/memberEnroll";
@@ -48,7 +42,7 @@ public class MemberController {
 			logger.debug(m.getMember_Password());
 			//전화번호, 주소, 이메일 암호화
 			try {
-//				m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
+				m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
 				m.setMember_Email(enc.encrypt(m.getMember_Email()));
 				m.setMember_Address(enc.encrypt(m.getMember_Address()));
 			} catch (Exception e) {
@@ -70,17 +64,37 @@ public class MemberController {
 		 return "common/msg";
 //	  return "member/memberEnroll"; 
 	  }
-	  
 	  @RequestMapping("/login_modal.do") 
 	  public String login_Modal() {
 		  System.out.println("실행");
 		  return "member/login_modal";
 	  }
-	  @RequestMapping("/member/memberLogin.do")
-	  public String login() {
-		  ModelAndView mv=new ModelAndView();
-		return "";
-	  }
 	  
-	 
+	  @RequestMapping("/member/memberLogin.do")
+	  public ModelAndView login(Member m, HttpSession session) {
+		  ModelAndView mv=new ModelAndView();
+		  System.out.println(pwEncoder.encode("123123"));
+		  Member result = null;
+		  result = service.selectMember(m);
+		  System.out.println(result);
+		  String msg="";
+		  String loc="";
+		  if(result != null) {
+			  if(!pwEncoder.matches(m.getMember_Password(), result.getMember_Password())) {
+				  // 로그인실패
+				  msg="로그인실패";
+			  } else {
+				  // 로그인성공
+				  msg="로그인성공";
+				  session.setAttribute("loginMember", result);		
+			  }
+		  } else {
+			  msg="로그인 안됨";
+		  }
+		  mv.addObject("msg", msg);
+		  mv.addObject("loc", loc);
+		  mv.setViewName("common/msg");
+		return mv;
+	  }
+
 }

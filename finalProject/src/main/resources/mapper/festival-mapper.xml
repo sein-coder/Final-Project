@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="festival">
+  <insert id="insertFestival" parameterType="festival">
+  	INSERT INTO FESTIVAL VALUES(SEQ_Festival_No.nextval, #{festival_Title},#{festival_Content},
+  		default,'썸네일',#{festival_StartDate},#{festival_EndDate},
+  		#{festival_Phone},#{festival_Homepage},#{festival_Address},#{festival_Host},
+  		#{festival_Sub},#{festival_Price},'진행중'
+  	)
+  </insert>
+  <select id="selectFestival" resultType="festival">
+  	SELECT * FROM FESTIVAL
+  </select>
+  <select id="selectFestivalOne" parameterType="_int" resultType="festival">
+  	SELECT * FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
+  </select>
+  <delete id="deleteFestival" parameterType="_int">
+  	Delete FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
+  </delete>
+
+</mapper>

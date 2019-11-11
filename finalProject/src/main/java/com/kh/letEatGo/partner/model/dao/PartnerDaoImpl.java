@@ -1,7 +1,5 @@
 package com.kh.letEatGo.partner.model.dao;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,14 +12,10 @@ public class PartnerDaoImpl implements PartnerDao {
 		
 		return session.insert("partner.insertPartner",p);
 	}
-
+	
 	@Override
-	public Partner selectPartnerOne(SqlSessionTemplate session, Partner p) {
-		
-		return session.selectOne("partner.selectPartnerOne",p);
-	}
-
-	
-	
-
+	public Partner selectPartner(SqlSessionTemplate session, Partner p) {
+		// TODO Auto-generated method stub
+		return session.selectOne("partner.selectPartner",p);
+	}	
 }

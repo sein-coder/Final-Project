@@ -22,9 +22,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member selectMemberOne(Member m) {
+	public Member selectMember(Member m) {
 		
-		return dao.selectMemberOne(session,m);
+		return dao.selectMember(session,m);
 	}
 
 	@Override
