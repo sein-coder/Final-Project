@@ -9,7 +9,7 @@
   	)
   </insert>
   <select id="selectFestival" resultType="festival">
-  	SELECT * FROM FESTIVAL
+  	SELECT * FROM FESTIVAL 
   </select>
   <select id="selectFestivalOne" parameterType="_int" resultType="festival">
   	SELECT * FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
@@ -17,5 +17,10 @@
   <delete id="deleteFestival" parameterType="_int">
   	Delete FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
   </delete>
+  <update id="updateFormFestival" parameterType="festival">
+  	UPDATE FESTIVAL 
+  	SET FESTIVAL_TITLE=#{festival_Title}
+  	WHERE FESTIVAL_NO=#{festival_No}
+  </update>
 
 </mapper>
