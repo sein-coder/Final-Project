@@ -185,9 +185,10 @@
 								<li><a
 									href="${pageContext.request.contextPath }/partnerPage"><span>사업자
 											페이지</span></a></li>
-								<li><a href="${pageContext.request.contextPath }/list.list"><span>회원
-											목록</span></a></li> --%>
+								--%>
 								<!-- <li><a href="#" onclick="permissionAPI();"><span>大화남</span></a></li> -->
+								<li><a href="${pageContext.request.contextPath }/pageList"><span>회원
+											 페이지</span></a></li> 
 								
 								<li>
 									<button type="button" class="btn btn-outline-primary"

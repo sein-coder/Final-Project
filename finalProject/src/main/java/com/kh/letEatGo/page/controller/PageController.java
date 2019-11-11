@@ -34,7 +34,7 @@ public class PageController {
 	
 	@RequestMapping("/partnerPage")
 	public String partnerPage(Partner p,Model model) {
-		Partner result2=partner_service.selectPartnerOne(p);
+		Partner result2=partner_service.selectPartner(p);
 		model.addAttribute("partner",result2);
 		
 		

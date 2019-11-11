@@ -6,6 +6,8 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+
+
 <div class="site-section">
    <div class="container">
       <div class="row justify-content-center mb-8">
@@ -14,16 +16,9 @@
       <li><a href="${pageContext.request.contextPath }/partnerPage"><span>사업자 페이지</span></a></li>
       <li><a href="${pageContext.request.contextPath }/adminPage"><span>관리자 페이지</span></a></li>
       
-       
-      
         </div>
    </div>
 </div>
-
-
-
-
-
 
 
 
