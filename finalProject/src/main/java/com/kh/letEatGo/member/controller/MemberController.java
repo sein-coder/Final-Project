@@ -82,17 +82,5 @@ public class MemberController {
 		return "";
 	  }
 	  
-	  @RequestMapping("/member/updateMember") //멤버 회원 정보 수정
-	  public String updateMember(Member m,Model model) {
-		  System.out.println("수정");
-		  
-		  return "";
-	  }
-	  @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
-	  public String deleteMember(Member m,Model model) {
-		  System.out.println("삭제");
-		  
-		  return "";
-	  }
-	  
+	 
 }

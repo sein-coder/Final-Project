@@ -19,4 +19,11 @@ public class MemberDaoImpl implements MemberDao {
 	
 		return session.selectOne("member.selectMemberOne",m);
 	}
+
+	@Override
+	public int updateMemberPage(SqlSessionTemplate session, Member m) {
+		
+		return session.update("member.updateMemberPage",m);
+	}
+	
 }

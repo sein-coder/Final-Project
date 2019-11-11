@@ -8,5 +8,18 @@
 		select * from Member 
 		<!--  WHERE MEMBERID=#{member_Id}-->
 	</select>
+	
+	<update id="updateMemberPage">
+	  UPDATE MEMBER SET 
+	                    MEMBER_ID=#{member_Id},
+	                    MEMBER_PASSWORD=#{member_Password},
+	                    MEMBER_NAME=#{member_Name},
+	                    MEMBER_AGE=#{member_Age},
+	                    MEMBER_ADDRESS=#{member_Address},
+	                    MEMBER_EMAIL=#{member_Email},
+	                    MEMBER_PHONE=#{member_Phone}
+	                    
+	                    <!-- where member_Id=#{member_Id} -->
+	</update> 
 
 </mapper>
