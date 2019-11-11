@@ -19,13 +19,13 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 public class PageController {
 	
 	@Autowired
-	MemberService service;
+	MemberService member_service;
 	@Autowired
-	PartnerService service2;
+	PartnerService partner_service;
 	
 	@RequestMapping("/memberPage")
 	public String memberPage(Member m,Model model) {
-		Member result=service.selectMemberOne(m);
+		Member result=member_service.selectMemberOne(m);
 		model.addAttribute("member",result);
 		
 		
@@ -34,7 +34,7 @@ public class PageController {
 	
 	@RequestMapping("/partnerPage")
 	public String partnerPage(Partner p,Model model) {
-		Partner result2=service2.selectPartnerOne(p);
+		Partner result2=partner_service.selectPartnerOne(p);
 		model.addAttribute("partner",result2);
 		
 		
@@ -50,6 +50,43 @@ public class PageController {
 	public String adminPage() {
 		return "mypage/adminPage";
 	}
+	
+	@RequestMapping("/member/updateMember") //멤버 회원 정보 수정
+	public String updateMemberPage(Member m,Model model) {
+		int result=member_service.updateMemberPage(m);
+		
+		System.out.println(result);
+		
+		String msg="";
+		String loc="/";
+		if(result>0) {
+			msg="정보 수정 성공";
+		}else {
+			msg="정보 수정 실패";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
+		
+	}
+	
+//	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
+//	  public String deleteMember(Member m,Model model) {
+//		 int result=member_service.deleteMember(m);
+//		    String msg="";
+//			String loc="/";
+//			if(result>0) {
+//				msg="회원 탈퇴 성공";
+//			}else {
+//				msg="회원 탈퇴 실패";
+//			}
+//			model.addAttribute("msg",msg);
+//			model.addAttribute("loc",loc);
+//			
+//			return "common/msg";
+//	  }
+	  
 	
 
 	

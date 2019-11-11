@@ -10,3 +10,4 @@ public interface PartnerService {
 	Partner selectPartnerOne(Partner p);
 
 }
+
