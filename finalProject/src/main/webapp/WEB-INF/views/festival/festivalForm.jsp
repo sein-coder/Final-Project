@@ -116,7 +116,7 @@ textarea {
 		<form
 			id="frm"
 			action="${pageContext.request.contextPath}/festival/festivalFormEnd.do"
-			method="post">
+			method="post" enctype="multipart/form-data">
 
 			<div class="site-section pb-0">
 
@@ -134,8 +134,16 @@ textarea {
 									<div class="preview-pic tab-content">
 										<div class="tab-pane active" id="pic-1">
 											<img src="http://placekitten.com/400/252" />
-											<p>파일 올리기</p>
+											
+											
 										</div>
+										<div class="pull-left ml-2 mt-2" style="display:inline;">
+											<input type="file" value="파일 선택" name="file"/>
+										</div>
+										<div class="pull-right mt-5" style="display:inline;">
+											 <input type="submit" value="업로드"/>
+										</div>
+			
 									</div>
 									<div style="margin-top: 10px; margin-bottom: 10px;"></div>
 
@@ -174,6 +182,8 @@ textarea {
 											</ul>
 											<input type="text" id="tag" size="7" placeholder="태그입력" />
 										</div>
+										
+										
 									</div>
 								</div>
 							</div>

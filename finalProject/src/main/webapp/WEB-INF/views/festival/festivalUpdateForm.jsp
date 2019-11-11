@@ -113,16 +113,12 @@ textarea {
 	<section id="content">
 		<form
 			id="frm"
-			action="${pageContext.request.contextPath}/festival/updateFestival"
+			action="${pageContext.request.contextPath}/festival/festivalUpdateFormEnd.do?festival_No=${festival.festival_No}"
 			method="post">
 
 			<div class="site-section pb-0">
-
 				<div class="row">
-
 					<!-- 새로운 뷰 -->
-
-
 					<div class="container" style="background-color: white;">
 						<div class="card col-md-12" style="border: 3px solid #ffc9c9;">
 
@@ -154,8 +150,8 @@ textarea {
 									<p class="product-description" />
 
 									<div>
-										<textarea name="festival_Content" id="festival_Content" value="${festival.festival_Content }" cols="40"
-											rows="40" placeholder="축제 내용을 입력하세요"></textarea>
+										<textarea name="festival_Content" id="festival_Content" cols="40"
+											rows="40" placeholder="축제 내용을 입력하세요">${festival.festival_Content }</textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
 											type="text" readonly disabled value="500" name="counter"
@@ -166,7 +162,7 @@ textarea {
 										<p>해시태그 :</p>
 
 										<div class="content">
-											<input type="hidden" value="" name="festival_Hashtag" value="${festival.festival_Hashtag}"
+											<input type="hidden" value="" name="festival_Hashtag" value=""
 												id="festival_Hashtag" />
 											<ul id="tag-list">
 											</ul>
@@ -202,14 +198,14 @@ textarea {
 										<div class="alert alert-danger1">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-											<input id="festival_StartDate" name="festival_StartDate" type="date" value="${festival.festival_StartDate}" />
+											<input id="festival_StartDate" name="festival_StartDate" type="text" value="${festival.festival_StartDate}" />
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-											<input id="festival_EndDate" name="festival_EndDate" type="date" value="${festival.festival_EndDate}" />
+											<input id="festival_EndDate" name="festival_EndDate" type="text" value="${festival.festival_EndDate}" />
 										</div>
 									</td>
 								</tr>
@@ -278,7 +274,7 @@ textarea {
 						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
 						<li class="list-inline-item">
 							<a onclick="submit();" href="#">
-								<span style="background-color: #f23a2e;">등록</span>
+								<span style="background-color: #f23a2e;">완료</span>
 							</a>
 						</li>
 						<li class="list-inline-item">

@@ -44,9 +44,9 @@ public class FestivalServiceImpl implements FestivalService {
 	}
 
 	@Override
-	public int updateFestival(Festival festival) {
+	public int updateFormFestival(Festival festival) {
 		int result=0;
-		result=dao.updateFestival(session, festival);
+		result=dao.updateFormFestival(session, festival);
 		return result;
 	}
 

@@ -17,15 +17,9 @@
   <delete id="deleteFestival" parameterType="_int">
   	Delete FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
   </delete>
-  <update id="updateFestival" parameterType="_int">
+  <update id="updateFormFestival" parameterType="festival">
   	UPDATE FESTIVAL 
-  	SET FESTIVAL_TITLE=#{festival_Title},
-  		FESTIVAL_CONTENT=#{festival_Content}, FESTIVAL_THUMBNAIL=#{festival_Thumbnail},
-  		FESTIVAL_STARTDATE=#{festival_StartDate}, FESTIVAL_ENDDATE=#{festival_EndDate},
-  		FESTIVAL_PHONE=#{festival_Phone},FESTIVAL_HOMEPAGE=#{festival_HomePage},
-  		FESTIVAL_ADDRESS=#{festival_Address}, FESTIVAL_HOST=#{festival_Host},
-  		FESTIVAL_SUB=#{festival_Sub}, FESTIVAL_PRICE=#{festival_Price},
-  		FESTIVAL_PROCEEDING=#{festival_Proceeding}
+  	SET FESTIVAL_TITLE=#{festival_Title}
   	WHERE FESTIVAL_NO=#{festival_No}
   </update>
 
