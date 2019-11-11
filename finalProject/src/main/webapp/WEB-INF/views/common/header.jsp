@@ -187,10 +187,9 @@
 								<li>
 									<a href="${pageContext.request.contextPath }/pageList"><span>마이 페이지</span></a>
 								</li>
-								
-								<li><button class="btn btn-outline-primary"
-										type="button"
-										onclick="location.href='${pageContext.request.contextPath}/partner/partnerLogout.do'">로그아웃</button></li>			
+								<li>
+									<button class="btn btn-outline-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/Logout.do'">로그아웃</button>
+								</li>			
 								</c:if>
 							</ul>
 						</nav>

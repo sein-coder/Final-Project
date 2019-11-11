@@ -91,12 +91,12 @@ public class MemberController {
 		  }
 		  mv.addObject("msg", msg);
 		  mv.addObject("loc", loc);
-		  mv.setViewName("redirect:/");
+		  mv.setViewName("common/msg");
 		return mv;
 
 	  }
 
-	  @RequestMapping("/member/memberLogout.do")
+	  @RequestMapping("/Logout.do")
 		public String logout(HttpSession session,SessionStatus s) {
 			
 			if(!s.isComplete()) {

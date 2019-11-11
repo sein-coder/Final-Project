@@ -31,7 +31,7 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 
 
 
-@SessionAttributes(value= {"loginMember","msg"})
+@SessionAttributes(value= {"loginPartner","msg"})
 @Controller
 public class PartnerController {
 	private Logger logger=LoggerFactory.getLogger(PartnerController.class);
@@ -124,7 +124,7 @@ public class PartnerController {
 				  } else {
 					  // 로그인성공
 					  msg="로그인성공";
-					  session.setAttribute("loginMember", result);		
+					  session.setAttribute("loginParnter", result);		
 				  }
 			  } else {
 				  msg="로그인 안됨";
@@ -135,25 +135,16 @@ public class PartnerController {
 			  return mv;
 		  }
 	
-	@RequestMapping("/partner/partnerLogout.do")
-	public String partnerlogout(HttpSession session,SessionStatus s) {
-		if(!s.isComplete()) {
-			s.setComplete();//로그아웃 SessionAttributes
-			session.invalidate();
-			
-	}
-		return "redirect:/";
-	}
-	@RequestMapping(value="/partner/checkId.do", method= RequestMethod.GET)
-	@ResponseBody
-		public void checkId(Partner p,
-		HttpServletResponse res) {
-	Partner result=service.selectPartnerOne(p);
-	boolean flag=result!=null?false:true;
-	res.setContentType("application/json;charset=utf-8");
-	try {
-		res.getOutputStream().print(flag);
-	} catch (IOException e) {
+	@RequestMapping("/partner/checkId.do")
+	public void checkId(Partner p, HttpServletResponse res) {
+		System.out.println(p);
+		Partner result=service.selectPartnerOne(p);
+		String flag=result!=null?"false":"true";
+		res.setContentType("application/json;charset=utf-8");
+		try {
+			res.getWriter().write(flag);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
