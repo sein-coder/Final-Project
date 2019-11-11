@@ -25,7 +25,7 @@ public class PageController {
 	
 	@RequestMapping("/memberPage")
 	public String memberPage(Member m,Model model) {
-		Member result=member_service.selectMember(m);
+		Member result=member_service.selectMemberOne(m);
 		model.addAttribute("member",result);
 		
 		
@@ -71,21 +71,21 @@ public class PageController {
 		
 	}
 	
-	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
-	  public String deleteMember(Member m,Model model) {
-		 int result=member_service.deleteMember(m);
-		    String msg="";
-			String loc="/";
-			if(result>0) {
-				msg="회원 탈퇴 성공";
-			}else {
-				msg="회원 탈퇴 실패";
-			}
-			model.addAttribute("msg",msg);
-			model.addAttribute("loc",loc);
-			
-			return "common/msg";
-	  }
+//	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
+//	  public String deleteMember(Member m,Model model) {
+//		 int result=member_service.deleteMember(m);
+//		    String msg="";
+//			String loc="/";
+//			if(result>0) {
+//				msg="회원 탈퇴 성공";
+//			}else {
+//				msg="회원 탈퇴 실패";
+//			}
+//			model.addAttribute("msg",msg);
+//			model.addAttribute("loc",loc);
+//			
+//			return "common/msg";
+//	  }
 	  
 	
 
