@@ -481,7 +481,7 @@
 </script>
 
 <script type="text/javascript">
-		$(document).ready(function(){
+/* 		$(document).ready(function(){
 			$.ajax({
 				url:"${pageContext.request.contextPath}/loadingMainData.do",
 				type : "post",
@@ -490,7 +490,7 @@
 					console.log(data.llist);
 				}
 			});
-		});
+		}); */
 	
 </script>
 
