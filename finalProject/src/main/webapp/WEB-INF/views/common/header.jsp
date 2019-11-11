@@ -140,7 +140,7 @@
 					    <div class="play-button">
 					      <div class="lp-background"></div>
 					      <i class="mdi mdi-play" style="position: absolute; top: 15%; right: 9%;"></i>
-					      <i class="mdi mdi-pause" style="position: absolute; top: 20%; right: 20%;"></i>
+					      <i class="mdi mdi-pause" style="position: absolute; top: 16%; right: 10%;"></i>
 					    </div>
 					    
 					    <div class="time-indicator">
@@ -255,7 +255,6 @@
     </div>
   </div>
         <!-- Modal footer -->
-        <input type=""  name="Id_find"/>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">페이스북</button>
           <button type="button" class="btn btn-primary">네이버</button>

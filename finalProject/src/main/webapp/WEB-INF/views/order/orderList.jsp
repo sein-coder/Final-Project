@@ -23,48 +23,48 @@
 <section id="content">
 	<div class="site-section">
 		<div class="filter-container bg-light col-md-8 offset-md-2">
-			<form action="" method="post">
+			<form action="${path }/order/searchConsole" method="post">
 				<div class="row">
 					<div class="form-group col-*-8">
 						<div class="row" id="menuSearch">
 							<label for="foodSearch"><span class="icon icon-cutlery"></span> 메뉴검색</label>
-							<input type="text" name="foodSearch" id="foodSearch"/>
+							<input type="text" name="menu_Name" id="menu_Name"/>
 						</div>
 						<div class="row">
 						<label for="menuFind">카테고리 검색</label>
 							<div class="form-check" id="menuFind">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="한식"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="한식"/>
 									한식
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="중식"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="중식"/>
 									중식
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="일식"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="일식"/>
 									일식
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="양식"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="양식"/>
 									양식
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="디저트"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="디저트"/>
 									디저트
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="기타"/>
+									<input type="checkbox" name="partner_Menu" class="form-check-input" value="기타"/>
 									기타
 								</label>
 							</div>
@@ -78,7 +78,7 @@
 						</div>	
 					</div>
 					<div class="col-*-4 float-right">
-						<input type="button" value="검색" class="btn btn-outline-warning">
+						<input type="submit" value="검색" class="btn btn-outline-warning">
 					</div>
 					</div>
 				</form>
@@ -98,23 +98,25 @@
 							<h3><a href="${path }/order/orderListView?partner_No=${p.partner_No}"><c:out value="${p.partner_TruckName }"/></a></h3>
 							<!-- 별점 -->
 							<div class="row">
-								<div class="star-rating">
-									<span class="icon-star" data-rating="1"></span>
-									<span class="icon-star" data-rating="2"></span>
-									<span class="icon-star" data-rating="3"></span>
-									<span class="icon-star" data-rating="4"></span>
-									<span class="icon-star" data-rating="5"></span>
-									<input type="hidden" name="starScore" class="rating-value" value="${p.starCount}">
-									<input type="hidden" name="data_No" value="${v.index}"/>
-								</div>
-								<div class="row">
-								<c:forEach var="img" items="${menuList[v.count-1] }">
-										<img class="img-fluid" src="${path }/resources/images/menu/${img.menu_Oriname_File }"/>
-								</c:forEach>
-								</div>
-							<span><c:out value="총 주문 건 수  ${p.reviewCount }건"/></span>
+								<span>리뷰 별점</span>
+									<div class="star-rating">
+										<span class="icon-star" data-rating="1"></span>
+										<span class="icon-star" data-rating="2"></span>
+										<span class="icon-star" data-rating="3"></span>
+										<span class="icon-star" data-rating="4"></span>
+										<span class="icon-star" data-rating="5"></span>
+										<input type="hidden" name="data_No" class="rating-value" value="${p.starCount}">
+									</div>
+									<div class="row">
+									<c:forEach var="img" items="${menuList[v.count-1] }">
+											<img class="img-fluid" src="${path }/resources/images/menu/${img.menu_Oriname_File }"/>
+									</c:forEach>
+									</div>
+									<div class="row">
+										<span><c:out value="총 주문 건 수  ${p.reviewCount }건"/></span>
+									</div>
 							<!-- 총 주문수, 리뷰수, 별점수 추가, 조회 수 -->
-						</div>
+							</div>
 					</div>
 				</div>
 				</c:forEach>
@@ -126,38 +128,18 @@
 </section>
 
 <script>
-var star_rating = $('.star-rating .icon-star');
-
-var setRatingStar = function() {
-	console.log("asdadasda");
-  return star_rating.each(function() {
-	  console.log(star_rating.siblings('input'));
-	console.log(star_rating.siblings('input.rating-value').val());
-    if (parseInt(star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-      return $(this).removeClass('text-secondary').addClass('text-warning');
-    } 
-    else {
-      return $(this).removeClass('text-warning').addClass('text-secondary');
-    }
-  });
-};
-
-/* 트럭마다 별점 표시, 총 리뷰 갯수가 달라야하는데 같은 문제 해결해야함
-$('#truck-container').on('load', function(){
-	setRatingStar($('.star_rating').children().last().val);
-});
-*
-*/
-/* 별점 클릭 이벤트
-	star_rating.on('click', function() {
-  star_rating.siblings('input.rating-value').val($(this).data('rating'));
-  return SetRatingStar();
-}); 
-*/
-setRatingStar();
-// 검색 filter 
-function findMenu(menu){
-	
-}
+$(document).ready(function(){
+	   console.log("실행");
+	   $("input[name=data_No]").each(function(){
+	      var starCount = $(this).val();
+	      $($(this).siblings()).each(function(){
+	         if(starCount >= $(this).data('rating')){
+	            return $(this).removeClass('text-secondary').addClass('text-warning');
+	         }else{
+	            return $(this).removeClass('text-warning').addClass('text-secondary');
+	         }
+	      })
+	   });
+	});
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

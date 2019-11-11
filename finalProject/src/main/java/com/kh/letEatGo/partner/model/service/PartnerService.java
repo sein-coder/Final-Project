@@ -12,4 +12,3 @@ public interface PartnerService {
 	int updatePartnerPage(Partner p);
 
 }
-

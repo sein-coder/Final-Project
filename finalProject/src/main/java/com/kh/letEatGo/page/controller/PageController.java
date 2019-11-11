@@ -1,7 +1,5 @@
 package com.kh.letEatGo.page.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.common.encrypt.MyEncrypt;
 import com.kh.letEatGo.member.model.service.MemberService;
@@ -60,6 +57,7 @@ public class PageController {
 		return "mypage/adminPage";
 	}
 	
+
 	@RequestMapping("/member/updateMember") //멤버 회원 정보 수정
 	public String updateMemberPage(Member m,Model model) {
 		

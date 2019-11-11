@@ -24,6 +24,4 @@ public class PartnerDaoImpl implements PartnerDao {
 	public int updatePartnerPage(SqlSessionTemplate session, Partner p) {
 		return session.update("partner.updatePartnerPage",p);
 	}	
-	
-
 }

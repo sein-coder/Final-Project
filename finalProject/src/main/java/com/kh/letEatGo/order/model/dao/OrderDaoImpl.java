@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.letEatGo.order.model.vo.Menu;
+import com.kh.letEatGo.order.model.vo.Review;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
 @Repository
@@ -20,24 +21,23 @@ public class OrderDaoImpl implements OrderDao {
 
 	@Override
 	public double selectStar(SqlSessionTemplate session, int partner_No) {
-		double starCount = 0;
-		double result = session.selectOne("order.selectStar", partner_No);
-		if(result != 0) {
-			starCount = result;
-			return starCount;
-		} else {
-			return starCount;
-		}
+	      try {
+	         double result = session.selectOne("order.selectStar", partner_No);
+	         return result;
+	      }
+	      catch(NullPointerException e) {
+	    	 double starCount = 0;
+	         return starCount;
+	      }
 	}
 
 	@Override
 	public int selectReviewCount(SqlSessionTemplate session, int partner_No) {
-		int reviewCount = 0;
-		int result = session.selectOne("order.selectReviewCount", partner_No);
-		if(result != 0) {
-			reviewCount = result;
-			return reviewCount;
-		} else {
+		try{
+			int result = session.selectOne("order.selectReviewCount", partner_No);
+			return result;
+		} catch (NullPointerException e) {
+			int reviewCount = 0;
 			return reviewCount;
 		}
 	}
@@ -53,6 +53,18 @@ public class OrderDaoImpl implements OrderDao {
 	public List<Menu> selectMenu(SqlSessionTemplate session, int partner_No) {
 		List<Menu> menuList = session.selectList("order.selectMenu", partner_No);
 		return menuList;
+	}
+	
+	@Override
+	public Partner selectTruck(SqlSessionTemplate session, int partner_No) {
+		Partner result = session.selectOne("order.selectTruck", partner_No);
+		return result;
+	}
+
+	@Override
+	public List<Review> selectReview(SqlSessionTemplate session, int partner_No) {
+		List<Review> list = session.selectList("order.selectReview", partner_No);
+		return list;
 	}
 
 }

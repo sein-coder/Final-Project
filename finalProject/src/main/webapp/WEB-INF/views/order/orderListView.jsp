@@ -26,23 +26,24 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">
-            <img src="images/img_1.jpg" alt="업체사진" class="img-fluid rounded">
+            <img src="${path }/resources/images/foodtruck/${partner.profile_Re}" alt="${partner.partner_TruckName }" class="img-fluid rounded">
           </div>
           <div class="col-md-5 ml-auto">
-            <h2 class="text-primary mb-3">업체명이 오는 자리</h2>
-            <p>간단한 업체소개</p>
-            <p class="mb-4">Adipisci dolore reprehenderit est et assumenda veritatis, ex voluptate odio consequuntur quo ipsa accusamus dicta laborum exercitationem aspernatur reiciendis perspiciatis!</p>
+            <h2 class="text-primary mb-3">${partner.partner_TruckName }</h2>
 			<p>
-				<div class="star-rating">
+				<div class="star-rating" id="truck-star">
+					<h4 class="font-size-regular">평균별점</h2>
 					<span class="icon-star" data-rating="1"></span>
 					<span class="icon-star" data-rating="2"></span>
 					<span class="icon-star" data-rating="3"></span>
 					<span class="icon-star" data-rating="4"></span>
 					<span class="icon-star" data-rating="5"></span>
-					<input type="hidden" name="whatever1" class="rating-value" value="3">
+					<input type="hidden" name="star-score" class="rating-value" value="${partner.starCount }">
 				</div>
-				<span>(492 Reviews)</span>
+				<label>총 리뷰 수
+				<span>${partner.reviewCount }</span>
 				<!-- 총 주문수, 리뷰수, 별점수 추가, 조회 수 -->
+				</label>
 			</p>
           </div>
         </div>
@@ -52,15 +53,9 @@
     <div class="col-md-4 ml-auto">
     	<div class="bg-light">
     		<form action="${path }/order/payment" method="POST">
-    			<table class="table-hover">
+    			<table id="orderList" class="table-hover">
     				<tr>
-    					<td><h3>주문리스트</h3></td>
-    				</tr>
-    				<tr>
-    					<td>주문목록 1</td>
-    				</tr>
-    				<tr>
-    					<td>주문목록 2</td>
+    					<td colspan="2"><h3>주문리스트</h3></td>
     				</tr>
     			</table>
     		<div class="order-footer text-right">
@@ -77,19 +72,33 @@
 			<div class="container">
 				<div class="row align-items-center bg-light">
 				<!-- 메뉴 반복 위치-->
-					<div class="col-md-4">
-						<!-- 메뉴 이미지 -->
-						<img src="${path }/resources/images/person_1.jpg"/>
-						<!-- 메뉴설명  -->
-						<p>메뉴설명</p>
-						<div class="row">
-							<div class="qty mt-5">
-								<button><span class="icon icon-plus-circle"></span></button>
-								<input type="number" class="count" name="qty" value="0" readonly/>
-								<button><span class="icon icon-minus-circle"></span></button>
-							</div>
+					<div class="row mb-3 align-items-stretch">
+					<c:forEach var="menu" items="${menu }">
+						<div class="col-md-4 col-lg-4 mb-4 mb-lg-4">
+							<div class="h-entry">
+								<img src="${path }/resources/images/menu/${menu.menu_Oriname_File}" alt="${menu.menu_Name }" class="img-fluid">
+								<div class="h-entry-inner">
+								<h2 class="font-size-regular">${menu.menu_Name }</h2>
+									<div class="meta mb-4 text-center">${menu.menu_Price }</div>
+									<div class="qty text-center input-group mb-4 row">
+										<div class="input-group-pretend col-md-4">
+											<button class="btn btn-outline-primary " onclick="orderPlusMinus(this);">
+												<span class="icon icon-plus-circle"></span>
+											</button>
+										</div>
+										<input type="hidden" name="menu_Name" value="${menu.menu_Name }" />
+										<input type="hidden" name="menu_Price" value="${menu.menu_Price }"/>
+										<input class="form-control col-md-4 count" name="menu_count" type="number" value="0" step="1" readonly/>
+										<div class="input-group-append col-md-4">
+											<button class="btn btn-outline-primary " onclick="orderPlusMinus(this);">
+												<span class="icon icon-minus-circle"></span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div> 
 						</div>
-					</div>
+					</c:forEach>
     			</div>
     		</div>
     	</div>
@@ -97,7 +106,7 @@
     
     <!-- Review영역 -->
 		<div class="pt-5">
-			<h3 class="mb-5">6 Comments</h3>
+			<h3 class="mb-5">${partner.reviewCount}개의 리뷰가 있습니다.</h3>
 			<ul class="comment-list">
 				<li class="comment">
 				<div class="vcard bio">
@@ -129,23 +138,7 @@
 	</div>
 </section>
 <script>
-	$(document).ready(function(){
-		$('.count').prop('disabled', true);
-		$(document).on('click', '.icon-plus-circle', function(){
-			$('.count').val(parseInt($('.count').val()) + 1);
-			if($('.count').val() > 20) {
-				alert('최대 주문량은 20개를 초과할 수 없습니다.');
-				$('.count').val(20);
-			}
-		});
-		$(document).on('click', '.icon-minus-circle', function(){
-			$('.count').val(parseInt($('.count').val()) - 1);
-			if($('.count').val() == 0){
-				$('.count').val(0);
-			}
-		});
-	})
-
+	// 평점 별 출력 부분
 var star_rating = $('.star-rating .icon-star');
 
 var SetRatingStar = function() {
@@ -158,9 +151,40 @@ var SetRatingStar = function() {
   });
 };
 
-SetRatingStar();
-$(document).ready(function() {
+function orderPlusMinus(data){
+	
+	var countInput;
+	
+	if($(data).children().attr('class').search("plus") != -1)
+	{
+		countInput = $(data).parent().siblings().eq(2);
+		countInput.val(parseInt(countInput.val())+1);
+		
+		if(countInput.val() >= 1){
+			
+			if(countInput.val() == 1){
+				var tagName = $(data).parent().siblings().eq(0).val();
+					
+				var tags = "<tr>";
+				tags += "<td>"+tagName+"</td>";
+				tags += "</tr>";
+				$('#orderList').append(tags);
+			}
+			
+			console.log($('#orderList').children().children().children().siblings().eq(0).val()); //<tr>
+		} 
+	}
+	else{
+		countInput = $(data).parent().siblings().eq(3);
+		if(countInput.val() > 0){
+			countInput.val(parseInt(countInput.val())-1);			
+		}
+	}
+}
 
-});
+
+
+SetRatingStar();
+
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

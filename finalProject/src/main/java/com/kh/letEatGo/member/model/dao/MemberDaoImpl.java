@@ -27,6 +27,5 @@ public class MemberDaoImpl implements MemberDao {
 	public int deleteMemberPage(SqlSessionTemplate session, Member m) {
 		return session.delete("member.deleteMemberPage",m);
 	}
-	
-	
+
 }

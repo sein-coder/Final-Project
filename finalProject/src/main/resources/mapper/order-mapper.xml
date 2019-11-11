@@ -16,4 +16,10 @@
   <select id="selectReviewCount" parameterType="_int" resultType="_int">
   	SELECT COUNT(*) FROM REVIEW WHERE PARTNER_NO = #{partner_No}
   </select>
+  <select id="selectTruck" parameterType="_int" resultType="partner">
+  	SELECT * FROM PARTNER WHERE PARTNER_NO=#{p.partner_No}
+  </select>
+  <select id="selectReview" parameterType="_int" resultType="review">
+  	SELECT REVIEW_NO, REVIEW_CONTENT, REVIEW_TIME, REVIEW_STAR, ORINAME_FILE, RENAME_FILE, R.ORDER_NO, R.MEMBER_NO FROM ORDER_HISTORY O, REVIEW R WHERE O.ORDER_NO = R.ORDER_NO AND O.PARTNER_NO = #{partner_No}
+  </select>
 </mapper>

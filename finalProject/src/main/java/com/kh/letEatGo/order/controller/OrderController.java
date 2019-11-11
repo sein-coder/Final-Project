@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.letEatGo.common.page.PageFactory;
 import com.kh.letEatGo.order.model.service.OrderService;
 import com.kh.letEatGo.order.model.vo.Menu;
+import com.kh.letEatGo.order.model.vo.Review;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
 @Controller
@@ -56,9 +57,22 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/order/orderListView")
-	public String orderList() {
-		
-		return "order/orderListView";
+	public ModelAndView orderList(Partner p) {
+		ModelAndView mv = new ModelAndView();
+
+		// 트럭 상세페이지에 필요한 데이터 조회
+		Partner result = service.selectTruck(p.getPartner_No());
+		result.setStarCount(service.selectStar(p.getPartner_No()));
+		result.setReviewCount(service.selectReviewCount(p.getPartner_No()));
+		List<Menu> list = service.selectMenu(p.getPartner_No());
+		List<Review> reviewList = service.selectReview(p.getPartner_No());
+
+		mv.addObject("menu", list);
+		mv.addObject("partner", result);
+		mv.addObject("reviewList", reviewList);
+
+		mv.setViewName("order/orderListView");
+		return mv;
 	}
 	
 	@RequestMapping("/order/payment")
@@ -66,5 +80,13 @@ public class OrderController {
 		return "order/payment";
 	}
 	
-
+	/*
+	 * @RequestMapping("/order/searchConsole") public List<Partner> searchConsole(
+	 * 
+	 * @RequestParam(value="menu_Name", required=false)String menu_Name,
+	 * 
+	 * @RequestParam(value="partner_Menu", required=false)String partner_Menu ){
+	 * List<Partner> list = service.selectTruckList(cPage, numPerPage); return list;
+	 * }
+	 */
 }
