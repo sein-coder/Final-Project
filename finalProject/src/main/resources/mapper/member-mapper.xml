@@ -5,7 +5,7 @@
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,#{member_Id},#{member_Password},#{member_Email},#{member_Phone})
 	</insert>
-	<select id="selectMember" parameterType="member" resultType="member">
+	<select id="selectMemberOne" parameterType="member" resultType="member">
 		select * from  Member WHERE MEMBER_ID=#{member_Id}
 	</select>
 	

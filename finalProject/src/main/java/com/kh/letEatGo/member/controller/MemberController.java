@@ -73,7 +73,6 @@ public class MemberController {
 	  @RequestMapping("/member/memberLogin.do")
 	  public ModelAndView login(Member m, HttpSession session) {
 		  ModelAndView mv=new ModelAndView();
-		  System.out.println(pwEncoder.encode("123123"));
 		  Member result = null;
 		  result = service.selectMemberOne(m);
 		  System.out.println(result);
@@ -93,12 +92,12 @@ public class MemberController {
 		  }
 		  mv.addObject("msg", msg);
 		  mv.addObject("loc", loc);
-		  mv.setViewName("redirect:/");
+		  mv.setViewName("common/msg");
 		return mv;
 
 	  }
 
-	  @RequestMapping("/member/memberLogout.do")
+	  @RequestMapping("/Logout.do")
 		public String logout(HttpSession session,SessionStatus s) {
 			
 			if(!s.isComplete()) {
