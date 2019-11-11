@@ -8,6 +8,7 @@ public interface PartnerDao {
 
 	int insertPartner(SqlSessionTemplate session, Partner p);
 	
-	Partner selectPartner(SqlSessionTemplate session,Partner p);
+	Partner selectPartnerOne(SqlSessionTemplate session,Partner p);
+
 
 }

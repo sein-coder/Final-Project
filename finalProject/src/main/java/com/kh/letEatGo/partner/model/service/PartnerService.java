@@ -7,6 +7,7 @@ public interface PartnerService {
 
 	int insertPartner(Partner p);
 	
-	Partner selectPartner(Partner p);
+	Partner selectPartnerOne(Partner p);
 
 }
+
