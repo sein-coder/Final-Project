@@ -188,8 +188,7 @@ button#btn-write {
 								<li class="col-sm-3" style="border: 5px solid #ffc9c9">
 									<div class="fff">
 										<div class="thumbnail">
-									<img alt="없음" width="400px" height="252px"
-								src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
+									<img alt="없음" style="max-width: 210px; max-height: 139px" src="${pageContext.request.contextPath}/resources/images/festival/${v.festival_Thumbnail }">
 										</div>
 										<div class="caption">
 											<p>${v.festival_Title }</p>

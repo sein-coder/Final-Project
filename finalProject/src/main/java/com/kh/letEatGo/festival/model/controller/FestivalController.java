@@ -34,32 +34,8 @@ public class FestivalController {
 	//여기 어제걸로 되돌려놓을것@!!!!!!!
 	public ModelAndView selectfestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
-		
-		String saveDir = req.getSession().getServletContext()
-				.getRealPath("/resources/images/festival"); 		
-		
-		  File dir=new File(saveDir); if(!dir.exists())
-		  logger.debug("폴더생성 "+dir.mkdirs());
-		  
-		  
-		  if(!upFile.isEmpty()) { 
-			  String oriFileName=upFile.getOriginalFilename();
-			  festival.setFestival_Thumbnail(oriFileName); 
-		  try { 
-			  //transferTo는 multipa 제공 
-			  upFile.transferTo(new File(saveDir+"/"+oriFileName)); 
-		  }
-		  catch(IOException e) {
-			  e.printStackTrace(); 
-			  } 
-		  }
-		  
-		  try {
-			  service.selectFestival(); 
-			  }catch(Exception e) {
-		  logger.debug("에러임");
-		 
-		}
+		List<Festival> list = service.selectFestival();
+		mv.addObject("list", list);
 		mv.setViewName("festival/festivalList");
 		return mv;
 	}
