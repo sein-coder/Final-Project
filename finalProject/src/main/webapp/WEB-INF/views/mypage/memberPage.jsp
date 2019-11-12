@@ -58,7 +58,7 @@
 		<tr>
 		  <td colspan="2" align="center">
 		     <input type="button" value="수정" id="btnUpdate">
-		     <li><a href="deleteMember">회원 탈퇴</a></li>
+		     <input type="button" value="탈퇴" id="btnDelete">
 		  </td>
 		</tr>
 	 </table>

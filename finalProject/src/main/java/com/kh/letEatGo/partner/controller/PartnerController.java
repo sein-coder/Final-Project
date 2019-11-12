@@ -124,7 +124,8 @@ public class PartnerController {
 				  } else {
 					  // 로그인성공
 					  msg="로그인성공";
-					  session.setAttribute("loginMember", result);		
+					  session.setAttribute("loginMember", result);
+					  session.setAttribute("type", "partner");
 				  }
 			  } else {
 				  msg="로그인 안됨";
@@ -135,15 +136,7 @@ public class PartnerController {
 			  return mv;
 		  }
 	
-	@RequestMapping("/partner/partnerLogout.do")
-	public String partnerlogout(HttpSession session,SessionStatus s) {
-		if(!s.isComplete()) {
-			s.setComplete();//로그아웃 SessionAttributes
-			session.invalidate();
-			
-	}
-		return "redirect:/";
-	}
+	
 	@RequestMapping(value="/partner/checkId.do", method= RequestMethod.GET)
 	@ResponseBody
 		public void checkId(Partner p,

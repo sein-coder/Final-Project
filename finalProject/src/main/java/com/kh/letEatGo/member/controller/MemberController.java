@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.letEatGo.common.encrypt.MyEncrypt;
 import com.kh.letEatGo.member.model.service.MemberService;
 import com.kh.letEatGo.member.model.vo.Member;
+import com.kh.letEatGo.partner.model.vo.Partner;
 
 
 @SessionAttributes(value= {"loginMember","msg"}) //여기들어가는 값은 배열로 받을 수 있음 키값이 들어감
@@ -84,7 +85,8 @@ public class MemberController {
 			  } else {
 				  // 로그인성공
 				  msg="로그인성공";
-				  session.setAttribute("loginMember", result);		
+				  session.setAttribute("loginMember", result);
+				  session.setAttribute("type", "member");
 			  }
 		  } else {
 			  msg="로그인 안됨";
@@ -96,7 +98,7 @@ public class MemberController {
 
 	  }
 
-	  @RequestMapping("/member/memberLogout.do")
+	  @RequestMapping("/Logout.do")
 		public String logout(HttpSession session,SessionStatus s) {
 			
 			if(!s.isComplete()) {

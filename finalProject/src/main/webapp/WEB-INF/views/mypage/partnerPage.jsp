@@ -18,6 +18,15 @@
 		  document.updatePartner.submit();
 	  });
   });
+  
+  $(document).ready(function(){
+	  $("#pbtnDelete").click(function(){
+		  document.deletePartner.action="${path}/partner/deletePartner";
+		  document.deletePartner.submit();
+	  });
+  });
+  
+  
 </script>
 
  
@@ -26,11 +35,15 @@
       <div class="row justify-content-center mb-8">
        <div class="col">
        
-       <form id="updatePartner" method="post">
+       <form name="updatePartner" method="post">
         <table class="table" id="tbl-dev">
         <tr>
 			<th scope="col">아이디</th>
 			<td><input name="partner_Id" value="${partner.partner_Id}" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<th scope="col">비밀번호</th>
+			<td><input name="partner_Password" value="${partner.partner_Password}"></td>
 		</tr>
 		<tr>
 			<th scope="col">업체명</th>
@@ -55,7 +68,7 @@
 		<tr>
 		  <td colspan="2" align="center">
 		     <input type="button" value="수정" id="pbtnUpdate">
-		     <li><a href="deletePartner">회원 탈퇴</a></li>
+		     <input type="button" value="탈퇴" id="pbtnDelete">
 		  </td>
 		</tr>
 	</table>
