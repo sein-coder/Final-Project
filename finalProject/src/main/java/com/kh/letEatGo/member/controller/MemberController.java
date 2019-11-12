@@ -18,6 +18,7 @@ import com.kh.letEatGo.member.model.service.MemberService;
 import com.kh.letEatGo.member.model.vo.Member;
 
 
+
 @SessionAttributes(value= {"loginMember","msg"}) //여기들어가는 값은 배열로 받을 수 있음 키값이 들어감
 
 @Controller
@@ -84,7 +85,8 @@ public class MemberController {
 			  } else {
 				  // 로그인성공
 				  msg="로그인성공";
-				  session.setAttribute("loginMember", result);		
+				  session.setAttribute("loginMember", result);
+				  session.setAttribute("type", "member");
 			  }
 		  } else {
 			  msg="로그인 안됨";

@@ -120,7 +120,9 @@ public class PartnerController {
 				  } else {
 					  // 로그인성공
 					  msg="로그인성공";
-					  session.setAttribute("loginParnter", result);		
+
+					  session.setAttribute("loginMember", result);
+					  session.setAttribute("type", "partner");
 				  }
 			  } else {
 				  msg="로그인 안됨";
@@ -131,6 +133,7 @@ public class PartnerController {
 			  return mv;
 		  }
 	
+
 	@RequestMapping("/partner/checkId.do")
 	public void checkId(Partner p, HttpServletResponse res) {
 		System.out.println(p);
@@ -141,8 +144,18 @@ public class PartnerController {
 			res.getWriter().write(flag);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
+//	@RequestMapping(value="/partner/checkId.do", method= RequestMethod.GET)
+//	@ResponseBody public void checkId(Partner p,HttpServletResponse res) {
+//	Partner result=service.selectPartnerOne(p);
+//	boolean flag=result!=null?false:true;
+//	res.setContentType("application/json;charset=utf-8");
+//	try {
+//		res.getOutputStream().print(flag);
+//	} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
 

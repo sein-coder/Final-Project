@@ -88,11 +88,6 @@ public class PageController {
 		
 	}
 	
-	@RequestMapping("deleteMember")
-	public String deleteMember() {
-		return "mypage/deleteMember";
-	}
-	
 	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
 	  public String deleteMemberPage(Member m,HttpSession session,Model model) {
 		 
