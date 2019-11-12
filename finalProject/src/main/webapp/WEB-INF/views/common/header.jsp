@@ -180,12 +180,13 @@
 										onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
 								</c:if>
 								<c:if test="${not empty loginMember }">
-								<li>
-									<a href="${pageContext.request.contextPath }/pageList"><span>마이 페이지</span></a>
-								</li>
-								<li>
-									<button class="btn btn-outline-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/Logout.do'">로그아웃</button>
-								</li>			
+									<c:if test="${ type == 'member' }" >
+								<li><a href="${pageContext.request.contextPath }/memberPage"><span>마이 페이지</span></a></li>
+									</c:if>
+									<c:if test="${type == 'partner' }">
+								<li><a href="${pageContext.request.contextPath }/partnerPage"><span>마이 페이지</span></a></li>	
+									</c:if>
+								<li><button class="btn btn-outline-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/Logout.do'">로그아웃</button></li>			
 								</c:if>
 							</ul>
 						</nav>

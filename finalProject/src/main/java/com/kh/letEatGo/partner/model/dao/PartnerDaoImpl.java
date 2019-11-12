@@ -23,5 +23,12 @@ public class PartnerDaoImpl implements PartnerDao {
 	@Override
 	public int updatePartnerPage(SqlSessionTemplate session, Partner p) {
 		return session.update("partner.updatePartnerPage",p);
+	}
+
+	@Override
+	public Partner selectPartnerNo(SqlSessionTemplate session, Partner p) {
+	
+		return session.selectOne("partner.selectPartnerNo",p);
 	}	
+	
 }
