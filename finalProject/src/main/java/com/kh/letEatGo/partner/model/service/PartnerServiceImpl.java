@@ -35,6 +35,13 @@ public class PartnerServiceImpl implements PartnerService {
 	public int updatePartnerPage(Partner p) {
 		return dao.updatePartnerPage(session,p);
 	}
+
+
+
+	@Override
+	public Partner selectPartnerNo(Partner p) {
+		return dao.selectPartnerNo(session,p);
+	}
 	
 	
 }

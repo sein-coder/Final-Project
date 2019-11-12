@@ -12,4 +12,6 @@ public interface PartnerDao {
 	
 	int updatePartnerPage(SqlSessionTemplate session,Partner p);
 
+	Partner selectPartnerNo(SqlSessionTemplate session, Partner p);
+
 }

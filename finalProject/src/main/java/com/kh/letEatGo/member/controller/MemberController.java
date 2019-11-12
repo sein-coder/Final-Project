@@ -1,5 +1,8 @@
 package com.kh.letEatGo.member.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -107,5 +110,19 @@ public class MemberController {
 			}
 			return "redirect:/";
 		}
+	  @RequestMapping("/member/checkId.do")
+		public void checkId(Member m, HttpServletResponse res) {
+			System.out.println(m);
+			Member result=service.selectMemberOne(m);
+			String flag=result!=null?"false":"true";
+			res.setContentType("application/json;charset=utf-8");
+			try {
+				res.getWriter().write(flag);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	  
 
 }
