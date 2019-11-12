@@ -20,7 +20,7 @@
 </style>
 <section id="content" class="col-md-8 offset-md-2">
 	<!-- 업체 소개 영역 -->
-    <div class="site-section ">
+    <div class="site-section">
     <div class="row">
 	<div class="col-md-8">
       <div class="container">
