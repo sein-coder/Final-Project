@@ -2,6 +2,10 @@ package com.kh.letEatGo.mainPage.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +41,7 @@ public class MainPageController {
 			
 			//small list 중복제거 후 final small list 셋팅
 			for(int i=0; i<fslist.size(); i++) {
-				fslist.set(i,( slist.get((int)(Math.random() * slist.size()) + 1)) );
+				fslist.set(i,( slist.get((int)(Math.random() * (slist.size()-1)) + 1)) );
 				for(int j=0; j<i; j++) {
 					if(fslist.get(j) == fslist.get(i)) {
 						i--;
@@ -46,7 +50,7 @@ public class MainPageController {
 			}
 			//long list 중복제거 후 final long list 셋팅
 			for(int i=0; i<fllist.size(); i++) {
-				fllist.set(i,( llist.get((int)(Math.random() * llist.size()) + 1)) );
+				fllist.set(i,( llist.get((int)(Math.random() * (llist.size()-1)) + 1)) );
 				for(int j=0; j<i; j++) {
 					if(fllist.get(j) == fllist.get(i)) {
 						i--;
@@ -62,6 +66,17 @@ public class MainPageController {
 		}	
 		mv.setViewName("jsonView");
 		
+		return mv;
+	}
+	
+	@RequestMapping("/loadingTypeCount.do")
+	public ModelAndView loadingTypeCount(HttpServletResponse res) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Map<String,String>> list = service.selectTypeCount();
+		res.setContentType("text/html;charset=UTF-8");
+		mv.addObject("list", list);
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	

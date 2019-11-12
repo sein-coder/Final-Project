@@ -138,7 +138,7 @@ textarea {
 											
 										</div>
 										<div class="pull-left ml-2 mt-2" style="display:inline;">
-											<input type="file" value="파일 선택" name="file"/>
+											<input id="upFile" type="file" value="파일 선택" name="file"/>
 										</div>
 										<div class="pull-right mt-5" style="display:inline;">
 											 <input type="submit" value="업로드"/>
@@ -386,6 +386,8 @@ textarea {
         });
 	
 	</script>
+
+
 	</section>
 
 

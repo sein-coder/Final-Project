@@ -58,7 +58,7 @@
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/한식.png">
-						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">489</span>
+						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -67,21 +67,21 @@
 								<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
 							</span> 
 							<span class="caption mb-2 d-block">중식</span> 
-							<span class="number">482</span>
+							<span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/일식.png">
-						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">191</span>
+						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/양식.png">
-						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">395</span>
+						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -89,14 +89,14 @@
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/디저트.png">
 						</span> <span class="caption mb-2 d-block">디저트</span> <span
-							class="number">124</span>
+							class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/기타.png">
-						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">187</span>
+						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">0</span>
 						</a>
 					</div>
 				</div>
@@ -481,17 +481,50 @@
 </script>
 
 <script type="text/javascript">
-/* 		$(document).ready(function(){
-			$.ajax({
-				url:"${pageContext.request.contextPath}/loadingMainData.do",
-				type : "post",
-				success: function(data){
-					console.log(data.slist);
-					console.log(data.llist);
+
+/* 갤러리 랜덤 사진 */
+$(document).ready(function(){
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingMainData.do",
+		type : "post",
+		success: function(data){
+	
+			for(var i=0; i<3; i++){
+				var img = $("div.1 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fllist[i].data_Name+"."+data.fllist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.1 img").eq(i).attr("src",replace);
+			}
+			
+			for(var i=0; i<3; i++){
+				var img = $("div.2 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fslist[i].data_Name+"."+data.fslist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.2 img").eq(i).attr("src",replace);
+			}
+		}
+	});
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingTypeCount.do",
+		type:"post",
+		success: function(data){
+			$("a.popular-category span.number").each(function(){
+				for(var i =0; i<data.list.length; i++){
+					if(data.list[i].PARTNER_MENU == $(this).prev().text()){
+						$(this).text(data.list[i].MENU_COUNT);
+						break;
+					}else{
+						$(this).text(0);
+					}
 				}
 			});
-		}); */
-	
+		}
+	});
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

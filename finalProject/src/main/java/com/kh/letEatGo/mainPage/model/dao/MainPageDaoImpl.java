@@ -1,6 +1,7 @@
 package com.kh.letEatGo.mainPage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,13 @@ public class MainPageDaoImpl implements MainPageDao{
 		// TODO Auto-generated method stub
 		return session.selectList("mainPage.selectDataList",keyword);
 	}
+
+	@Override
+	public List<Map<String,String>> selectTypeCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("partner.selectTypeCount");
+	}
+	
+	
 
 }
