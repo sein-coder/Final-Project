@@ -21,7 +21,6 @@ public class FestivalServiceImpl implements FestivalService {
 	public int insertFestival(Festival festival) {
 		int result=0;
 		result=dao.insertFestival(session,festival);
-		
 		return result;
 	}
 

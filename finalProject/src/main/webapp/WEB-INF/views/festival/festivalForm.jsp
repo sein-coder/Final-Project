@@ -131,27 +131,34 @@ textarea {
 							<div class="wrapper row" style="background-color: white;">
 								<div class="preview col-md-5">
 
-									<div class="preview-pic tab-content">
-										<div class="tab-pane active" id="pic-1">
+									<div class="preview-pic ">
+										<div class="tab-pane active-ml-3" id="pic-1">
 											<img src="http://placekitten.com/400/252" />
 											
 											
 										</div>
-										<div class="pull-left ml-2 mt-2" style="display:inline;">
-											<input id="upFile" type="file" value="파일 선택" name="file"/>
+										<!-- 썸네일 부분   -->
+										<div class="pull-left ml-4 mt-2 " style="display:inline;">
+											<input type="file" value="파일 선택" name="upFile" id="upFile"/>
 										</div>
-										<div class="pull-right mt-5" style="display:inline;">
-											 <input type="submit" value="업로드"/>
-										</div>
-			
+										
 									</div>
 									<div style="margin-top: 10px; margin-bottom: 10px;"></div>
 
 								</div>
-								<div class="details col-md-7">
+								<div class="details col-md-7" style="display: inline-block">
 									<h3 class="product-title">
 										<input id="festival_Title" name="festival_Title" type="text" placeholder="00축제">
 									</h3>
+									<div style="display: inline-block">
+										<select id="Proceeding" name="Proceeding">
+											<optgroup label="선택" >
+												<option value="예정">예정</option>
+												<option value="진행">진행</option>
+												<option value="종료">종료</option>
+											</optgroup>
+										</select>
+									</div>
 									<div class="rating">
 										<div class="stars">
 											<span class="fa fa-star checked"></span> <span
@@ -308,10 +315,10 @@ textarea {
 	/*글자 수 제한*/
 			$('#contentText').keyup(function (e){
 	      var content = $(this).val();       
-	      $('#counter').val(100-content.length);
+	      $('#counter').val(500-content.length);
 	
-	          if(content.length > 100) {
-	            $(this).val($(this).val().substring(0, 100));
+	          if(content.length > 500) {
+	            $(this).val($(this).val().substring(0, 500));
 	          }
 	      });
       
@@ -384,11 +391,58 @@ textarea {
         		$(this).parent().append(img);
         	}
         });
-	
-	</script>
+        
+        /* [썸네일] */
+        
+	    $('#upFile').on('change',function (e) {
+	        var get_file = e.target.files;
+	 
+	        var image = $("#pic-1").children();
+	        var reader = new FileReader();
+	        
+	        reader.onload = (function (aImg) {
+	            console.log(1);
+	            return function (e) {
+	                console.log(3);
+	                aImg.attr("src",e.target.result);
+	                aImg.attr({"width":"400px","height":"252px"});
+	            }
+	        })(image)
+	 
+	        if(get_file){
+	            reader.readAsDataURL(get_file[0]);
+	            console.log(2);
+	        }
+	    });
+	    
+        /* 축제진행 */
+      /* 축제진행 */
+        $("#Proceeding").click(function(){
+        	
+        	var preDate=$("input[name='preDate']").val();
+        	var startDate=$("input[name='startDate']").val(); 
+        	var endDate=$("input[name='endDate']").val();
+            
+        	var preDateCompare = new Date(startDateArr[0], parseInt(preDateArr[1])-1, preDateeArr[2]);
+            var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
+            var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
+             
+            if(startDateCompare.getTime() <= endDateCompare.getTime()) {
+            	  document.write("진행");
+
+            }else if(startDateCompare.getTime() >= endDateCompare.getTime() ){
+            	  document.write("종료");
+            }else if(preDateCompare.getTime()>startDateCompare.getTime())
+            		document.write("예정");
+                return;
+            }
+    });
+        
+   </script>
 
 
 	</section>
+
 
 
 

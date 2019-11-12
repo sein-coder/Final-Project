@@ -127,8 +127,13 @@ textarea {
 
 									<div class="preview-pic tab-content">
 										<div class="tab-pane active" id="pic-1">
-											<img src="http://placekitten.com/400/252" />
-											<p>파일 올리기</p>
+											<img alt="없음" width="400px" height="252px"
+												src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
+											<!-- 썸네일 부분   -->
+										<div class="pull-left ml-2 mt-2" style="display:inline;">
+											<input type="file" value="파일 선택" name="upFile" id="upFile"/>
+										</div>
+										
 										</div>
 									</div>
 									<div style="margin-top: 10px; margin-bottom: 10px;"></div>
@@ -369,6 +374,30 @@ textarea {
         	}
         });
 	
+    	
+		/* 썸네일 사진 */
+		 $('#upFile').on('change',function (e) {
+		        var get_file = e.target.files;
+		 
+		        var image = $("#pic-1").children();
+		        var reader = new FileReader();
+		        
+		        reader.onload = (function (aImg) {
+		            console.log(1);
+		            return function (e) {
+		                console.log(3);
+		                aImg.attr("src",e.target.result);
+		                aImg.attr({"width":"400px","height":"252px"});
+		            }
+		        })(image)
+		 
+		        if(get_file){
+		            reader.readAsDataURL(get_file[0]);
+		            console.log(2);
+		        }
+		    });
+		    
+        
 	</script>
 	</section>
 

@@ -188,7 +188,8 @@ button#btn-write {
 								<li class="col-sm-3" style="border: 5px solid #ffc9c9">
 									<div class="fff">
 										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+									<img alt="없음" width="400px" height="252px"
+								src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
 										</div>
 										<div class="caption">
 											<p>${v.festival_Title }</p>
@@ -239,6 +240,29 @@ button#btn-write {
 				interval : 6000
 			})
 		});
+		
+		/* 썸네일 사진 */
+		 $('#upFile').on('change',function (e) {
+		        var get_file = e.target.files;
+		 
+		        var image = $("#pic-1").children();
+		        var reader = new FileReader();
+		        
+		        reader.onload = (function (aImg) {
+		            console.log(1);
+		            return function (e) {
+		                console.log(3);
+		                aImg.attr("src",e.target.result);
+		                aImg.attr({"width":"400px","height":"252px"});
+		            }
+		        })(image)
+		 
+		        if(get_file){
+		            reader.readAsDataURL(get_file[0]);
+		            console.log(2);
+		        }
+		    });
+		    
 	</script>
 
 </section>
