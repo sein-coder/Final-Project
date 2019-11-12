@@ -398,16 +398,8 @@ h1 {
 
 							<div class="preview-pic tab-content">
 								<div class="tab-pane active" id="pic-1">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-2">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-3">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-4">
-									<img src="http://placekitten.com/400/252" />
+									<img alt="없음" width="400px" height="252px"
+									src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
 								</div>
 
 							</div>

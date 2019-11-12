@@ -3,7 +3,7 @@
 <mapper namespace="festival">
   <insert id="insertFestival" parameterType="festival">
   	INSERT INTO FESTIVAL VALUES(SEQ_Festival_No.nextval, #{festival_Title},#{festival_Content},
-  		default,'썸네일',#{festival_StartDate},#{festival_EndDate},
+  		default,#{festival_Thumbnail},#{festival_StartDate},#{festival_EndDate},
   		#{festival_Phone},#{festival_Homepage},#{festival_Address},#{festival_Host},
   		#{festival_Sub},#{festival_Price},'진행중'
   	)
@@ -19,7 +19,13 @@
   </delete>
   <update id="updateFormFestival" parameterType="festival">
   	UPDATE FESTIVAL 
-  	SET FESTIVAL_TITLE=#{festival_Title}
+  	SET FESTIVAL_TITLE=#{festival_Title},FESTIVAL_CONTENT=#{festival_Content},
+  		FESTIVAL_Thumbnail=#{festival_Thumbnail}
+  		FESTIVAL_STARTDATE=#{festival_StartDate},FESTIVAL_ENDDATE=#{festival_EndDate},
+  		FESTIVAL_PHONE=#{festival_Phone},FESTIVAL_HOMEPAGE=#{festival_HomePage},
+  		FESTIVAL_ADDRESS=#{festival_Address},FESTIVAL_HOST=#{festival_Host},
+  		FESTIVAL_SUB=#{festival_Sub},FESTIVAL_PRICE=#{festival_Price},
+  		FESTIVAL_PROCEEDING=#{festival_Proceeding}
   	WHERE FESTIVAL_NO=#{festival_No}
   </update>
 
