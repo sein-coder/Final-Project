@@ -167,7 +167,7 @@ function orderPlusMinus(data){
 					
 				var tags = "<tr>";
 				tags += "<td>"+tagName+"</td>";
-				tags += "</tr>";
+				tags += "</tr>"; 
 				$('#orderList').append(tags);
 			}
 			

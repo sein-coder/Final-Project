@@ -27,10 +27,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectMemberOne(session,m);
 	}
 
-	@Override
-	public int updateMemberPage(Member m) {
-		return dao.updateMemberPage(session,m);
-	}
+	/*
+	 * @Override public int updateMemberPage(Member m) { return
+	 * dao.updateMemberPage(session,m); }
+	 */
 	
 	
 	
