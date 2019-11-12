@@ -34,10 +34,5 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMemberPage(Member m) {
 		return dao.deleteMemberPage(session,m);
 	}
-	
-	
-	
-	
-	
 
 }

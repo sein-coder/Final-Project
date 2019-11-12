@@ -89,7 +89,7 @@
 			<div class="col-md-8 offset-md-2">
 				<!-- 여기서 부터 DIV가 업체 리스트에 맞춰 반복되야함, image변경 필! -->
 				<c:forEach var="p" items="${list }" varStatus="v">
-				<div class="d-block d-md-flex listing-horizontal" id="truck-container">
+				<div class="d-block d-md-flex listing-horizontal" id="truck-container" onClick="truckInfo();">
 					<!-- 푸드트럭 별 대표이미지 -->
 					<a href="${path }/order/orderListView?partner_No=${p.partner_No}" class="img d-block" style="background-image: url('${path}/resources/images/foodtruck/${p.profile_Re }')">
 						<span class="category"><c:out value="${p.partner_Menu }"/></span>
@@ -119,6 +119,11 @@
 							</div>
 					</div>
 				</div>
+				<script>
+				function truckInfo(){
+					location.href="${path }/order/orderListView?partner_No=${p.partner_No}";
+				}
+				</script>
 				</c:forEach>
 			</div>
 		</div>
@@ -128,7 +133,6 @@
 
 <script>
 $(document).ready(function(){
-	   console.log("실행");
 	   $("input[name=data_No]").each(function(){
 	      var starCount = $(this).val();
 	      $($(this).siblings()).each(function(){
@@ -140,6 +144,5 @@ $(document).ready(function(){
 	      })
 	   });
 	});
-	
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
