@@ -58,7 +58,7 @@
 		<tr>
 		  <td colspan="2" align="center">
 		     <input type="button" value="수정" id="btnUpdate">
-		     <input type="button" value="탈퇴" id="btnDelete">
+		     <li><a href="${pageContext.request.contextPath }/deleteMember"><span>회원 탈퇴</span></a></li>
 		  </td>
 		</tr>
 	 </table>
