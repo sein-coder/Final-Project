@@ -129,7 +129,6 @@
 		</div>
 		<!-- 페이징 처리 -->
 		${pageBar }
-	</div>
 </section>
 
 <script>
