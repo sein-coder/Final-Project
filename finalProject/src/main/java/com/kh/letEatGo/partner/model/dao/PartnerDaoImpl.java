@@ -18,4 +18,9 @@ public class PartnerDaoImpl implements PartnerDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("partner.selectPartner",p);
 	}	
+	
+	@Override
+	public int updatePartnerPage(SqlSessionTemplate session, Partner p) {
+		return session.update("partner.updatePartnerPage",p);
+	}	
 }

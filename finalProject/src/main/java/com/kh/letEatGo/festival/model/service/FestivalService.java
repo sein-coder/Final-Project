@@ -15,7 +15,7 @@ public interface FestivalService{
 	
 	int deleteFestival(int festival_No);
 	
-	
+	int updateFormFestival(Festival festival);
 	
 
 }

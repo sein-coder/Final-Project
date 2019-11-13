@@ -10,4 +10,6 @@ public interface PartnerDao {
 	
 	Partner selectPartnerOne(SqlSessionTemplate session,Partner p);
 
+	int updatePartnerPage(SqlSessionTemplate session,Partner p);
+	
 }

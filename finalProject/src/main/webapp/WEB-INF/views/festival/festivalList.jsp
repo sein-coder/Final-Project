@@ -106,11 +106,17 @@ ul.thumbnails {
 }
 
 /* Mobile Only */
-@media ( max-width : 767px) {
+@media ( max-width : 768px;) {
 	.page-header, .control-box {
 		text-align: center;
 	}
 }
+@media ( max-height : 800px;) {
+	.page-header, .control-box {
+		text-align: center;
+	}
+}
+
 
 @media ( max-width : 479px) {
 	.caption {
@@ -156,13 +162,13 @@ button#btn-write {
 			<div class="col-xs-12">
 
 				<div class="page-header">
-					<h3>Bootstrap 3.3.0</h3>
+					
 					<p>렛.잇.고와 함께 하세요</p>
 				</div>
-				<div style="background-color:#f38181 ">
-					<nav class="site-navigation position-relative text-right" role="navigation">
-						<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block" >
-							<li class="active"><a
+				<div style="pull-right; color:#f38181;">
+					<nav class="site-navigation position-relative text-right" role="navigation" style="background-color: #fff; color:#f38181;" >
+						<ul class="site-menu js-clone-nav m-auto d-none d-lg-block" >
+							<li class="active" ><a
 								href="${pageContext.request.contextPath}/festival/festivalForm"><span>축제
 										등록</span></a></li>
 						</ul>
@@ -188,10 +194,13 @@ button#btn-write {
 								<li class="col-sm-3" style="border: 5px solid #ffc9c9">
 									<div class="fff">
 										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+											<img alt="없음" style="max-width: 220px; max-height: 200px" src="${pageContext.request.contextPath}/resources/images/festival/${v.festival_Thumbnail }">
 										</div>
 										<div class="caption">
 											<p>${v.festival_Title }</p>
+											<button style="background-color: red; color: #fff; text-align: center;">
+												${v.festival_Proceeding }
+											</button>
 											<p>${v.festival_StartDate }~${v.festival_EndDate }</p>
 											<p>${s.count}</p>
 											<Input type="hidden" name="festival_No"> <a

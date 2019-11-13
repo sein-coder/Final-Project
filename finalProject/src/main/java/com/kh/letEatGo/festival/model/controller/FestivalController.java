@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.letEatGo.LoggerTest;
 import com.kh.letEatGo.festival.model.service.FestivalService;
 import com.kh.letEatGo.festival.model.vo.Festival;
 
 
 @Controller
 public class FestivalController {
-	
+	private static Logger logger = LoggerFactory.getLogger(LoggerTest.class);
 	@Autowired
 	private FestivalService service;
 	
@@ -173,5 +176,6 @@ public class FestivalController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+//count추가 update문 만들기
 
 }

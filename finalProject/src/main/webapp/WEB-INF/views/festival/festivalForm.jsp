@@ -107,7 +107,7 @@ textarea {
 								</div>
 								<div class="details col-md-7">
 									<h3 class="product-title">
-										<input name="festival_Title" type="text" placeholder="00축제">
+										<input id="festival_Title" name="festival_Title" type="text" placeholder="00축제">
 									</h3>
 									<div class="rating">
 										<div class="stars">
@@ -125,7 +125,7 @@ textarea {
 											rows="40" placeholder="축제 내용을 입력하세요"></textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
-											type="text" readonly disabled value="500" name="counter"
+											type="text" readonly disabled value="2000" name="counter"
 											id="counter"></span>
 									</div>
 									<br>
@@ -263,10 +263,9 @@ textarea {
 	/*글자 수 제한*/
 			$('#festival_Content').keyup(function (e){
 	      var content = $(this).val();       
-	      $('#counter').val(100-content.length);
-	
-	          if(content.length > 100) {
-	            $(this).val($(this).val().substring(0, 100));
+	      $('#counter').val(2000-content.length);
+	          if(content.length > 2000) {
+	            $(this).val($(this).val().substring(0, 2000));
 	          }
 	      });
       
