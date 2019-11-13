@@ -8,70 +8,14 @@
 </jsp:include>
 <style>
 .pink-textarea
-
- 
-
 textarea
-
-
 .md-textarea
-
-
 :focus
-
-
 :not
-
- 
-
-(
-[
-readonly
-]
-
- 
-
-)
+([readonly])
 {
-border-bottom
-
-
-:
-
- 
-
-1
-px
-
- 
-
-solid
-
- 
-
-#f48fb1
-
-
-;
-box-shadow
-
-
-:
-
- 
-
-0
-1
-px
-
- 
-
-0
-0
-#f48fb1
-
-
-;
+	border-bottom:1px solid #f48fb1;
+	box-shadow:0 1px 0 0 #f48fb1;
 }
 .active-pink-textarea.md-form label.active {
 	color: #f48fb1;
@@ -81,7 +25,6 @@ px
 	 )+label {
 	color: #f48fb1;
 }
-
 .btn-click {
 	display: block;
 	width: 100px;
@@ -90,7 +33,6 @@ px
 	border-radius: 5px;
 	text-align: center;
 }
-
 textarea {
 	width: 500px;
 	height: 100px;
@@ -105,9 +47,32 @@ textarea {
 	
 }*/
 /* 해시태그  */
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #777;
+        color: #000;
+    }
 
+    .tag-item:hover {
+        background-color: #262626;
+        color: #fff;
+    }
+    ul#tag-list {
+        padding: 16px 0;
+    }
 
-
+    ul#tag-list li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
 </style>
 <body>
 
@@ -150,15 +115,6 @@ textarea {
 									<h3 class="product-title">
 										<input id="festival_Title" name="festival_Title" type="text" placeholder="00축제">
 									</h3>
-									<div style="display: inline-block">
-										<select id="Proceeding" name="Proceeding">
-											<optgroup label="선택" >
-												<option value="예정">예정</option>
-												<option value="진행">진행</option>
-												<option value="종료">종료</option>
-											</optgroup>
-										</select>
-									</div>
 									<div class="rating">
 										<div class="stars">
 											<span class="fa fa-star checked"></span> <span
@@ -313,7 +269,7 @@ textarea {
 		<script>
 		
 	/*글자 수 제한*/
-			$('#contentText').keyup(function (e){
+			$('#festival_Content').keyup(function (e){
 	      var content = $(this).val();       
 	      $('#counter').val(500-content.length);
 	
@@ -385,8 +341,7 @@ textarea {
         /* 각 input 태그 체크이벤트  */
 
         $("input").change(function(){
-        	if($(this).val()!=""){
-        		console.log("채워짐 뭔가");
+        	if($(this).val()!="" && $(this).attr("id")!='tag'){
         		var img = "<img src='https://media.istockphoto.com/vectors/tick-icon-vector-symbol-marker-red-checkmark-isolated-on-white-icon-vector-id897303186?k=6&m=897303186&s=170667a&w=0&h=Z5Z6OQfZFwns6G5saUzBQMSpBviQaKPqISaU6_dcRKY=' alt='check' width='100px' height='100px'/>"
         		$(this).parent().append(img);
         	}
@@ -414,29 +369,7 @@ textarea {
 	            console.log(2);
 	        }
 	    });
-	    
-        /* 축제진행 */
-      /* 축제진행 */
-        $("#Proceeding").click(function(){
-        	
-        	var preDate=$("input[name='preDate']").val();
-        	var startDate=$("input[name='startDate']").val(); 
-        	var endDate=$("input[name='endDate']").val();
-            
-        	var preDateCompare = new Date(startDateArr[0], parseInt(preDateArr[1])-1, preDateeArr[2]);
-            var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
-            var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
-             
-            if(startDateCompare.getTime() <= endDateCompare.getTime()) {
-            	  document.write("진행");
 
-            }else if(startDateCompare.getTime() >= endDateCompare.getTime() ){
-            	  document.write("종료");
-            }else if(preDateCompare.getTime()>startDateCompare.getTime())
-            		document.write("예정");
-                return;
-            }
-    });
         
    </script>
 

@@ -198,51 +198,12 @@ img {
 
 100%
 {
-opacity
-
-
-
-
-:
-
-
- 
-
-
-1;
--webkit-transform
-
-
-
-
-:
-
-
- 
-
-
+opacity:1;
+-webkit-transform:
 scale
-
-
-
-
 (1);
-transform
-
-
-
-
-:
-
-
- 
-
-
+transform:
 scale
-
-
-
-
 (1);
 }
 }
@@ -252,54 +213,16 @@ keyframes opacity { 0% {
 	-webkit-transform: scale(3);
 	transform: scale(3);
 }
-
 100%
 {
-opacity
-
-
-
-
-:
-
-
- 
-
-
-1;
+opacity:1;
 -webkit-transform
-
-
-
-
 :
-
-
- 
-
-
 scale
-
-
-
-
 (1);
 transform
-
-
-
-
 :
-
-
- 
-
-
 scale
-
-
-
-
 (1);
 }
 }
@@ -380,7 +303,33 @@ h1 {
 	border-color: #777;
 	transition: 0.5s;
 }
+/* 해시태그 */
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #777;
+        color: #000;
+    }
 
+    .tag-item:hover {
+        background-color: #262626;
+        color: #fff;
+    }
+    ul#tag-list {
+        padding: 16px 0;
+    }
+
+    ul#tag-list li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
 /*our-team-main*/
 </style>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
