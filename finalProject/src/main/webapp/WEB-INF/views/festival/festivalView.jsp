@@ -416,18 +416,21 @@ h1 {
 
 							</div>
 							<p class="product-description">
+							<button style="background-color: red; color: #fff; text-align: center;">
+								${festival.festival_Proceeding }
+							</button>
 							<p class="text-break">
 								${festival.festival_Content }
 							</p>
 
 							<div class="action" style="display: inline-block;">
 								<button class="add-to-cart btn btn-default" type="button">
-							 	<a href="#" class="bookmark"> <span class="icon-heart"></span></a>
+							 	<a href="#" class="bookmark"> <span class="icon-heart" id="count" name="count"></span></a>
 								</button>
 							</div>
 							<div style="display: inline-block;">
 							<p class="vote">
-								<strong>91명</strong> 오늘 이 글에 좋아요를 누른 회원수 입니다. <strong>(87
+								<strong>${festival.festival_Count}</strong> 오늘 이 글에 좋아요를 누른 회원수 입니다. <strong>(87
 									votes)</strong>
 							</p>
 							</div>
@@ -645,6 +648,12 @@ h1 {
 			alert('복사되었습니다.');
 		});
 	</script>
+	<script>
+		
+	</script>
+	
+	
+	
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

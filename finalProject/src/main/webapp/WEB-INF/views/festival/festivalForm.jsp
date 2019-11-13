@@ -151,13 +151,7 @@ textarea {
 										<input id="festival_Title" name="festival_Title" type="text" placeholder="00축제">
 									</h3>
 									<div style="display: inline-block">
-										<select id="Proceeding" name="Proceeding">
-											<optgroup label="선택" >
-												<option value="예정">예정</option>
-												<option value="진행">진행</option>
-												<option value="종료">종료</option>
-											</optgroup>
-										</select>
+										
 									</div>
 									<div class="rating">
 										<div class="stars">
@@ -415,28 +409,7 @@ textarea {
 	        }
 	    });
 	    
-        /* 축제진행 */
-      /* 축제진행 */
-        $("#Proceeding").click(function(){
-        	
-        	var preDate=$("input[name='preDate']").val();
-        	var startDate=$("input[name='startDate']").val(); 
-        	var endDate=$("input[name='endDate']").val();
-            
-        	var preDateCompare = new Date(startDateArr[0], parseInt(preDateArr[1])-1, preDateeArr[2]);
-            var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
-            var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
-             
-            if(startDateCompare.getTime() <= endDateCompare.getTime()) {
-            	  document.write("진행");
-
-            }else if(startDateCompare.getTime() >= endDateCompare.getTime() ){
-            	  document.write("종료");
-            }else if(preDateCompare.getTime()>startDateCompare.getTime())
-            		document.write("예정");
-                return;
-            }
-    });
+     
         
    </script>
 
