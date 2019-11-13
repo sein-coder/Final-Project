@@ -58,8 +58,8 @@ public class FestivalController {
 		  File dir=new File(saveDir); if(!dir.exists())
 		  logger.debug("폴더생성 "+dir.mkdirs());
 		  
-		  String[] startdate = festival.getFestival_EndDate().split("-");
-		  String[] enddate = festival.getFestival_StartDate().split("-");
+		  String[] startdate = festival.getFestival_StartDate().split("-");
+		  String[] enddate = festival.getFestival_EndDate().split("-");
 		  
 		  //날짜비교 로직
 		  
@@ -70,7 +70,7 @@ public class FestivalController {
 		  
 		  Calendar calendar2 = Calendar.getInstance();
 		  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1])-1, Integer.parseInt(enddate[2]));
-
+		  
 		  if(nowdate.compareTo(calendar1) >= 0) {
 			  if(nowdate.compareTo(calendar2) <= 0) {
 				  festival.setFestival_Proceeding("진행");
@@ -158,8 +158,8 @@ public class FestivalController {
 		  File dir=new File(saveDir); if(!dir.exists())
 		  logger.debug("폴더생성 "+dir.mkdirs());
 		  
-		  String[] startdate = festival.getFestival_EndDate().split("-");
-		  String[] enddate = festival.getFestival_StartDate().split("-");
+		  String[] startdate = festival.getFestival_StartDate().split("-");
+		  String[] enddate = festival.getFestival_EndDate().split("-");
 		  
 		  //날짜비교 로직
 		  
@@ -171,6 +171,8 @@ public class FestivalController {
 		  Calendar calendar2 = Calendar.getInstance();
 		  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1])-1, Integer.parseInt(enddate[2]));
 
+		  System.out.println(calendar1.getTime());
+		  
 		  if(nowdate.compareTo(calendar1) >= 0) {
 			  if(nowdate.compareTo(calendar2) <= 0) {
 				  festival.setFestival_Proceeding("진행");

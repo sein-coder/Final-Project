@@ -180,14 +180,14 @@ textarea {
 										<div class="alert alert-danger1">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-											<input id="festival_StartDate" name="festival_StartDate" type="date" value="${festival.festival_StartDate}" />
+											<input id="festival_StartDate" name="festival_StartDate" type="date" value=${festival.festival_StartDate} />
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-											<input id="festival_EndDate" name="festival_EndDate" type="date" value="${festival.festival_EndDate}" />
+											<input id="festival_EndDate" name="festival_EndDate" type="date" value=${festival.festival_EndDate} />
 										</div>
 									</td>
 								</tr>
