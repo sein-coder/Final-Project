@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.letEatGo.order.model.dao.OrderDao;
 import com.kh.letEatGo.order.model.vo.Menu;
+import com.kh.letEatGo.order.model.vo.Order;
 import com.kh.letEatGo.order.model.vo.Review;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
@@ -61,5 +62,13 @@ public class OrderServiceImpl implements OrderService {
 		List<Review> list = dao.selectReview(session, partner_No);
 		return list;
 	}
+
+	@Override
+	public int insertOrder(Order order) {
+		int result = dao.insertOrder(session, order);
+		return result;
+	}
+	
+	
 
 }

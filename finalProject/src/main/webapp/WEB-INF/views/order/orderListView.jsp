@@ -266,6 +266,44 @@ function changeValue(elementInput){
 
 SetRatingStar();
 
+// 결제포트 실행전 첫 번째 모달 숨기기
+function fadeModal(){
+	$('#payModal').modal('hide');
+	var windowWidth = 650;
+	var windowHeight = 650;
+	var windowLeft = parseInt((screen.availWidth/2) - (windowWidth/2));
+	var windowTop = parseInt((screen.availHeight/2) - (windowHeight/2));
+	var windowSize = "width=" + windowWidth + ",height=" + windowHeight + ",left=" + windowLeft + ",top=" + windowTop + ",screenX=" + windowLeft + ",screenY=" + windowTop;
+	var open = window.open('${path}/order/payment.do?order_Price='+payment, "_target ", windowSize);
+	
+}
+
+function toOrderHistory(){
+	var orderlists = "";
+	
+	$("#list tr.orderdata").each(function(){
+		orderlists += $(this).children().eq(0).text() + "-" + $(this).children().eq(1).text() + "/";
+	})
+	
+	$.ajax({
+		url : "${path}/order/orderEnd",
+		type: "POST",
+		data: {
+			"order_List" : orderlists,
+			"add_Request" : $("#add_request").val(),
+			"order_Price" : payment,
+			"reservation_YN" : "Y",
+			"partner_No" : ${partner.partner_No},
+			"member_No" : ${loginMember.member_No}
+		},
+		success : function(data){
+			alert("결제 정보가 전송 중 입니다.");
+		},
+		fail : function(data){
+			alert("결제 처리에 실패하였습니다. 관리자에게 문의하세요.");
+		}
+	})
+}
 </script>
 <!-- 아임포트 cdn -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
