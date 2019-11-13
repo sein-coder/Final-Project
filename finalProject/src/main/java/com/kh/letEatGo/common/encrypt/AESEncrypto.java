@@ -14,8 +14,6 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-import org.springframework.stereotype.Component;
-
 
 //@Component
 public class AESEncrypto implements MyEncrypt {

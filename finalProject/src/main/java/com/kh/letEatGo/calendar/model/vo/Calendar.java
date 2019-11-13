@@ -1,8 +1,5 @@
 package com.kh.letEatGo.calendar.model.vo;
 
-import java.sql.Date;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

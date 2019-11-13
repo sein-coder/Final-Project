@@ -6,13 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.letEatGo.map.model.service.MapService;
-import com.kh.letEatGo.map.model.vo.ZoneMap;
 import com.kh.letEatGo.map.model.vo.TruckMap;
+import com.kh.letEatGo.map.model.vo.ZoneMap;
 
 @Controller
 public class MapController {
