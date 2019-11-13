@@ -116,7 +116,7 @@ textarea {
 		<form
 			id="frm"
 			action="${pageContext.request.contextPath}/festival/festivalFormEnd.do"
-			method="post" enctype="multipart/form-data">
+			method="post">
 
 			<div class="site-section pb-0">
 
@@ -131,34 +131,19 @@ textarea {
 							<div class="wrapper row" style="background-color: white;">
 								<div class="preview col-md-5">
 
-									<div class="preview-pic ">
-										<div class="tab-pane active-ml-3" id="pic-1">
+									<div class="preview-pic tab-content">
+										<div class="tab-pane active" id="pic-1">
 											<img src="http://placekitten.com/400/252" />
-											
-											
+											<p>파일 올리기</p>
 										</div>
-										<!-- 썸네일 부분   -->
-										<div class="pull-left ml-4 mt-2 " style="display:inline;">
-											<input type="file" value="파일 선택" name="upFile" id="upFile"/>
-										</div>
-										
 									</div>
 									<div style="margin-top: 10px; margin-bottom: 10px;"></div>
 
 								</div>
-								<div class="details col-md-7" style="display: inline-block">
+								<div class="details col-md-7">
 									<h3 class="product-title">
-										<input id="festival_Title" name="festival_Title" type="text" placeholder="00축제">
+										<input name="festival_Title" type="text" placeholder="00축제">
 									</h3>
-									<div style="display: inline-block">
-										<select id="Proceeding" name="Proceeding">
-											<optgroup label="선택" >
-												<option value="예정">예정</option>
-												<option value="진행">진행</option>
-												<option value="종료">종료</option>
-											</optgroup>
-										</select>
-									</div>
 									<div class="rating">
 										<div class="stars">
 											<span class="fa fa-star checked"></span> <span
@@ -171,7 +156,7 @@ textarea {
 									<p class="product-description" />
 
 									<div>
-										<textarea name="festival_Content" id="festival_Content" cols="40"
+										<textarea name="festival_Content" id="contentText" cols="40"
 											rows="40" placeholder="축제 내용을 입력하세요"></textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
@@ -189,8 +174,6 @@ textarea {
 											</ul>
 											<input type="text" id="tag" size="7" placeholder="태그입력" />
 										</div>
-										
-										
 									</div>
 								</div>
 							</div>
@@ -221,14 +204,14 @@ textarea {
 										<div class="alert alert-danger1">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-											<input id="festival_StartDate" name="festival_StartDate" type="date" />
+											<input name="festival_StartDate" type="date" />
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-											<input id="festival_EndDate" name="festival_EndDate" type="date" />
+											<input name="festival_EndDate" type="date" />
 										</div>
 									</td>
 								</tr>
@@ -237,15 +220,15 @@ textarea {
 										<div class="alert alert-danger3">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">전화번호</a> <strong>:</strong>
-											<input type="tel" id="festival_Phone" name="festival_Phone"
-												pattern="[0-9]{3}-[0-9]{3}{4}-[0-9]{4}" required>
+											<input type="tel" name="festival_Phone"
+												pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">홈페이지</a> <strong>:</strong>
-											<input type="url" id="festival_Homepage" name="festival_Homepage">
+											<input type="url" name="festival_Homepage">
 
 										</div>
 									</td>
@@ -255,7 +238,7 @@ textarea {
 										<div class="alert alert-danger4" style="display: inline-block">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 소</a> <strong>:</strong> <input
-												type="text" name="festival_Address" id="festival_Address">
+												type="text" name="festival_Address">
 										</div>
 
 									</td>
@@ -263,7 +246,7 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 최</a> <strong>:</strong> <input
-												type="text" name="festival_Host" id="festival_Host">
+												type="text" name="festival_Host">
 										</div>
 									</td>
 								</tr>
@@ -272,14 +255,14 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 관</a> <strong>:</strong> <input
-												type="text" name="festival_Sub" id="festival_Sub">
+												type="text" name="festival_Sub">
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">이용요금</a> <strong>:</strong>
-											<input type="text" name="festival_Price" id="festival_Price">
+											<input type="text" name="festival_Price">
 										</div>
 									</td>
 								</tr>
@@ -315,10 +298,10 @@ textarea {
 	/*글자 수 제한*/
 			$('#contentText').keyup(function (e){
 	      var content = $(this).val();       
-	      $('#counter').val(500-content.length);
+	      $('#counter').val(100-content.length);
 	
-	          if(content.length > 500) {
-	            $(this).val($(this).val().substring(0, 500));
+	          if(content.length > 100) {
+	            $(this).val($(this).val().substring(0, 100));
 	          }
 	      });
       
@@ -391,58 +374,9 @@ textarea {
         		$(this).parent().append(img);
         	}
         });
-        
-        /* [썸네일] */
-        
-	    $('#upFile').on('change',function (e) {
-	        var get_file = e.target.files;
-	 
-	        var image = $("#pic-1").children();
-	        var reader = new FileReader();
-	        
-	        reader.onload = (function (aImg) {
-	            console.log(1);
-	            return function (e) {
-	                console.log(3);
-	                aImg.attr("src",e.target.result);
-	                aImg.attr({"width":"400px","height":"252px"});
-	            }
-	        })(image)
-	 
-	        if(get_file){
-	            reader.readAsDataURL(get_file[0]);
-	            console.log(2);
-	        }
-	    });
-	    
-        /* 축제진행 */
-      /* 축제진행 */
-        $("#Proceeding").click(function(){
-        	
-        	var preDate=$("input[name='preDate']").val();
-        	var startDate=$("input[name='startDate']").val(); 
-        	var endDate=$("input[name='endDate']").val();
-            
-        	var preDateCompare = new Date(startDateArr[0], parseInt(preDateArr[1])-1, preDateeArr[2]);
-            var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
-            var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
-             
-            if(startDateCompare.getTime() <= endDateCompare.getTime()) {
-            	  document.write("진행");
-
-            }else if(startDateCompare.getTime() >= endDateCompare.getTime() ){
-            	  document.write("종료");
-            }else if(preDateCompare.getTime()>startDateCompare.getTime())
-            		document.write("예정");
-                return;
-            }
-    });
-        
-   </script>
-
-
+	
+	</script>
 	</section>
-
 
 
 

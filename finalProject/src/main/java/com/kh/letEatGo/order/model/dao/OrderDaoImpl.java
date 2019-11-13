@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.letEatGo.order.model.vo.Menu;
+import com.kh.letEatGo.order.model.vo.Order;
 import com.kh.letEatGo.order.model.vo.Review;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
@@ -66,5 +67,12 @@ public class OrderDaoImpl implements OrderDao {
 		List<Review> list = session.selectList("order.selectReview", partner_No);
 		return list;
 	}
+
+	@Override
+	public int insertOrder(SqlSessionTemplate session, Order order) {
+		int result = session.insert("order.insertOrder", order);
+		return result;
+	}
+	
 
 }

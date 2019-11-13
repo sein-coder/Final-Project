@@ -4,38 +4,13 @@
   	<insert id="insertPartner" parameterType="partner">
   		INSERT INTO PARTNER VALUES(seq_PARTNER_NO.nextval,#{partner_Id},#{partner_Password},#{partner_TruckName},#{profile_Old},#{profile_Re},#{partner_Address},#{partner_Email},#{partner_Phone},#{partner_Menu}, #{partner_Permission_No})
   	</insert>
-
-  	<!-- 파트너 회원 정보 조회 -->
-  	<select id="selectPartnerOne" parameterType="partner" resultType="partner">
+  	<select id="selectPartner" parameterType="partner" resultType="partner">
   		select * from PARTNER WHERE PARTNER_ID=#{partner_Id}
   	</select>
-  	<select id="selectPartnerNo" parameterType="partner" resultType="partner">
-  		select * from PARTNER WHERE partner_Permission_No=#{partner_Permission_No}
+  	
+  	<select id="selectPartnerOne" parameterType="partner" resultType="partner">
+  	 select * from partner 
+  	 <!--  WHERE PARTNERID=#{partnerId}-->
   	</select>
-  	
-  	
-  	<!-- 파트너 회원 정보 수정 -->
-  	<update id="updatePartnerPage">
-  	  UPDATE PARTNER SET
-  	                     PARTNER_ID=#{partner_Id},
-  	                     PARTNER_TRUCKNAME=#{partner_TruckName},
-  	                     PARTNER_ADDRESS=#{partner_Address},
-  	                     PARTNER_EMAIL=#{partner_Email},
-  	                     PARTNER_PHONE=#{partner_Phone},
-  	                     PARTNER_PERMISSION_NO=#{partner_Permission_No} where PARTNER_ID=#{partner_Id}
-  	</update>
-  	
-  
-  	<select id="selectTypeCount" resultType="java.util.HashMap">
-  		SELECT PARTNER_MENU, COUNT(*) AS MENU_COUNT
-  		FROM PARTNER
-  		GROUP BY PARTNER_MENU
-  	</select>
-
-  	<!-- 파트너 회원 탈퇴  -->
-  	<delete id="deletePartnerPage">
-  	  DELETE FROM PARTNER WHERE PARTNER_ID=#{partner_Id} and PARTNER_PASSWORD=#{partner_Password}
-  	</delete>
-
   
 </mapper>

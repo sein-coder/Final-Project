@@ -3,10 +3,13 @@ package com.kh.letEatGo.order.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.letEatGo.common.page.PageFactory;
 import com.kh.letEatGo.order.model.service.OrderService;
 import com.kh.letEatGo.order.model.vo.Menu;
+import com.kh.letEatGo.order.model.vo.Order;
 import com.kh.letEatGo.order.model.vo.Review;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
@@ -45,8 +49,6 @@ public class OrderController {
 			p.setReviewCount(service.selectReviewCount(p.getPartner_No()));
 		}
 		
-		System.out.println(menuList);
-		
 		mv.addObject("list", list);
 		mv.addObject("menuList", menuList);
 		mv.addObject("totalCount", totalCount);
@@ -75,20 +77,40 @@ public class OrderController {
 		return mv;
 	}
 	
-	@RequestMapping("/order/payment")
-	public String payment(@RequestParam int partner_No, @RequestParam String orderList) {
-		System.out.println(partner_No);
-		String[] st = orderList.split("/");
-		String[] result = {};
-		for(String s : st) {
-			result = s.split(":");
-			for(String str : result) {
-				System.out.println(str);
-			}
-		}
+	@RequestMapping("/order/payment.do")
+	public String payment(
+			@RequestParam(required=false) int order_Price, Model m) {
+		System.out.println(order_Price);
+		m.addAttribute("order_Price", order_Price);
 		return "order/payment";
 	}
 	
+	@RequestMapping("/order/orderEnd") 
+	public String orderEnd(Order o, HttpSession session) {
+		System.out.println(o);
+		session.setAttribute("order", o);
+		return "redirect:/order/complete";
+	}
+	
+	@RequestMapping("/order/complete")
+	public String orderComplete(HttpSession session, Model model) {
+		Order order = (Order)session.getAttribute("order");
+		int result = service.insertOrder(order);
+		
+		String msg = "";
+		String loc = "/order/orderListView?partner_No="+order.getPartner_No();;
+		if(result > 0) {
+			msg = "결제가 완료 되었습니다.";
+		} else {
+			msg = "결제 데이터 전송 중 오류 발생 - 관리자에게 문의하세요.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("loc", loc);
+		return "common/msg";
+	}
+	 
+	  
+	  
 	/*
 	 * @RequestMapping("/order/searchConsole") public List<Partner> searchConsole(
 	 * 

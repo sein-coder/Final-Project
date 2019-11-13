@@ -1,41 +1,30 @@
 package com.kh.letEatGo.festival.model.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.io.Console;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.festival.model.service.FestivalService;
 import com.kh.letEatGo.festival.model.vo.Festival;
 
 
-
-
 @Controller
 public class FestivalController {
-	private Logger logger =LoggerFactory.getLogger(FestivalController.class);
 	
 	@Autowired
 	private FestivalService service;
 	
 	@RequestMapping("/festival/festivalList")
-	//여기 어제걸로 되돌려놓을것@!!!!!!!
-	public ModelAndView selectfestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
+	public ModelAndView selectfestival() {
 		ModelAndView mv=new ModelAndView();
-		List<Festival> list = service.selectFestival();
-		mv.addObject("list", list);
+	
+		List<Festival> list=service.selectFestival();
+		
+		mv.addObject("list",list);
 		mv.setViewName("festival/festivalList");
 		return mv;
 	}
@@ -48,35 +37,23 @@ public class FestivalController {
 	}
 	
 	@RequestMapping("/festival/festivalFormEnd.do")
-	public ModelAndView insertFestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
+	public ModelAndView insertFestival(Festival festival) {
 		ModelAndView mv=new ModelAndView();		
+		int result=service.insertFestival(festival);
 		
-		String saveDir = req.getSession().getServletContext()
-				.getRealPath("/resources/images/festival");
- 		
+		String msg="";
+		String loc="/festival/festivalList";
 		
-		  File dir=new File(saveDir); if(!dir.exists())
-		  logger.debug("폴더생성 "+dir.mkdirs());
-		  
-		  
-		  if(!upFile.isEmpty()) {
-			   String oriFileName=upFile.getOriginalFilename();			   festival.setFestival_Thumbnail(oriFileName);
-		   try { 
-			  //transferTo는 multipa 제공 			   upFile.transferTo(new File(saveDir+"/"+oriFileName));
-		   
-		  }catch(IOException  e) {
-			   e.printStackTrace();
-			   }
-		   }
-		  
-		  try {
-			   service.insertFestival(festival);
-		 }catch(Exception e) {
-		  logger.debug("에러임");
-		 
+		if(result>0) {
+			msg="축제 등록을 성공하셨습니다.";
+		}else {
+			msg="축제 등록을 실패하셨습니다.";
 		}
 		
-		mv.setViewName("redirect:/festival/festivalList");
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		
+		mv.setViewName("common/msg");
 		return mv;
 	}
 	
@@ -86,7 +63,8 @@ public class FestivalController {
 		Festival festival=service.selectFestivalOne(festival_No);
 		mv.addObject("festival",festival);
 		mv.setViewName("festival/festivalView");
-	
+		
+		System.out.println(mv);
 		
 		return mv;
 	}
@@ -111,50 +89,6 @@ public class FestivalController {
 		
 		mv.setViewName("common/msg");
 		
-		return mv;
-	}
-	
-	@RequestMapping("/festival/updateFestival")
-	public ModelAndView updateFestival(int festival_No) {
-		ModelAndView mv=new ModelAndView();
-		
-		Festival festival=service.selectFestivalOne(festival_No);
-		
-		mv.addObject("festival",festival);
-		mv.setViewName("/festival/festivalUpdateForm");
-		return mv;
-	}
-	
-	@RequestMapping("/festival/festivalUpdateFormEnd.do")
-	public ModelAndView updateFormFestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
-		ModelAndView mv=new ModelAndView();
-	
-		String saveDir = req.getSession().getServletContext()
-				.getRealPath("/resources/images/festival"); 		
-		
-		  File dir=new File(saveDir); if(!dir.exists())
-		  logger.debug("폴더생성 "+dir.mkdirs());
-		  
-		  
-		  if(!upFile.isEmpty()) { 
-			  String oriFileName=upFile.getOriginalFilename();
-			  festival.setFestival_Thumbnail(oriFileName); 
-		  try { 
-			  //transferTo는 multipart 제공 
-			  upFile.transferTo(new File(saveDir+"/"+oriFileName)); 
-		  }
-		  catch(IOException e) {
-			  e.printStackTrace(); 
-			  } 
-		  }
-		  
-		  try {  
-			  service.updateFormFestival(festival); 
-		}catch(Exception e) {
-		  logger.debug("에러임");
-		 
-		} ;
-		mv.setViewName("common/msg");
 		return mv;
 	}
 	
