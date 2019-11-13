@@ -198,51 +198,12 @@ img {
 
 100%
 {
-opacity
-
-
-
-
-:
-
-
- 
-
-
-1;
--webkit-transform
-
-
-
-
-:
-
-
- 
-
-
+opacity:1;
+-webkit-transform:
 scale
-
-
-
-
 (1);
-transform
-
-
-
-
-:
-
-
- 
-
-
+transform:
 scale
-
-
-
-
 (1);
 }
 }
@@ -252,54 +213,16 @@ keyframes opacity { 0% {
 	-webkit-transform: scale(3);
 	transform: scale(3);
 }
-
 100%
 {
-opacity
-
-
-
-
-:
-
-
- 
-
-
-1;
+opacity:1;
 -webkit-transform
-
-
-
-
 :
-
-
- 
-
-
 scale
-
-
-
-
 (1);
 transform
-
-
-
-
 :
-
-
- 
-
-
 scale
-
-
-
-
 (1);
 }
 }
@@ -380,7 +303,33 @@ h1 {
 	border-color: #777;
 	transition: 0.5s;
 }
+/* 해시태그 */
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #777;
+        color: #000;
+    }
 
+    .tag-item:hover {
+        background-color: #262626;
+        color: #fff;
+    }
+    ul#tag-list {
+        padding: 16px 0;
+    }
+
+    ul#tag-list li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
 /*our-team-main*/
 </style>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -422,16 +371,15 @@ h1 {
 							<p class="text-break">
 								${festival.festival_Content }
 							</p>
-
 							<div class="action" style="display: inline-block;">
 								<button class="add-to-cart btn btn-default" type="button">
-							 	<a href="#" class="bookmark"> <span class="icon-heart" id="count" name="count"></span></a>
+							 	<a href="#" class="bookmark"> <span class="icon-heart" id="heart" name="heart"></span></a>
 								</button>
 							</div>
 							<div style="display: inline-block;">
 							<p class="vote">
-								<strong>${festival.festival_Count}</strong> 오늘 이 글에 좋아요를 누른 회원수 입니다. <strong>(87
-									votes)</strong>
+								<b id="count">${festival.festival_Count}</b>이 글에 좋아요를 누른 회원수 입니다. 
+								<b id="count">(${festival.festival_Count} votes)</b>
 							</p>
 							</div>
 
@@ -649,6 +597,18 @@ h1 {
 		});
 	</script>
 	<script>
+		/* 좋아요 누른 횟수 
+		<div class="action" style="display: inline-block;">
+			<button class="add-to-cart btn btn-default" type="button">
+		 	<a href="#" class="bookmark"> <span class="icon-heart" id="heart" name="heart"></span></a>
+			</button>
+		</div>
+		<p class="vote">
+		<b id=count>${festival.festival_Count}</b>이 글에 좋아요를 누른 회원수 입니다. <b>(
+				${festival.festival_Count} votes)</b>
+		</p>
+		
+		*/
 		
 	</script>
 	

@@ -3,7 +3,7 @@ package com.kh.letEatGo.festival.model.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -135,25 +135,44 @@ public class FestivalController {
 		  File dir=new File(saveDir); if(!dir.exists())
 		  logger.debug("폴더생성 "+dir.mkdirs());
 		  
+		  String[] enddate = festival.getFestival_EndDate().split("-");
+		  String[] startdate = festival.getFestival_StartDate().split("-");
 		  
-		  if(!upFile.isEmpty()) { 
-			  String oriFileName=upFile.getOriginalFilename();
-			  festival.setFestival_Thumbnail(oriFileName); 
-		  try { 
-			  //transferTo는 multipart 제공 
-			  upFile.transferTo(new File(saveDir+"/"+oriFileName)); 
-		  }
-		  catch(IOException e) {
-			  e.printStackTrace(); 
-			  } 
-		  }
+		  Calendar nowdate = Calendar.getInstance();
 		  
-		  try {  
-			  service.updateFormFestival(festival); 
-		}catch(Exception e) {
-		  logger.debug("에러임");
-		 
-		} ;
+		  Calendar calendar1 = Calendar.getInstance();
+		  calendar1.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1]), Integer.parseInt(enddate[2]));
+		  
+		  Calendar calendar2 = Calendar.getInstance();
+		  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1]), Integer.parseInt(enddate[2]));
+		  
+		  System.out.println(nowdate);
+		  
+//		  if(upFile!=null && !upFile.isEmpty()) { 
+//			  String oriFileName=upFile.getOriginalFilename();
+//			  festival.setFestival_Thumbnail(oriFileName); 
+//			  try { 
+//				  //transferTo는 multipart 제공 
+//				  upFile.transferTo(new File(saveDir+"/"+oriFileName)); 
+//			  }
+//			  catch(IOException e) {
+//				  e.printStackTrace(); 
+//			  } 
+//		  }
+//        int result = service.updateFormFestival(festival); 
+//		
+//		String msg="";
+//		String loc="/festival/festivalList";
+//		
+//		if(result>0) {
+//			msg="삭제를 성공하였습니다.";
+//		}else {
+//			msg="삭제를 실패하였습니다.";
+//		}
+//		
+//		mv.addObject("msg",msg);
+//		mv.addObject("loc",loc);
+        
 		mv.setViewName("common/msg");
 		return mv;
 	}

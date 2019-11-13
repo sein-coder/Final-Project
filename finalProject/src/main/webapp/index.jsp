@@ -12,12 +12,14 @@
 	min-height: 750px;"
 	data-aos="fade" data-stellar-background-ratio="0.5">
 	<div class="container">
-		<div class="row align-items-center justify-content-center text-center" style="min-height: 750px;">
+		<div class="row align-items-center justify-content-center text-center"
+			style="min-height: 750px;">
 
 			<div class="col-md-10">
 
 				<!-- 텍스트 타이핑 효과 -->
-				<div class="row justify-content-center mb-4" style="margin-top: 9rem!important">
+				<div class="row justify-content-center mb-4"
+					style="margin-top: 9rem !important">
 					<div class="col-md-12 text-center">
 						<h1 data-aos="fade-up">
 							렛잇고만의 <span class="typed-words"></span> 푸드트럭
@@ -62,12 +64,10 @@
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> 
-							<span class="icon mb-3">
-								<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
-							</span> 
-							<span class="caption mb-2 d-block">중식</span> 
-							<span class="number">0</span>
+						<a href="#" class="popular-category h-100"> <span
+							class="icon mb-3"> <img
+								src="${pageContext.request.contextPath }/resources/icon/중식.png">
+						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -100,8 +100,6 @@
 						</a>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -122,7 +120,8 @@
 				<div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
 					<div class="how-it-work-step">
 						<div class="img-wrap">
-							<img src="${pageContext.request.contextPath }/resources/images/소비자.png"
+							<img
+								src="${pageContext.request.contextPath }/resources/images/소비자.png"
 								alt="Free website template by Free-Template.co"
 								class="img-fluid">
 						</div>
@@ -168,133 +167,132 @@
 	<!-- 갤러리 시작 -->
 	<div class="site-section" style="padding: 0">
 		<div class="container">
-				<div class="row">
-					<div class="col-md-12 d-flex justify-content-center">
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="1">Festival</button>
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="2">Food</button>
-					</div>
-					<!-- Grid column -->
+			<div class="row">
+				<div class="col-md-12 d-flex justify-content-center">
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="1">Festival</button>
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="2">Food</button>
 				</div>
-				<!-- Grid row -->
-				<div class="gallery" id="gallery" style="color: white;">
-				
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
-							<img class="img-fluid"
-								src="${pageContext.request.contextPath }/resources/images/main_Data/S_2.png"
-								alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴1<span>부메뉴1</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+				<!-- Grid column -->
+			</div>
+			<!-- Grid row -->
+			<div class="gallery" id="gallery" style="color: white;">
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_2.png"
+							alt="Card image cap">
+						<figcaption>
+							<h2>
+								메뉴1<span>부메뉴1</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
+
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_1.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴2<span>부메뉴2</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴2<span>부메뉴2</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_4.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴3<span>부메뉴3</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴3<span>부메뉴3</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/S_6.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴4<span>부메뉴4</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴4<span>부메뉴4</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/S_1.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴5<span>부메뉴5</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴5<span>부메뉴5</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_3.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴6<span>부메뉴6</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
-
+						<figcaption>
+							<h2>
+								메뉴6<span>부메뉴6</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 				<!-- Grid row -->
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 팀원 소개 파트 -->
 	<div class="site-section bg-light" style="padding: 0">
 		<div class="container">
