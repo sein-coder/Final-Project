@@ -82,7 +82,6 @@
 
     </div>
     </div>        
-
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
@@ -90,15 +89,18 @@
 function selectMap(str) {
 	var callback = function(result, status) {
 	   if (status === kakao.maps.services.Status.OK) {
-	   	 var result = result[0];
-	       console.log(result);
+	   	   var result = result[0];
 	       var coords = new kakao.maps.LatLng(result.y, result.x);
-	       console.log(result.y+" "+result.x);
 	       map.relayout();
 	       map.setCenter(coords);
 	   }
 	}
+	places.keywordSearch(str, callback);
 }
+
+
+
+
 var areas=[];
 <c:forEach items="${zonelist}" var="zone">
 var area = 
@@ -134,10 +136,10 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-/* var marker = new daum.maps.Marker({
-     position: new daum.maps.LatLng(37.537187, 127.005476),
+var marker = new daum.maps.Marker({
+    /* position: new daum.maps.LatLng(37.537187, 127.005476), */
     map: map
-}) */
+})
 var places = new kakao.maps.services.Places();
 for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
@@ -221,125 +223,7 @@ var callback = function(result, status) {
 };
 places.keywordSearch(document.getElementById("sample5_address").value, callback);
 }
-
-
 var positions=[];
-
-$(function(){
-	$.ajax({
-		url : "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/foodTruckInfo/1/510/",
-		type : "get",
-		data : {
-		},
-		success : function(data){
-			for(var i=0; i<40; i++){
-			var geocoder = new kakao.maps.services.Geocoder(), // 좌표계 변환 객체를 생성합니다
-			wtmX = data['foodTruckInfo']['row'][i]['XCODE'], // 변환할 WTM X 좌표 입니다
-			wtmY = data['foodTruckInfo']['row'][i]['YCODE']; // 변환할 WTM Y 좌표 입니다
-			
-			geocoder.transCoord(wtmX, wtmY, transCoordCB, {
-			input_coord: kakao.maps.services.Coords.WTM, // 변환을 위해 입력한 좌표계 입니다
-			output_coord: kakao.maps.services.Coords.WGS84 // 변환 결과로 받을 좌표계 입니다 
-			})
-			
-			function transCoordCB(result, status) {
-			if (status === kakao.maps.services.Status.OK) {
-				
-				var position = 
-			    {
-			        title: data['foodTruckInfo']['row'][i]['NM'], 
-			        latlng: new kakao.maps.LatLng(result[0].y, result[0].x),
-			        img : "",
-			        time : 	"",
-			        phone : "12345"
-			    };
-					positions.push(position);
-				console.log(positions[i]);
-				 $.each(position,function(i,item){
-			    // 마커를 변환된 위치에 표시합니다
-			    var marker = new kakao.maps.Marker({
-			        position: positions[i].latlng, // 마커를 표시할 위치입니다
-			        map: map // 마커를 표시할 지도객체입니다
-			    		})
-				}); 
-				
-			    
-			    
-			    var content = '<div class="wrap">' + 
-			    '    <div class="info">' + 
-			    '        <div class="title">' + 
-			    			position.title + 
-			    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-			    '        </div>' + 
-			    '        <div class="body">' + 
-			    '            <div class="img">' +
-			    '                <img src="" width="73" height="70">' +
-			    '           </div>' + 
-			    '            <div class="desc">' + 
-			    '                <div class="ellipsis">영업시간:</div>' + 
-			    '                <div class="jibun ellipsis">전화번호:</div>' + 
-			    '                <div><a href="" class="link">홈페이지</a></div>' + 
-			    '            </div>' + 
-			    '        </div>' + 
-			    '    </div>' +    
-			    '</div>';
-			    
-			    
-			    var overlay = new kakao.maps.CustomOverlay({
-				   	content: content,
-				   	map: map,
-				   	position: marker.getPosition()       
-			   	});
-			    
-			    
-			    function closeOverlay() {
-			       	overlay.setMap(null);     
-			     	}
-			    
-			    $.each(overlay,function(i,item){
-			    	kakao.maps.event.addListener(marker, 'click', function() {
-			    		overlay.setMap(map);
-			    		}); 
-			    });
-			    
-			    
-					}
-				}
-			}
-			
-			/* for(var i=0; i<data['foodTruckInfo']['row'].length; i++){
-				console.log(data['foodTruckInfo']['row'][i]['NM']+" : "+data['foodTruckInfo']['row'][i]['PERMISSION_NO']+" : "+
-						data['foodTruckInfo']['row'][i]['XCODE']+" : "+data['foodTruckInfo']['row'][i]['YCODE']);			 			
-			} */
-		}
-	});
-});
-
-
-
-
-/* //WTM 좌표를 WGS84 좌표계의 좌표로 변환합니다
-geocoder.transCoord(wtmX, wtmY, transCoordCB, {
-input_coord: kakao.maps.services.Coords.WTM, // 변환을 위해 입력한 좌표계 입니다
-output_coord: kakao.maps.services.Coords.WGS84 // 변환 결과로 받을 좌표계 입니다 
-}); */
-
-/* //좌표 변환 결과를 받아서 처리할 콜백함수 입니다.
-function transCoordCB(result, status) {
-
-// 정상적으로 검색이 완료됐으면 
-if (status === kakao.maps.services.Status.OK) {
-
-    // 마커를 변환된 위치에 표시합니다
-    var marker = new kakao.maps.Marker({
-        position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커를 표시할 위치입니다
-        map: map // 마커를 표시할 지도객체입니다
-    })
-}
-} */
-
-
-/* var positions=[];
 <c:forEach items="${trucklist}" var="truck">
 var position = 
     {
@@ -412,7 +296,7 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     	kakao.maps.event.addListener(markers[i], 'click', function() {
     		overlays[i].setMap(map);
     		}); 
-    }); */
+    });
    
 </script>
             
