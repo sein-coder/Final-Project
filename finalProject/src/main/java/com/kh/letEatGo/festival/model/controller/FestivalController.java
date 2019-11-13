@@ -177,4 +177,5 @@ public class FestivalController {
 		return mv;
 	}
 	
+//count추가 update문 만들기
 }

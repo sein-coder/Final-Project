@@ -123,8 +123,19 @@ textarea {
 											rows="40" placeholder="축제 내용을 입력하세요">${festival.festival_Content }</textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
-											type="text" readonly disabled value="500" name="counter"
+											type="text" readonly disabled value="2000" name="counter"
 											id="counter"></span>
+									</div>
+									<div class="action" style="display: inline-block;">
+										<button class="add-to-cart btn btn-default" type="button">
+									 		<span class="icon-heart" id="heart"></span>
+										</button>
+									</div>
+									<div style="display: inline-block;">
+									<p class="vote">
+										<b id="count">${festival.festival_Count}</b>이 글에 좋아요를 누른 회원수 입니다. 
+										<b id="count">(${festival.festival_Count} votes)</b>
+									</p>
 									</div>
 									<br>
 									<div style="display: inline-block">
@@ -263,8 +274,8 @@ textarea {
 	      var content = $(this).val();       
 	      $('#counter').val(100-content.length);
 	
-	          if(content.length > 100) {
-	            $(this).val($(this).val().substring(0, 100));
+	          if(content.length > 2000) {
+	            $(this).val($(this).val().substring(0, 2000));
 	          }
 	      });
       
@@ -359,7 +370,21 @@ textarea {
 		            console.log(2);
 		        }
 		    });
-		    
+		/* count */
+		$("#heart").click(function() {
+		    $('#count').html(function(count,val) {
+		        $.ajax({
+		            url: '/.festivalView.jsp',
+		            type: 'POST',
+		            data: 'count='+count,
+		            success: function(e) {
+		            	alert('heart를 주셨습니다.') 
+		            	$('#count').val(e.count)	
+		            }
+		        });
+        	return +val+1;
+    });
+}
         
 	</script>
 	</section>
