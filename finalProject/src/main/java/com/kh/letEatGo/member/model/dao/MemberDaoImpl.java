@@ -10,15 +10,14 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertMember(SqlSessionTemplate session, Member m) {
-		
 		return session.insert("member.insertMember",m);
 	}
 
 	@Override
 	public Member selectMemberOne(SqlSessionTemplate session, Member m) {
-		return session.selectOne("member.selectMember",m);
+		return session.selectOne("member.selectMemberOne",m);
 	}
-	
+
 	@Override
 	public int updateMemberPage(SqlSessionTemplate session, Member m) {
 		return session.update("member.updateMemberPage",m);
@@ -28,4 +27,5 @@ public class MemberDaoImpl implements MemberDao {
 	public int deleteMemberPage(SqlSessionTemplate session, Member m) {
 		return session.delete("member.deleteMemberPage",m);
 	}
+
 }

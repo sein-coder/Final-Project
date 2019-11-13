@@ -46,11 +46,18 @@ public class PageController {
 		return "mypage/partnerPage";
 	}
 	
+	@RequestMapping("/pageList")
+	public String pageList() {
+		return "mypage/list";
+	}
+	
+	
 	@RequestMapping("/adminPage")
 	public String adminPage() {
 		return "mypage/adminPage";
 	}
 	
+
 	@RequestMapping("/member/updateMember") //멤버 회원 정보 수정
 	public String updateMemberPage(Member m,Model model) {
 		
@@ -131,18 +138,6 @@ public class PageController {
 			return "common/msg";
 			
 		}
-	 
-	 @RequestMapping("/deleteMember")
-	 public String deleteMember() {
-		 return "mypage/deleteMember";
-	 }
-	 
-	 @RequestMapping("/deleteMemberPage")
-	 public String deleteMemberPage() {
-		 
-		 return "";
-		 
-	 }
 	  
 	
 

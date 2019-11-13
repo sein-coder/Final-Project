@@ -13,5 +13,6 @@
 		<typeAlias type="com.kh.letEatGo.map.model.vo.TruckMap" alias="truckmap"/>
 		<typeAlias type="com.kh.letEatGo.calendar.model.vo.Calendar" alias="calendar"/>
 		<typeAlias type="com.kh.letEatGo.order.model.vo.Review" alias="review"/>
+		<typeAlias type="com.kh.letEatGo.mainPage.model.vo.MainPage_Data" alias="mainpage_data"/>
 	</typeAliases>
 </configuration>

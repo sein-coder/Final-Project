@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class Order {
 
-	private int order_No;
-	private String order_List;
-	private String add_Request;
-	private int order_Price;
-	private Date order_Time;
-	private String reservation_YN;
-	private int partner_No;
-	private int member_No;
+	private int order_no;
+	private String order_list;
+	private String add_request;
+	private int order_price;
+	private Date order_time;
+	private String reservation_yn;
+	private int partner_no;
+	private int member_no;
 	
 }

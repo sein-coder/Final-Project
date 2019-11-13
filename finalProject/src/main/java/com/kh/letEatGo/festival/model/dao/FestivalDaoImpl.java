@@ -29,10 +29,14 @@ public class FestivalDaoImpl implements FestivalDao {
 	public int deleteFestival(SqlSessionTemplate session,int festival_No) {
 		return session.delete("festival.deleteFestival", festival_No);
 	}
-	
+
 	@Override
 	public int updateFormFestival(SqlSessionTemplate session, Festival festival) {
 		return session.update("festival.updateFormFestival", festival);
 	}
+	
+	
+	
+
 	
 }

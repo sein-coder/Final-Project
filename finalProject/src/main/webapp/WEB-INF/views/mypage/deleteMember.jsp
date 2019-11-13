@@ -6,70 +6,20 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+
+
+
 <div class="site-section">
    <div class="container">
       <div class="row justify-content-center mb-8">
-        <div class="col">
-      
-
-
-	<form id="deleteMember" name="deleteMember">
-		<table>
-			<tr>
-				<td scope="col">아이디</td>
-				<td><input type="text" name="member_Id"></td>
-			</tr>
-			<tr>
-				<td scope="col">비밀번호</td>
-				<td><input type="text" name="member_Password"></td>
-			</tr>
-			<tr>
-				<td colspan=2 align="center"><a href="#" id="deleteMember">탈퇴하기</a></td>
-			</tr>
-			
-			</table>
-	    </form>
-	    
-	    <script>
-	    function deleteMember(){
-	    	
-	    	$.ajax({
-	    		url:"${pageContext.request.contextPath}/deleteMemberPage",
-	    		type: post,
-	    		data: {loginMember:'${loginMember.member_Id}'},
-	    		success:function(result){
-	    			if(result=='true'){
-	    				
-	    			}else{
-	    				
-	    			}
-	    		}
-	    		
-	    	});
-	    }
-	    
-	    
-	    
-	    </script>
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    </div>
+       <div class="col">
+<form method="post">
+    <input type="text" name="member_Id" value="${loginMember.member_Id}">
+    <input type="text" name="member_Password" value="${loginMember.member_Password}">
+    <button type="submit">탈퇴</button>
+</form> 
       </div>
+    </div>
    </div>
 </div>
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

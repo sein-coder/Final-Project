@@ -13,5 +13,6 @@ public interface MemberDao {
 	int updateMemberPage(SqlSessionTemplate session,Member m);
 	
 	int deleteMemberPage(SqlSessionTemplate session,Member m);
-	
+
+
 }

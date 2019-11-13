@@ -8,7 +8,8 @@
 	rel="stylesheet" type="text/css">
 
 <div class="site-blocks-cover overlay"
-	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif);"
+	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif); 
+	min-height: 750px;"
 	data-aos="fade" data-stellar-background-ratio="0.5">
 	<div class="container">
 		<div class="row align-items-center justify-content-center text-center"
@@ -59,37 +60,28 @@
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/한식.png">
-						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">489</span>
+						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-<<<<<<< HEAD
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/중식.png">
 						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">0</span>
-=======
-						<a href="#" class="popular-category h-100"> 
-							<span class="icon mb-3">
-								<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
-							</span> 
-							<span class="caption mb-2 d-block">중식</span> 
-							<span class="number">482</span>
->>>>>>> refs/remotes/origin/yys
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/일식.png">
-						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">191</span>
+						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/양식.png">
-						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">395</span>
+						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -97,14 +89,14 @@
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/디저트.png">
 						</span> <span class="caption mb-2 d-block">디저트</span> <span
-							class="number">124</span>
+							class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/기타.png">
-						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">187</span>
+						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">0</span>
 						</a>
 					</div>
 				</div>
@@ -184,33 +176,10 @@
 					<button type="button"
 						class="btn btn-outline-info waves-effect filter" data-rel="2">Food</button>
 				</div>
-<<<<<<< HEAD
 				<!-- Grid column -->
 			</div>
 			<!-- Grid row -->
 			<div class="gallery" id="gallery" style="color: white;">
-=======
-				<!-- Grid row -->
-				<div class="gallery" id="gallery" style="color: white;">
-				
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
-							<img class="img-fluid"
-								src="${pageContext.request.contextPath }/resources/images/main/11.jpg"
-								alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴1<span>부메뉴1</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
->>>>>>> refs/remotes/origin/yys
 
 				<!-- Grid column -->
 				<div class="mb-3 pics animation all 2">
@@ -234,7 +203,7 @@
 				<div class="mb-3 pics animation all 1">
 					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/9.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_1.png"
 							alt="Card image cap">
 						<figcaption>
 							<h2>
@@ -252,7 +221,7 @@
 				<div class="mb-3 pics animation all 1">
 					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/5.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_4.png"
 							alt="Card image cap">
 						<figcaption>
 							<h2>
@@ -270,7 +239,7 @@
 				<div class="mb-3 pics animation all 2">
 					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/12.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_6.png"
 							alt="Card image cap">
 						<figcaption>
 							<h2>
@@ -288,7 +257,7 @@
 				<div class="mb-3 pics animation all 2">
 					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/2.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_1.png"
 							alt="Card image cap">
 						<figcaption>
 							<h2>
@@ -306,7 +275,7 @@
 				<div class="mb-3 pics animation all 1">
 					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/13.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_3.png"
 							alt="Card image cap">
 						<figcaption>
 							<h2>
@@ -507,6 +476,53 @@
 					}, 300);
 				});
 	});
+</script>
+
+<script type="text/javascript">
+
+/* 갤러리 랜덤 사진 */
+$(document).ready(function(){
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingMainData.do",
+		type : "post",
+		success: function(data){
+	
+			for(var i=0; i<3; i++){
+				var img = $("div.1 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fllist[i].data_Name+"."+data.fllist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.1 img").eq(i).attr("src",replace);
+			}
+			
+			for(var i=0; i<3; i++){
+				var img = $("div.2 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fslist[i].data_Name+"."+data.fslist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.2 img").eq(i).attr("src",replace);
+			}
+		}
+	});
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingTypeCount.do",
+		type:"post",
+		success: function(data){
+			$("a.popular-category span.number").each(function(){
+				for(var i =0; i<data.list.length; i++){
+					if(data.list[i].PARTNER_MENU == $(this).prev().text()){
+						$(this).text(data.list[i].MENU_COUNT);
+						break;
+					}else{
+						$(this).text(0);
+					}
+				}
+			});
+		}
+	});
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
