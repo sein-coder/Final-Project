@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<title>Insert title here</title>
+<title>일정 입력</title>
 </head>
 <body>
 	<form id="addFrm" name="addFrm">

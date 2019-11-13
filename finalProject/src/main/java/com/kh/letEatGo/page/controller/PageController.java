@@ -49,12 +49,6 @@ public class PageController {
 		return "mypage/partnerPage";
 	}
 	
-	@RequestMapping("/pageList")
-	public String pageList() {
-		return "mypage/list";
-	}
-	
-	
 	@RequestMapping("/adminPage")
 	public String adminPage() {
 		return "mypage/adminPage";
@@ -90,27 +84,27 @@ public class PageController {
 		
 	}
 	
-	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
-	  public String deleteMemberPage(Member m,HttpSession session,Model model) {
-		 
-		    int result=member_service.deleteMemberPage(m);
-		 
-		    String msg="";
-			String loc="/";
-			if(result>0) {
-				msg="회원 탈퇴 성공";
-				session.invalidate();
-			}else {
-				msg="회원 탈퇴 실패";
-			}
-			model.addAttribute("msg",msg);
-			model.addAttribute("loc",loc);
-			
-			
-			
-			return "common/msg";	  
-			}
-	 
+//	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
+//	  public String deleteMemberPage(Member m,HttpSession session,Model model) {
+//		 
+//		    int result=member_service.deleteMemberPage(m);
+//		 
+//		    String msg="";
+//			String loc="/";
+//			if(result>0) {
+//				msg="회원 탈퇴 성공";
+//				session.invalidate();
+//			}else {
+//				msg="회원 탈퇴 실패";
+//			}
+//			model.addAttribute("msg",msg);
+//			model.addAttribute("loc",loc);
+//			
+//			
+//			
+//			return "common/msg";	  
+//			}
+//	 
 	 @RequestMapping("/partner/updatePartner") //멤버 회원 정보 수정
 		public String updatePartnerPage(Partner p,Model model) {
 			
@@ -140,6 +134,18 @@ public class PageController {
 			return "common/msg";
 			
 		}
+	 
+	 @RequestMapping("/deleteMember")
+	 public String deleteMember() {
+		 return "mypage/deleteMember";
+	 }
+	 
+	 @RequestMapping("/deleteMemberPage")
+	 public String deleteMemberPage() {
+		 
+		 return "";
+		 
+	 }
 	  
 	
 
