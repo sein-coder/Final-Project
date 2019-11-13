@@ -116,7 +116,7 @@
 					<h3>Jean Doe</h3>
 					<div class="meta">January 9, 2018 at 2:21pm</div>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-					<button class="btn btn-primary" onClick="reply()">Reply</button> <!-- reply()매개변수로 댓글번호 전달 -->
+					<button class="btn btn-primary" onClick="reply();">Reply</button> <!-- reply()매개변수로 댓글번호 전달 -->
 				</div>
 				</li>
 			<!-- 사장님 댓글영역 -->
