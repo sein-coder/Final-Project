@@ -78,7 +78,8 @@ textarea {
 		<form
 			id="frm"
 			action="${pageContext.request.contextPath}/festival/festivalUpdateFormEnd.do?festival_No=${festival.festival_No}"
-			method="post">
+			method="post"
+			enctype="multipart/form-data">
 
 			<div class="site-section pb-0">
 				<div class="row">
@@ -96,6 +97,7 @@ textarea {
 											<!-- 썸네일 부분   -->
 										<div class="pull-left ml-2 mt-2" style="display:inline;">
 											<input type="file" value="파일 선택" name="upFile" id="upFile"/>
+											<input type="hidden" name="festival_Thumbnail" value="${festival.festival_Thumbnail }">
 										</div>
 										
 										</div>

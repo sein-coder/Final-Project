@@ -128,51 +128,62 @@ public class FestivalController {
 	@RequestMapping("/festival/festivalUpdateFormEnd.do")
 	public ModelAndView updateFormFestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
-	
+		
 		String saveDir = req.getSession().getServletContext()
 				.getRealPath("/resources/images/festival"); 		
 		
 		  File dir=new File(saveDir); if(!dir.exists())
 		  logger.debug("폴더생성 "+dir.mkdirs());
 		  
-		  String[] enddate = festival.getFestival_EndDate().split("-");
-		  String[] startdate = festival.getFestival_StartDate().split("-");
+			String[] startdate = "2019-11-15".split("-");
+			String[] enddate = "2019-11-21".split("-");
+			
+			//날짜비교 로직
+			
+			  Calendar nowdate = Calendar.getInstance();
+			  
+			  Calendar calendar1 = Calendar.getInstance();
+			  calendar1.set(Integer.parseInt(startdate[0]), Integer.parseInt(startdate[1])-1, Integer.parseInt(startdate[2]));
+			  
+			  Calendar calendar2 = Calendar.getInstance();
+			  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1])-1, Integer.parseInt(enddate[2]));
+
+			  if(nowdate.compareTo(calendar1) >= 0) {
+				  if(nowdate.compareTo(calendar2) <= 0) {
+					  festival.setFestival_Proceeding("진행");
+				  }else {
+					  festival.setFestival_Proceeding("종료");
+				  }
+			  }else {
+				  festival.setFestival_Proceeding("예정");
+			  }
 		  
-		  Calendar nowdate = Calendar.getInstance();
+		  if(!upFile.isEmpty()) { 
+			  String oriFileName=upFile.getOriginalFilename();
+			  festival.setFestival_Thumbnail(oriFileName); 
+			  try { 
+				  //transferTo는 multipart 제공 
+				  upFile.transferTo(new File(saveDir+"/"+oriFileName)); 
+			  }
+			  catch(IOException e) {
+				  e.printStackTrace(); 
+			  } 
+		  }
 		  
-		  Calendar calendar1 = Calendar.getInstance();
-		  calendar1.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1]), Integer.parseInt(enddate[2]));
-		  
-		  Calendar calendar2 = Calendar.getInstance();
-		  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1]), Integer.parseInt(enddate[2]));
-		  
-		  System.out.println(nowdate);
-		  
-//		  if(upFile!=null && !upFile.isEmpty()) { 
-//			  String oriFileName=upFile.getOriginalFilename();
-//			  festival.setFestival_Thumbnail(oriFileName); 
-//			  try { 
-//				  //transferTo는 multipart 제공 
-//				  upFile.transferTo(new File(saveDir+"/"+oriFileName)); 
-//			  }
-//			  catch(IOException e) {
-//				  e.printStackTrace(); 
-//			  } 
-//		  }
-//        int result = service.updateFormFestival(festival); 
-//		
-//		String msg="";
-//		String loc="/festival/festivalList";
-//		
-//		if(result>0) {
-//			msg="삭제를 성공하였습니다.";
-//		}else {
-//			msg="삭제를 실패하였습니다.";
-//		}
-//		
-//		mv.addObject("msg",msg);
-//		mv.addObject("loc",loc);
-        
+        int result = service.updateFormFestival(festival); 
+		
+		String msg="";
+		String loc="/festival/festivalList";
+		
+		if(result>0) {
+			msg="삭제를 성공하였습니다.";
+		}else {
+			msg="삭제를 실패하였습니다.";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+
 		mv.setViewName("common/msg");
 		return mv;
 	}
