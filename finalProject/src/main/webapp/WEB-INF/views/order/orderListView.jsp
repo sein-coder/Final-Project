@@ -50,7 +50,7 @@
     
     <div class="col-md-4 ml-auto">
     	<div class="bg-light">
-    			<table id="orderList" class="table-hover">
+    			<table class="table-hover orderList">
     				<tr>
     					<td colspan="2"><h3>주문리스트</h3></td>
     				</tr>
@@ -116,7 +116,7 @@
 					<h3>Jean Doe</h3>
 					<div class="meta">January 9, 2018 at 2:21pm</div>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-					<button class="btn btn-primary" onClick="reply()">Reply</button> <!-- reply()매개변수로 댓글번호 전달 -->
+					<button class="btn btn-primary" onClick="reply();">Reply</button> <!-- reply()매개변수로 댓글번호 전달 -->
 				</div>
 				</li>
 			<!-- 사장님 댓글영역 -->
@@ -138,8 +138,8 @@
 	</div>
 <!-- 모달창 -->
 <div class="modal fade" id="payModal">
-    <div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered" >
+		<div class="modal-content" >
       
 	        <!-- Modal Header -->
 	        <div class="modal-header">
@@ -150,33 +150,35 @@
         	<!-- Modal body -->
         	<div class="modal-body">
    				<div class="container">
-   					<form action="${pageContext.request.contextPath}/payment" method="POST" onSubmit="payOrders();">
-						<div class="text-center">
-							<h4 class="bg-light">주문내역</h4>
-							<!-- 주문내역 리스트에 맞춰 반복 -->
+					<div class="text-center">
+						<h4 class="bg-light">주문내역</h4>
+						<!-- 주문내역 리스트에 맞춰 반복 -->
+						<table class="table-hover orderList" id="list">
+						</table>
+					</div>
+					
+					<div class="text-center">
+						<h4 class="bg-light">총 결제 금액</h4>
+						<span class="text-center pay-total">원</span>
+					</div>
+					
+					<div class="text-center">
+						<h4 class="bg-light">주문요청사항</h4>
+						<textarea rows="1" cols="30" placeholder="30자 이내로 기재" name="add_request" id="add_request"></textarea>	
+					</div>
+     					<div class="row">
+       					<div class="col">
+			         		<button class="form-control btn btn-info" onClick="">주문예약하기</button>
+			         		<button type="button" class="form-control btn btn-primary" onClick="fadeModal();">결제하기</button>
+							<!-- onClick="payOrders();" -->
 						</div>
-						
-						<div class="text-center">
-							<h4 class="bg-light">주문요청사항</h4>
-							<textarea rows="1" cols="30" placeholder="30자 이내로 기재" name="add_request"></textarea>	
-						</div>
-      					<div class="row">
-        					<div class="col">
-				                <input type="hidden" name="" value=""/>
-				         		<input type="hidden" name="" value=""/>
-				         		<button onClick="" class="form-control btn btn-info">장바구니에 담기</button>
-				         		<input type="submit" class="form-control btn btn-primary" value="결제하기"/> 
-							</div>
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 </div>
-
-	
 </section>
 <script>
 	// 평점 별 출력 부분
@@ -217,10 +219,10 @@ function orderPlusMinus(data){
 				tags += "<td>"+tagName+"</td>";
 				tags += "<td class='"+$(el).attr("name")+"'>"+$(el).val()+"</td>";
 				tags += "</tr>"; 
-				$('#orderList').append(tags);
+				$('.orderList').append(tags);
 			}
 			else{
-				var orderDataList=$("#orderList").find(".orderdata").children();
+				var orderDataList=$(".orderList").find(".orderdata").children();
 				$.each(orderDataList,function(i,item){
 					if($(el).attr('name')==$(item).attr("class")){
 						$(item).html($(el).val());
@@ -232,7 +234,7 @@ function orderPlusMinus(data){
 	}
 	else{
 		el=$(data).parent().prevAll(".menucount");
-		var orderDataList=$("#orderList").find(".orderdata");
+		var orderDataList=$(".orderList").find(".orderdata");
 		countInput = $(data).parent().siblings().eq(3);
 		
 		// 메뉴 가격 찾기
@@ -257,102 +259,55 @@ function orderPlusMinus(data){
 		payment -= menuPrice*1;
 		}
 	}
-	$('#pay-total').html(payment).val();
+	$('.pay-total').html(payment).val();
 }
 
 function changeValue(elementInput){
 	var value=$(elementInput).val();
 }
-
 SetRatingStar();
 
-</script>
-<!-- 아임포트 cdn -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script type="text/javascript">
-var point = 0;
-
-function payOrders(){
-
-	var IMP = window.IMP; // 생략가능
-	IMP.init('imp13577377');
-	// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-	// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-	IMP.request_pay({
-	pg: 'inicis', // version 1.1.0부터 지원.
-	/*
-	'kakao':카카오페이,
-	html5_inicis':이니시스(웹표준결제)
-	'nice':나이스페이
-	'jtnet':제이티넷
-	'uplus':LG유플러스
-	'danal':다날
-	'payco':페이코
-	'syrup':시럽페이
-	'paypal':페이팔
-	*/
-	pay_method: 'card',
-	/*
-	'samsung':삼성페이,
-	'card':신용카드,
-	'trans':실시간계좌이체,
-	'vbank':가상계좌,
-	'phone':휴대폰소액결제
-	*/
-	merchant_uid: 'merchant_' + new Date().getTime(),
-	/*
-	merchant_uid에 경우
-	https://docs.iamport.kr/implementation/payment
-	위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
-	참고하세요.
-	나중에 포스팅 해볼게요.
-	*/
-	name: '렛잇고 ',
-	//결제창에서 보여질 이름
-	amount: $("#updatePoint").val(),
-	//가격
-	buyer_email: '',
-	buyer_name: '',
-	buyer_tel: '',
-	buyer_addr: '',
-	//m_redirect_url: 'https://www.yourdomain.com/payments/complete'
-	/*
-	모바일 결제시,
-	결제가 끝나고 랜딩되는 URL을 지정
-	(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
-	*/
-	}, function (rsp) {
-	if (rsp.success) {
-		var msg = '결제가 완료되었습니다.';
-			msg += '고유ID : ' + rsp.imp_uid;
-			msg += '상점 거래ID : ' + rsp.merchant_uid;
-			msg += '결제 금액 : ' + rsp.paid_amount;
-			msg += '카드 승인번호 : ' + rsp.apply_num;
-		location.href="${path}/order/paymentEnd";
-	} else {
-		var msg = '결제에 실패하였습니다.';
-		msg += '에러내용 : ' + rsp.error_msg;
-		alert(msg);
-	}
-	});
-};
-
-/*  //결제완료 후 구현할 로직
-	function orderTo(){
-		
-		var orderList = "";
-		
-		$("#orderList tr.orderdata").each(function(){
-			orderList += $(this).children().eq(0).text()+":"+ $(this).children().eq(1).text()+"/";
-		});
-		 var result = JSON.stringify(orderList);
-		console.log(result); 
-		console.log(orderList);
-		location.href="${path}/order/payment?partner_No="+${partner.partner_No}+"&orderList="+orderList;
-	}
+// 결제포트 실행전 첫 번째 모달 숨기기
+function fadeModal(){
+	$('#payModal').modal('hide');
+	var windowWidth = 650;
+	var windowHeight = 650;
+	var windowLeft = parseInt((screen.availWidth/2) - (windowWidth/2));
+	var windowTop = parseInt((screen.availHeight/2) - (windowHeight/2));
+	var windowSize = "width=" + windowWidth + ",height=" + windowHeight + ",left=" + windowLeft + ",top=" + windowTop + ",screenX=" + windowLeft + ",screenY=" + windowTop;
+	var open = window.open('${path}/order/payment.do?order_Price='+payment, "_target ", windowSize);
 	
-	*/
+}
+
+function toOrderHistory(){
+	var orderlists = "";
+	
+	$("#list tr.orderdata").each(function(){
+		orderlists += $(this).children().eq(0).text() + "-" + $(this).children().eq(1).text() + "/";
+	})
+	
+	console.log(orderlists);
+	
+	
+	$.ajax({
+		url : "${path}/order/orderEnd",
+		type: "POST",
+		data: {
+			"order_List" : orderlists,
+			"add_Request" : $("#add_request").val(),
+			"order_Price" : payment,
+			"reservation_YN" : "Y",
+			"partner_No" : ${partner.partner_No},
+			"member_No" : "1"
+		},
+		success : function(data){
+			alert("성공적으로 결제가 완료되었습니다.");
+		},
+		fail : function(data){
+			alert("결제 처리에 실패하였습니다. 관리자에게 문의하세요.");
+		}
+	})
+}
+
 </script>
-
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

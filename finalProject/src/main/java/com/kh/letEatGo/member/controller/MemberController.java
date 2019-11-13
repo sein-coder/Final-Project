@@ -1,8 +1,5 @@
 package com.kh.letEatGo.member.controller;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,13 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.common.encrypt.MyEncrypt;
 import com.kh.letEatGo.member.model.service.MemberService;
 import com.kh.letEatGo.member.model.vo.Member;
-
 
 
 @SessionAttributes(value= {"loginMember","msg"}) //여기들어가는 값은 배열로 받을 수 있음 키값이 들어감
@@ -77,8 +72,10 @@ public class MemberController {
 	  @RequestMapping("/member/memberLogin.do")
 	  public ModelAndView login(Member m, HttpSession session) {
 		  ModelAndView mv=new ModelAndView();
+		  System.out.println(pwEncoder.encode("123123"));
 		  Member result = null;
 		  result = service.selectMemberOne(m);
+		  System.out.println(result);
 		  String msg="";
 		  String loc="";
 		  if(result != null) {
@@ -88,8 +85,7 @@ public class MemberController {
 			  } else {
 				  // 로그인성공
 				  msg="로그인성공";
-				  session.setAttribute("loginMember", result);
-				  session.setAttribute("type", "member");
+				  session.setAttribute("loginMember", result);		
 			  }
 		  } else {
 			  msg="로그인 안됨";
@@ -98,31 +94,19 @@ public class MemberController {
 		  mv.addObject("loc", loc);
 		  mv.setViewName("common/msg");
 		return mv;
-
 	  }
-
-	  @RequestMapping("/Logout.do")
-		public String logout(HttpSession session,SessionStatus s) {
-			
-			if(!s.isComplete()) {
-				s.setComplete();//로그아웃 SessionAttributes
-				session.invalidate();
-			}
-			return "redirect:/";
-		}
-	  @RequestMapping("/member/checkId.do")
-		public void checkId(Member m, HttpServletResponse res) {
-			System.out.println(m);
-			Member result=service.selectMemberOne(m);
-			String flag=result!=null?"false":"true";
-			res.setContentType("application/json;charset=utf-8");
-			try {
-				res.getWriter().write(flag);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	  
-
+	  @RequestMapping("/member/updateMember") //멤버 회원 정보 수정
+	  public String updateMember(Member m,Model model) {
+		  System.out.println("수정");
+		  
+		  return "";
+	  }
+	  @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
+	  public String deleteMember(Member m,Model model) {
+		  System.out.println("삭제");
+		  
+		  return "";
+	  }
+	  
 }

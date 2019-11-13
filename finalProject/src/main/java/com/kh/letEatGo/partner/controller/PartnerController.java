@@ -6,14 +6,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -25,9 +24,7 @@ import com.kh.letEatGo.partner.model.service.PartnerService;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
 
-
-@SessionAttributes(value= {"loginPartner","msg"})
-
+@SessionAttributes(value= {"loginMember","msg"})
 @Controller
 public class PartnerController {
 	private Logger logger=LoggerFactory.getLogger(PartnerController.class);
@@ -105,87 +102,35 @@ public class PartnerController {
 	 	mv.setViewName("common/msg");
 		return mv;
 	}
+	  @RequestMapping("/partner/updatePartner") //파트너 회원 정보 수정
+	  public String updateMember(Partner p,Model model) {
+		  System.out.println("수정");
+		  
+		  return "";
+	  }
+	  @RequestMapping("/partner/deletePartner") //파트너 회원 탈퇴
+	  public String deleteMember(Partner p,Model model) {
+		  System.out.println("삭제");
+		  
+		  return "";
+	  }
 	
 	@RequestMapping("/partner/partnerLogin.do")
-	public ModelAndView partnerlogin(Partner p,HttpSession session) {
+	public String partnerlogin(Partner p) {
 		ModelAndView mv=new ModelAndView();
-		Partner result=null;
-		result=service.selectPartnerOne(p);
-		String msg="";
-		String loc="";
-			if(result != null) {
-				  if(!pwEncoder.matches(p.getPartner_Password(), result.getPartner_Password())) {
-					  // 로그인실패
-					  msg="로그인실패";
-				  } else {
-					  // 로그인성공
-					  msg="로그인성공";
-					  session.setAttribute("loginMember", result);
-					  session.setAttribute("type", "partner");
-				  }
-			  } else {
-				  msg="로그인 안됨";
-			  }
-			  mv.addObject("msg", msg);
-			  mv.addObject("loc", loc);
-			  mv.setViewName("common/msg");
-			  return mv;
-		  }
-	
-
-	@RequestMapping("/partner/checkId.do")
-	public void checkId(Partner p, HttpServletResponse res) {
-		System.out.println(p);
 		Partner result=service.selectPartnerOne(p);
-		String flag=result!=null?"false":"true";
-		res.setContentType("application/json;charset=utf-8");
-		try {
-			res.getWriter().write(flag);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-		}
-	}
-	
-//	@RequestMapping(value="/partner/checkId.do", method= RequestMethod.GET)
-//	@ResponseBody public void checkId(Partner p,HttpServletResponse res) {
-//	Partner result=service.selectPartnerOne(p);
-//	boolean flag=result!=null?false:true;
-//	res.setContentType("application/json;charset=utf-8");
-//	try {
-//		res.getOutputStream().print(flag);
-//	} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	@RequestMapping("/partner/permission.do")
-//	public void permissionCheck(
-//			@RequestParam(required=false) String partner_Permission_No, HttpServletResponse res) {
-//		System.out.println(partner_Permission_No);
-//		Partner p = new Partner();
-//		p.setPartner_Permission_No(partner_Permission_No);
-//		Partner result=service.selectPartnerNo(p);
-//		String flag=result!=null?"false":"true";
-//		res.setContentType("application/json;charset=utf-8");
-//		try {
-//			res.getWriter().write(flag);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-	@RequestMapping("/partner/permission.do")
-	public void permissionCheck(
-			Partner p, HttpServletResponse res) {
-		System.out.println(p);
+		mv.addObject("partner",result);
+		mv.setViewName("member/memberEnroll");
+		return "common/msg";
 		
-		Partner result=service.selectPartnerNo(p);
-		String flag=result!=null?"false":"true";
-		res.setContentType("application/json;charset=utf-8");
-		try {
-			res.getWriter().write(flag);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
+//	@RequestMapping("/partner/partnerLogout.do")
+//	public String partnerlogout(HttpSession session,SessionStatus s) {
+//
+//		if(!s.isComplete()) {
+//			s.setComplete();//로그아웃 SessionAttributes
+//			session.invalidate();
+//	}
+//	
 }
 

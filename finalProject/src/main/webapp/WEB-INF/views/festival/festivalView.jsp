@@ -347,8 +347,16 @@ h1 {
 
 							<div class="preview-pic tab-content">
 								<div class="tab-pane active" id="pic-1">
-									<img alt="없음" width="400px" height="252px"
-									src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
+									<img src="http://placekitten.com/400/252" />
+								</div>
+								<div class="tab-pane" id="pic-2">
+									<img src="http://placekitten.com/400/252" />
+								</div>
+								<div class="tab-pane" id="pic-3">
+									<img src="http://placekitten.com/400/252" />
+								</div>
+								<div class="tab-pane" id="pic-4">
+									<img src="http://placekitten.com/400/252" />
 								</div>
 
 							</div>
@@ -496,7 +504,7 @@ h1 {
 		</div>
 		<div>
 			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
-				onclick="location.href='${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }'">수정</button>
+				onclick="location.href='${pageContext.request.contextPath}/festivl/festivalForm'">수정</button>
 		</div>
 	</div>
 	<!--추천글 -->
