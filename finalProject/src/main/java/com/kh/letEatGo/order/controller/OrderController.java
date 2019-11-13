@@ -89,7 +89,24 @@ public class OrderController {
 	public String orderEnd(Order o, HttpSession session) {
 		System.out.println(o);
 		session.setAttribute("order", o);
-		return "redirect:/order";
+		return "redirect:/order/complete";
+	}
+	
+	@RequestMapping("/order/complete")
+	public String orderComplete(HttpSession session, Model model) {
+		Order order = (Order)session.getAttribute("order");
+		int result = service.insertOrder(order);
+		
+		String msg = "";
+		String loc = "/order/orderListView?partner_No="+order.getPartner_No();;
+		if(result > 0) {
+			msg = "결제가 완료 되었습니다.";
+		} else {
+			msg = "결제 데이터 전송 중 오류 발생 - 관리자에게 문의하세요.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("loc", loc);
+		return "common/msg";
 	}
 	 
 	  

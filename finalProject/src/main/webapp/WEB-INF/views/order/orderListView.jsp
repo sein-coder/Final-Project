@@ -286,9 +286,6 @@ function toOrderHistory(){
 		orderlists += $(this).children().eq(0).text() + "-" + $(this).children().eq(1).text() + "/";
 	})
 	
-	console.log(orderlists);
-	
-	
 	$.ajax({
 		url : "${path}/order/orderEnd",
 		type: "POST",
@@ -298,10 +295,10 @@ function toOrderHistory(){
 			"order_Price" : payment,
 			"reservation_YN" : "Y",
 			"partner_No" : ${partner.partner_No},
-			"member_No" : "1"
+			"member_No" : ${loginMember.member_No}
 		},
 		success : function(data){
-			alert("성공적으로 결제가 완료되었습니다.");
+			alert("결제 정보가 전송 중 입니다.");
 		},
 		fail : function(data){
 			alert("결제 처리에 실패하였습니다. 관리자에게 문의하세요.");
