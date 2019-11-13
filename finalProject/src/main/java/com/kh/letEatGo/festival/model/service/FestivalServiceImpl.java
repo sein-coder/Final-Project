@@ -21,6 +21,7 @@ public class FestivalServiceImpl implements FestivalService {
 	public int insertFestival(Festival festival) {
 		int result=0;
 		result=dao.insertFestival(session,festival);
+		
 		return result;
 	}
 
@@ -41,15 +42,6 @@ public class FestivalServiceImpl implements FestivalService {
 		result=dao.deleteFestival(session, festival_No);
 		return result;
 	}
-
-	@Override
-	public int updateFormFestival(Festival festival) {
-		int result=0;
-		result=dao.updateFormFestival(session, festival);
-		return result;
-	}
-
-	
 	
 
 }
