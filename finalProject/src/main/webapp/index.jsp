@@ -8,15 +8,18 @@
 	rel="stylesheet" type="text/css">
 
 <div class="site-blocks-cover overlay"
-	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif);"
+	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif); 
+	min-height: 750px;"
 	data-aos="fade" data-stellar-background-ratio="0.5">
 	<div class="container">
-		<div class="row align-items-center justify-content-center text-center">
+		<div class="row align-items-center justify-content-center text-center"
+			style="min-height: 750px;">
 
 			<div class="col-md-10">
 
 				<!-- 텍스트 타이핑 효과 -->
-				<div class="row justify-content-center mb-4">
+				<div class="row justify-content-center mb-4"
+					style="margin-top: 9rem !important">
 					<div class="col-md-12 text-center">
 						<h1 data-aos="fade-up">
 							렛잇고만의 <span class="typed-words"></span> 푸드트럭
@@ -57,30 +60,28 @@
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/한식.png">
-						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">489</span>
+						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> 
-							<span class="icon mb-3">
-								<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
-							</span> 
-							<span class="caption mb-2 d-block">중식</span> 
-							<span class="number">482</span>
+						<a href="#" class="popular-category h-100"> <span
+							class="icon mb-3"> <img
+								src="${pageContext.request.contextPath }/resources/icon/중식.png">
+						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/일식.png">
-						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">191</span>
+						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/양식.png">
-						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">395</span>
+						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -88,19 +89,17 @@
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/디저트.png">
 						</span> <span class="caption mb-2 d-block">디저트</span> <span
-							class="number">124</span>
+							class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/기타.png">
-						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">187</span>
+						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">0</span>
 						</a>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -110,7 +109,7 @@
 
 	<div class="site-section" style="padding-top: 4em;">
 		<div class="container">
-			<div class="row justify-content-center mb-5">
+			<div class="row justify-content-center mb-8">
 				<div class="col-md-7 text-center border-primary">
 					<h2 class="font-weight-light text-primary">Let Eat Go</h2>
 					<p class="color-black-opacity-5">사용자와 사업자 모두를 만족시키는 서비스</p>
@@ -121,7 +120,8 @@
 				<div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
 					<div class="how-it-work-step">
 						<div class="img-wrap">
-							<img src="${pageContext.request.contextPath }/resources/images/소비자.png"
+							<img
+								src="${pageContext.request.contextPath }/resources/images/소비자.png"
 								alt="Free website template by Free-Template.co"
 								class="img-fluid">
 						</div>
@@ -167,133 +167,132 @@
 	<!-- 갤러리 시작 -->
 	<div class="site-section" style="padding: 0">
 		<div class="container">
-				<div class="row">
-					<div class="col-md-12 d-flex justify-content-center">
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="1">Mountains</button>
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="2">Sea</button>
-					</div>
-					<!-- Grid column -->
+			<div class="row">
+				<div class="col-md-12 d-flex justify-content-center">
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="1">Festival</button>
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="2">Food</button>
 				</div>
-				<!-- Grid row -->
-				<div class="gallery" id="gallery" style="color: white;">
-				
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
-							<img class="img-fluid"
-								src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
-								alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+				<!-- Grid column -->
+			</div>
+			<!-- Grid row -->
+			<div class="gallery" id="gallery" style="color: white;">
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_2.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴1<span>부메뉴1</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_1.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴2<span>부메뉴2</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_4.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴3<span>부메뉴3</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_6.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴4<span>부메뉴4</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_1.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴5<span>부메뉴5</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_3.png"
+							alt="Card image cap">
+						<figcaption>
+							<h2>
+								메뉴6<span>부메뉴6</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 				<!-- Grid row -->
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 팀원 소개 파트 -->
 	<div class="site-section bg-light" style="padding: 0">
 		<div class="container">
@@ -420,6 +419,11 @@
 
 <!-- 메인 음식메뉴파트 hover이벤트 -->
 <script type="text/javascript">
+
+
+
+
+
 	$(".popular-category").hover(
 			function() {
 				var img = $(this).children().eq(0).children();
@@ -472,6 +476,53 @@
 					}, 300);
 				});
 	});
+</script>
+
+<script type="text/javascript">
+
+/* 갤러리 랜덤 사진 */
+$(document).ready(function(){
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingMainData.do",
+		type : "post",
+		success: function(data){
+	
+			for(var i=0; i<3; i++){
+				var img = $("div.1 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fllist[i].data_Name+"."+data.fllist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.1 img").eq(i).attr("src",replace);
+			}
+			
+			for(var i=0; i<3; i++){
+				var img = $("div.2 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fslist[i].data_Name+"."+data.fslist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.2 img").eq(i).attr("src",replace);
+			}
+		}
+	});
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingTypeCount.do",
+		type:"post",
+		success: function(data){
+			$("a.popular-category span.number").each(function(){
+				for(var i =0; i<data.list.length; i++){
+					if(data.list[i].PARTNER_MENU == $(this).prev().text()){
+						$(this).text(data.list[i].MENU_COUNT);
+						break;
+					}else{
+						$(this).text(0);
+					}
+				}
+			});
+		}
+	});
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

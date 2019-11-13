@@ -7,5 +7,11 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 public interface PartnerDao {
 
 	int insertPartner(SqlSessionTemplate session, Partner p);
+	
+	Partner selectPartnerOne(SqlSessionTemplate session,Partner p);
+	
+	int updatePartnerPage(SqlSessionTemplate session,Partner p);
+
+	Partner selectPartnerNo(SqlSessionTemplate session, Partner p);
 
 }

@@ -296,8 +296,61 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     	kakao.maps.event.addListener(markers[i], 'click', function() {
     		overlays[i].setMap(map);
     		}); 
+<<<<<<< HEAD
     });
    
+=======
+<<<<<<< HEAD
+    });
+    
+    var position;
+    
+    $(function(){
+		$.ajax({
+			url : "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/foodTruckInfo/1/510/",
+			type : "get",
+			data : {
+			},
+			success : function(data){
+				var xcode = [];
+				var ycode = [];
+				for(var i=0; i<5; i++){		 			
+					var wtmX = data['foodTruckInfo']['row'][i]['XCODE'];
+					var wtmY = data['foodTruckInfo']['row'][i]['YCODE'];
+					
+					xcode.push(wtmX);
+					ycode.push(wtmY);
+					
+				}
+					
+				console.log(xcode);
+				console.log(ycode);
+				
+				var geocoder = new kakao.maps.services.Geocoder();
+/* 					
+					
+					
+					var callback2 = function(result, status) {
+						if (status === kakao.maps.services.Status.OK) {
+							po.latlng=new kakao.maps.LatLng(result[0].x,result[0].y);
+							
+							list.push(po);
+							
+							getMaker(po);
+							
+							console.log(list);
+						}
+					};
+					//WTM 좌표를 WGS84 좌표계의 좌표로 변환한다
+					geocoder.transCoord(wtmX, wtmY, callback2, {
+						input_coord: kakao.maps.services.Coords.WTM,
+						output_coord: kakao.maps.services.Coords.WGS84
+					});   */
+			}
+		});
+	});
+
+>>>>>>> refs/remotes/origin/master
 </script>
             
             

@@ -198,51 +198,12 @@ img {
 
 100%
 {
-opacity
-
-
-
-
-:
-
-
- 
-
-
-1;
--webkit-transform
-
-
-
-
-:
-
-
- 
-
-
+opacity:1;
+-webkit-transform:
 scale
-
-
-
-
 (1);
-transform
-
-
-
-
-:
-
-
- 
-
-
+transform:
 scale
-
-
-
-
 (1);
 }
 }
@@ -252,54 +213,16 @@ keyframes opacity { 0% {
 	-webkit-transform: scale(3);
 	transform: scale(3);
 }
-
 100%
 {
-opacity
-
-
-
-
-:
-
-
- 
-
-
-1;
+opacity:1;
 -webkit-transform
-
-
-
-
 :
-
-
- 
-
-
 scale
-
-
-
-
 (1);
 transform
-
-
-
-
 :
-
-
- 
-
-
 scale
-
-
-
-
 (1);
 }
 }
@@ -380,7 +303,33 @@ h1 {
 	border-color: #777;
 	transition: 0.5s;
 }
+/* 해시태그 */
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #777;
+        color: #000;
+    }
 
+    .tag-item:hover {
+        background-color: #262626;
+        color: #fff;
+    }
+    ul#tag-list {
+        padding: 16px 0;
+    }
+
+    ul#tag-list li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
 /*our-team-main*/
 </style>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -398,22 +347,14 @@ h1 {
 
 							<div class="preview-pic tab-content">
 								<div class="tab-pane active" id="pic-1">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-2">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-3">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-4">
-									<img src="http://placekitten.com/400/252" />
+									<img alt="없음" width="400px" height="252px"
+									src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
 								</div>
 
 							</div>
 						</div>
 						<div class="details col-md-7">
-							<h3 class="product-title">[11월] 한강 고구마축제</h3>
+							<h3 class="product-title">${festival.festival_Title }</h3>
 							<div class="rating">
 								<div class="stars">
 									<span class="fa fa-star checked"></span> <span
@@ -425,30 +366,19 @@ h1 {
 							</div>
 							<p class="product-description">
 							<p class="text-break">
-								매년 11월, 매해 다른 콘셉트로 청계천 일대에 오색찬란한 등(燈)을 밝히는 서울의 겨울 대표 빛축제 <br>
-								<br> * 행사사진은 2018년도 축제 <br> [행사내용] 1구간 : 당신의 동화, 서울
-								2구간 : 서울, 동화를 만나다<br> 3구간 : 서울, 옛시간을 이야기하다 4구간 : 함께 꿈꾸는 동화,
-								서울 <br> <br> [부대행사] 소망등 띄우기, 종이동화등 만들기, 복초롱등 만들기 체험
-								프로그램 <br>
+								${festival.festival_Content }
 							</p>
 
-							<!-- <h4 class="price">
-									기간: <span>2019.11.01</span> - <span>2019.11.30</span><br>
-
-								</h4> -->
-
-
+							<div class="action" style="display: inline-block;">
+								<button class="add-to-cart btn btn-default" type="button">
+							 	<a href="#" class="bookmark"> <span class="icon-heart"></span></a>
+								</button>
+							</div>
+							<div style="display: inline-block;">
 							<p class="vote">
 								<strong>91명</strong> 오늘 이 글에 좋아요를 누른 회원수 입니다. <strong>(87
 									votes)</strong>
 							</p>
-
-							<div class="action">
-								<button class="add-to-cart btn btn-default" type="button">
-									좋아요 <a href="#" class="bookmark"> <span class="icon-heart">
-									</span>
-									</a>
-								</button>
 							</div>
 
 						</div>
@@ -479,15 +409,15 @@ h1 {
 								<td scope="row">
 									<div class="alert alert-danger1">
 										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">시 작 일</a> <strong>시작일:</strong>
-										2019.11.05
+											style="background-color: #fff;">시 작 일</a> <strong>:</strong>
+												${festival.festival_StartDate}
 									</div>
 								</td>
 								<td>
 									<div class="alert alert-danger2">
 										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">종 료 일</a> <strong>종료일:</strong>
-										2019.11.06
+											style="background-color: #fff;">종 료 일</a> <strong>:</strong>
+										${festival.festival_EndDate }
 									</div>
 								</td>
 							</tr>
@@ -495,15 +425,15 @@ h1 {
 								<td scope="row">
 									<div class="alert alert-danger3">
 										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">전화번호</a> <strong>전화번호:</strong>
-										010-5923-7319
+											style="background-color: #fff;">전화번호</a> <strong>:</strong>
+										${festival.festival_Phone }
 									</div>
 								</td>
 								<td>
 									<div class="alert alert-danger4">
 										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">홈페이지</a> <strong>홈페이지:</strong>
-										www.naver.com
+											style="background-color: #fff;">홈페이지</a> <strong>:</strong>
+										${festival.festival_Homepage }
 									</div>
 								</td>
 							</tr>
@@ -511,8 +441,8 @@ h1 {
 								<td scope="row">
 									<div class="alert alert-danger4">
 										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">주 소</a> <strong>주소:</strong>
-										서울시 관악구 봉천동
+											style="background-color: #fff;">주 소</a> <strong>:</strong>
+										${festival.festival_Address }
 									</div>
 									<div style="display: inline-block">
 
@@ -528,8 +458,8 @@ h1 {
 								<td>
 									<div class="alert alert-danger4">
 										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">주 최</a> <strong>주최:</strong>
-										서울시청
+											style="background-color: #fff;">주 최</a> <strong>:</strong>
+										${festival.festival_Host}
 									</div>
 								</td>
 							</tr>
@@ -537,15 +467,15 @@ h1 {
 								<td>
 									<div class="alert alert-danger4">
 										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">주 관</a> <strong>주관:</strong>
-										서울시 관악구
+											style="background-color: #fff;">주 관</a> <strong>:</strong>
+										${festival.festival_Sub }
 									</div>
 								</td>
 								<td>
 									<div class="alert alert-danger4">
 										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">이용요금</a> <strong>이용요금:</strong>
-										무료
+											style="background-color: #fff;">이용요금</a> <strong>:</strong>
+										${festival.festival_Price }
 									</div>
 								</td>
 							</tr>
@@ -555,7 +485,20 @@ h1 {
 			</div>
 		</div>
 	</div>
-
+	<div class="row justify-content-center">
+		<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" 
+			onclick="location.href='${pageContext.request.contextPath}/festival/festivalList'">목록</button>
+	</div>
+	<div>
+		<div>
+			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
+				onclick="location.href='${pageContext.request.contextPath}/festival/deleteFestival?festival_No=${festival.festival_No }'">삭제</button>
+		</div>
+		<div>
+			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
+				onclick="location.href='${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }'">수정</button>
+		</div>
+	</div>
 	<!--추천글 -->
 
 	<div class="container mt-5">
@@ -636,8 +579,7 @@ h1 {
 		</div>
 	</div>
 
-	<button
-		onclick="location.href='${pageContext.request.contextPath}/festival/festivalList'">목록</button>
+	
 	<script>
 		$('#contentText').keyup(function(e) {
 			var content = $(this).val();

@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+
+
+
 public class Partner {
 
 	private int partner_No;
@@ -20,4 +23,6 @@ public class Partner {
 	private String partner_Phone;
 	private String partner_Menu;
 	private String partner_Permission_No;
+	private double starCount;
+	private int reviewCount;
 }

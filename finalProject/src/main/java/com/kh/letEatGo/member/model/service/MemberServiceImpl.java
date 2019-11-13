@@ -17,15 +17,22 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insertMember(Member m) {
-		
 		return dao.insertMember(session,m);
 	}
 
 	@Override
 	public Member selectMemberOne(Member m) {
-		
 		return dao.selectMemberOne(session,m);
 	}
-	
+
+	@Override
+	public int updateMemberPage(Member m) {
+		return dao.updateMemberPage(session,m);
+	}
+
+	@Override
+	public int deleteMemberPage(Member m) {
+		return dao.deleteMemberPage(session,m);
+	}
 
 }
