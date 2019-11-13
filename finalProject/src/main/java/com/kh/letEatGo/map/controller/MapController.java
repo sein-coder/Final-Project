@@ -24,7 +24,6 @@ public class MapController {
 	public String map(Model model) {
 		List<TruckMap> truckList=service.categoryList();
 		List<ZoneMap> zonelist=service.selectMapList();
-		 
 		model.addAttribute("trucklist",truckList);
 		model.addAttribute("zonelist",zonelist);
 		return "map/map";

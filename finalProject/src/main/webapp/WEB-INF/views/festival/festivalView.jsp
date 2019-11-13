@@ -332,6 +332,9 @@ h1 {
     }
 /*our-team-main*/
 </style>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="" />
 </jsp:include>
@@ -577,6 +580,12 @@ h1 {
 
 			</div>
 		</div>
+		<br>
+		<h2>지도보기!</h2>
+		
+		<br>
+		<div id="map" style="width:100%;height:350px;"></div>
+		<br>
 	</div>
 
 	
@@ -593,6 +602,44 @@ h1 {
 		clipboard.on('success', function(e) {
 			alert('복사되었습니다.');
 		});
+		
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+		    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		    level: 3 // 지도의 확대 레벨
+		};  
+
+		//지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+		//주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		//주소로 좌표를 검색합니다
+		geocoder.addressSearch("${festival.festival_Address}", function(result, status) {
+
+		// 정상적으로 검색이 완료됐으면 
+		 if (status === kakao.maps.services.Status.OK) {
+
+		    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+		    // 결과값으로 받은 위치를 마커로 표시합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map,
+		        position: coords
+		    });
+		    // 인포윈도우로 장소에 대한 설명을 표시합니다
+		    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		    map.setCenter(coords);
+		} 
+		});    
+	
 	</script>
 </section>
 

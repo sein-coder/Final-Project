@@ -33,7 +33,7 @@
 
 
 				<!-- 중간 검색 박스 -->
-				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up"
+				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up" 
 					data-aos-delay="200">
 					<form method="post">
 						<div class="row align-items-center">
@@ -44,12 +44,12 @@
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<div class="wrap-icon">
 									<span class="icon icon-room"></span> <input type="text"
-										class="form-control" placeholder="푸드트럭 위치찾기">
+										id="mapAddress" class="form-control" placeholder="푸드트럭 위치찾기">
 								</div>
 							</div>
 							<div class="col-lg-12 col-xl-2 ml-auto text-right">
 								<input type="submit" class="btn text-white btn-primary"
-									value="검색하기">
+										value="검색하기">
 							</div>
 						</div>
 					</form>

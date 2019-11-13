@@ -59,7 +59,7 @@
 
     <div class="site-section">
       <div class="container">
-        <div class="row justify-content-center mb-8">
+        <div class="row justify-content-center mb-5">
         <div class="col-md-2 text-center popular-category2" style="border:2px solid #f38181; color:#f38181">푸드트럭존
         <br>
          <c:forEach items="${zonelist}" var="zone">
@@ -136,10 +136,6 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-var marker = new daum.maps.Marker({
-    /* position: new daum.maps.LatLng(37.537187, 127.005476), */
-    map: map
-})
 var places = new kakao.maps.services.Places();
 for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
@@ -296,61 +292,8 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     	kakao.maps.event.addListener(markers[i], 'click', function() {
     		overlays[i].setMap(map);
     		}); 
-<<<<<<< HEAD
     });
    
-=======
-<<<<<<< HEAD
-    });
-    
-    var position;
-    
-    $(function(){
-		$.ajax({
-			url : "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/foodTruckInfo/1/510/",
-			type : "get",
-			data : {
-			},
-			success : function(data){
-				var xcode = [];
-				var ycode = [];
-				for(var i=0; i<5; i++){		 			
-					var wtmX = data['foodTruckInfo']['row'][i]['XCODE'];
-					var wtmY = data['foodTruckInfo']['row'][i]['YCODE'];
-					
-					xcode.push(wtmX);
-					ycode.push(wtmY);
-					
-				}
-					
-				console.log(xcode);
-				console.log(ycode);
-				
-				var geocoder = new kakao.maps.services.Geocoder();
-/* 					
-					
-					
-					var callback2 = function(result, status) {
-						if (status === kakao.maps.services.Status.OK) {
-							po.latlng=new kakao.maps.LatLng(result[0].x,result[0].y);
-							
-							list.push(po);
-							
-							getMaker(po);
-							
-							console.log(list);
-						}
-					};
-					//WTM 좌표를 WGS84 좌표계의 좌표로 변환한다
-					geocoder.transCoord(wtmX, wtmY, callback2, {
-						input_coord: kakao.maps.services.Coords.WTM,
-						output_coord: kakao.maps.services.Coords.WGS84
-					});   */
-			}
-		});
-	});
-
->>>>>>> refs/remotes/origin/master
 </script>
             
             
