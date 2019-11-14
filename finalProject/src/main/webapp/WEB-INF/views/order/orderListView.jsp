@@ -107,32 +107,51 @@
     <!-- Review영역 -->
 		<div class="pt-5">
 			<h3 class="mb-5">${partner.reviewCount}개의 리뷰가 있습니다.</h3>
-			<ul class="comment-list">
-				<li class="comment">
-				<div class="vcard bio">
-					<img src="${path }/resources/images/person_3.jpg" alt="리뷰작성자 이미지">
-				</div>
-				<div class="comment-body">
-					<h3>Jean Doe</h3>
-					<div class="meta">January 9, 2018 at 2:21pm</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-					<button class="btn btn-primary" onClick="reply();">Reply</button> <!-- reply()매개변수로 댓글번호 전달 -->
-				</div>
-				</li>
-			<!-- 사장님 댓글영역 -->
-				<ul class="children">
-					<li class="comment">
+				<c:forEach var="rv" items="${reviewList}">
+					<ul class="comment-list">
+						<li class="comment">
 						<div class="vcard bio">
-						<img src="${path }/resources/images/person_4.jpg" alt="사장님 이미지">
+							<img src="${path }/resources/images/${rv.oriname_File}" alt="리뷰작성자 이미지">
 						</div>
-					<div class="comment-body">
-						<h3>Jean Doe</h3>
-						<div class="meta">January 9, 2018 at 2:21pm</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-					</div>
-					</li>
-				</ul>
-			</ul>
+						<div class="comment-body">
+							<h3>${rv.member_Id}</h3>
+							<div class="meta">
+								<fmt:formatDate value="${rv.review_Time}" pattern="yyyy년  MM월 dd일  HH시 주문"/>
+								<span>리뷰 별점</span>
+									<div class="star-rating">
+										<span class="icon-star" data-rating="1"></span>
+										<span class="icon-star" data-rating="2"></span>
+										<span class="icon-star" data-rating="3"></span>
+										<span class="icon-star" data-rating="4"></span>
+										<span class="icon-star" data-rating="5"></span>
+										<input type="hidden" name="data_No" class="rating-value" value="${rv.review_Star}">
+									</div>
+							</div>
+							<p>${rv.review_Content}</p>
+							<c:forEach var="cmt" items="${comment }">
+							<!-- session에서 partner가 확인되고, 번호가 같으면 답글 버튼 출력! -->
+							<%-- <c:if test="${rv.order_No eq cmt.order_No && (loginMember.partner_No eq null? 0 : loginMember.partner_No )eq cmt.comment_From }">
+								<button class="btn btn-primary" onClick="reply(${cmt.order_No});">답글달기</button> <!-- reply()매개변수로 댓글번호 전달 -->
+							</c:if> --%>
+							<input type="hidden" class="order_No" value="${rv.order_No}"/>
+							</c:forEach>
+						</div>
+						</li>
+						<!-- 사장님 댓글영역 -->
+						<ul class="children">
+							<li class="comment">
+								<div class="vcard bio">
+								<img src="${path }/resources/images/person_4.jpg" alt="사장님 이미지">
+								</div>
+							<div class="comment-body">
+								<h3>Jean Doe</h3>
+								<div class="meta">January 9, 2018 at 2:21pm</div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+							</div>
+							</li>
+						</ul>
+					</ul>
+				</c:forEach>
 		</div>
               <!-- END comment-list -->
 	</div>
@@ -181,6 +200,19 @@
 </div>
 </section>
 <script>
+$(function(){
+	$("input[name=data_No]").each(function(){
+	      var starCount = $(this).val();
+	      $($(this).siblings()).each(function(){
+	         if(starCount >= $(this).data('rating')){
+	            return $(this).removeClass('text-secondary').addClass('text-warning');
+	         }else{
+	            return $(this).removeClass('text-warning').addClass('text-secondary');
+	         }
+	      });
+	   });
+})
+
 	// 평점 별 출력 부분
 var star_rating = $('.star-rating .icon-star');
 
@@ -293,7 +325,7 @@ function toOrderHistory(){
 			"order_List" : orderlists,
 			"add_Request" : $("#add_request").val(),
 			"order_Price" : payment,
-			"reservation_YN" : "Y",
+			"reservation_YN" : "N",
 			"partner_No" : ${partner.partner_No},
 			"member_No" : ${loginMember.member_No}
 		},

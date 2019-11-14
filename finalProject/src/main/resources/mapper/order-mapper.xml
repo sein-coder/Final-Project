@@ -20,9 +20,12 @@
   	SELECT * FROM PARTNER WHERE PARTNER_NO=#{p.partner_No}
   </select>
   <select id="selectReview" parameterType="_int" resultType="review">
-  	SELECT REVIEW_NO, REVIEW_CONTENT, REVIEW_TIME, REVIEW_STAR, ORINAME_FILE, RENAME_FILE, R.ORDER_NO, R.MEMBER_NO FROM ORDER_HISTORY O, REVIEW R WHERE O.ORDER_NO = R.ORDER_NO AND O.PARTNER_NO = #{partner_No}
+  	SELECT A.*,MEMBER_ID FROM (SELECT REVIEW_NO, REVIEW_CONTENT, REVIEW_TIME, REVIEW_STAR, ORINAME_FILE, RENAME_FILE, R.ORDER_NO, R.MEMBER_NO FROM ORDER_HISTORY O, REVIEW R WHERE O.ORDER_NO = R.ORDER_NO AND O.PARTNER_NO = #{partner_No} ORDER BY REVIEW_TIME DESC) A, MEMBER B WHERE B.MEMBER_NO = A.MEMBER_NO
   </select>
   <insert id="insertOrder" parameterType="order">
   	INSERT INTO ORDER_HISTORY VALUES(SEQ_ORDER_NO.NEXTVAL, #{order_List}, #{add_Request}, #{order_Price}, DEFAULT, #{reservation_YN}, #{partner_No}, #{member_No})
   </insert>
+  <select id="selectReviewComment" parameterType="_int" resultType="comment">
+  	SELECT * FROM REVIEW_COMMENT WHERE COMMENT_TO = #{comment_To}
+  </select>
 </mapper>
