@@ -19,6 +19,7 @@ import com.kh.letEatGo.order.model.service.OrderService;
 import com.kh.letEatGo.order.model.vo.Menu;
 import com.kh.letEatGo.order.model.vo.Order;
 import com.kh.letEatGo.order.model.vo.Review;
+import com.kh.letEatGo.order.model.vo.ReviewComment;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
 @Controller
@@ -68,11 +69,13 @@ public class OrderController {
 		result.setReviewCount(service.selectReviewCount(p.getPartner_No()));
 		List<Menu> list = service.selectMenu(p.getPartner_No());
 		List<Review> reviewList = service.selectReview(p.getPartner_No());
-
+		List<ReviewComment> commentList = service.selectReviewComment(p.getPartner_No());
+		
+		mv.addObject("comment", commentList);
 		mv.addObject("menu", list);
 		mv.addObject("partner", result);
 		mv.addObject("reviewList", reviewList);
-
+		
 		mv.setViewName("order/orderListView");
 		return mv;
 	}
@@ -108,8 +111,6 @@ public class OrderController {
 		model.addAttribute("loc", loc);
 		return "common/msg";
 	}
-	 
-	  
 	  
 	/*
 	 * @RequestMapping("/order/searchConsole") public List<Partner> searchConsole(
