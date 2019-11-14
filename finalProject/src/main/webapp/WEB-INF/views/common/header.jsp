@@ -53,6 +53,9 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
+ <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
 <body>
 
 	<div class="site-wrap">
@@ -237,15 +240,15 @@
 									</ul>
 									<div class="tab-content">
 										<div class="tab-pane fade show active" id="partner_log">
-											<form
+											<form id="frm"
 												action="${pageContext.request.contextPath}/partner/partnerLogin.do"
-												method="POST">
+												method="POST" onsubmit="return reCapchar();">
 												<input type="text" placeholder="아이디" name="partner_Id" /> <input
 													type="password" placeholder="비밀번호" name="partner_Password" />
 												<input type="submit" class="btn btn-primary" value="로그인" />
 											</form>
 										</div>
-
+										</form>
 										<div class="tab-pane fade" id="member_log">
 											<form
 												action="${pageContext.request.contextPath}/member/memberLogin.do"
@@ -257,6 +260,23 @@
 											<div></div>
 										</div>
 									</div>
+										    <div id="html_element" class=""></div>
+										  <script type="text/javascript">
+										    var onloadCallback = function() {
+										      grecaptcha.render('html_element', {
+										        'sitekey' : '6LcTHL0UAAAAAEkwWVCn3v37_ufKUIWC6rIZ7_LT'
+										      });
+										    };
+										    function reCapchar() {
+										    	if (typeof (grecaptcha) != 'undefined') {
+										            if (grecaptcha.getResponse() == "") {
+										                alert("스팸방지코드 확인하세요");
+										                return false;
+										            }
+										        }
+										    }
+										    	
+										  </script>
 								</div>
 							</div>
 						</div>
