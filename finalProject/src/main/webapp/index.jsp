@@ -42,16 +42,30 @@
 							</div>
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<div class="wrap-icon">
-									<button class="icon icon-room" style="background:none;border:none;cursor:pointer" onclick="map_gps();"></button> 
+									<button class="icon icon-room" style="background:none;border:none;cursor:pointer" onclick="map_gps();"></button>
 									<input type="text" id="mapAddress" class="form-control" placeholder="푸드트럭 위치찾기">
 								</div>
 							</div>
 							<div class="col-lg-12 col-xl-2 ml-auto text-right">
-								<button  class="btn text-white btn-primary" onclick="">검색하기</button>
+								<button  class="btn text-white btn-primary" onclick="mapSerach();">검색하기</button>
 							</div>
 						</div>
 				</div>
+				
 					<script>
+						var places = new kakao.maps.services.Places();
+					function mapSerach() {
+						var mapSeacrh1= function(result, status) {
+						    if (status === kakao.maps.services.Status.OK) {
+						location.href="${pageContext.request.contextPath}/mapSearch?mapAddress="+$('#mapAddress').val();
+						    }else{	
+						    	alert("주소를 확인하세요.ex)도깨비야시장");
+						    }
+						};
+						places.keywordSearch($('#mapAddress').val(), mapSeacrh1);
+					}
+					
+					
 					function map_gps(){
 						if (navigator.geolocation) {
 						    navigator.geolocation.getCurrentPosition(showPosition);

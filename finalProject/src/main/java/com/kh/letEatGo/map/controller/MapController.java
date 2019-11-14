@@ -40,6 +40,18 @@ public class MapController {
 		return "map/map";
 	}
 	
+	@RequestMapping("/mapSearch")
+	public String mapGps(String mapAddress,Model model) {
+		List<TruckMap> truckList=service.categoryList();
+		List<ZoneMap> zonelist=service.selectMapList();
+		model.addAttribute("mapAddress",mapAddress);
+		model.addAttribute("trucklist",truckList);
+		model.addAttribute("zonelist",zonelist);
+		return "map/map";
+	}
+	
+	
+	
 //	@RequestMapping("/truckPosition")
 //	@ResponseBody
 //	public String selectPosition() {
