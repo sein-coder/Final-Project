@@ -228,9 +228,9 @@
 									<p>로그인</p>
 									<ul class="nav nav-tabs">
 										<li class="nav-item"><a class="nav-link active"
-											data-toggle="tab" href="#partner_log">사업자</a></li>
+										data-toggle="tab" href="#member_log">사용자</a></li>
 										<li class="nav-item"><a class="nav-link"
-											data-toggle="tab" href="#member_log">사용자</a></li>
+										data-toggle="tab" href="#partner_log">사업자</a></li>	
 									</ul>
 									<div class="tab-content">
 										<div class="tab-pane fade show active" id="partner_log">
