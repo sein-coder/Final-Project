@@ -86,8 +86,7 @@
                         <div class="cover"></div>
                      </div>
 
-                     <div class="description align-middle">Something from
-                        nothing</div>
+                     <div class="description align-middle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let It Go.mp3</div>
 
                      <div class="visualizer">
                         <div></div>
