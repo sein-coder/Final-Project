@@ -201,7 +201,7 @@
     }
     });
      //인허가 번호조회
-     $('#partner_Permission_No').keyup(function(){
+    /*  $('#partner_Permission_No').keyup(function(){
     	var permission_no = $('#partner_Permission_No').val();
     	$.ajax({
     		url : '${pageContext.request.contextPath}/partner/permission.do',
@@ -211,7 +211,7 @@
     		console.log(data);
     		}	
     	});
-    }) ; 
+    }) ;  */
      
  	$("#upFile").on("change",function(){
 
@@ -266,7 +266,7 @@
     			});
     		});
     $("#member_Password").blur(function validate(){
-    	var regPw =  /^[A-Za-z0-9]{8,12}$/;
+    	var regPw =  /^[A-Za-z0-9]{6,12}$/;
     	if(regPw.test($('#member_Password').val())){
     		$("#pw_check1").text("사용가능한 비밀번호 입니다.")
     		$("#pw_check1").css("color", "green");
@@ -298,8 +298,8 @@
         		$("#member_Email").css("border-color", "green");
         	}else{	
         		$("#email_check1").text("이메일형식을 맞춰주세요. ex) letEatGo@naver.com")
-        		$("#email_check1").css("color", "green");
-        		$("#member_Email").css("border-color", "green");
+        		$("#email_check1").css("color", "red");
+        		$("#member_Email").css("border-color", "red");
         	} 
         });
         $("#member_Phone").blur(function(){
