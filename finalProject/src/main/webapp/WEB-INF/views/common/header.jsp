@@ -240,22 +240,17 @@
 										data-toggle="tab" href="#partner_log">사업자</a></li>	
 									</ul>
 									<div class="tab-content">
-										<div class="tab-pane fade show active" id="partner_log">
-											<form id="frm"
-												action="${pageContext.request.contextPath}/partner/partnerLogin.do"
-												method="POST" onsubmit="return reCapchar();">
-												<input type="text" placeholder="아이디" name="partner_Id" /> <input
-													type="password" placeholder="비밀번호" name="partner_Password" />
+										<div class="tab-pane fade" id="partner_log">
+											<form id="frm" action="${pageContext.request.contextPath}/partner/partnerLogin.do" method="POST" onsubmit="return reCapchar();">
+												<input type="text" placeholder="아이디" name="partner_Id" /> 
+												<input type="password" placeholder="비밀번호" name="partner_Password" />
 												<input type="submit" class="btn btn-primary" value="로그인" />
 											</form>
 										</div>
-										</form>
-										<div class="tab-pane fade" id="member_log">
-											<form
-												action="${pageContext.request.contextPath}/member/memberLogin.do"
-												method="POST" onsubmit="return reCapchar();">
-												<input type="text" placeholder="아이디" name="member_Id" /> <input
-													type="password" placeholder="비밀번호" name="member_Password" />
+										<div class="tab-pane fade show active" id="member_log">
+											<form action="${pageContext.request.contextPath}/member/memberLogin.do" method="POST" onsubmit="return reCapchar();">
+												<input type="text" placeholder="아이디" name="member_Id" /> 
+												<input type="password" placeholder="비밀번호" name="member_Password" />
 												<input type="submit" class="btn btn-primary" value="로그인" />
 											</form>
 											<div></div>
@@ -286,8 +281,7 @@
 						<button type="button" class="btn btn-primary">페이스북</button>
 						<button type="button" class="btn btn-primary">네이버</button>
 						<button type="button" class="btn btn-primary">구글</button>
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>

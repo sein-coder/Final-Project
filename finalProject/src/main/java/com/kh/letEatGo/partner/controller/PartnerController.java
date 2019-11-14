@@ -108,7 +108,7 @@ public class PartnerController {
 	}
 	
 	@RequestMapping("/partner/partnerLogin.do")
-	public ModelAndView partnerlogin(Partner p,HttpSession session) {
+	public ModelAndView partnerlogin(Partner p, HttpSession session) {
 		ModelAndView mv=new ModelAndView();
 		Partner result=null;
 		result=service.selectPartnerOne(p);

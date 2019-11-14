@@ -82,9 +82,8 @@ public class OrderController {
 		return mv;
 	}
 	
-	@RequestMapping("/order/payment")
-	public String payment(@RequestParam int partner_No, @RequestParam String orderList) {
-		System.out.println(partner_No);
+	@RequestMapping("/order/payment.do")
+	public String payment(@RequestParam(required = false) int partner_No, @RequestParam String orderList) {
 		String[] st = orderList.split("/");
 		String[] result = {};
 		for(String s : st) {
