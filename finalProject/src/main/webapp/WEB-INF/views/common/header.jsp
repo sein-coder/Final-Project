@@ -253,7 +253,7 @@
 										<div class="tab-pane fade" id="member_log">
 											<form
 												action="${pageContext.request.contextPath}/member/memberLogin.do"
-												method="POST">
+												method="POST" onsubmit="return reCapchar();">
 												<input type="text" placeholder="아이디" name="member_Id" /> <input
 													type="password" placeholder="비밀번호" name="member_Password" />
 												<input type="submit" class="btn btn-primary" value="로그인" />
