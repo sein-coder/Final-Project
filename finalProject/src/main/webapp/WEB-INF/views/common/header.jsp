@@ -253,7 +253,7 @@
 										<div class="tab-pane fade" id="member_log">
 											<form
 												action="${pageContext.request.contextPath}/member/memberLogin.do"
-												method="POST">
+												method="POST" onsubmit="return reCapchar();">
 												<input type="text" placeholder="아이디" name="member_Id" /> <input
 													type="password" placeholder="비밀번호" name="member_Password" />
 												<input type="submit" class="btn btn-primary" value="로그인" />
@@ -261,23 +261,22 @@
 											<div></div>
 										</div>
 									</div>
-										    <div id="html_element" class=""></div>
-										  <script type="text/javascript">
-										    var onloadCallback = function() {
-										      grecaptcha.render('html_element', {
-										        'sitekey' : '6LcTHL0UAAAAAEkwWVCn3v37_ufKUIWC6rIZ7_LT'
-										      });
-										    };
-										    function reCapchar() {
-										    	if (typeof (grecaptcha) != 'undefined') {
-										            if (grecaptcha.getResponse() == "") {
-										                alert("스팸방지코드 확인하세요");
-										                return false;
-										            }
-										        }
-										    }
-										    	
-										  </script>
+								    <div id="html_element" class=""></div>
+									  <script type="text/javascript">
+									    var onloadCallback = function() {
+									      grecaptcha.render('html_element', {
+									        'sitekey' : '6LcTHL0UAAAAAEkwWVCn3v37_ufKUIWC6rIZ7_LT'
+									      });
+									    };
+									    function reCapchar() {
+									    	if (typeof (grecaptcha) != 'undefined') {
+									            if (grecaptcha.getResponse() == "") {
+									                alert("스팸방지코드 확인하세요");
+									                return false;
+									            }
+									        }
+									    }
+									  </script>
 								</div>
 							</div>
 						</div>
