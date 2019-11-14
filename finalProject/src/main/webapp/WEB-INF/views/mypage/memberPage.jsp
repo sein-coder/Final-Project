@@ -10,6 +10,7 @@
  .btn-outline-light{
  color:black;}
 
+
 </style>
 
 <script>
@@ -20,51 +21,52 @@
 	  });
   });
   
-  $(document).ready(function(){
+   $(document).ready(function(){
 	  $("#btnDelete").click(function(){
-		  document.deleteMember.action="${path}/member/deleteMember";
-		  document.deleteMember.submit();
+		  location.href="${path}/member/deleteMember?Member_Id="+'${loginMember.member_Id}';
 	  });
-  });
+  }); 
  
 
 </script>
 
+<section>
 <div class="site-section">
    <div class="container">
-      <div class="row justify-content-center mb-8">
+      <div class="row">
         <div class="col">
-      
-      
-      
+         	<p></p>
+      <div class="tab-content">
       <form name="updateMember" method="post">
       <table class="table" id="tbl-dev">
-        <tr>
-			<th scope="col">아이디</th>
-			<td><input name="member_Id" value="${member.member_Id}" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<th scope="col">비밀번호</th>
-			<td><input name="member_Password" value="${member.member_Password}"></td>
-		</tr>
-		<tr>
-			<th scope="col">이메일</th>
-			<td><input name="member_Email" value="${member.member_Email}"></td>
-		</tr>
-		<tr>
-			<th scope="col">연락처</th>
-			<td><input name="member_Phone" value="${member.member_Phone}"></td>
-		</tr>
+        <div class="form-group">
+					<label for="form-label">아이디</label>
+			<input name="member_Id" value="${member.member_Id}" readonly="readonly">
+		</div>
+		 <div class="form-group">
+					<label for="form-label">비밀번호</label>
+			<input type="password" name="member_Password" value="${member.member_Password}" >
+		</div>
+		 <div class="form-group">
+					<label for="form-label">이메일</label>
+			<input name="member_Email" value="${member.member_Email}">
+		</div>
+		 <div class="form-group">
+					<label for="form-label">연락처</label>
+			<input name="member_Phone" value="${member.member_Phone}">
+		</div>
 		<tr>
 		  <td colspan="2" align="center">
-		     <input type="button" value="수정" id="btnUpdate">
-		     <input type="button" value="탈퇴" id="btnDelete">
+		     <input type="button" class="btn btn-outline-success" value="수정" id="btnUpdate">
+		     <input type="button" class="btn btn-outline-success" value="탈퇴" id="btnDelete" onclick="/member/deleteMember">
 		  </td>
 		</tr>
 	 </table>
 	    </form>
 	    </div>
+	   </div>
       </div>
-   </div>
-</div>
+    </div>
+  </div>
+</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
