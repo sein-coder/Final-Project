@@ -45,10 +45,9 @@ public class MemberController {
 		  System.out.println(m);
 		  m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
 			logger.debug(m.getMember_Password());
-			//전화번호, 주소, 이메일 암호화
+			
 			try {
-				m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
-				m.setMember_Email(enc.encrypt(m.getMember_Email()));
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

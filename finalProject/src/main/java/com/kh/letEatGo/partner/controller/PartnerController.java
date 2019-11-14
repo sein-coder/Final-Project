@@ -80,7 +80,7 @@ public class PartnerController {
 			}
 		  p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));
 			logger.debug(p.getPartner_Password());
-			//전화번호, 주소, 이메일 암호화
+			
 			try {
 				p.setPartner_Phone(enc.encrypt(p.getPartner_Phone()));
 				p.setPartner_Email(enc.encrypt(p.getPartner_Email()));
@@ -112,6 +112,7 @@ public class PartnerController {
 		ModelAndView mv=new ModelAndView();
 		Partner result=null;
 		result=service.selectPartnerOne(p);
+		
 		String msg="";
 		String loc="";
 			if(result != null) {
