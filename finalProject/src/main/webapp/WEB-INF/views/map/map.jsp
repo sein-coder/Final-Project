@@ -88,6 +88,7 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 <script>
+var places = new kakao.maps.services.Places();
 function selectMap(str) {
 	var callback = function(result, status) {
 	   if (status === kakao.maps.services.Status.OK) {
@@ -95,6 +96,7 @@ function selectMap(str) {
 	       var coords = new kakao.maps.LatLng(result.y, result.x);
 	       map.relayout();
 	       map.setCenter(coords);
+	       $("#sample5_address").val(str);
 	   }
 	}
 	places.keywordSearch(str, callback);
@@ -120,9 +122,21 @@ function showPosition(position) {
 			       $("#sample5_address").val(result[0].address.address_name);
 	           }
 	       };
-		
 	       geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 	}
+if('${mapAddress}'!=''){
+	console.log('${mapAddress}')
+var mapSeacrh= function(result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+    	 var result = result[0];
+        var coords = new kakao.maps.LatLng(result.y, result.x);
+        map.relayout();
+        map.setCenter(coords);
+        $("#sample5_address").val('${mapAddress}');
+    }
+};
+places.keywordSearch('${mapAddress}', mapSeacrh);
+}
 
 var areas=[];
 <c:forEach items="${zonelist}" var="zone">
@@ -178,7 +192,7 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-var places = new kakao.maps.services.Places();
+
 for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
 }
