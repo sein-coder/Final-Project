@@ -85,6 +85,7 @@ public class PartnerController {
 				p.setPartner_Phone(enc.encrypt(p.getPartner_Phone()));
 				p.setPartner_Email(enc.encrypt(p.getPartner_Email()));
 				p.setPartner_Address(enc.encrypt(p.getPartner_Address()));
+				p.setPartner_Permission_No(enc.encrypt(p.getPartner_Permission_No()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -145,33 +146,7 @@ public class PartnerController {
 			// TODO Auto-generated catch block
 		}
 	}
-	
-//	@RequestMapping(value="/partner/checkId.do", method= RequestMethod.GET)
-//	@ResponseBody public void checkId(Partner p,HttpServletResponse res) {
-//	Partner result=service.selectPartnerOne(p);
-//	boolean flag=result!=null?false:true;
-//	res.setContentType("application/json;charset=utf-8");
-//	try {
-//		res.getOutputStream().print(flag);
-//	} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	@RequestMapping("/partner/permission.do")
-//	public void permissionCheck(
-//			@RequestParam(required=false) String partner_Permission_No, HttpServletResponse res) {
-//		System.out.println(partner_Permission_No);
-//		Partner p = new Partner();
-//		p.setPartner_Permission_No(partner_Permission_No);
-//		Partner result=service.selectPartnerNo(p);
-//		String flag=result!=null?"false":"true";
-//		res.setContentType("application/json;charset=utf-8");
-//		try {
-//			res.getWriter().write(flag);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+
 
 	@RequestMapping("/partner/permission.do")
 	public void permissionCheck(

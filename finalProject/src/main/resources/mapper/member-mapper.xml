@@ -3,7 +3,7 @@
 <mapper namespace="member">
 	<!-- 회원 정보 조회 -->
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,#{member_Id},#{member_Password},#{member_Email},#{member_Phone})
+		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,#{member_Id},#{member_Password},#{member_Age},#{member_Gender},#{member_Email},#{member_Phone})
 	</insert>
 	<select id="selectMemberOne" parameterType="member" resultType="member">
 		select * from  Member WHERE MEMBER_ID=#{member_Id}
