@@ -50,8 +50,6 @@ public class OrderController {
 			p.setReviewCount(service.selectReviewCount(p.getPartner_No()));
 		}
 		
-		System.out.println(menuList);
-		
 		mv.addObject("list", list);
 		mv.addObject("menuList", menuList);
 		mv.addObject("totalCount", totalCount);
@@ -83,18 +81,13 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/order/payment.do")
-	public String payment(@RequestParam(required = false) int partner_No, @RequestParam String orderList) {
-		String[] st = orderList.split("/");
-		String[] result = {};
-		for(String s : st) {
-			result = s.split(":");
-			for(String str : result) {
-				System.out.println(str);
-			}
-		}
+	public String payment(
+			@RequestParam(required=false) int order_Price, Model m) {
+		System.out.println(order_Price);
+		m.addAttribute("order_Price", order_Price);
 		return "order/payment";
 	}
-
+	
 	@RequestMapping("/order/orderEnd") 
 	public String orderEnd(Order o, HttpSession session) {
 		System.out.println(o);
@@ -108,7 +101,7 @@ public class OrderController {
 		int result = service.insertOrder(order);
 		
 		String msg = "";
-		String loc = "/order/orderListView?partner_No="+order.getPartner_no();
+		String loc = "/order/orderListView?partner_No="+order.getPartner_No();
 		if(result > 0) {
 			msg = "결제가 완료 되었습니다.";
 		} else {
@@ -118,6 +111,7 @@ public class OrderController {
 		model.addAttribute("loc", loc);
 		return "common/msg";
 	}
+	  
 	/*
 	 * @RequestMapping("/order/searchConsole") public List<Partner> searchConsole(
 	 * 

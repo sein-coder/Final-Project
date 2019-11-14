@@ -12,7 +12,6 @@
   font-size:1.25em;
   
 }
-
 .star-rating .icon-star{
   color: yellow;
   transition : 0.5s;
@@ -136,7 +135,6 @@ $(document).ready(function(){
 	         }
 	      });
 	   });
-
 	});
 	
 function searchConsole(data){
