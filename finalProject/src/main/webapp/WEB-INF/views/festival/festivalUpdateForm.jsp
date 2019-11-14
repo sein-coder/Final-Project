@@ -78,7 +78,8 @@ textarea {
 		<form
 			id="frm"
 			action="${pageContext.request.contextPath}/festival/festivalUpdateFormEnd.do?festival_No=${festival.festival_No}"
-			method="post">
+			method="post"
+			enctype="multipart/form-data">
 
 			<div class="site-section pb-0">
 				<div class="row">
@@ -96,6 +97,7 @@ textarea {
 											<!-- 썸네일 부분   -->
 										<div class="pull-left ml-2 mt-2" style="display:inline;">
 											<input type="file" value="파일 선택" name="upFile" id="upFile"/>
+											<input type="hidden" name="festival_Thumbnail" value="${festival.festival_Thumbnail }">
 										</div>
 										
 										</div>
@@ -123,8 +125,19 @@ textarea {
 											rows="40" placeholder="축제 내용을 입력하세요">${festival.festival_Content }</textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
-											type="text" readonly disabled value="500" name="counter"
+											type="text" readonly disabled value="2000" name="counter"
 											id="counter"></span>
+									</div>
+									<div class="action" style="display: inline-block;">
+										<button class="add-to-cart btn btn-default" type="button">
+									 		<span class="icon-heart" id="heart"></span>
+										</button>
+									</div>
+									<div style="display: inline-block;">
+									<p class="vote">
+										<b id="count">${festival.festival_Count}</b>이 글에 좋아요를 누른 회원수 입니다. 
+										<b id="count">(${festival.festival_Count} votes)</b>
+									</p>
 									</div>
 									<br>
 									<div style="display: inline-block">
@@ -167,14 +180,14 @@ textarea {
 										<div class="alert alert-danger1">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-											<input id="festival_StartDate" name="festival_StartDate" type="text" value="${festival.festival_StartDate}" />
+											<input id="festival_StartDate" name="festival_StartDate" type="date" value=${festival.festival_StartDate} />
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-											<input id="festival_EndDate" name="festival_EndDate" type="text" value="${festival.festival_EndDate}" />
+											<input id="festival_EndDate" name="festival_EndDate" type="date" value=${festival.festival_EndDate} />
 										</div>
 									</td>
 								</tr>
@@ -263,8 +276,8 @@ textarea {
 	      var content = $(this).val();       
 	      $('#counter').val(100-content.length);
 	
-	          if(content.length > 100) {
-	            $(this).val($(this).val().substring(0, 100));
+	          if(content.length > 2000) {
+	            $(this).val($(this).val().substring(0, 2000));
 	          }
 	      });
       
@@ -359,7 +372,21 @@ textarea {
 		            console.log(2);
 		        }
 		    });
-		    
+		/* count */
+		$("#heart").click(function() {
+		    $('#count').html(function(count,val) {
+		        $.ajax({
+		            url: '/.festivalView.jsp',
+		            type: 'POST',
+		            data: 'count='+count,
+		            success: function(e) {
+		            	alert('heart를 주셨습니다.'); 
+		            	$('#count').val(e.count);	
+		            }
+		        });
+        		return +val+1;
+		    });	    
+		});
         
 	</script>
 	</section>

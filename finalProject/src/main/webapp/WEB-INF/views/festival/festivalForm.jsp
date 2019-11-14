@@ -131,7 +131,7 @@ textarea {
 											rows="40" placeholder="축제 내용을 입력하세요"></textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
-											type="text" readonly disabled value="500" name="counter"
+											type="text" readonly disabled value="2000" name="counter"
 											id="counter"></span>
 									</div>
 									<br>
@@ -257,7 +257,7 @@ textarea {
 							</a>
 						</li>
 						<li class="list-inline-item">
-							<a onclick="submit();" href="festival/festivalList">
+							<a onclick="#" href="festival/festivalList">
 								<span style="background-color: #f23a2e;">취소</span>
 							</a>
 						</li>
@@ -271,10 +271,10 @@ textarea {
 	/*글자 수 제한*/
 			$('#festival_Content').keyup(function (e){
 	      var content = $(this).val();       
-	      $('#counter').val(500-content.length);
+	      $('#counter').val(2000-content.length);
 	
-	          if(content.length > 500) {
-	            $(this).val($(this).val().substring(0, 500));
+	          if(content.length > 2000) {
+	            $(this).val($(this).val().substring(0, 2000));
 	          }
 	      });
       

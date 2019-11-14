@@ -58,6 +58,29 @@ public class FestivalController {
 		  File dir=new File(saveDir); if(!dir.exists())
 		  logger.debug("폴더생성 "+dir.mkdirs());
 		  
+		  String[] startdate = festival.getFestival_StartDate().split("-");
+		  String[] enddate = festival.getFestival_EndDate().split("-");
+		  
+		  //날짜비교 로직
+		  
+		  Calendar nowdate = Calendar.getInstance();
+		  
+		  Calendar calendar1 = Calendar.getInstance();
+		  calendar1.set(Integer.parseInt(startdate[0]), Integer.parseInt(startdate[1])-1, Integer.parseInt(startdate[2]));
+		  
+		  Calendar calendar2 = Calendar.getInstance();
+		  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1])-1, Integer.parseInt(enddate[2]));
+		  
+		  if(nowdate.compareTo(calendar1) >= 0) {
+			  if(nowdate.compareTo(calendar2) <= 0) {
+				  festival.setFestival_Proceeding("진행");
+			  }else {
+				  festival.setFestival_Proceeding("종료");
+			  }
+		  }else {
+			  festival.setFestival_Proceeding("예정");
+		  }
+		  
 		  
 		  if(!upFile.isEmpty()) {
 			   String oriFileName=upFile.getOriginalFilename();			   festival.setFestival_Thumbnail(oriFileName);
@@ -135,46 +158,59 @@ public class FestivalController {
 		  File dir=new File(saveDir); if(!dir.exists())
 		  logger.debug("폴더생성 "+dir.mkdirs());
 		  
-		  String[] enddate = festival.getFestival_EndDate().split("-");
 		  String[] startdate = festival.getFestival_StartDate().split("-");
+		  String[] enddate = festival.getFestival_EndDate().split("-");
+		  
+		  //날짜비교 로직
 		  
 		  Calendar nowdate = Calendar.getInstance();
 		  
 		  Calendar calendar1 = Calendar.getInstance();
-		  calendar1.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1]), Integer.parseInt(enddate[2]));
+		  calendar1.set(Integer.parseInt(startdate[0]), Integer.parseInt(startdate[1])-1, Integer.parseInt(startdate[2]));
 		  
 		  Calendar calendar2 = Calendar.getInstance();
-		  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1]), Integer.parseInt(enddate[2]));
+		  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1])-1, Integer.parseInt(enddate[2]));
+
+		  System.out.println(calendar1.getTime());
 		  
-		  System.out.println(nowdate);
+		  if(nowdate.compareTo(calendar1) >= 0) {
+			  if(nowdate.compareTo(calendar2) <= 0) {
+				  festival.setFestival_Proceeding("진행");
+			  }else {
+				  festival.setFestival_Proceeding("종료");
+			  }
+		  }else {
+			  festival.setFestival_Proceeding("예정");
+		  }
 		  
-//		  if(upFile!=null && !upFile.isEmpty()) { 
-//			  String oriFileName=upFile.getOriginalFilename();
-//			  festival.setFestival_Thumbnail(oriFileName); 
-//			  try { 
-//				  //transferTo는 multipart 제공 
-//				  upFile.transferTo(new File(saveDir+"/"+oriFileName)); 
-//			  }
-//			  catch(IOException e) {
-//				  e.printStackTrace(); 
-//			  } 
-//		  }
-//        int result = service.updateFormFestival(festival); 
-//		
-//		String msg="";
-//		String loc="/festival/festivalList";
-//		
-//		if(result>0) {
-//			msg="삭제를 성공하였습니다.";
-//		}else {
-//			msg="삭제를 실패하였습니다.";
-//		}
-//		
-//		mv.addObject("msg",msg);
-//		mv.addObject("loc",loc);
+		  if(upFile!=null && !upFile.isEmpty()) { 
+			  String oriFileName=upFile.getOriginalFilename();
+			  festival.setFestival_Thumbnail(oriFileName); 
+			  try { 
+				  //transferTo는 multipart 제공 
+				  upFile.transferTo(new File(saveDir+"/"+oriFileName)); 
+			  }
+			  catch(IOException e) {
+				  e.printStackTrace(); 
+			  } 
+		  }
+        int result = service.updateFormFestival(festival); 
+		
+		String msg="";
+		String loc="/festival/festivalList";
+		
+		if(result>0) {
+			msg="수정을 성공하였습니다.";
+		}else {
+			msg="수정을 실패하였습니다.";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
         
 		mv.setViewName("common/msg");
 		return mv;
 	}
 	
+//count추가 update문 만들기
 }
