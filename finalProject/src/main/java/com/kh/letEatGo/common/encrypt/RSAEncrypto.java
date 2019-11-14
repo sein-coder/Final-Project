@@ -29,7 +29,12 @@ public class RSAEncrypto implements MyEncrypt{
 	
 	public RSAEncrypto() {
 		String path=this.getClass().getResource("/").getPath();
-		path=path.substring(0,path.lastIndexOf("/target"));
+		// 서버에 올릴 때는 이부분이
+		path=path.substring(0,path.lastIndexOf("/classes"));
+		// 이 두가지 경로를 바꿔줘야함
+//		path=path.substring(0,path.lastIndexOf("/target"));
+//		File f=new File(path+"/keys.bs");
+		
 		File f=new File(path+"/src/main/webapp/WEB-INF/keys.bs");
 		if(f.exists()) {
 			try(ObjectInputStream ois=new ObjectInputStream(new FileInputStream(f))){
