@@ -50,7 +50,7 @@ public class PartnerController {
 		  
 		  ModelAndView mv=new ModelAndView();
 		  
-		  String saveDir=req.getSession().getServletContext().getRealPath("/resources/upload/board");
+		  String saveDir=req.getSession().getServletContext().getRealPath("/resources/images/foodtruck");
 		  File dir=new File(saveDir);
 		  if(!dir.exists()) logger.debug("폴더생성 "+dir.mkdirs());
 			//다중파일 서버에 저장로직

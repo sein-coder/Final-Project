@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.letEatGo.accountBook.model.vo.Account;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
 
 @Repository
@@ -52,6 +53,18 @@ public class AccountBookDaoImpl implements AccountBookDao {
 	public AccountBook selectAccountBook(SqlSessionTemplate session, AccountBook ab) {
 		// TODO Auto-generated method stub
 		return session.selectOne("accountBook.selectAccountBook",ab);
+	}
+
+	@Override
+	public Account selectAccount(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectOne("account.selectAccount",partner_No);
+	}
+
+	@Override
+	public int insertAccount(SqlSessionTemplate session, Account account) {
+		// TODO Auto-generated method stub
+		return session.insert("account.insertAccount",account);
 	}
 	
 	

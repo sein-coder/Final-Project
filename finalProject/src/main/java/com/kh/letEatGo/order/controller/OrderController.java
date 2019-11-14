@@ -31,9 +31,7 @@ public class OrderController {
 	private OrderService service;
 	
 	@RequestMapping("/order")
-	public ModelAndView order(
-			@RequestParam(value="cPage", required=false, defaultValue="1")int cPage
-			) {
+	public ModelAndView order(@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
 		
 		ModelAndView mv = new ModelAndView();
 		
