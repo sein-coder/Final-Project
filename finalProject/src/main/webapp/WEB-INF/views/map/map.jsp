@@ -114,14 +114,13 @@ function showPosition(position) {
 	       map.relayout();
 	       map.setCenter(coords);
 	       var geocoder = new kakao.maps.services.Geocoder();
-
 	       var coord = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	       var callback = function(result, status) {
 	           if (status === kakao.maps.services.Status.OK) {
 			       $("#sample5_address").val(result[0].address.address_name);
 	           }
 	       };
-
+		
 	       geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 	}
 
