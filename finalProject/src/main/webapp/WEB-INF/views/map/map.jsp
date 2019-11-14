@@ -142,11 +142,30 @@ var area =
 ;
 areas.push(area);
 </c:forEach>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(37.5306475369695   ,126.928706300305), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
+		if('${latitude}'==''&&'${longitude}'==''){
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(37.5306475369695   ,126.928706300305), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		}else{
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng('${latitude}','${longitude}'), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		var geocoder = new kakao.maps.services.Geocoder();
+	       var coord = new kakao.maps.LatLng('${latitude}', '${longitude}');
+	       var callback = function(result, status) {
+	           if (status === kakao.maps.services.Status.OK) {
+			       $("#sample5_address").val(result[0].address.address_name);
+	           }
+	       };
+		
+	       geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+		}
+    
+    
 // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 var map = new kakao.maps.Map(mapContainer, mapOption),
     customOverlay = new kakao.maps.CustomOverlay({}),
