@@ -17,6 +17,14 @@ RSS Feed: https://feeds.feedburner.com/Free-templateco
 /* Base */
 @font-face { font-family: 'BinggraeMelona'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+div.site-section{
+	background-color: #f4f4f4 !important;
+}
+
+div.site-section .container {
+	background-color: white;
+}
+
 body {
   line-height: 1.7;
   color: #4d4d4d;

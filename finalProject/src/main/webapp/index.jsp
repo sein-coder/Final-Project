@@ -33,27 +33,41 @@
 
 
 				<!-- 중간 검색 박스 -->
-				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up"
+				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up" 
 					data-aos-delay="200">
-					<form method="post">
 						<div class="row align-items-center">
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<input type="text" name="" class="form-control"
-									placeholder="메뉴검색 ex)스테이크...">
+									placeholder="메뉴검색 ex)스테이크..."></input>
 							</div>
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<div class="wrap-icon">
-									<span class="icon icon-room"></span> <input type="text"
-										class="form-control" placeholder="푸드트럭 위치찾기">
+									<button class="icon icon-room" style="background:none;border:none;cursor:pointer" onclick="map_gps();"></button> 
+									<input type="text" id="mapAddress" class="form-control" placeholder="푸드트럭 위치찾기">
 								</div>
 							</div>
 							<div class="col-lg-12 col-xl-2 ml-auto text-right">
-								<input type="submit" class="btn text-white btn-primary"
-									value="검색하기">
+								<button  class="btn text-white btn-primary" onclick="">검색하기</button>
 							</div>
 						</div>
-					</form>
 				</div>
+					<script>
+					function map_gps(){
+						if (navigator.geolocation) {
+						    navigator.geolocation.getCurrentPosition(showPosition);
+						  } else {
+							  alert("지원하지 않는 브라우저입니다.");
+						  }
+					}
+					function showPosition(position) {
+						var latitude=position.coords.latitude;
+						var longitude=position.coords.longitude;
+						location.href="${pageContext.request.contextPath}/mapGps?latitude="+latitude+"&longitude="+longitude;
+						}
+					
+					
+					</script>
+					
 
 				<div class="row align-items-stretch p-4">
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">

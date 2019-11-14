@@ -51,11 +51,12 @@
   <script src="${pageContext.request.contextPath }/resources/js/aos.js"></script>
   <script src="${pageContext.request.contextPath }/resources/js/rangeslider.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/js/main.js"></script>
+  
   <script>
-		function viewChatting(){
-			open("${pageContext.request.contextPath}/viewChatting","_blank","height:100px,width:100px");
-		}
-	</script>
+	function viewChatting(){
+		open("${pageContext.request.contextPath}/viewChatting","_blank","height:100px,width:100px");
+	}
+  </script>
   
   </body>
 </html>
