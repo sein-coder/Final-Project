@@ -166,7 +166,7 @@ button#btn-write {
 										</div>
 										<div class="caption">
 											<p>${v.festival_Title }</p>
-											<button style="background-color: red; color: #fff; text-align: center;">
+											<button class="proceeding" id="proceeding" style="color: #fff; text-align: center;">
 												${v.festival_Proceeding }
 											</button>
 											<p>${v.festival_StartDate }~${v.festival_EndDate }</p>
@@ -240,6 +240,18 @@ button#btn-write {
 		    });
 		    
 	</script>
+	<script>
+		$('.proceeding').each(function(){
+			if($(this).text().includes('예정',0)){
+				$(this).css("background-color",'blue');
+			}else if($(this).text().includes('진행',0)){
+				$(this).css("background-color",'green');
+			}else if($(this).text().includes('종료',0)){
+				$(this).css("background-color",'red');
+		}
+		});
+	</script>
+	
 
 </section>
 

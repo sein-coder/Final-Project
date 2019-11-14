@@ -92,14 +92,23 @@ public class FestivalController {
 			   }
 		   }
 		  
-		  try {
-			   service.insertFestival(festival);
-		 }catch(Exception e) {
-		  logger.debug("에러임");
-		 
-		}
-		
-		mv.setViewName("redirect:/festival/festivalList");
+		  int result=service.insertFestival(festival);
+		  
+		  String msg="";
+		  String loc="/festival/festivalList";
+		  
+			if(result>0) {
+				msg="등록을 성공하였습니다.";
+			}else {
+				msg="등록을 실패하였습니다.";
+			}
+			
+			mv.addObject("msg",msg);
+			mv.addObject("loc",loc);
+	        
+			mv.setViewName("common/msg");
+			
+			
 		return mv;
 	}
 	
@@ -213,4 +222,21 @@ public class FestivalController {
 	}
 	
 //count추가 update문 만들기
+	
+	@RequestMapping("festival/updateFestivalLike.do")
+	public ModelAndView updateFestivalLike(Festival festival) {
+		
+		ModelAndView mv=new ModelAndView();
+		
+		System.out.println("sssssssss"+mv);
+		
+		int result=service.updateFestivalLike(festival);
+		
+		mv.setViewName("jsonView");
+		return mv;
+		
+		
+	}
+	
+	
 }

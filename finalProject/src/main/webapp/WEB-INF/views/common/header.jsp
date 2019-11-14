@@ -235,9 +235,9 @@
 									<p>로그인</p>
 									<ul class="nav nav-tabs">
 										<li class="nav-item"><a class="nav-link active"
-											data-toggle="tab" href="#partner_log">사업자</a></li>
+										data-toggle="tab" href="#member_log">사용자</a></li>
 										<li class="nav-item"><a class="nav-link"
-											data-toggle="tab" href="#member_log">사용자</a></li>
+										data-toggle="tab" href="#partner_log">사업자</a></li>	
 									</ul>
 									<div class="tab-content">
 										<div class="tab-pane fade show active" id="partner_log">
@@ -261,23 +261,22 @@
 											<div></div>
 										</div>
 									</div>
-										    <div id="html_element" class=""></div>
-										  <script type="text/javascript">
-										    var onloadCallback = function() {
-										      grecaptcha.render('html_element', {
-										        'sitekey' : '6LcTHL0UAAAAAEkwWVCn3v37_ufKUIWC6rIZ7_LT'
-										      });
-										    };
-										    function reCapchar() {
-										    	if (typeof (grecaptcha) != 'undefined') {
-										            if (grecaptcha.getResponse() == "") {
-										                alert("스팸방지코드 확인하세요");
-										                return false;
-										            }
-										        }
-										    }
-										    	
-										  </script>
+								    <div id="html_element" class=""></div>
+									  <script type="text/javascript">
+									    var onloadCallback = function() {
+									      grecaptcha.render('html_element', {
+									        'sitekey' : '6LcTHL0UAAAAAEkwWVCn3v37_ufKUIWC6rIZ7_LT'
+									      });
+									    };
+									    function reCapchar() {
+									    	if (typeof (grecaptcha) != 'undefined') {
+									            if (grecaptcha.getResponse() == "") {
+									                alert("스팸방지코드 확인하세요");
+									                return false;
+									            }
+									        }
+									    }
+									  </script>
 								</div>
 							</div>
 						</div>

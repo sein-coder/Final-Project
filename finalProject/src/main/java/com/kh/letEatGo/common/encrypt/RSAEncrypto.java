@@ -29,8 +29,8 @@ public class RSAEncrypto implements MyEncrypt{
 	
 	public RSAEncrypto() {
 		String path=this.getClass().getResource("/").getPath();
-		path=path.substring(0,path.lastIndexOf("/target"));
-		File f=new File(path+"/src/main/webapp/WEB-INF/keys.bs");
+		path=path.substring(0,path.lastIndexOf("/classes"));   // 서버에는 key 찾을 떄 target이 없음 classes 
+		File f=new File(path+"/keys.bs");  
 		if(f.exists()) {
 			try(ObjectInputStream ois=new ObjectInputStream(new FileInputStream(f))){
 				Map<String,Object> keys=(Map)ois.readObject();
@@ -59,8 +59,8 @@ public class RSAEncrypto implements MyEncrypt{
 		privateKey=keypair.getPrivate();//개인키,비밀키생성
 		////// 암호화키생성끝! /////
 		String path=this.getClass().getResource("/").getPath();
-		path=path.substring(0,path.lastIndexOf("/target"));
-		File f=new File(path+"/src/main/webapp/WEB-INF/keys.bs");
+		path=path.substring(0,path.lastIndexOf("/classes"));
+		File f=new File(path+"/keys.bs");
 		try(ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(f))){
 			Map<String,Object> keys=new HashMap<String, Object>();;
 			keys.put("public", publicKey);

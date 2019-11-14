@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.letEatGo.order.model.vo.Menu;
 import com.kh.letEatGo.order.model.vo.Order;
 import com.kh.letEatGo.order.model.vo.Review;
+import com.kh.letEatGo.order.model.vo.ReviewComment;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
 @Repository
@@ -73,6 +74,11 @@ public class OrderDaoImpl implements OrderDao {
 		int result = session.insert("order.insertOrder", order);
 		return result;
 	}
-	
 
+	@Override
+	public List<ReviewComment> selectReviewComment(SqlSessionTemplate session, int comment_To) {
+		List<ReviewComment> list = session.selectList("order.selectReviewComment", comment_To);
+		return list;
+	}
+	
 }
