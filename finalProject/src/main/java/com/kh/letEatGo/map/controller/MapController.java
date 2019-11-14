@@ -19,12 +19,22 @@ public class MapController {
 	@Autowired
 	private MapService service;
 	
-	//화면전환용 method
 	@RequestMapping("/map")
 	public String map(Model model) {
 		List<TruckMap> truckList=service.categoryList();
 		List<ZoneMap> zonelist=service.selectMapList();
-		 
+//		System.out.println(latitude+" "+longitude);
+		model.addAttribute("trucklist",truckList);
+		model.addAttribute("zonelist",zonelist);
+		return "map/map";
+	}
+	
+	@RequestMapping("/mapGps")
+	public String mapGps(String latitude,String longitude,Model model) {
+		List<TruckMap> truckList=service.categoryList();
+		List<ZoneMap> zonelist=service.selectMapList();
+		model.addAttribute("latitude",latitude);
+		model.addAttribute("longitude",longitude);
 		model.addAttribute("trucklist",truckList);
 		model.addAttribute("zonelist",zonelist);
 		return "map/map";

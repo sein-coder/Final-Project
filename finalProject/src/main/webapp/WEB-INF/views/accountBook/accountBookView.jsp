@@ -69,7 +69,7 @@
 
 <section id="content">
 	<div class="site-section" style="background-color: #f4f4f4;">
-		<div class="container" style="background-color: white;">
+		<div i class="container" style="background-color: white;">
 
 			<!-- 이용자 아이디 출력 구역 -->
 			<div class="row mb-4 justify-content-start">

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +77,12 @@ public class MainPageController {
 		mv.addObject("list", list);
 		mv.setViewName("jsonView");
 		return mv;
+	}
+	
+	//화상채팅
+	@RequestMapping("/viewChatting")
+	public String viewChatting() {
+		return "common/viewChatting";
 	}
 	
 }
