@@ -9,46 +9,14 @@
 
 <style>
 /* Global */
-img {
+.container img {
 	max-width: 100%;
 }
 
-a {
-	-webkit-transition: all 150ms ease;
-	-moz-transition: all 150ms ease;
-	-ms-transition: all 150ms ease;
-	-o-transition: all 150ms ease;
-	transition: all 150ms ease;
-}
-
-a:hover {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-	/* IE 8 */
-	filter: alpha(opacity = 50); /* IE7 */
-	opacity: 0.6;
-	text-decoration: none;
-}
-
-body {
+.container body {
 	border-top: 0;
 	background: #c4e17f;
-	/* background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%,
-		#f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%,
-		#db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%,
-		#669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%,
-		#f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%,
-		#db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%,
-		#669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca
-		25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe
-		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
-		87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca
-		25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe
-		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
-		87.5%, #62c2e4 87.5%, #62c2e4)
- */
+
 }
 
 .thumbnails li>.fff .caption {
@@ -124,7 +92,7 @@ ul.thumbnails {
 	}
 }
 
-li {
+.container li {
 	list-style-type: none;
 }
 
@@ -146,6 +114,7 @@ button#btn-write {
 	margin-left: 0px;
 	float: right;
 }
+
 </style>
 
 <link
@@ -153,7 +122,6 @@ button#btn-write {
 	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <section>
 	<div class="site-section">
@@ -240,7 +208,7 @@ button#btn-write {
 
 	</div>
 	<!-- /.container -->
-	</div>
+	
 	<script>
 		//Carousel Auto-Cycle
 		$(document).ready(function() {
