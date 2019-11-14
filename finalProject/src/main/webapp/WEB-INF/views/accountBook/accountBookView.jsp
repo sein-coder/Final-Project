@@ -69,7 +69,7 @@
 
 <section id="content">
 	<div class="site-section" style="background-color: #f4f4f4;">
-		<div class="container" style="background-color: white;">
+		<div i class="container" style="background-color: white;">
 
 			<!-- 이용자 아이디 출력 구역 -->
 			<div class="row mb-4 justify-content-start">
@@ -381,38 +381,7 @@
 		}
 
 		function cancel(num) {
-			location.reload();
-			
-			/* add 
-			if (num == 1) {
-				$("#cancelBtn").parent().parent().remove();
-				flag = true;
-			}
-			 update / delete 
-			else {
-				var data = $("#cancelBtn").parent().parent().children();
-				for (var i = 0; i < data.length; i++) {
-					if (i == 0) {
-						continue;
-					} else if (i == 3) {
-						var temp = data.eq(i).children().children().val();
-						data.eq(i).children().remove();
-						data.eq(i).append(temp);
-					} else if (i == 7 || i == 8 || i == 9){
-						var temp = data.eq(i).children().val();
-						temp = preprocessing(temp);
-						data.eq(i).children().remove();
-						data.eq(i).append(temp);
-					} else {
-						var temp = data.eq(i).children().val();
-						data.eq(i).children().remove();
-						data.eq(i).append(temp);
-					}
-				}
-
-				flag = true;
-			} */
-			
+			location.reload();			
 		};
 		
 		/* 금액 전처리용 
@@ -505,7 +474,7 @@
 			});
 			}
 		
-		function checkDateData(id){
+/* 		function checkDateData(id){
 			var account_No = $(id).parent().parent().children().eq(0).children().val();
 			console.log(account_No);
 			if(typeof account_No == "undefined"){
@@ -528,7 +497,7 @@
 					}
 				}
 			}); 
-		};
+		}; */
 		
 	</script>
 	

@@ -14,6 +14,14 @@ public interface FestivalService{
 	Festival selectFestivalOne(int festival_No);
 	
 	int deleteFestival(int festival_No);
+
+	int updateFormFestival(Festival festival);
+
+	int updateFestivalLike(Festival festival);
+
+	
+
+	
 	
 	
 	

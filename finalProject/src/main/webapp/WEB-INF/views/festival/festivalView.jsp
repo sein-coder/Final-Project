@@ -198,51 +198,12 @@ img {
 
 100%
 {
-opacity
-
-
-
-
-:
-
-
- 
-
-
-1;
--webkit-transform
-
-
-
-
-:
-
-
- 
-
-
+opacity:1;
+-webkit-transform:
 scale
-
-
-
-
 (1);
-transform
-
-
-
-
-:
-
-
- 
-
-
+transform:
 scale
-
-
-
-
 (1);
 }
 }
@@ -252,54 +213,16 @@ keyframes opacity { 0% {
 	-webkit-transform: scale(3);
 	transform: scale(3);
 }
-
 100%
 {
-opacity
-
-
-
-
-:
-
-
- 
-
-
-1;
+opacity:1;
 -webkit-transform
-
-
-
-
 :
-
-
- 
-
-
 scale
-
-
-
-
 (1);
 transform
-
-
-
-
 :
-
-
- 
-
-
 scale
-
-
-
-
 (1);
 }
 }
@@ -380,9 +303,38 @@ h1 {
 	border-color: #777;
 	transition: 0.5s;
 }
+/* 해시태그 */
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #777;
+        color: #000;
+    }
 
+    .tag-item:hover {
+        background-color: #262626;
+        color: #fff;
+    }
+    ul#tag-list {
+        padding: 16px 0;
+    }
+
+    ul#tag-list li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
 /*our-team-main*/
 </style>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="" />
 </jsp:include>
@@ -398,16 +350,8 @@ h1 {
 
 							<div class="preview-pic tab-content">
 								<div class="tab-pane active" id="pic-1">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-2">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-3">
-									<img src="http://placekitten.com/400/252" />
-								</div>
-								<div class="tab-pane" id="pic-4">
-									<img src="http://placekitten.com/400/252" />
+									<img alt="없음" width="400px" height="252px"
+									src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
 								</div>
 
 							</div>
@@ -423,20 +367,25 @@ h1 {
 								</div>
 
 							</div>
+							<div id="festival_No" style="disaplay:none;">
+								${festival.festival_No}
+							</div>
 							<p class="product-description">
+							<button id="proceeding" style="color: #fff; text-align: center;">
+								${festival.festival_Proceeding }
+							</button>
 							<p class="text-break">
 								${festival.festival_Content }
 							</p>
-
 							<div class="action" style="display: inline-block;">
-								<button class="add-to-cart btn btn-default" type="button">
-							 	<a href="#" class="bookmark"> <span class="icon-heart"></span></a>
-								</button>
+										<button class="add-to-cart btn btn-default" type="button">
+									 		<span class="icon-heart" id="heart"></span>
+										</button>
 							</div>
 							<div style="display: inline-block;">
 							<p class="vote">
-								<strong>91명</strong> 오늘 이 글에 좋아요를 누른 회원수 입니다. <strong>(87
-									votes)</strong>
+								이 글에 좋아요를 누른 회원수 입니다. 
+								<b id="count">(${festival.festival_Count} votes)</b>
 							</p>
 							</div>
 
@@ -505,7 +454,7 @@ h1 {
 									</div>
 									<div style="display: inline-block">
 
-										<a href="#none" class="hashtag_copy"
+										<a href="#none" class="hashtag_copy" style="background-color: #f38181"
 											data-clipboard-action="copy" data-clipboard-target="p.copy">
 											<span>copy</span>
 										</a>
@@ -555,7 +504,7 @@ h1 {
 		</div>
 		<div>
 			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
-				onclick="location.href='${pageContext.request.contextPath}/festivl/festivalForm'">수정</button>
+				onclick="location.href='${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }'">수정</button>
 		</div>
 	</div>
 	<!--추천글 -->
@@ -636,6 +585,12 @@ h1 {
 
 			</div>
 		</div>
+		<br>
+		<h2>지도보기!</h2>
+		
+		<br>
+		<div id="map" style="width:100%;height:350px;"></div>
+		<br>
 	</div>
 
 	
@@ -652,7 +607,85 @@ h1 {
 		clipboard.on('success', function(e) {
 			alert('복사되었습니다.');
 		});
+		
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+		    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		    level: 3 // 지도의 확대 레벨
+		};  
+
+		//지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+		//주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		
+		//주소로 좌표를 검색합니다
+		geocoder.addressSearch("${festival.festival_Address}", function(result, status) {
+
+		// 정상적으로 검색이 완료됐으면 
+		 if (status === kakao.maps.services.Status.OK) {
+
+		    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+		    // 결과값으로 받은 위치를 마커로 표시합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map,
+		        position: coords
+		    });
+		    // 인포윈도우로 장소에 대한 설명을 표시합니다
+		    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		    map.setCenter(coords);
+		} 
+		});    
+	
 	</script>
+	<script>
+	/* count */
+	$("#heart").click(function() {
+	    $('#count').html(function(count,val) {
+	        $.ajax({
+	            url: "${pageContext.request.contextPath}/festival/updateFestivalLike.do",
+	            type: "POST",
+	            data: {
+	            	'festival_Count':${festival.festival_Count},
+	            	'festival_No':${festival.festival_No}
+	            },	
+	            success: function(data) {
+	            		location.reload();
+	            }
+	        });
+    		
+	    });	    
+	});
+	</script>
+	<script>
+	/*축제번호 숨기기 */
+		$("#festival_No").hide();
+	</script>
+
+	<script>
+		$(document).ready(function(){
+
+			if($('#proceeding').text().includes('예정',0)){
+				$('#proceeding').css("background-color",'blue');
+			}else if($('#proceeding').text().includes('진행',0)){
+				$('#proceeding').css("background-color",'green');
+			}else if($('#proceeding').text().includes('종료',0)){
+				$('#proceeding').css("background-color",'red');
+			}
+		});
+	</script>
+	
+	
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

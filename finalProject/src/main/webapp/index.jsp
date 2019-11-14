@@ -8,15 +8,18 @@
 	rel="stylesheet" type="text/css">
 
 <div class="site-blocks-cover overlay"
-	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif);"
+	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif); 
+	min-height: 750px;"
 	data-aos="fade" data-stellar-background-ratio="0.5">
 	<div class="container">
-		<div class="row align-items-center justify-content-center text-center">
+		<div class="row align-items-center justify-content-center text-center"
+			style="min-height: 750px;">
 
 			<div class="col-md-10">
 
 				<!-- 텍스트 타이핑 효과 -->
-				<div class="row justify-content-center mb-4">
+				<div class="row justify-content-center mb-4"
+					style="margin-top: 9rem !important">
 					<div class="col-md-12 text-center">
 						<h1 data-aos="fade-up">
 							렛잇고만의 <span class="typed-words"></span> 푸드트럭
@@ -29,57 +32,83 @@
 				</div>
 
 				<!-- 중간 검색 박스 -->
-				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up"
+				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up" 
 					data-aos-delay="200">
-					<form method="post">
 						<div class="row align-items-center">
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<input type="text" name="" class="form-control"
-									placeholder="메뉴검색 ex)스테이크...">
+									placeholder="메뉴검색 ex)스테이크..."></input>
 							</div>
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<div class="wrap-icon">
-									<span class="icon icon-room"></span> <input type="text"
-										class="form-control" placeholder="푸드트럭 위치찾기">
+									<button class="icon icon-room" style="background:none;border:none;cursor:pointer" onclick="map_gps();"></button>
+									<input type="text" id="mapAddress" class="form-control" placeholder="푸드트럭 위치찾기">
 								</div>
 							</div>
 							<div class="col-lg-12 col-xl-2 ml-auto text-right">
-								<input type="submit" class="btn text-white btn-primary"
-									value="검색하기">
+								<button  class="btn text-white btn-primary" onclick="mapSerach();">검색하기</button>
 							</div>
 						</div>
-					</form>
 				</div>
+				
+					<script>
+						var places = new kakao.maps.services.Places();
+					function mapSerach() {
+						var mapSeacrh1= function(result, status) {
+						    if (status === kakao.maps.services.Status.OK) {
+						location.href="${pageContext.request.contextPath}/mapSearch?mapAddress="+$('#mapAddress').val();
+						    }else{	
+						    	alert("주소를 확인하세요.ex)도깨비야시장");
+						    }
+						};
+						places.keywordSearch($('#mapAddress').val(), mapSeacrh1);
+					}
+					
+					
+					function map_gps(){
+						if (navigator.geolocation) {
+						    navigator.geolocation.getCurrentPosition(showPosition);
+						  } else {
+							  alert("지원하지 않는 브라우저입니다.");
+						  }
+					}
+					function showPosition(position) {
+						var latitude=position.coords.latitude;
+						var longitude=position.coords.longitude;
+						location.href="${pageContext.request.contextPath}/mapGps?latitude="+latitude+"&longitude="+longitude;
+						}
+					
+					
+					</script>
+					
 
 				<div class="row align-items-stretch p-4">
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/한식.png">
-						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">489</span>
+						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> 
-							<span class="icon mb-3">
-								<img src="${pageContext.request.contextPath }/resources/icon/중식.png">
-							</span> 
-							<span class="caption mb-2 d-block">중식</span> 
-							<span class="number">482</span>
+						<a href="#" class="popular-category h-100"> <span
+							class="icon mb-3"> <img
+								src="${pageContext.request.contextPath }/resources/icon/중식.png">
+						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/일식.png">
-						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">191</span>
+						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/양식.png">
-						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">395</span>
+						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -87,19 +116,17 @@
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/디저트.png">
 						</span> <span class="caption mb-2 d-block">디저트</span> <span
-							class="number">124</span>
+							class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
 						<a href="#" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/기타.png">
-						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">187</span>
+						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">0</span>
 						</a>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -120,7 +147,8 @@
 				<div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
 					<div class="how-it-work-step">
 						<div class="img-wrap">
-							<img src="${pageContext.request.contextPath }/resources/images/소비자.png"
+							<img
+								src="${pageContext.request.contextPath }/resources/images/소비자.png"
 								alt="Free website template by Free-Template.co"
 								class="img-fluid">
 						</div>
@@ -166,133 +194,132 @@
 	<!-- 갤러리 시작 -->
 	<div class="site-section" style="padding: 0">
 		<div class="container">
-				<div class="row">
-					<div class="col-md-12 d-flex justify-content-center">
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="1">Festival</button>
-						<button type="button"
-							class="btn btn-outline-info waves-effect filter" data-rel="2">Food</button>
-					</div>
-					<!-- Grid column -->
+			<div class="row">
+				<div class="col-md-12 d-flex justify-content-center">
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="1">Festival</button>
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="2">Food</button>
 				</div>
-				<!-- Grid row -->
-				<div class="gallery" id="gallery" style="color: white;">
-				
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
-							<img class="img-fluid"
-								src="${pageContext.request.contextPath }/resources/images/main/11.jpg"
-								alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴1<span>부메뉴1</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+				<!-- Grid column -->
+			</div>
+			<!-- Grid row -->
+			<div class="gallery" id="gallery" style="color: white;">
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/9.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_2.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴2<span>부메뉴2</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴1<span>부메뉴1</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/5.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_1.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴3<span>부메뉴3</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴2<span>부메뉴2</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/12.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_4.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴4<span>부메뉴4</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴3<span>부메뉴3</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/2.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_6.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴5<span>부메뉴5</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴4<span>부메뉴4</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="${pageContext.request.contextPath }/resources/images/main/13.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_1.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴6<span>부메뉴6</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+						<figcaption>
+							<h2>
+								메뉴5<span>부메뉴5</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_3.png"
+							alt="Card image cap">
+						<figcaption>
+							<h2>
+								메뉴6<span>부메뉴6</span>
+							</h2>
+							<p>
+								<a href="#"><span class="icon icon-search"></span></a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+				<!-- Grid column -->
 				<!-- Grid row -->
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 팀원 소개 파트 -->
 	<div class="site-section bg-light" style="padding: 0">
 		<div class="container">
@@ -476,6 +503,53 @@
 					}, 300);
 				});
 	});
+</script>
+
+<script type="text/javascript">
+
+/* 갤러리 랜덤 사진 */
+$(document).ready(function(){
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingMainData.do",
+		type : "post",
+		success: function(data){
+	
+			for(var i=0; i<3; i++){
+				var img = $("div.1 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fllist[i].data_Name+"."+data.fllist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.1 img").eq(i).attr("src",replace);
+			}
+			
+			for(var i=0; i<3; i++){
+				var img = $("div.2 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fslist[i].data_Name+"."+data.fslist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.2 img").eq(i).attr("src",replace);
+			}
+		}
+	});
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingTypeCount.do",
+		type:"post",
+		success: function(data){
+			$("a.popular-category span.number").each(function(){
+				for(var i =0; i<data.list.length; i++){
+					if(data.list[i].PARTNER_MENU == $(this).prev().text()){
+						$(this).text(data.list[i].MENU_COUNT);
+						break;
+					}else{
+						$(this).text(0);
+					}
+				}
+			});
+		}
+	});
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

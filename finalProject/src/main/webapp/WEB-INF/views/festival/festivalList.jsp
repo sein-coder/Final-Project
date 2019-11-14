@@ -9,46 +9,14 @@
 
 <style>
 /* Global */
-img {
+.container img {
 	max-width: 100%;
 }
 
-a {
-	-webkit-transition: all 150ms ease;
-	-moz-transition: all 150ms ease;
-	-ms-transition: all 150ms ease;
-	-o-transition: all 150ms ease;
-	transition: all 150ms ease;
-}
-
-a:hover {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-	/* IE 8 */
-	filter: alpha(opacity = 50); /* IE7 */
-	opacity: 0.6;
-	text-decoration: none;
-}
-
-body {
+.container body {
 	border-top: 0;
 	background: #c4e17f;
-	/* background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%,
-		#f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%,
-		#db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%,
-		#669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%,
-		#f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%,
-		#db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%,
-		#669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca
-		25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe
-		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
-		87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca
-		25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe
-		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
-		87.5%, #62c2e4 87.5%, #62c2e4)
- */
+
 }
 
 .thumbnails li>.fff .caption {
@@ -106,11 +74,17 @@ ul.thumbnails {
 }
 
 /* Mobile Only */
-@media ( max-width : 767px) {
+@media ( max-width : 768px;) {
 	.page-header, .control-box {
 		text-align: center;
 	}
 }
+@media ( max-height : 800px;) {
+	.page-header, .control-box {
+		text-align: center;
+	}
+}
+
 
 @media ( max-width : 479px) {
 	.caption {
@@ -118,7 +92,7 @@ ul.thumbnails {
 	}
 }
 
-li {
+.container li {
 	list-style-type: none;
 }
 
@@ -140,6 +114,7 @@ button#btn-write {
 	margin-left: 0px;
 	float: right;
 }
+
 </style>
 
 <link
@@ -147,7 +122,6 @@ button#btn-write {
 	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <section>
 	<div class="site-section">
@@ -156,13 +130,13 @@ button#btn-write {
 			<div class="col-xs-12">
 
 				<div class="page-header">
-					<h3>Bootstrap 3.3.0</h3>
+					
 					<p>렛.잇.고와 함께 하세요</p>
 				</div>
-				<div style="background-color:#f38181 ">
-					<nav class="site-navigation position-relative text-right" role="navigation">
-						<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block" >
-							<li class="active"><a
+				<div style="pull-right; color:#f38181;">
+					<nav class="site-navigation position-relative text-right" role="navigation" style="background-color: #fff; color:#f38181;" >
+						<ul class="site-menu js-clone-nav m-auto d-none d-lg-block" >
+							<li class="active" ><a
 								href="${pageContext.request.contextPath}/festival/festivalForm"><span>축제
 										등록</span></a></li>
 						</ul>
@@ -188,10 +162,13 @@ button#btn-write {
 								<li class="col-sm-3" style="border: 5px solid #ffc9c9">
 									<div class="fff">
 										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+									<img alt="없음" style="max-width: 220px; max-height: 200px" src="${pageContext.request.contextPath}/resources/images/festival/${v.festival_Thumbnail }">
 										</div>
 										<div class="caption">
 											<p>${v.festival_Title }</p>
+											<button class="proceeding" id="proceeding" style="color: #fff; text-align: center;">
+												${v.festival_Proceeding }
+											</button>
 											<p>${v.festival_StartDate }~${v.festival_EndDate }</p>
 											<p>${s.count}</p>
 											<Input type="hidden" name="festival_No"> <a
@@ -231,7 +208,7 @@ button#btn-write {
 
 	</div>
 	<!-- /.container -->
-	</div>
+	
 	<script>
 		//Carousel Auto-Cycle
 		$(document).ready(function() {
@@ -239,7 +216,42 @@ button#btn-write {
 				interval : 6000
 			})
 		});
+		
+		/* 썸네일 사진 */
+		 $('#upFile').on('change',function (e) {
+		        var get_file = e.target.files;
+		 
+		        var image = $("#pic-1").children();
+		        var reader = new FileReader();
+		        
+		        reader.onload = (function (aImg) {
+		            console.log(1);
+		            return function (e) {
+		                console.log(3);
+		                aImg.attr("src",e.target.result);
+		                aImg.attr({"width":"400px","height":"252px"});
+		            }
+		        })(image)
+		 
+		        if(get_file){
+		            reader.readAsDataURL(get_file[0]);
+		            console.log(2);
+		        }
+		    });
+		    
 	</script>
+	<script>
+		$('.proceeding').each(function(){
+			if($(this).text().includes('예정',0)){
+				$(this).css("background-color",'blue');
+			}else if($(this).text().includes('진행',0)){
+				$(this).css("background-color",'green');
+			}else if($(this).text().includes('종료',0)){
+				$(this).css("background-color",'red');
+		}
+		});
+	</script>
+	
 
 </section>
 

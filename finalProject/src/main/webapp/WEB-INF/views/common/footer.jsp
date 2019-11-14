@@ -11,7 +11,7 @@
                 <h2 class="footer-heading mb-4">사이트 메뉴</h2>
                 <ul class="list-unstyled">
                   <li><a href="#">팀원 소개</a></li>
-                  <li><a href="#">1:1문의</a></li>
+                  <li><a href=""  onclick="viewChatting();">1:1문의</a></li>
                   <li><a href="#">주소</a></li>
                   <li><a href="#">이용약관</a></li>
                 </ul>
@@ -51,6 +51,12 @@
   <script src="${pageContext.request.contextPath }/resources/js/aos.js"></script>
   <script src="${pageContext.request.contextPath }/resources/js/rangeslider.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/js/main.js"></script>
+  
+  <script>
+	function viewChatting(){
+		open("${pageContext.request.contextPath}/viewChatting","_blank","height:100px,width:100px");
+	}
+  </script>
   
   </body>
 </html>

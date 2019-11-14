@@ -10,4 +10,9 @@ public interface MemberDao {
 
 	Member selectMemberOne(SqlSessionTemplate session, Member m);
 
+	int updateMemberPage(SqlSessionTemplate session,Member m);
+	
+	int deleteMemberPage(SqlSessionTemplate session,Member m);
+
+
 }

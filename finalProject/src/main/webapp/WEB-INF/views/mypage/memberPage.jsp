@@ -12,46 +12,59 @@
 
 </style>
 
+<script>
+  $(document).ready(function(){
+	  $("#btnUpdate").click(function(){
+		  document.updateMember.action="${path}/member/updateMember"; //쿼리스트링으로 아이디를 넘겨버리면 DB에 아이디가 2개가 저장되어버렸음
+		  document.updateMember.submit();
+	  });
+  });
+  
+  $(document).ready(function(){
+	  $("#btnDelete").click(function(){
+		  document.deleteMember.action="${path}/member/deleteMember";
+		  document.deleteMember.submit();
+	  });
+  });
+ 
+
+</script>
+
 <div class="site-section">
    <div class="container">
       <div class="row justify-content-center mb-8">
+        <div class="col">
+      
+      
+      
+      <form name="updateMember" method="post">
       <table class="table" id="tbl-dev">
         <tr>
 			<th scope="col">아이디</th>
-			<td><c:out value="${member.member_Id}"/></td>
+			<td><input name="member_Id" value="${member.member_Id}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<th scope="col">이름</th>
-			<td><c:out value="${member.member_Name }"/></td>
-		</tr>
-		<tr>
-			<th scope="col">나이</th>
-			<td><c:out value="${member.member_Age }"/></td>
-		</tr>
-		<tr>
-			<th scope="col">주소</th>
-			<td><c:out value="${member.member_Address }"/></td>
+			<th scope="col">비밀번호</th>
+			<td><input name="member_Password" value="${member.member_Password}"></td>
 		</tr>
 		<tr>
 			<th scope="col">이메일</th>
-			<td><c:out value="${member.member_Email }"/></td>
+			<td><input name="member_Email" value="${member.member_Email}"></td>
 		</tr>
 		<tr>
 			<th scope="col">연락처</th>
-			<td><c:out value="${member.member_Phone }"/></td>
+			<td><input name="member_Phone" value="${member.member_Phone}"></td>
 		</tr>
 		<tr>
-			<th scope="col">성별</th>
-			<td><c:out value='${member.member_Gender eq "M"?"남":"여" }'/></td>
+		  <td colspan="2" align="center">
+		     <input type="button" value="수정" id="btnUpdate">
+		     <input type="button" value="탈퇴" id="btnDelete">
+		  </td>
 		</tr>
-	</table>
-	    <li><a href="${pageContext.request.contextPath }/member/updateMember"><span>수정</span></a></li>
-		<li><a href="${pageContext.request.contextPath }/member/deleteMember"><span>삭제</span></a></li>
-		
-        	
-      
+	 </table>
+	    </form>
+	    </div>
       </div>
-
    </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
