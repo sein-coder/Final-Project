@@ -15,14 +15,15 @@
           <p>회원가입</p>
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#login_member">사용자</a>
+                <a class="nav-link active" data-toggle="tab" href="#login_member">사용자</a>
               </li>
                <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#login_partner">사업자</a>
+                <a class="nav-link" data-toggle="tab" href="#login_partner">사업자</a>
               </li>
+              <!-- Member -->
             </ul>
             <div class="tab-content">
-              <div class="tab-pane fade" id="login_member">
+              <div class="tab-pane fade show active" id="login_member">
                 <form action="${pageContext.request.contextPath }/member/memberEnrollEnd.do" method="post" onsubmit="return validate();">
 				<div class="form-group">
 					<label for="form-label">아이디</label>
@@ -31,14 +32,23 @@
 				</div>
 				<div class="form-group">
 					<label for="form-label">비밀번호</label>
-				<input type="password" class="form-control" placeholder="특수문자포함10자이상" id="member_Password" name="member_Password" required/>
+				<input type="password" class="form-control" placeholder="영문또는숫자6자리에서 12자리" id="member_Password" name="member_Password" required/>
 				<div class="" id="pw_check1"></div>
 				</div>
 				<div class="form-group">
 					<label for="form-label">비밀번호확인</label>
-				<input type="password" class="form-control" placeholder="특수문자포함10자이상" id="member_PasswordCheck" required/>
+				<input type="password" class="form-control" placeholder="영문또는숫자6자리에서 12자리" id="member_PasswordCheck" required/>
 				<div class="" id="pwc_check1"></div>
 				</div>
+				<div class="form-group">
+					<label for="form-label">나이</label>
+				<input type="text" class="form-control" placeholder="나이" id="member_Age" name="member_Age" required/>
+					</div>
+				<div class="form-group">
+					<label for="form-label">성별</label>
+			      <label><input type="radio" name="member_Gender" value="남"> 남 </label>
+			      <label><input type="radio" name="member_Gender" value="여"> 여 </label>
+					</div>
 				<div class="form-group">
 					<label for="form-label">이메일</label>
 				<input type="email" class="form-control" placeholder="이메일" id="member_Email" name="member_Email" required/>
@@ -54,7 +64,7 @@
 		<!--Partner  -->		
 			</form>
               </div>
-               <div class="tab-pane fade show active" id="login_partner">
+               <div class="tab-pane fade  " id="login_partner">
               	 <form action="${pageContext.request.contextPath }/partner/partnerEnrollEnd.do" method="post" onsubmit="return validate();"  enctype="multipart/form-data" >
 				<div class="form-group">
 					<label for="form-label">아이디</label>
@@ -69,12 +79,12 @@
 				
 			    <div class="form-group">
 					<label for="form-label">비밀번호</label>
-				<input type="password" class="form-control" placeholder="특수문자포함10자이상" id="partner_Password" name="partner_Password" required/>
+				<input type="password" class="form-control" placeholder="영문또는숫자6자리에서 12자리" id="partner_Password" name="partner_Password"  required/>
 				<div class="check_font" id="pw_check2"></div>
 				</div>
 				<div class="form-group">
 					<label for="form-label">비밀번호확인</label>
-				<input type="password" class="form-control" placeholder="특수문자포함10자이상" id="partner_PasswordCheck" required/>
+				<input type="password" class="form-control" placeholder="영문또는숫자6자리에서 12자리" id="partner_PasswordCheck"  required/>
 				<div class="check_font" id="pwc_check2"></div>
 				</div>
 				<div class="form-group">
@@ -99,6 +109,8 @@
 			      <label><input type="radio" name="partner_Menu" value="중식"> 중식 </label>
 			      <label><input type="radio" name="partner_Menu" value="일식"> 일식 </label>
 			      <label><input type="radio" name="partner_Menu" value="양식"> 양식 </label>
+			      <label><input type="radio" name="partner_Menu" value="디저트"> 디저트 </label>
+			      <label><input type="radio" name="partner_Menu" value="기타"> 기타 </label>
 			    </div>
 			    </div>
 			    <div class="form-group">
@@ -152,13 +164,13 @@
 			});
 	
 	$("#partner_Password").blur(function validate(){
-		var regPw =  /^[A-Za-z0-9]{8,12}$/;
+		var regPw =  /^[A-Za-z0-9]{6,12}$/;
 		if(regPw.test($('#partner_Password').val())){
 			$("#pw_check2").text("사용가능한 비밀번호 입니다.")
 			$("#pw_check2").css("color", "green");
 			$("#partner_Password").css("border-color", "green");
 		} else {
-			$("#pw_check2").text("패스워드는 영문숫자조합 8자리에서 12자리까지 입력가능합니다.")
+			$("#pw_check2").text("패스워드는 영문숫자조합 6자리에서 12자리까지 입력가능합니다.")
 			$("#pw_check2").css("color", "red");
 			$("#partner_Password").css("border-color", "red");
 		}
@@ -201,7 +213,7 @@
     }
     });
      //인허가 번호조회
-     $('#partner_Permission_No').keyup(function(){
+    /*  $('#partner_Permission_No').keyup(function(){
     	var permission_no = $('#partner_Permission_No').val();
     	$.ajax({
     		url : '${pageContext.request.contextPath}/partner/permission.do',
@@ -211,7 +223,7 @@
     		console.log(data);
     		}	
     	});
-    }) ; 
+    }) ;  */
      
  	$("#upFile").on("change",function(){
 
@@ -266,13 +278,13 @@
     			});
     		});
     $("#member_Password").blur(function validate(){
-    	var regPw =  /^[A-Za-z0-9]{8,12}$/;
+    	var regPw =  /^[A-Za-z0-9]{6,12}$/;
     	if(regPw.test($('#member_Password').val())){
     		$("#pw_check1").text("사용가능한 비밀번호 입니다.")
     		$("#pw_check1").css("color", "green");
     		$("#member_Password").css("border-color", "green");
     	} else {
-    		$("#pw_check1").text("패스워드는 영문숫자조합 8자리에서 12자리까지 입력가능합니다.")
+    		$("#pw_check1").text("패스워드는 영문숫자조합 6자리에서 12자리까지 입력가능합니다.")
     		$("#pw_check1").css("color", "red");
     		$("#member_Password").css("border-color", "red");
     	}
@@ -298,8 +310,8 @@
         		$("#member_Email").css("border-color", "green");
         	}else{	
         		$("#email_check1").text("이메일형식을 맞춰주세요. ex) letEatGo@naver.com")
-        		$("#email_check1").css("color", "green");
-        		$("#member_Email").css("border-color", "green");
+        		$("#email_check1").css("color", "red");
+        		$("#member_Email").css("border-color", "red");
         	} 
         });
         $("#member_Phone").blur(function(){

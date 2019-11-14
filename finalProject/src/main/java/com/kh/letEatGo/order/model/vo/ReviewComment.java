@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class ReviewComment {
 
-	private int comment_no;
-	private int comment_to;
-	private int comment_from;
-	private String comment_content;
-	private Date comment_date;
-	private int order_no;
+	private int comment_No;
+	private int comment_To;
+	private int comment_From;
+	private String comment_Content;
+	private Date comment_Date;
+	private int order_No;
 }

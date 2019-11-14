@@ -10,6 +10,7 @@ import com.kh.letEatGo.order.model.dao.OrderDao;
 import com.kh.letEatGo.order.model.vo.Menu;
 import com.kh.letEatGo.order.model.vo.Order;
 import com.kh.letEatGo.order.model.vo.Review;
+import com.kh.letEatGo.order.model.vo.ReviewComment;
 import com.kh.letEatGo.partner.model.vo.Partner;
 
 @Service
@@ -68,7 +69,11 @@ public class OrderServiceImpl implements OrderService {
 		int result = dao.insertOrder(session, order);
 		return result;
 	}
-	
-	
 
+	@Override
+	public List<ReviewComment> selectReviewComment(int comment_To) {
+		List<ReviewComment> list = dao.selectReviewComment(session, comment_To);
+		return list;
+	}
+	
 }

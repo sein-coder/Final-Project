@@ -23,65 +23,58 @@
 <section id="content">
 	<div class="site-section">
 		<div class="filter-container bg-light col-md-8 offset-md-2">
-			<form action="${path }/order/searchConsole" method="post">
-				<div class="row">
-					<div class="form-group col-*-8">
-						<div class="row" id="menuSearch">
-							<label for="foodSearch"><span class="icon icon-cutlery"></span> 메뉴검색</label>
-							<input type="text" name="menu_Name" id="menu_Name"/>
+			<div class="row">
+				<div class="form-group col-*-8">
+					<div class="row" id="menuSearch">
+						<label for="foodSearch"><span class="icon icon-cutlery"></span> 메뉴검색</label>
+						<input type="text" name="menu_Name" id="menu_Name"/>
+					</div>
+					<div class="row">
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" name="partner_Menu" class="form-check-input" value="한식" style='left:-9999px'/>
+								<button class="btn btn-outline-info" onClick="searchConsole(this);">한식</button>
+							</label>
 						</div>
-						<div class="row">
-						<label for="menuFind">카테고리 검색</label>
-							<div class="form-check" id="menuFind">
-								<label class="form-check-label">
-									<input type="checkbox" name="partner_Menu" class="form-check-input" value="한식"/>
-									한식
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input type="checkbox" name="partner_Menu" class="form-check-input" value="중식"/>
-									중식
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input type="checkbox" name="partner_Menu" class="form-check-input" value="일식"/>
-									일식
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input type="checkbox" name="partner_Menu" class="form-check-input" value="양식"/>
-									양식
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input type="checkbox" name="partner_Menu" class="form-check-input" value="디저트"/>
-									디저트
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input type="checkbox" name="partner_Menu" class="form-check-input" value="기타"/>
-									기타
-								</label>
-							</div>
-						</div> 
-						<label for="easySearch">상세검색</label>
-						<div id="easySearch">
-							<button class="btn btn-outline-primary">평점 높은 순</button>
-							<button class="btn btn-outline-primary">평점 낮은 순</button>
-							<button class="btn btn-outline-primary">최다 주문 순</button>
-							<button class="btn btn-outline-primary">최소 주문 순</button>
-						</div>	
-					</div>
-					<div class="col-*-4 float-right">
-						<input type="submit" value="검색" class="btn btn-outline-warning">
-					</div>
-					</div>
-				</form>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" name="partner_Menu" class="form-check-input" value="중식" style='left:-9999px'/>
+								<button class="btn btn-outline-info" onClick="searchConsole(this);">중식</button>
+							</label>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" name="partner_Menu" class="form-check-input" value="일식" style='left:-9999px'/>
+								<button class="btn btn-outline-info" onClick="searchConsole(this);">일식</button>
+							</label>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" name="partner_Menu" class="form-check-input" value="양식" style='left:-9999px'/>
+								<button class="btn btn-outline-info" onClick="searchConsole(this);">양식</button>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" name="partner_Menu" class="form-check-input" value="디저트" style='left:-9999px'/>
+							<button class="btn btn-outline-info" onClick="searchConsole(this);">디저트</button>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" name="partner_Menu" class="form-check-input" value="기타" style='left:-9999px'/>
+							<button class="btn btn-outline-info" onClick="searchConsole(this);">기타</button>
+						</div>
+					</div> 
+					<label for="easySearch">상세검색</label>
+					<div id="easySearch">
+						<button class="btn btn-outline-primary">평점 높은 순</button>
+						<button class="btn btn-outline-primary">평점 낮은 순</button>
+						<button class="btn btn-outline-primary">최다 주문 순</button>
+						<button class="btn btn-outline-primary">최소 주문 순</button>
+					</div>	
+				</div>
+				<div class="col-*-4 float-right">
+					<input type="submit" value="검색" class="btn btn-outline-warning">
+				</div>
+				</div>
 			</div>
 		</div>
 		<!-- 검색결과가 노출되는 리스팅 -->
@@ -141,8 +134,13 @@ $(document).ready(function(){
 	         }else{
 	            return $(this).removeClass('text-warning').addClass('text-secondary');
 	         }
-	      })
+	      });
 	   });
+
 	});
+	
+function searchConsole(data){
+	console.log($(data).before());
+}
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
