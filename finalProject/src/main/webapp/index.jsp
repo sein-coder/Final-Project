@@ -31,7 +31,6 @@
 					</div>
 				</div>
 
-
 				<!-- 중간 검색 박스 -->
 				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up" 
 					data-aos-delay="200">
