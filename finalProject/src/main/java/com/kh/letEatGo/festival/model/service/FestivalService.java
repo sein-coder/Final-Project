@@ -17,6 +17,8 @@ public interface FestivalService{
 
 	int updateFormFestival(Festival festival);
 
+	int updateFestivalLike(Festival festival);
+
 	
 
 	

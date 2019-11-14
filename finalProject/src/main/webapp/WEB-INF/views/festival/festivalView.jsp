@@ -364,21 +364,24 @@ h1 {
 								</div>
 
 							</div>
+							<div id="festival_No" style="disaplay:none;">
+								${festival.festival_No}
+							</div>
 							<p class="product-description">
-							<button style="background-color: red; color: #fff; text-align: center;">
+							<button id="proceeding" style="color: #fff; text-align: center;">
 								${festival.festival_Proceeding }
 							</button>
 							<p class="text-break">
 								${festival.festival_Content }
 							</p>
 							<div class="action" style="display: inline-block;">
-								<button class="add-to-cart btn btn-default" type="button">
-							 	<a href="#" class="bookmark"> <span class="icon-heart" id="heart" name="heart"></span></a>
-								</button>
+										<button class="add-to-cart btn btn-default" type="button">
+									 		<span class="icon-heart" id="heart"></span>
+										</button>
 							</div>
 							<div style="display: inline-block;">
 							<p class="vote">
-								<b id="count">${festival.festival_Count}</b>이 글에 좋아요를 누른 회원수 입니다. 
+								이 글에 좋아요를 누른 회원수 입니다. 
 								<b id="count">(${festival.festival_Count} votes)</b>
 							</p>
 							</div>
@@ -448,7 +451,7 @@ h1 {
 									</div>
 									<div style="display: inline-block">
 
-										<a href="#none" class="hashtag_copy"
+										<a href="#none" class="hashtag_copy" style="background-color: #f38181"
 											data-clipboard-action="copy" data-clipboard-target="p.copy">
 											<span>copy</span>
 										</a>
@@ -597,21 +600,41 @@ h1 {
 		});
 	</script>
 	<script>
-		/* 좋아요 누른 횟수 
-		<div class="action" style="display: inline-block;">
-			<button class="add-to-cart btn btn-default" type="button">
-		 	<a href="#" class="bookmark"> <span class="icon-heart" id="heart" name="heart"></span></a>
-			</button>
-		</div>
-		<p class="vote">
-		<b id=count>${festival.festival_Count}</b>이 글에 좋아요를 누른 회원수 입니다. <b>(
-				${festival.festival_Count} votes)</b>
-		</p>
-		
-		*/
-		
+	/* count */
+	$("#heart").click(function() {
+	    $('#count').html(function(count,val) {
+	        $.ajax({
+	            url: "${pageContext.request.contextPath}/festival/updateFestivalLike.do",
+	            type: "POST",
+	            data: {
+	            	'festival_Count':${festival.festival_Count},
+	            	'festival_No':${festival.festival_No}
+	            },	
+	            success: function(data) {
+	            		location.reload();
+	            }
+	        });
+    		
+	    });	    
+	});
 	</script>
-	
+	<script>
+	/*축제번호 숨기기 */
+		$("#festival_No").hide();
+	</script>
+
+	<script>
+		$(document).ready(function(){
+
+			if($('#proceeding').text().includes('예정',0)){
+				$('#proceeding').css("background-color",'blue');
+			}else if($('#proceeding').text().includes('진행',0)){
+				$('#proceeding').css("background-color",'green');
+			}else if($('#proceeding').text().includes('종료',0)){
+				$('#proceeding').css("background-color",'red');
+			}
+		});
+	</script>
 	
 	
 </section>

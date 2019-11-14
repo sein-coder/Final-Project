@@ -369,7 +369,23 @@ textarea {
 	            console.log(2);
 	        }
 	    });
-
+		/* count */
+	/* 	$("#heart").click(function() {
+		    $('#count').html(function(count,val) {
+		        $.ajax({
+		            url: '/.festivalView.jsp',
+		            type: 'POST',
+		            data: 'count='+count,
+		            success: function(e) {
+		            	alert('heart를 주셨습니다.'); 
+		            	$('#count').val(e.count);	
+		            }
+		        });
+        		return +val+1;
+		    });	    
+		});
+        
+ */
         
    </script>
 

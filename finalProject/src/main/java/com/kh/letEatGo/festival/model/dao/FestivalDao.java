@@ -16,5 +16,7 @@ public interface FestivalDao {
 
 	int deleteFestival(SqlSessionTemplate session, int festival_No);
 
-	int updateFormFestival(SqlSessionTemplate session, Festival festival);
+	int updateFormFestival(SqlSessionTemplate session,Festival festival);
+
+	int updateFestivalLike(SqlSessionTemplate session,Festival festival);
 }
