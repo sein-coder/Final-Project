@@ -58,7 +58,7 @@
     			<label for="pay-total">총 금액</label>
     			<h4 class="pay-total" id="pay-total">0</h4>
     		</div>
-    			<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#payModal">주문완료</button>
+    			<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#payModal" id="completeOrder">주문완료</button>
     	</div>
     </div>
     </div>
@@ -210,6 +210,10 @@ $(function(){
 	         }
 	      });
 	   });
+	
+	if(parseInt($('#pay-total').text()) == 0){
+		$('#completeOrder').prop("disabled", "true");
+	}
 })
 	// 평점 별 출력 부분
 var star_rating = $('.star-rating .icon-star');
