@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.letEatGo.accountBook.model.dao.AccountBookDao;
+import com.kh.letEatGo.accountBook.model.vo.Account;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
 
 @Service
@@ -57,6 +58,18 @@ public class AccountBookServiceImpl implements AccountBookService {
 	public AccountBook selectAccountBook(AccountBook ab) {
 		// TODO Auto-generated method stub
 		return dao.selectAccountBook(session, ab);
+	}
+
+	@Override
+	public Account selectAccount(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectAccount(session, partner_No);
+	}
+
+	@Override
+	public int insertAccount(Account account) {
+		// TODO Auto-generated method stub
+		return dao.insertAccount(session, account);
 	}
 	
 	

@@ -255,12 +255,11 @@ textarea {
 					<ul
 						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
 						<li class="list-inline-item">
-							<a onclick="submit();" href="#">
-								<span style="background-color: #f23a2e;">완료</span>
-							</a>
+							<input type="submit" href="#" value="수정완료" style="background-color: #f23a2e;">
+							</input>
 						</li>
 						<li class="list-inline-item">
-							<a onclick="submit();" href="festival/festivalList">
+							<a href="festival/festivalList">
 								<span style="background-color: #f23a2e;">취소</span>
 							</a>
 						</li>

@@ -31,9 +31,7 @@ public class OrderController {
 	private OrderService service;
 	
 	@RequestMapping("/order")
-	public ModelAndView order(
-			@RequestParam(value="cPage", required=false, defaultValue="1")int cPage
-			) {
+	public ModelAndView order(@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -83,14 +81,12 @@ public class OrderController {
 	@RequestMapping("/order/payment.do")
 	public String payment(
 			@RequestParam(required=false) int order_Price, Model m) {
-		System.out.println(order_Price);
 		m.addAttribute("order_Price", order_Price);
 		return "order/payment";
 	}
 	
 	@RequestMapping("/order/orderEnd") 
 	public String orderEnd(Order o, HttpSession session) {
-		System.out.println(o);
 		session.setAttribute("order", o);
 		return "redirect:/order/complete";
 	}
