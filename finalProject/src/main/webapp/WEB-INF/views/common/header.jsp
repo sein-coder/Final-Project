@@ -50,6 +50,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css">
 </head>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
@@ -57,7 +58,7 @@
         async defer>
     </script>
 <body>
-
+			
 	<div class="site-wrap">
 		<div class="site-mobile-menu">
 			<div class="site-mobile-menu-header">
@@ -179,7 +180,8 @@
 											찾기</span></a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/festival/festivalList" style="font-family: BinggraeMelona !important;"><span>축제알리미</span></a></li>
-								<c:if test="${empty loginMember }">
+									
+								<c:if test="${empty loginMember}">
 									<li>
 										<button type="button" class="btn btn-outline-primary"
 											data-toggle="modal" data-target="#myModal" style="font-family: BinggraeMelona !important;">로그인</button>
@@ -187,7 +189,11 @@
 									<li><button class="btn btn-outline-primary" type="button"
 											onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
 								</c:if>
-								<c:if test="${not empty loginMember }">
+								<%String name="<script>document.writeln(name)</script>";
+								  String token="<script>document.writeln(token)</script>";
+								  String id="<script>document.writeln(id)</script>";
+								%>
+								<c:if test="${not empty loginMember ||not empty token}">
 									<c:if test="${ type == 'member' && loginMember.member_Id ne 'admin'  }">
 								<li><a href="${pageContext.request.contextPath }/memberPage?Member_Id=${loginMember.member_Id}"><span>고객 페이지</span></a></li>
 									</c:if>
@@ -249,7 +255,7 @@
 												<input type="submit" class="btn btn-primary" value="로그인" />
 											</form>
 										</div>
-										</form>
+
 										<div class="tab-pane fade" id="member_log">
 											<form
 												action="${pageContext.request.contextPath}/member/memberLogin.do"
@@ -284,8 +290,8 @@
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary">페이스북</button>
-						<button type="button" class="btn btn-primary">네이버</button>
-						<button type="button" class="btn btn-primary">구글</button>
+						<button type="button" id="naver" class="btn btn-primary">네이버</button>
+						<button type="button" id="kakao" class="btn btn-primary">카카오톡</button>
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
 					</div>
@@ -293,7 +299,38 @@
 			</div>
 		</div>
 	</div>
-
+			<script type="text/javascript">
+			if('${id}'!=null){
+			console.log('${id}')
+			console.log('${name}')
+			console.log('${token}')
+			}
+			
+			Kakao.init('4524f2a578ce5b005f1a8157e72c3d3a');
+		     Kakao.Auth.createLoginButton({
+		   container: '#kakao',
+		   success: function(authObj) {
+		     Kakao.API.request({
+		       url: '/v1/user/me',
+		       success: function(res) {
+		    	   var name=res.properties['nickname'];
+		    	   var token=authObj.access_token;
+		    	   var id=res.id;
+		    	   location.href="?id="+res.id+"&name="+res.properties['nickname']+"&token="+authObj.access_token;
+		    	   
+		    	   console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
+		             console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
+		             console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
+		    	   
+		           }
+		         })
+		       },
+		       fail: function(error) {
+		         alert("로그인에 실패했습니다.");
+		       }
+		     });
+			</script>
+			
 
 	<script type="text/javascript"
 		src="https://www.gstatic.com/charts/loader.js"></script>
