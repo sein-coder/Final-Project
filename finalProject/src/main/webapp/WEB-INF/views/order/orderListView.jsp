@@ -323,6 +323,7 @@ function toOrderHistory(){
 		},
 		success : function(data){
 			alert("결제 정보가 전송 중 입니다.");
+			location.href="${path}/order/complete";
 		},
 		fail : function(data){
 			alert("결제 처리에 실패하였습니다. 관리자에게 문의하세요.");

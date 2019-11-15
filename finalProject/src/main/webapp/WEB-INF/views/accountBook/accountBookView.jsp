@@ -65,6 +65,12 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
      .info .link {color: #5085BB;}  
 
+@media(min-width:768px) {
+     .bb-text {font-size: 13px; font-family: BinggraeMelona;}
+     .bb-line {stroke-width: 1px; font-family: BinggraeMelona;}
+     .bb-axis {font-size: 13px; font-family: BinggraeMelona;}
+	 .bb-legend-item{font-size:13px; font-family: BinggraeMelona;}
+
 </style>
 
 <section id="content">
@@ -447,7 +453,7 @@
 		bindto : "#areaChart2"
 	});
 	</script>
-
+	<!-- 수익 분류 차트 -->
 	<script type="text/javascript">
 	var chart = bb.generate({
 		  data: {
@@ -466,6 +472,12 @@
 				data3 : "계좌이체",
 				data4 : "기타"
 			},
+			colors : {
+				data1 : "#f38181",
+				data2 : "#f89d13",
+				data3 : "#ffc9c9",
+				data4 : "#FBF697"
+			},
 		    groups: [
 		      [
 		        "data1",
@@ -479,11 +491,13 @@
 		    rotated: true,
 		    x: {
 		      type: "category",
+		      clipPath: false,
+		      inner: false,
 		      tick: {
 		        text: {
 		          position: {
-		            x: 0,
-		            y: 0
+		              x: 0,
+		              y: 0
 		          }
 		        }
 		      }
