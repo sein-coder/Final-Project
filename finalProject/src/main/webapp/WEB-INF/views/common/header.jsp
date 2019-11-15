@@ -240,7 +240,7 @@
 										data-toggle="tab" href="#partner_log">사업자</a></li>	
 									</ul>
 									<div class="tab-content">
-										<div class="tab-pane fade show active" id="partner_log">
+										<div class="tab-pane fade" id="partner_log">
 											<form id="frm"
 												action="${pageContext.request.contextPath}/partner/partnerLogin.do"
 												method="POST" onsubmit="return reCapchar();">
@@ -250,7 +250,7 @@
 											</form>
 										</div>
 										</form>
-										<div class="tab-pane fade" id="member_log">
+										<div class="tab-pane fade show active" id="member_log">
 											<form
 												action="${pageContext.request.contextPath}/member/memberLogin.do"
 												method="POST" onsubmit="return reCapchar();">

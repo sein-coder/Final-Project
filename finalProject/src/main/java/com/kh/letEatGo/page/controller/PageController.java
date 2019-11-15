@@ -67,6 +67,7 @@ public class PageController {
 		
 		try {
 			result=member_service.updateMemberPage(m);
+			
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -89,19 +90,31 @@ public class PageController {
 	@RequestMapping("/member/deleteMember")
 	public String deleteMember() {
 		
+		
 		return "mypage/deleteMember";
 	}
 	
 	 @RequestMapping("/member/deleteMemberPage") //멤버 회원 탈퇴
 	  public String deleteMemberPage(Member m,HttpSession session,Model model) {
 		 
-		    int result=member_service.deleteMemberPage(m);
+		    m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
+		   
+		    int result=0;
+			
 		    
-		    
+			try {
+				result=member_service.deleteMemberPage(m);
+			    System.out.println(result);
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
 		 
 		    String msg="";
 			String loc="/";
-			if(result==1) {
+			if(result>0) {
 				msg="회원 탈퇴 성공";
 				session.invalidate();
 			}else {

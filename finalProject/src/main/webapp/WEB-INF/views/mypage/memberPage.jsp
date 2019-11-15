@@ -26,8 +26,6 @@
 		  location.href="${path}/member/deleteMember?Member_Id="+'${loginMember.member_Id}';
 	  });
   }); 
- 
-
 </script>
 
 <section>
@@ -35,10 +33,9 @@
    <div class="container">
       <div class="row">
         <div class="col">
-         	<p></p>
-      <div class="tab-content">
-      <form name="updateMember" method="post">
-      <table class="table" id="tbl-dev">
+      
+       <form name="updateMember" method="post">
+       <table class="table" id="tbl-dev">
         <div class="form-group">
 					<label for="form-label">아이디</label>
 			<input name="member_Id" value="${member.member_Id}" readonly="readonly">
@@ -46,6 +43,14 @@
 		 <div class="form-group">
 					<label for="form-label">비밀번호</label>
 			<input type="password" name="member_Password" value="${member.member_Password}" >
+		</div>
+		<div class="form-group">
+					<label for="form-label">나이</label>
+			<input name="member_Age" value="${member.member_Age}">
+		</div>
+		<div class="form-group">
+					<label for="form-label">성별</label>
+			<input name="member_Gender" value='${member.member_Gender eq "남" ? "남":"여" }'>
 		</div>
 		 <div class="form-group">
 					<label for="form-label">이메일</label>
@@ -63,7 +68,7 @@
 		</tr>
 	 </table>
 	    </form>
-	    </div>
+	    
 	   </div>
       </div>
     </div>

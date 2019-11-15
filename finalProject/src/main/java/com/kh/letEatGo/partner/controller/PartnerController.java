@@ -82,14 +82,6 @@ public class PartnerController {
 			logger.debug(p.getPartner_Password());
 			
 			try {
-<<<<<<< HEAD
-				
-=======
-				p.setPartner_Phone(enc.encrypt(p.getPartner_Phone()));
-				p.setPartner_Email(enc.encrypt(p.getPartner_Email()));
-				p.setPartner_Address(enc.encrypt(p.getPartner_Address()));
-				p.setPartner_Permission_No(enc.encrypt(p.getPartner_Permission_No()));
->>>>>>> refs/remotes/origin/master
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

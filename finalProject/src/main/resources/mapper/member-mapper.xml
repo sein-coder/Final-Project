@@ -15,6 +15,8 @@
 	  UPDATE MEMBER SET 
 	                    MEMBER_ID=#{member_Id},
 	                    MEMBER_PASSWORD=#{member_Password},
+	                    MEMBER_AGE=#{member_Age},
+	                    MEMBER_GENDER=#{member_Gender},
 	                    MEMBER_EMAIL=#{member_Email},
 	                    MEMBER_PHONE=#{member_Phone} where MEMBER_ID=#{member_Id} 
 	</update> 
