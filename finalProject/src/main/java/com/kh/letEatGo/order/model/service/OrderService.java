@@ -19,4 +19,5 @@ public interface OrderService {
 	List<Review> selectReview(int partner_No);
 	int insertOrder(Order order);
 	List<ReviewComment> selectReviewComment(int comment_To);
+	List<Menu> selectMenuList(Menu m);
 }

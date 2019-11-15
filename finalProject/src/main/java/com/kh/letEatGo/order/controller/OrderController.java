@@ -3,6 +3,7 @@ package com.kh.letEatGo.order.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.letEatGo.common.page.PageFactory;
 import com.kh.letEatGo.order.model.service.OrderService;
 import com.kh.letEatGo.order.model.vo.Menu;
@@ -42,6 +46,7 @@ public class OrderController {
 		List<List<Menu>> menuList = new ArrayList();
 				
 		List<Partner> list = service.selectTruckList(cPage, numPerPage);
+		
 		for(Partner p : list) {
 			menuList.add(service.selectMenu(p.getPartner_No()));
 			p.setStarCount(service.selectStar(p.getPartner_No()));
@@ -106,6 +111,21 @@ public class OrderController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("loc", loc);
 		return "common/msg";
+	}
+	
+	@RequestMapping("/order/selectMenu")
+	@ResponseBody
+	public String selectMenu(Menu m, HttpServletResponse res){
+		ObjectMapper mapper = new ObjectMapper();
+		List<Menu> result = service.selectMenuList(m);
+		String jsonStr = "";
+		try {
+			jsonStr = mapper.writeValueAsString(result);
+		} catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
 	}
 	  
 	/*

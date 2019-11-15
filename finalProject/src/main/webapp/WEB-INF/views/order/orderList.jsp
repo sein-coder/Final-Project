@@ -21,14 +21,19 @@
 </div>
 <section id="content">
 	<div class="site-section">
-		<div class="filter-container bg-light col-md-8 offset-md-2">
-			<div class="row">
-				<div class="form-group col-*-8">
+		<div class="bg-light col-md-8 offset-md-2">
+			<div class="row align-center">
+				<div class="form-group col-md-5 ml-auto">
 					<div class="row" id="menuSearch">
-						<label for="foodSearch"><span class="icon icon-cutlery"></span> 메뉴검색</label>
-						<input type="text" name="menu_Name" id="menu_Name"/>
+						<label for="foodSearch"><span class="icon icon-cutlery"></span> 메뉴로 직접 검색하기</label>
+						<input type="text" list="menuData" class="form-control" name="menu_Name" id="menu_Name" placeholder="검색할 메뉴를 입력하세요."/>
+						<datalist id="menuData"></datalist>
+						<input type="submit" class="form-control btn btn-warning" value="검색하기"/>
 					</div>
-					<div class="row">
+				</div>
+				<div class="form-group col-md-7 mx-#"> 
+					<label for="easySearch"><span class="icon icon-search"></span> 카테고리로 검색하기</label>
+					<div class="row" id="easySearch">
 						<div class="form-check">
 							<label class="form-check-label">
 								<input type="checkbox" name="partner_Menu" class="form-check-input" value="한식" style='left:-9999px'/>
@@ -61,17 +66,18 @@
 							<input type="checkbox" name="partner_Menu" class="form-check-input" value="기타" style='left:-9999px'/>
 							<button class="btn btn-outline-info" onClick="searchConsole(this);">기타</button>
 						</div>
-					</div> 
-					<label for="easySearch">상세검색</label>
-					<div id="easySearch">
-						<button class="btn btn-outline-primary">평점 높은 순</button>
-						<button class="btn btn-outline-primary">평점 낮은 순</button>
-						<button class="btn btn-outline-primary">최다 주문 순</button>
-						<button class="btn btn-outline-primary">최소 주문 순</button>
-					</div>	
-				</div>
-				<div class="col-*-4 float-right">
-					<input type="submit" value="검색" class="btn btn-outline-warning">
+					</div>
+					<label for="ordering"><span class="icon icon-th-list"></span> 정렬기준</label>
+					<div class="row" id="ordering">
+						<div class="form-check">
+							<input type="checkbox" name="starCount" class="form-check-input" value="high_star" style='left:-9999px'/>
+							<button class="btn btn-outline-primary" onClick="searchConsole(this);">평점 높은 순</button>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" name="starCount" class="form-check-input" value="low_star" style='left:-9999px'/>
+							<button class="btn btn-outline-primary" onClick="searchConsole(this);">평점 낮은 순</button>
+						</div>
+					</div>
 				</div>
 				</div>
 			</div>
@@ -90,24 +96,21 @@
 							<h3><a href="${path }/order/orderListView?partner_No=${p.partner_No}"><c:out value="${p.partner_TruckName }"/></a></h3>
 							<!-- 별점 -->
 							<div class="row">
-								<span>리뷰 별점</span>
-									<div class="star-rating">
-										<span class="icon-star" data-rating="1"></span>
-										<span class="icon-star" data-rating="2"></span>
-										<span class="icon-star" data-rating="3"></span>
-										<span class="icon-star" data-rating="4"></span>
-										<span class="icon-star" data-rating="5"></span>
-										<input type="hidden" name="data_No" class="rating-value" value="${p.starCount}">
-									</div>
-									<div class="row">
+								<span>리뷰 평점</span>
+								<div class="star-rating">
+									<span class="icon-star" data-rating="1"></span>
+									<span class="icon-star" data-rating="2"></span>
+									<span class="icon-star" data-rating="3"></span>
+									<span class="icon-star" data-rating="4"></span>
+									<span class="icon-star" data-rating="5"></span>
+									<input type="hidden" name="data_No" class="rating-value" value="${p.starCount}">
+									<span>(${p.reviewCount }개의 리뷰)</span>
+								</div>
+								<div class="row">
 									<c:forEach var="img" items="${menuList[v.count-1] }">
-											<img class="img-fluid" src="${path }/resources/images/menu/${img.menu_Oriname_File }"/>
+										<img class="img-fluid" src="${path }/resources/images/menu/${img.menu_Oriname_File }"/>
 									</c:forEach>
-									</div>
-									<div class="row">
-										<span><c:out value="총 주문 건 수  ${p.reviewCount }건"/></span>
-									</div>
-							<!-- 총 주문수, 리뷰수, 별점수 추가, 조회 수 -->
+								</div>
 							</div>
 					</div>
 				</div>
@@ -125,20 +128,48 @@
 
 <script>
 $(document).ready(function(){
-	   $("input[name=data_No]").each(function(){
-	      var starCount = $(this).val();
-	      $($(this).siblings()).each(function(){
-	         if(starCount >= $(this).data('rating')){
-	            return $(this).removeClass('text-secondary').addClass('text-warning');
-	         }else{
-	            return $(this).removeClass('text-warning').addClass('text-secondary');
-	         }
-	      });
-	   });
-	});
+		// 메뉴 검색 자동완성 기능
+		$('#menu_Name').on('keyup', function(){
+			var menu = $(this).val().trim();
+			$.ajax({
+				url : "${path}/order/selectMenu",
+				type : "POST",
+				data : {
+					"menu_Name" : menu
+				},
+				success : function(data){
+					var menuList = JSON.parse(data);
+					$("#menuData").html("");
+					for(var i = 0; i < menuList.length; i++){
+						var option = $("<option>").attr({"value" : menuList[i].menu_Name});
+						$('#menuData').append(option);
+					}
+				}
+			})
+		});
+	
+	var buttons = $('#easySearch').find('button');
+	buttons.on('click', function(){
+		
+	})
+		
+	$("input[name=data_No]").each(function(){
+      var starCount = $(this).val();
+      $($(this).siblings()).each(function(){
+         if(starCount >= $(this).data('rating')){
+            return $(this).removeClass('text-secondary').addClass('text-warning');
+         }else{
+            return $(this).removeClass('text-warning').addClass('text-secondary');
+         }
+      });
+   });
+});
 	
 function searchConsole(data){
-	console.log($(data).before());
+	console.log($(data).siblings().eq(0));
+	$(data).siblings().eq(0).attr("checked", true);
+	$(data).removeClass("btn-outline-info");
+	$(data).addClass("btn-info");
 }
 
 /* 페이징처리용 함수 추가 */

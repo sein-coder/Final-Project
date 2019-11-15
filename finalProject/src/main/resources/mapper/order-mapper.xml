@@ -4,8 +4,21 @@
   <select id="selectCount" resultType="_int">
   	SELECT COUNT(*) FROM PARTNER
   </select>
-  <select id="selectTruckList" resultType="partner">
-  	SELECT * FROM PARTNER
+  <!--
+  SELECT PARTNER.PARTNER_NO, PARTNER.PARTNER_TRUCKNAME, MENU.MENU_NAME, AVG(REVIEW_STAR) 
+	FROM PARTNER
+	JOIN MENU ON PARTNER.PARTNER_NO = MENU.PARTNER_NO
+	JOIN REVIEW ON PARTNER.PARTNER_NO = REVIEW.PARTNER_NO
+	GROUP BY (PARTNER.PARTNER_NO, PARTNER.PARTNER_TRUCKNAME, MENU.MENU_NAME)
+	ORDER BY PARTNER_NO;
+    -->
+  
+  <select id="selectTruckList" resultType="partner" parameterType="">
+  	SELECT * FROM PARTNER WHERE 1 = 1
+  	<choose>
+  		<when test=""></when>
+  		<when test=""></when>
+  	</choose>
   </select>
   <select id="selectMenu" parameterType="_int" resultType="menu">
 	SELECT * FROM MENU WHERE PARTNER_NO = #{partner_No}  
@@ -27,5 +40,8 @@
   </insert>
   <select id="selectReviewComment" parameterType="_int" resultType="comment">
   	SELECT * FROM REVIEW_COMMENT WHERE COMMENT_TO = #{comment_To}
+  </select>
+  <select id="selectMenuList" parameterType="menu" resultType="menu">
+  	SELECT * FROM MENU WHERE MENU_NAME LIKE #{menu_Name}
   </select>
 </mapper>

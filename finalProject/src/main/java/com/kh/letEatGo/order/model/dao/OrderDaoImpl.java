@@ -80,5 +80,13 @@ public class OrderDaoImpl implements OrderDao {
 		List<ReviewComment> list = session.selectList("order.selectReviewComment", comment_To);
 		return list;
 	}
+
+	@Override
+	public List<Menu> selectMenuList(SqlSessionTemplate session, Menu m) {
+		m.setMenu_Name("%"+m.getMenu_Name()+"%");
+		System.out.println(m.getMenu_Name());
+		List<Menu> menuList = session.selectList("order.selectMenuList", m);
+		return menuList;
+	}
 	
 }

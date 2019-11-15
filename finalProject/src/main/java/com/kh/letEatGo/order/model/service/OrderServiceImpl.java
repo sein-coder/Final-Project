@@ -75,5 +75,13 @@ public class OrderServiceImpl implements OrderService {
 		List<ReviewComment> list = dao.selectReviewComment(session, comment_To);
 		return list;
 	}
+
+	@Override
+	public List<Menu> selectMenuList(Menu m) {
+		List<Menu> menuList = dao.selectMenuList(session, m);
+		return menuList;
+	}
+	
+	
 	
 }

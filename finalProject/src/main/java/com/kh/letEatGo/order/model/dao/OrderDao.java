@@ -21,4 +21,5 @@ public interface OrderDao {
 	List<Review> selectReview(SqlSessionTemplate session, int partner_No);
 	int insertOrder(SqlSessionTemplate session, Order order);
 	List<ReviewComment> selectReviewComment(SqlSessionTemplate session, int comment_To);
+	List<Menu> selectMenuList(SqlSessionTemplate session, Menu m);
 }
