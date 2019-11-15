@@ -371,7 +371,7 @@ h1 {
 								${festival.festival_No}
 							</div>
 							<p class="product-description">
-							<button id="proceeding" style="color: #fff; text-align: center;">
+							<button id="proceeding" style="color: #fff; text-align: center; border: none;">
 								${festival.festival_Proceeding }
 							</button>
 							<p class="text-break">
@@ -454,14 +454,14 @@ h1 {
 									</div>
 									<div style="display: inline-block">
 
-										<a href="#none" class="hashtag_copy" style="background-color: #f38181"
+										<!-- <a href="#none" class="hashtag_copy" style="background-color: #f38181"
 											data-clipboard-action="copy" data-clipboard-target="p.copy">
 											<span>copy</span>
-										</a>
+										</a> 
 
 										<script
 											src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-									</div>
+									</div>-->
 								</td>
 								<td>
 									<div class="alert alert-danger4">

@@ -128,17 +128,7 @@ textarea {
 											type="text" readonly disabled value="2000" name="counter"
 											id="counter"></span>
 									</div>
-									<div class="action" style="display: inline-block;">
-										<button class="add-to-cart btn btn-default" type="button">
-									 		<span class="icon-heart" id="heart"></span>
-										</button>
-									</div>
-									<div style="display: inline-block;">
-									<p class="vote">
-										<b id="count">${festival.festival_Count}</b>이 글에 좋아요를 누른 회원수 입니다. 
-										<b id="count">(${festival.festival_Count} votes)</b>
-									</p>
-									</div>
+									
 									<br>
 									<div style="display: inline-block">
 										<p>해시태그 :</p>
@@ -255,12 +245,10 @@ textarea {
 					<ul
 						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
 						<li class="list-inline-item">
-							<a onclick="submit();" href="#">
-								<span style="background-color: #f23a2e;">완료</span>
-							</a>
+							<input type="submit" value="수정완료" style="background-color: #f23a2e;"/>
 						</li>
 						<li class="list-inline-item">
-							<a onclick="submit();" href="festival/festivalList">
+							<a href="festival/festivalList">
 								<span style="background-color: #f23a2e;">취소</span>
 							</a>
 						</li>
