@@ -63,10 +63,9 @@ public class PageController {
 		
 		m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
 		int result=0;
-		//전화번호,이메일 암호화
+		
+		
 		try {
-			m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
-			m.setMember_Email(enc.encrypt(m.getMember_Email()));
 			result=member_service.updateMemberPage(m);
 		} catch (Exception e) {
 			
@@ -87,15 +86,22 @@ public class PageController {
 		return "common/msg";
 		
 	}
+	@RequestMapping("/member/deleteMember")
+	public String deleteMember() {
+		
+		return "mypage/deleteMember";
+	}
 	
-	 @RequestMapping("/member/deleteMember") //멤버 회원 탈퇴
+	 @RequestMapping("/member/deleteMemberPage") //멤버 회원 탈퇴
 	  public String deleteMemberPage(Member m,HttpSession session,Model model) {
 		 
 		    int result=member_service.deleteMemberPage(m);
+		    
+		    
 		 
 		    String msg="";
 			String loc="/";
-			if(result>0) {
+			if(result==1) {
 				msg="회원 탈퇴 성공";
 				session.invalidate();
 			}else {
@@ -114,10 +120,9 @@ public class PageController {
 			
 			p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));
 			int result=0;
-			//전화번호, 이메일 암호화
+			
 			try {
-				p.setPartner_Phone(enc.encrypt(p.getPartner_Phone()));
-				p.setPartner_Email(enc.encrypt(p.getPartner_Email()));
+				
 				result=partner_service.updatePartnerPage(p);
 			} catch (Exception e) {
 				

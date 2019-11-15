@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class AccountBook {
 	private int account_No;
 	private String account_Date;
-	private String account_LocCode;
 	private String account_Type;
 	private String account_Clause;
 	private String account_Item;

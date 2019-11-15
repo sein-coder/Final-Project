@@ -245,7 +245,12 @@ textarea {
 					<ul
 						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
 						<li class="list-inline-item">
+<<<<<<< HEAD
 							<input type="submit" value="수정완료" style="background-color: #f23a2e;"/>
+=======
+							<input type="submit" href="#" value="수정완료" style="background-color: #f23a2e;">
+							</input>
+>>>>>>> branch 'master2' of https://github.com/sein-coder/Final-Project.git
 						</li>
 						<li class="list-inline-item">
 							<a href="festival/festivalList">

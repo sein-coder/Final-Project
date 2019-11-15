@@ -21,7 +21,9 @@
 	
 	<!-- 회원 탈퇴 -->
 	<delete id="deleteMemberPage">
-	  DELETE FROM MEMBER WHERE MEMBER_ID=#{member_Id} and MEMBER_PASSWORD=#{member_Password}
+	  DELETE FROM MEMBER 
+	     WHERE MEMBER_ID=#{member_Id}
+	       and MEMBER_PASSWORD=#{member_Password}
 	</delete>
 
 </mapper>

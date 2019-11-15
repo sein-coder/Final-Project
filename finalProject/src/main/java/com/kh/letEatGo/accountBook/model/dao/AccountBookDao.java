@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.letEatGo.accountBook.model.vo.Account;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
 
 public interface AccountBookDao {
@@ -20,4 +21,9 @@ public interface AccountBookDao {
 	int updateAccountBook(SqlSessionTemplate session, AccountBook ab);
 	
 	AccountBook selectAccountBook(SqlSessionTemplate session, AccountBook ab);
+	
+	Account selectAccount(SqlSessionTemplate session, int partner_No);
+	
+	int insertAccount(SqlSessionTemplate session, Account account);
+	
 }

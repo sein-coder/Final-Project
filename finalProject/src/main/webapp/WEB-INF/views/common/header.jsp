@@ -168,24 +168,22 @@
                   <nav class="site-navigation position-relative text-right"
                      role="navigation">
                      <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <li class="active"><a
-                           href="${pageContext.request.contextPath }" 
-                           style="   background-color: transparent !important; font-family: BinggraeMelona !important; line-height: 1.7 !important;"><span>Home</span></a></li>
+                        <li class="active"><a href="${pageContext.request.contextPath }"><span>Home</span></a></li>
                         <!-- nav-bar 메뉴부분 -->
-                        <li><a
-                           href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234" style="font-family: BinggraeMelona !important;"><span>장부관리</span></a></li>
-                        <li><a href="${pageContext.request.contextPath }/order" style="font-family: BinggraeMelona !important;"><span>주문하기</span></a></li>
-                        <li><a href="${pageContext.request.contextPath }/map" style="font-family: BinggraeMelona !important;"><span>푸드트럭존
-                                 찾기</span></a></li>
-                        <li><a
-                           href="${pageContext.request.contextPath }/festival/festivalList" style="font-family: BinggraeMelona !important;"><span>축제알리미</span></a></li>
+                        <c:if test="${not empty loginMember && type == 'partner' }">
+	                        <li><a href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=${loginMember.partner_No}"><span>장부관리</span></a></li>
+                        </c:if>
+                        
+                        <li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
+                        <li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존 찾기</span></a></li>
+                        <li><a href="${pageContext.request.contextPath }/festival/festivalList" style="font-family: BinggraeMelona !important;"><span>축제알리미</span></a></li>
                         <c:if test="${empty loginMember }">
                            <li>
-                              <button type="button" class="btn btn-outline-primary"
-                                 data-toggle="modal" data-target="#myModal" style="font-family: BinggraeMelona !important;">로그인</button>
+                              <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">로그인</button>
                            </li>
-                           <li><button class="btn btn-outline-primary" type="button"
-                                 onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
+                           <li>
+                           	  <button class="btn btn-outline-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button>
+                           </li>
                         </c:if>
                         <c:if test="${not empty loginMember }">
                            <c:if test="${ type == 'member' && loginMember.member_Id ne 'admin'  }">

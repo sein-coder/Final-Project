@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="insertAccountBook" parameterType="accountBook">
-		INSERT INTO AccountBook VALUES(SEQ_Account_No.nextval, #{account_Date}, #{account_LocCode}, 
+		INSERT INTO AccountBook VALUES(SEQ_Account_No.nextval, #{account_Date},
 			#{account_Type}, #{account_Clause}, #{account_Item}, #{account_Summary},
 			#{account_Outcome}, #{account_Income}, #{account_Balance}, #{partner_No})
 	</insert>
@@ -32,7 +32,6 @@
 	<update id="updateAccountBook" parameterType="accountBook">
 		UPDATE AccountBook SET 
 			account_Date = #{account_Date}, 
-			account_LocCode = #{account_LocCode}, 
 			account_Type = #{account_Type}, 
 			account_Clause = #{account_Clause}, 
 			account_Item = #{account_Item}, 
