@@ -12,7 +12,6 @@
   font-size:1.25em;
   
 }
-
 .star-rating .icon-star{
   color: yellow;
   transition : 0.5s;
@@ -136,11 +135,16 @@ $(document).ready(function(){
 	         }
 	      });
 	   });
-
 	});
 	
 function searchConsole(data){
 	console.log($(data).before());
 }
+
+/* 페이징처리용 함수 추가 */
+function fn_paging(cPage) {
+	location.href='${pageContext.request.contextPath}/order?cPage='+cPage;
+}
+
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

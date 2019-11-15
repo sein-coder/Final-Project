@@ -28,9 +28,11 @@ public class RSAEncrypto implements MyEncrypt{
 	private PrivateKey privateKey;
 	
 	public RSAEncrypto() {
+
 		String path=this.getClass().getResource("/").getPath();
 		path=path.substring(0,path.lastIndexOf("/classes"));   // 서버에는 key 찾을 떄 target이 없음 classes 
 		File f=new File(path+"/keys.bs");  
+		
 		if(f.exists()) {
 			try(ObjectInputStream ois=new ObjectInputStream(new FileInputStream(f))){
 				Map<String,Object> keys=(Map)ois.readObject();

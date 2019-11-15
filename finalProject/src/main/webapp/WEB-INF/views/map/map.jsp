@@ -70,6 +70,7 @@
           <div class="col-md-10 text-center border-primary">
            <!--  -->         
           <div class="col-md-8 offset-md-2  input-group mb-3 ">
+          <!-- =================================================================================================== -->
           <button class="icon icon-room btn btn-success" style="background: #f38181; color:#fff" onclick="map_gps();"></button>
            <input type="text" id="sample5_address" placeholder="주소" class="col-md-10 form-control"  placeholder="Search">
              <button class="col-md-2 btn btn-success icon icon-search" onclick="sample5_execDaumPostcode();" style="background: #f38181; color:#fff"></button>
@@ -124,6 +125,8 @@ function showPosition(position) {
 	       };
 	       geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 	}
+	
+	/* ==================================================================== */
 if('${mapAddress}'!=''){
 	console.log('${mapAddress}')
 var mapSeacrh= function(result, status) {

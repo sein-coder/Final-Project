@@ -31,9 +31,7 @@ public class OrderController {
 	private OrderService service;
 	
 	@RequestMapping("/order")
-	public ModelAndView order(
-			@RequestParam(value="cPage", required=false, defaultValue="1")int cPage
-			) {
+	public ModelAndView order(@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -49,8 +47,6 @@ public class OrderController {
 			p.setStarCount(service.selectStar(p.getPartner_No()));
 			p.setReviewCount(service.selectReviewCount(p.getPartner_No()));
 		}
-		
-		System.out.println(menuList);
 		
 		mv.addObject("list", list);
 		mv.addObject("menuList", menuList);
@@ -82,20 +78,14 @@ public class OrderController {
 		return mv;
 	}
 	
-	@RequestMapping("/order/payment")
-	public String payment(@RequestParam int partner_No, @RequestParam String orderList) {
-		System.out.println(partner_No);
-		String[] st = orderList.split("/");
-		String[] result = {};
-		for(String s : st) {
-			result = s.split(":");
-			for(String str : result) {
-				System.out.println(str);
-			}
-		}
+	@RequestMapping("/order/payment.do")
+	public String payment(
+			@RequestParam(required=false) int order_Price, Model m) {
+		System.out.println(order_Price);
+		m.addAttribute("order_Price", order_Price);
 		return "order/payment";
 	}
-
+	
 	@RequestMapping("/order/orderEnd") 
 	public String orderEnd(Order o, HttpSession session) {
 		System.out.println(o);
@@ -109,7 +99,7 @@ public class OrderController {
 		int result = service.insertOrder(order);
 		
 		String msg = "";
-		String loc = "/order/orderListView?partner_No="+order.getPartner_no();
+		String loc = "/order/orderListView?partner_No="+order.getPartner_No();;
 		if(result > 0) {
 			msg = "결제가 완료 되었습니다.";
 		} else {
@@ -119,6 +109,7 @@ public class OrderController {
 		model.addAttribute("loc", loc);
 		return "common/msg";
 	}
+	  
 	/*
 	 * @RequestMapping("/order/searchConsole") public List<Partner> searchConsole(
 	 * 

@@ -177,23 +177,24 @@
 									href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=1234" style="font-family: BinggraeMelona !important;"><span>장부관리</span></a></li>
 								<li><a href="${pageContext.request.contextPath }/order" style="font-family: BinggraeMelona !important;"><span>주문하기</span></a></li>
 								<li><a href="${pageContext.request.contextPath }/map" style="font-family: BinggraeMelona !important;"><span>푸드트럭존
-											찾기</span></a></li>
+											찾기 </span></a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/festival/festivalList" style="font-family: BinggraeMelona !important;"><span>축제알리미</span></a></li>
-									
-								<c:if test="${empty loginMember}">
+								 <c:if test="${empty loginMember}"> 
 									<li>
-										<button type="button" class="btn btn-outline-primary"
+										<button type="button" id="login" class="btn btn-outline-primary"
 											data-toggle="modal" data-target="#myModal" style="font-family: BinggraeMelona !important;">로그인</button>
 									</li>
-									<li><button class="btn btn-outline-primary" type="button"
+									<li><button id="regist" class="btn btn-outline-primary" type="button"
 											onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button></li>
-								</c:if>
-								<%String name="<script>document.writeln(name)</script>";
-								  String token="<script>document.writeln(token)</script>";
-								  String id="<script>document.writeln(id)</script>";
-								%>
-								<c:if test="${not empty loginMember ||not empty token}">
+								 </c:if> 
+									<li>
+										<span id="welecome" ></span>
+									</li>
+									<li>
+										<button id="weblogout" class="btn btn-outline-primary" type="button" onclick="weblogout();" style="display:none;">로그아웃</button>
+									</li>
+								<c:if test="${not empty loginMember }">
 									<c:if test="${ type == 'member' && loginMember.member_Id ne 'admin'  }">
 								<li><a href="${pageContext.request.contextPath }/memberPage?Member_Id=${loginMember.member_Id}"><span>고객 페이지</span></a></li>
 									</c:if>
@@ -291,7 +292,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary">페이스북</button>
 						<button type="button" id="naver" class="btn btn-primary">네이버</button>
-						<button type="button" id="kakao" class="btn btn-primary">카카오톡</button>
+						<button type="button" id="kakao" class="btn btn-primary" onclick="kakao();">카카오톡</button>
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
 					</div>
@@ -300,35 +301,54 @@
 		</div>
 	</div>
 			<script type="text/javascript">
-			if('${id}'!=null){
-			console.log('${id}')
-			console.log('${name}')
-			console.log('${token}')
+			var name= sessionStorage.getItem('name');
+			var token=sessionStorage.getItem('token');
+			var id=sessionStorage.getItem('id');
+			console.log(id+" "+name+" "+token);
+			if(token!=null){
+				document.getElementById("login").style.display ='none';
+				document.getElementById("regist").style.display ='none';
+				document.getElementById("weblogout").style.display ='block';
+				document.getElementById("welecome").innerText=name+'님 환영합니다.';
+				document.getElementById("welecome").style.color='white';
 			}
-			
 			Kakao.init('4524f2a578ce5b005f1a8157e72c3d3a');
-		     Kakao.Auth.createLoginButton({
-		   container: '#kakao',
-		   success: function(authObj) {
-		     Kakao.API.request({
-		       url: '/v1/user/me',
-		       success: function(res) {
-		    	   var name=res.properties['nickname'];
-		    	   var token=authObj.access_token;
-		    	   var id=res.id;
-		    	   location.href="?id="+res.id+"&name="+res.properties['nickname']+"&token="+authObj.access_token;
-		    	   
-		    	   console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-		             console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-		             console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-		    	   
-		           }
-		         })
-		       },
-		       fail: function(error) {
-		         alert("로그인에 실패했습니다.");
-		       }
-		     });
+			 function kakao() {
+			      Kakao.Auth.loginForm({
+			        success: function(authObj) {
+			        	Kakao.API.request({
+			 		       url: '/v1/user/me',
+			 		       success: function(res) {
+			 		    	  Kakao.Auth.setAccessToken(Kakao.Auth.getAccessToken(), true);
+					    	   var name=res.properties['nickname'];
+					    	   var token=authObj.access_token;
+					    	   var id=res.id;
+					    		sessionStorage.setItem('name', name);
+					    		sessionStorage.setItem('token', token);
+					    		sessionStorage.setItem('id', id);
+					    	   location.reload();
+
+					    	   console.log(res.id);
+					           console.log(res.properties['nickname']);
+					           console.log(authObj.access_token);
+			 		      }
+				       })
+			        },
+			        fail: function(err) {
+			          alert(JSON.stringify(err));
+			        }
+			      });
+			    };
+		     
+		     function weblogout() {
+		    	 Kakao.Auth.logout(function(){
+		    		 alert("카카오 로그아웃");
+		    		 sessionStorage.clear();
+		    		 document.getElementById("weblogout").style.display ='none';
+		    		 location.reload();
+ 		    		 });
+			}
+		     
 			</script>
 			
 

@@ -31,6 +31,7 @@
 					</div>
 				</div>
 
+
 				<!-- 중간 검색 박스 -->
 				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up" 
 					data-aos-delay="200">
@@ -41,6 +42,7 @@
 							</div>
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<div class="wrap-icon">
+								<!-- =================================================================================================== -->
 									<button class="icon icon-room" style="background:none;border:none;cursor:pointer" onclick="map_gps();"></button>
 									<input type="text" id="mapAddress" class="form-control" placeholder="푸드트럭 위치찾기">
 								</div>
@@ -80,7 +82,7 @@
 					
 					
 					</script>
-					
+					<!-- =================================================================================================== -->
 
 				<div class="row align-items-stretch p-4">
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
