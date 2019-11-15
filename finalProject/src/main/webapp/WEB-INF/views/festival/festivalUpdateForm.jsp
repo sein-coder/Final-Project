@@ -156,7 +156,7 @@ textarea {
 
 						<!-- 더 보기 버튼 생성  -->
 
-						<input value="상세설명" class="btn btn-danger btn-block"
+						<input value="상세설명" class="btn btn-danger btn-block"  style="background-color: #f38181; border: none;"
 							readonly="readonly" />
 						<div
 							class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
@@ -245,17 +245,13 @@ textarea {
 					<ul
 						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
 						<li class="list-inline-item">
-<<<<<<< HEAD
-							<input type="submit" value="수정완료" style="background-color: #f23a2e;"/>
-=======
-							<input type="submit" href="#" value="수정완료" style="background-color: #f23a2e;">
-							</input>
->>>>>>> branch 'master2' of https://github.com/sein-coder/Final-Project.git
+
+							<input type="submit" href="#" value="저장"  style="background-color: #f38181;border-color: #f38181;">
 						</li>
 						<li class="list-inline-item">
-							<a href="festival/festivalList">
-								<span style="background-color: #f23a2e;">취소</span>
-							</a>
+							<button class="btn-cancel" type="button" onclick="btn-cancel();" style="background-color: #f38181;border-color: #f38181; " >
+								<span>취소</span>
+							</button>
 						</li>
 					</ul>
 				</nav>
@@ -338,7 +334,7 @@ textarea {
 
         $("input").change(function(){
         	if($(this).val()!="" && $(this).attr("id")!='tag'){
-        		var img = "<img src='https://media.istockphoto.com/vectors/tick-icon-vector-symbol-marker-red-checkmark-isolated-on-white-icon-vector-id897303186?k=6&m=897303186&s=170667a&w=0&h=Z5Z6OQfZFwns6G5saUzBQMSpBviQaKPqISaU6_dcRKY=' alt='check' width='100px' height='100px'/>"
+        		var img = "<img src='https://img.icons8.com/cotton/2x/like--v3.png' alt='check' width='100px' height='100px'/>"
         		$(this).parent().append(img);
         	}
         });
@@ -365,6 +361,14 @@ textarea {
 		            console.log(2);
 		        }
 		    });
+		
+		/* 취소버튼 */
+		 $('.btn-cancel').on("click",function(){
+        	location.href = "${pageContext.request.contextPath }/festival/festivalList";
+	    });
+
+		
+		
 	
 	</script>
 	</section>

@@ -213,7 +213,7 @@ keyframes opacity { 0% {
 	-webkit-transform: scale(3);
 	transform: scale(3);
 }
-100%
+38181;100%
 {
 opacity:1;
 -webkit-transform
@@ -406,7 +406,7 @@ h1 {
 				<div
 					class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
 					style="padding-left: 0; padding-right: 0;">
-					<input value="더보기"
+					<input value="더보기" style="background-color: f38181;border: none;"
 						onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display != ''){this.parentNode.getElementsByTagName('div')[0].style.display = '';this.value = '숨기기';}
 												else{this.parentNode.getElementsByTagName('div')[0].style.display = 'none'; this.value = '더보기';}"
 						type="button" class="btn btn-danger btn-block" />
@@ -494,16 +494,16 @@ h1 {
 		</div>
 	</div>
 	<div class="row justify-content-center">
-		<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" 
+		<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
 			onclick="location.href='${pageContext.request.contextPath}/festival/festivalList'">목록</button>
 	</div>
 	<div>
 		<div>
-			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
+			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
 				onclick="location.href='${pageContext.request.contextPath}/festival/deleteFestival?festival_No=${festival.festival_No }'">삭제</button>
 		</div>
 		<div>
-			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
+			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
 				onclick="location.href='${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }'">수정</button>
 		</div>
 	</div>
@@ -513,7 +513,7 @@ h1 {
 		<div class="col-md-12">
 			<div class="row">
 
-				<!--team-4-->
+					<!--
 				<div class="col-lg-4">
 					<div class="our-team-main">
 
@@ -534,10 +534,9 @@ h1 {
 
 					</div>
 				</div>
-				<!--team-4-->
+				
 
-				<!--team-5-->
-				<div class="col-lg-4">
+			 <div class="col-lg-4">
 					<div class="our-team-main">
 
 						<div class="team-front">
@@ -557,9 +556,7 @@ h1 {
 
 					</div>
 				</div>
-				<!--team-5-->
-
-				<!--team-6-->
+				
 				<div class="col-lg-4">
 					<div class="our-team-main">
 
@@ -579,8 +576,8 @@ h1 {
 						</div>
 
 					</div>
-				</div>
-				<!--team-6-->
+				</div> -->
+				
 
 
 			</div>

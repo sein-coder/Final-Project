@@ -7,7 +7,10 @@
 	<jsp:param name="pageTitle" value="" />
 </jsp:include>
 <style>
-
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem!important;
+ 
+}
 </style>
 
 <section>
@@ -37,36 +40,47 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8 t-3">
 
-        <h1 class="my-4">Enjoy the festival with
-          <small>'Let It Go'</small>
+        <h1 class="my-4" style="text-align: center;">Enjoy the festival with
+          <small>'let Eat Go'</small>
         </h1>
-
+		
+		<div style="pull-right; color:#f38181;">
+			
+				<ul class="site-menu js-clone-nav m-auto d-none d-lg-block">
+					<li class="active col-md-3" ><a
+						href="${pageContext.request.contextPath}/festival/festivalForm"><span>축제등록</span></a></li>
+				</ul>
+			
+		</div>
         <!-- Blog Post -->
-        <div class="card mb-4 t-6">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">축제 제목</h2>
-            <p class="card-text">축제 내용<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-       
+       <div class="carousel-inner col-md-11 " style="border-color:#ffc9c9; ">
+        <c:if test="${not empty list }">
+		<c:forEach items="${list}" var="v" varStatus="s">
+			
+	        <c:if test="${!s.first&&s.count%2==0 }">
+	          		<div class="card mb-4 t-6" id="pic" style="background-color:#ffc9c9;">
+	          			<img class="card-img-top" width="100px" height="500px" src="${pageContext.request.contextPath}/resources/images/festival/${v.festival_Thumbnail }" alt="Card image cap">
+	          	<div class="card-body">
+		            <h2 class="card-title"><p>${v.festival_Title }</p></h2>
+		            <button class="proceeding" id="proceeding" style="color: #fff; text-align: center; border: none;">
+						${v.festival_Proceeding }
+					</button>
+		            <p class="card-text"><p>${v.festival_StartDate } ~ ${v.festival_EndDate }</p></p>
+		            <a href="#" class="btn btn-primary" onclick='location.href="${path}/festival/festivalView?festival_No=${v.festival_No }"' 
+		            >Read More &rarr;</a>
+				
+        		 </div>
+	        </c:if>
+	         		 <c:if test="${s.count%2==0||s.last}">
+         		 </div>
+  				</c:if>
+         		  </c:forEach>
         </div>
+	</c:if>
 
-        <!-- Blog Post -->
-        <div class="card mb-4">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">축제제목</h2>
-            <p class="card-text">축제 내용<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-
-        </div>
-
-       
-
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
+   
+       <!--  Pagination -->
+        <ul class="pagination justify-content-center mb-4" id="this">
           <li class="page-item">
             <a class="page-link" href="#">&larr; Older</a>
           </li>
@@ -75,7 +89,7 @@
           </li>
         </ul>
 
-      </div>
+      </div> 
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
@@ -158,10 +172,54 @@
   </body>
   <!-- /.container -->
 	</div>
+	
+
+	<script>
+	/*  축제 진행여부 */
+		$('.proceeding').each(function(){
+			if($(this).text().includes('예정',0)){
+				$(this).css("background-color",'blue');
+			}else if($(this).text().includes('진행',0)){
+				$(this).css("background-color",'green');
+			}else if($(this).text().includes('종료',0)){
+				$(this).css("background-color",'red');
+		}
+		});
+	
+	</script>
+	<script>
+	/* 썸네일 사진 */
+	$('#upFile').on('change',function (e) {
+	       var get_file = e.target.files;
+	
+	       var image = $("#pic").children();
+	       var reader = new FileReader();
+	       
+	       reader.onload = (function (aImg) {
+	           console.log(1);
+	           return function (e) {
+	               console.log(3);
+	               aImg.attr("src",e.target.result);
+	               aImg.attr({"width":"400px","height":"252px"});
+	           }
+	       })(image)
+	
+	       if(get_file){
+	           reader.readAsDataURL(get_file[0]);
+	           console.log(2);
+	       }
+	   });
+	</script>
+
+	
+
+
+
+
+
+
+
 
 </section>
 
-  
-  
-  
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
