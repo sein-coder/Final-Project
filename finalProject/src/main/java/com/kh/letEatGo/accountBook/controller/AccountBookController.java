@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -263,8 +265,78 @@ public class AccountBookController {
 		return mv;
 	}
 
+	@RequestMapping("/accountBook/calculate.do")
+	public ModelAndView calculate(int partner_No) {
+		ModelAndView mv = new ModelAndView();
 
+		List<Map<String,String>> calList = service.selectCalRate(partner_No); 
+		
+		// 날짜 분류 리스트
+		List<String> caldateList = new ArrayList();
+		
+		for(Map<String,String> m : calList) {
+			caldateList.add(m.get("ACCOUNT_DATE"));			
+		}
+		
+		//중복 날짜데이터 삭제
+		caldateList = caldateList.parallelStream().distinct().collect(Collectors.toList());
 
+		// 현금비율 리스트, 카드비율 리스트, 계좌이체비율 리스트, 기타비율 리스트
+		List<Integer> cashList = new ArrayList();
+		List<Integer> cardList = new ArrayList();
+		List<Integer> bankTransferList = new ArrayList();
+		List<Integer> otherList = new ArrayList();
+		
+		for(int i=0; i<caldateList.size(); i++) {
+			cashList.add(0);
+			cardList.add(0);
+			bankTransferList.add(0);
+			otherList.add(0);
+		}
+		
+		// 각 리스트에 맞게 분류
+		for(Map<String,String> m : calList) {
+			
+			int index = caldateList.indexOf(m.get("ACCOUNT_DATE"));
+			
+			switch (m.get("ACCOUNT_TYPE")) {
+			case "현금":
+				cashList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "카드":
+				cardList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "계좌이체":
+				bankTransferList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "기타":
+				otherList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			}
+		}
+		
+		mv.addObject("caldateList",caldateList);
+		mv.addObject("cashList",cashList);
+		mv.addObject("cardList",cardList);
+		mv.addObject("bankTransferList",bankTransferList);
+		mv.addObject("otherList",otherList);
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
 
+	@RequestMapping("/accountBook/cardCalculate.do")
+	public ModelAndView cardCalculate(int partner_No) {
+		ModelAndView mv = new ModelAndView();
+		
+		int monthlyIncome = service.selectMonthlyIncome(partner_No);
+		int incomeRate_Monthly;
+		int yesterday_today_incomeRate;
+		int sell_Count;
+		
+		mv.addObject("monthlyIncome",monthlyIncome);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.kh.letEatGo.accountBook.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.letEatGo.accountBook.model.vo.Account;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
@@ -24,4 +25,7 @@ public interface AccountBookService {
 	
 	int insertAccount(Account account);
 	
+	List<Map<String,String>> selectCalRate(int partner_No);
+	
+	int selectMonthlyIncome(int partner_No);
 }

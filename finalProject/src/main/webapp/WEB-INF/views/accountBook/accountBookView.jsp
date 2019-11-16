@@ -64,7 +64,6 @@
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
      .info .link {color: #5085BB;}  
-
 @media(min-width:768px) {
      .bb-text {font-size: 13px; font-family: BinggraeMelona;}
      .bb-line {stroke-width: 1px; font-family: BinggraeMelona;}
@@ -75,19 +74,120 @@
 
 <section id="content">
 	<div class="site-section" style="background-color: #f4f4f4;">
-		<div i class="container" style="background-color: white;">
+		<div class="container mt-3" style="background-color: white;">
 			
 			<c:if test="${not empty account }">
 			
 			<!-- 이용자 아이디 출력 구역 -->
-			<div class="row mb-4 justify-content-start">
-				<h2>사용자(사업자)님의 장부</h2>
+			<div class="row pl-4 pt-3 mb-4 justify-content-start">
+				<h2>${loginMember.partner_TruckName }님의 11월 통계 및 장부</h2>
 			</div>
 			
+			<!-- Content Row -->
+	        <div class="row m-1 mb-4">
+	
+	            <!-- Earnings (Monthly) Card Example -->
+	            <div class="col-xl-3 col-md-6 mb-4">
+	              <div class="card border-left-primary shadow h-100 py-2">
+	                <div class="card-body">
+	                  <div class="row no-gutters align-items-center">
+	                    <div class="col mr-2">
+	                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">현재까지 매출&nbsp;(월 단위)</div>
+	                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+	                    </div>
+	                    <div class="col-auto">
+	                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            
+	            <div class="col-xl-3 col-md-6 mb-4">
+	              <div class="card border-left-info shadow h-100 py-2">
+	                <div class="card-body">
+	                  <div class="row no-gutters align-items-center">
+	                    <div class="col mr-2">
+	                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">매출 달성률&nbsp;(월 단위)</div>
+	                      <div class="row no-gutters align-items-center">
+	                        <div class="col-auto">
+	                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0%</div>
+	                        </div>
+	                        <div class="col">
+	                          <div class="progress progress-sm mr-2">
+	                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+	                          </div>
+	                        </div>
+	                      </div>
+	                    </div>
+	                    <div class="col-auto">
+	                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <!-- Earnings (Monthly) Card Example -->
+	            <div class="col-xl-3 col-md-6 mb-4">
+	              <div class="card border-left-success shadow h-100 py-2">
+	                <div class="card-body">
+	                  <div class="row no-gutters align-items-center">
+	                    <div class="col mr-2">
+	                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">직전 일 대비 매출 증감율</div>
+	                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+	                    </div>
+	                    <div class="col-auto">
+	                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            <!-- Earnings (Monthly) Card Example -->
+
+	            <!-- Pending Requests Card Example -->
+	            <div class="col-xl-3 col-md-6 mb-4">
+	              <div class="card border-left-warning shadow h-100 py-2">
+	                <div class="card-body">
+	                  <div class="row no-gutters align-items-center">
+	                    <div class="col mr-2">
+	                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">현재까지 순수익&nbsp;(월 단위)</div>
+	                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+	                    </div>
+	                    <div class="col-auto">
+	                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	        </div>
+
+			<!-- 차트화면 구역 -->
+			<div class="row ml-2 mb-3 justify-content-start">
+				<h3>월 일별 예상매출 대비 매출</h3>
+			</div>
+			<div class="mb-4 m-3" style="border: 1px solid #f38181; border-radius: 10px"">
+				<div class="row m-3" id="areaChart"></div>
+			</div>
+
+			<!-- 통계지도 구역 -->
+			<h3 class="mb-3 ml-2">예상 매출 및 순수익</h3>
+			<div class="row m-3 pb-5 justify-content-start">
+				<div class="col mr-1" style="border: 1px solid #f38181; border-radius: 10px">
+					<h5 class="mt-2">-월 일별 순수익 경향 그래프-</h5>
+					<div id="areaChart2"></div>				
+				</div>
+				<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
+					<h5 class="mt-2">-최근 일별 수익 분류 매출액-</h5>
+					<div id="barChart"></div>
+				</div>
+			</div>
+
 			<!-- 장부 구역 -->
-			<div id="accountBookList" class="row justify-content-center mb-3">
-				<table id="tbl" class="table table-bordered table-hover"
-					style="text-align: center;">
+			<div id="accountBookList" class="row justify-content-center m-2 mb-3">
+				<table id="tbl" class="table table-bordered table-hover" style="text-align: center;">
 					<thead style="background-color: #ffc9c9; color: #fff;">
 						<tr>
 							<th scope="col">번호</th>
@@ -136,7 +236,7 @@
 			</div>
 
 			<!-- 간략정보 구역 -->
-			<div class="row flex-row-reverse mb-5">
+			<div class="row flex-row-reverse mb-1 pb-5">
 				<div class="col-md-5">
 					<div class="d-flex justify-content-end">
 						<table class="table table-borderless">
@@ -158,26 +258,6 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- 차트화면 구역 -->
-			<div class="row mb-3 justify-content-start">
-				<h3>월별(일별) 지출/수입 그래프</h3>
-			</div>
-			<div class="row mb-5" id="areaChart"></div>
-
-			<!-- 통계지도 구역 -->
-			<h3>예상 매출 및 순수익</h3>
-			<div class="row mb-3 justify-content-start">
-				<div class="col">
-					<h4>일별 순수익 그래프</h4>
-					<div class="mb-5" id="areaChart2"></div>				
-				</div>
-				<div class="col">
-					<h4>일별 수익 분류 매출액</h4>
-					<div class="mb-5" id="barChart"></div>
-				</div>
-			</div>
-
 			
 			</c:if>
 			<c:if test="${empty account }">
@@ -318,9 +398,6 @@
 		});
 
 		var chart = bb.generate({
-			title : {
-				text : "일별 매출/예상매출 비교 그래프"
-			},
 			data : {
 				x : "x",
 				columns : [ dateList, incomeList, pincomeList ],
@@ -392,9 +469,6 @@
 	<!-- 두번째 순수익 차트 -->
 	<script type="text/javascript">
 	var chart = bb.generate({
-		title : {
-			text : "일별 순수익 경향 그래프"
-		},
 		data : {
 			x : "x",
 			columns : [ dateList, revenueList ],
@@ -458,59 +532,62 @@
 	</script>
 	<!-- 수익 분류 차트 -->
 	<script type="text/javascript">
-	var chart = bb.generate({
-		  data: {
-		    x: "x",
-		    columns: [
-		    	dateList,
-			["data1", 50, 50, 40, 40],
-			["data2", 10, 10, 25, 15],
-			["data3", 20, 25, 20, 35],
-			["data4", 20, 15, 15, 10]
-		    ],
-		    type: "bar",
-			names : {
-				data1 : "현금",
-				data2 : "카드",
-				data3 : "계좌이체",
-				data4 : "기타"
-			},
-			colors : {
-				data1 : "#f38181",
-				data2 : "#f89d13",
-				data3 : "#ffc9c9",
-				data4 : "#FBF697"
-			},
-		    groups: [
-		      [
-		        "data1",
-		        "data2",
-		        "data3",
-		        "data4"
-		      ]
-		    ]
-		  },
-		  axis: {
-		    rotated: true,
-		    x: {
-		      type: "category",
-		      clipPath: false,
-		      inner: false,
-		      tick: {
-		        text: {
-		          position: {
-		              x: 0,
-		              y: 0
-		          }
-		        }
-		      }
-		    },
-		    y: {
-		      show: false
-		    }
-		  },
-		  bindto: "#barChart"
-		});
+	function makeTypeChart(list1, list2, list3, list4, list5) {
+		
+		var chart = bb.generate({
+			  data: {
+			    x: "x",
+			    columns: [
+			    	list1,
+			    	list2,
+			    	list3,
+			    	list4,
+			    	list5
+			    ],
+			    type: "bar",
+				names : {
+					data5 : "현금",
+					data6 : "카드",
+					data7 : "계좌이체",
+					data8 : "기타"
+				},
+				colors : {
+					data5 : "#f38181",
+					data6 : "#f89d13",
+					data7 : "#ffc9c9",
+					data8 : "#FBF697"
+				},
+			    groups: [
+			      [
+			        "data5",
+			        "data6",
+			        "data7",
+			        "data8"
+			      ]
+			    ]
+			  },
+			  axis: {
+			    rotated: true,
+			    x: {
+			      type: "category",
+			      clipPath: false,
+			      inner: false,
+			      tick: {
+			        text: {
+			          position: {
+			              x: 0,
+			              y: 0
+			          }
+			        }
+			      }
+			    },
+			    y: {
+			      show: false
+			    }
+			  },
+			  bindto: "#barChart"
+			});
+	}
 	</script>
 
 	
@@ -790,17 +867,45 @@
 	function fn_paging(cPage) {
 		location.href='${pageContext.request.contextPath}/accountBook/accountBookView?cPage='+cPage+'&partner_No=${partner_No}';
 	}
-	
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(37.5306475369695   ,126.928706300305), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
-    };
-	
-	function replaceAll(str, searchStr, replaceStr) {
-		  return str.split(searchStr).join(replaceStr);
-	}
 
+	</script>
+
+	<!-- 통계용 함수 -->
+	<script>
+	$(document).ready(function(){
+		$.ajax({
+			url : "${pageContext.request.contextPath}/accountBook/cardCalculate.do?partner_No=${partner_No}",
+			success : function(data){
+				$("#monthlyIncome").html(preprocessing(data.monthlyIncome));
+			}
+		});
+		
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/accountBook/calculate.do?partner_No=${partner_No}",
+			type : "post",
+			success : function(data){
+				/* 수익 분류용 데이터 */
+				var caldateList = data.caldateList;
+				caldateList.unshift("x");
+				
+				var cashList = data.cashList;
+				cashList.unshift("data5");
+
+				var cardList = data.cardList;
+				cardList.unshift("data6");
+
+				var bankTransferList = data.bankTransferList;
+				bankTransferList.unshift("data7");
+				
+				var otherList = data.otherList;
+				otherList.unshift("data8");
+				
+				makeTypeChart(caldateList, cashList, cardList, bankTransferList, otherList);
+			}
+		});	
+	});			
+	
 	</script>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
