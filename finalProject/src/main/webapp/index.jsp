@@ -52,9 +52,11 @@
 							</div>
 						</div>
 				</div>
-				
+				<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 					<script>
-						var places = new kakao.maps.services.Places();
+					var places = new kakao.maps.services.Places();
 					function mapSerach() {
 						var mapSeacrh1= function(result, status) {
 						    if (status === kakao.maps.services.Status.OK) {

@@ -84,6 +84,8 @@
 
     </div>
     </div>        
+     ${partnerlist} 
+   <%--  ${trucklist } --%>
     
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
@@ -128,7 +130,6 @@ function showPosition(position) {
 	
 	/* ==================================================================== */
 if('${mapAddress}'!=''){
-	console.log('${mapAddress}')
 var mapSeacrh= function(result, status) {
     if (status === kakao.maps.services.Status.OK) {
     	 var result = result[0];
@@ -279,17 +280,25 @@ var callback = function(result, status) {
 places.keywordSearch(document.getElementById("sample5_address").value, callback);
 }
 var positions=[];
+
+
 <c:forEach items="${trucklist}" var="truck">
+<c:forEach items="${partnerlist}" var="partner">
+if("${partner.partner_No}"=="${truck.partner_No}"){
+console.log("${partner.partner_Phone}")
 var position = 
     {
-        title: '푸드트럭', 
+        title: "${partner.partner_TruckName}", 
         latlng: new kakao.maps.LatLng("${truck.XCode}","${truck.YCode}"),
-        img : "",
+        img : "${partner.profile_Re}",
         time : 	"${truck.map_Strart_Time}"+"~"+"${truck.map_End_Time}",
-        phone : "12345"
+        phone : "${partner.partner_Phone}",
+        partner : "${truck.partner_No}"
     }
 ;
 positions.push(position);
+}
+</c:forEach>
 </c:forEach>
 // 마커 이미지의 이미지 주소입니다
 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -320,12 +329,12 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     '        </div>' + 
     '        <div class="body">' + 
     '            <div class="img">' +
-    '                <img src="'+positions[i].img+'" width="73" height="70">' +
+    '                <img src="${pageContext.request.contextPath}/resources/images/foodtruck/'+positions[i].img+'" width="73" height="70">' +
     '           </div>' + 
     '            <div class="desc">' + 
     '                <div class="ellipsis">영업시간:'+positions[i].time+'</div>' + 
     '                <div class="jibun ellipsis">전화번호:'+positions[i].phone+'</div>' + 
-    '                <div><a href="" class="link">홈페이지</a></div>' + 
+    '                <div><a href="${path}/order/orderListView?partner_No='+positions[i].partner+'" class="link">홈페이지</a></div>' + 
     '            </div>' + 
     '        </div>' + 
     '    </div>' +    

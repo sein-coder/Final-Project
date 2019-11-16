@@ -12,6 +12,10 @@
   	<select id="selectPartnerNo" parameterType="partner" resultType="partner">
   		select * from PARTNER WHERE partner_Permission_No=#{partner_Permission_No}
   	</select>  	
+  	<select id="selectPartnerList" resultType="partner">
+  		select * from PARTNER
+  	</select>
+  	
   	
   	<!-- 파트너 회원 정보 수정 -->
   	<update id="updatePartnerPage">
