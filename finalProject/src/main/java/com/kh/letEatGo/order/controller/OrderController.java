@@ -76,7 +76,6 @@ public class OrderController {
 		mv.addObject("totalCount", totalCount);
 		mv.addObject("pageBar", PageFactory.getPageBar(totalCount, cPage, numPerPage, "/letEatGo/order/orderList"));
 		mv.setViewName("order/orderList");
-		logger.debug(""+list);
 		return mv;
 	}
 	
@@ -94,7 +93,7 @@ public class OrderController {
 		
 		mv.addObject("comment", commentList);
 		mv.addObject("menu", list);
-		mv.addObject("partner", result);
+		mv.addObject("partner", result); 
 		mv.addObject("reviewList", reviewList);
 		
 		mv.setViewName("order/orderListView");

@@ -177,7 +177,10 @@ $(document).ready(function(){
 			"keyword" : keyword
 		},
 		success : function(data){
-			console.log('메뉴버튼 눌렀을때 되니?');
+			var content = $(data).html().find('#content');
+			console.log(content);
+			$('#content').html(content);
+			console.log($('#content'));
 		}
 	})
 });
