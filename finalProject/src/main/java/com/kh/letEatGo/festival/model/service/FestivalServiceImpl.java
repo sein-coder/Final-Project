@@ -25,9 +25,14 @@ public class FestivalServiceImpl implements FestivalService {
 	}
 
 	@Override
-	public List<Festival> selectFestival() {
+	public List<Festival> selectFestival(int cPage, int numPerPage) {
+		return dao.selectFestival(session,cPage,numPerPage);
 		
-		return dao.selectFestival(session);
+	}
+	
+	@Override
+	public List<Festival> selectLikeCount(Festival festival) {
+		return dao.selectLikeCount(session, festival);
 	}
 
 	@Override
@@ -56,7 +61,10 @@ public class FestivalServiceImpl implements FestivalService {
 		return result;
 	}
 
-	
+	 @Override
+	public int selectFestivalCount() {
+		return dao.selectFestivalCount(session);
+	}
 	
 
 }

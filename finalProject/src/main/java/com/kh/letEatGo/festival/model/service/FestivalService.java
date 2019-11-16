@@ -9,7 +9,7 @@ public interface FestivalService{
 	
 	int insertFestival(Festival festival);
 
-	List<Festival> selectFestival();
+	List<Festival> selectFestival(int cPage, int numPerPage);
 
 	Festival selectFestivalOne(int festival_No);
 	
@@ -19,6 +19,11 @@ public interface FestivalService{
 
 	int updateFestivalLike(Festival festival);
 
+	List<Festival> selectLikeCount(Festival festival);
+
+	int selectFestivalCount();
+
+	
 	
 
 	

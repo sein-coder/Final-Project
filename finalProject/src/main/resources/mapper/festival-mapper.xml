@@ -3,13 +3,13 @@
 <mapper namespace="festival">
   <insert id="insertFestival" parameterType="festival">
   	INSERT INTO FESTIVAL VALUES(SEQ_Festival_No.nextval, #{festival_Title},#{festival_Content},
-  		default,#{festival_Thumbnail},#{festival_StartDate},#{festival_EndDate},
+  		default,default,#{festival_Thumbnail},#{festival_StartDate},#{festival_EndDate},
   		#{festival_Phone},#{festival_Homepage},#{festival_Address},#{festival_Host},
   		#{festival_Sub},#{festival_Price},#{festival_Proceeding}
   	)
   </insert>
   <select id="selectFestival" resultType="festival">
-  	SELECT * FROM FESTIVAL 
+  	SELECT * FROM FESTIVAL
   </select>
   <select id="selectFestivalOne" parameterType="_int" resultType="festival">
   	SELECT * FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
@@ -39,5 +39,15 @@
 	  SET FESTIVAL_COUNT = #{festival_Count} +1 
 	  WHERE FESTIVAL_NO= #{festival_No}
   </update>
+  <select id="selectLikeCount" resultType="festival">
+	select <![CDATA[rownum ]]>,f2.* from (
+	    SELECT f.*, DECODE(festival_proceeding,'진행',1,'예정',2,'종료',3) as fp
+	    FROM FESTIVAL f
+	    order by fp asc, f.festival_count desc ) f2
+	where <![CDATA[rownum <= 3 ]]> 
+  </select>
+  <select id="selectFestivalCount" resultType="_int">
+  	SELECT COUNT(*) FROM FESTIVAL
+  </select>
 
 </mapper>

@@ -385,7 +385,7 @@ h1 {
 							<div style="display: inline-block;">
 							<p class="vote">
 								이 글에 좋아요를 누른 회원수 입니다. 
-								<b id="count">(${festival.festival_Count} votes)</b>
+								<b id="count">(${festival.festival_Like} votes)</b>
 							</p>
 							</div>
 
@@ -600,11 +600,11 @@ h1 {
 				$(this).val($(this).val().substring(0, 500));
 			}
 		});
-		var clipboard = new ClipboardJS('.hashtag_copy');
+		/* var clipboard = new ClipboardJS('.hashtag_copy');
 		clipboard.on('success', function(e) {
 			alert('복사되었습니다.');
 		});
-		
+		 */
 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
@@ -653,7 +653,7 @@ h1 {
 	            url: "${pageContext.request.contextPath}/festival/updateFestivalLike.do",
 	            type: "POST",
 	            data: {
-	            	'festival_Count':${festival.festival_Count},
+	            	'festival_Like':${festival.festival_Like},
 	            	'festival_No':${festival.festival_No}
 	            },	
 	            success: function(data) {

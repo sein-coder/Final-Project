@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="" />
@@ -14,16 +15,6 @@
 </style>
 
 <section>
-	<div>
-	<!-- 임시 방편용 -->
-		<p>1</p>
-		<p>2</p>
-		<p>3</p>
-		<p>4</p>
-		<p>5</p>
-		
-	</div>
-	<div class="container">
 	<head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,6 +23,7 @@
 	</head>
 
 <body>
+<div class="site-section">
   <!-- Page Content -->
   <div class="container">
 
@@ -56,8 +48,6 @@
        <div class="carousel-inner col-md-11 " style="border-color:#ffc9c9; ">
         <c:if test="${not empty list }">
 		<c:forEach items="${list}" var="v" varStatus="s">
-			
-	        <c:if test="${!s.first&&s.count%2==0 }">
 	          		<div class="card mb-4 t-6" id="pic" style="background-color:#ffc9c9;">
 	          			<img class="card-img-top" width="100px" height="500px" src="${pageContext.request.contextPath}/resources/images/festival/${v.festival_Thumbnail }" alt="Card image cap">
 	          	<div class="card-body">
@@ -68,15 +58,11 @@
 		            <p class="card-text"><p>${v.festival_StartDate } ~ ${v.festival_EndDate }</p></p>
 		            <a href="#" class="btn btn-primary" onclick='location.href="${path}/festival/festivalView?festival_No=${v.festival_No }"' 
 		            >Read More &rarr;</a>
-				
         		 </div>
-	        </c:if>
-	         		 <c:if test="${s.count%2==0||s.last}">
          		 </div>
-  				</c:if>
          		  </c:forEach>
+		</c:if>
         </div>
-	</c:if>
 
    
        <!--  Pagination -->
@@ -96,7 +82,7 @@
 
         <!-- Search Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Search</h5>
+          <h5 class="card-header" style="background-color:#ffc9c9;">Search</h5>
           <div class="card-body">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search for...">
@@ -109,7 +95,7 @@
 
         <!-- Categories Widget -->
         <div class="card my-4">
-          <h5 class="card-header">해시태그</h5>
+          <h5 class="card-header" style="background-color:#ffc9c9;">해시태그</h5>
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6">
@@ -143,35 +129,40 @@
         </div>
 
         <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">조회수별 인기글1</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
-         <div class="card my-4">
-          <h5 class="card-header">조회수별 인기글2</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
-         <div class="card my-4">
-          <h5 class="card-header">조회수별 인기글3</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
-
+        <c:if test="${not empty list2}">
+        	<c:forEach items="${list2}" var="v" varStatus="s">
+	        <div class="card my-4">
+	          	<div style>
+		          	<a href="${pageContext.request.contextPath}/festival/festivalView?festival_No=${v.festival_No}">
+		          		<h5 class="card-header" style="background-color:#ffc9c9;">${v.festival_Title}</h5>
+		          	</a>
+	          	</div>
+	          <div class="col" style="text-align: center;"><b>[ ${v.festival_StartDate } ~ ${v.festival_EndDate } ]</b>
+	          	<button class="proceeding" id="proceeding" style="color: #fff; text-align: center; border: none;">
+						${v.festival_Proceeding }</button>
+	          </div>
+	          &nbsp;
+	          <div class="card-body" id="content">
+	        	<c:choose>
+		           <c:when test="${fn:length(v.festival_Content) > 101}">
+				        <c:out value="${fn:substring(v.festival_Content, 0, 100)}...">
+				        </c:out>
+			        </c:when>
+			        <c:otherwise>
+			        	<c:out value="${v.festival_Content }"/>
+			        </c:otherwise>
+			    </c:choose>
+	          </div>
+	          </div>
+	        </c:forEach>
+		</c:if>
       </div>
 
     </div>
     <!-- /.row -->
 
   </div>
-
   </body>
-  <!-- /.container -->
-	</div>
 	
 
 	<script>
@@ -210,9 +201,7 @@
 	       }
 	   });
 	</script>
-
 	
-
 
 
 

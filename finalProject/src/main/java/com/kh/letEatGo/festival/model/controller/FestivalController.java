@@ -1,5 +1,7 @@
 package com.kh.letEatGo.festival.model.controller;
 
+import static com.kh.letEatGo.common.page.PageFactory.getPageBar;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.letEatGo.common.page.PageFactory;
 import com.kh.letEatGo.festival.model.service.FestivalService;
 import com.kh.letEatGo.festival.model.vo.Festival;
 
@@ -32,10 +35,24 @@ public class FestivalController {
 	
 	@RequestMapping("/festival/festivalList")
 	//여기 어제걸로 되돌려놓을것@!!!!!!!
-	public ModelAndView selectfestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
+	public ModelAndView selectfestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req
+			,@RequestParam(value="cPage",required=false, defaultValue = "1") int cPage
+			) {
 		ModelAndView mv=new ModelAndView();
-		List<Festival> list = service.selectFestival();
+		
+		int numPerPage=3;
+		
+		
+		List<Festival> list = service.selectFestival(cPage,numPerPage);
+		List<Festival> list2   = service.selectLikeCount(festival);
+		int totalData=service.selectFestivalCount();
+
 		mv.addObject("list", list);
+		mv.addObject("list2",list2);
+		mv.addObject("totalCount",totalData);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerPage,"/letEatGo/festival/festivalList"));
+		
+		
 		mv.setViewName("festival/festivalList");
 		return mv;
 	}
@@ -228,8 +245,6 @@ public class FestivalController {
 		
 		ModelAndView mv=new ModelAndView();
 		
-		System.out.println("sssssssss"+mv);
-		
 		int result=service.updateFestivalLike(festival);
 		
 		mv.setViewName("jsonView");
@@ -237,6 +252,7 @@ public class FestivalController {
 		
 		
 	}
+	
 	
 	
 }
