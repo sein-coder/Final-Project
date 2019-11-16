@@ -65,6 +65,12 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
      .info .link {color: #5085BB;}  
 
+@media(min-width:768px) {
+     .bb-text {font-size: 13px; font-family: BinggraeMelona;}
+     .bb-line {stroke-width: 1px; font-family: BinggraeMelona;}
+     .bb-axis {font-size: 13px; font-family: BinggraeMelona;}
+	 .bb-legend-item{font-size:13px; font-family: BinggraeMelona;}
+
 </style>
 
 <section id="content">
@@ -135,18 +141,18 @@
 					<div class="d-flex justify-content-end">
 						<table class="table table-borderless">
 							<tr>
-								<td>최고수입 : <fmt:formatNumber value="${maxIncome }" type="currency" /></td>
-								<td>최저수입 : <fmt:formatNumber value="${minIncome }" type="currency" /></td>
+								<td>일일 최고수입 : <fmt:formatNumber value="${maxIncome }" type="currency" /></td>
+								<td>일일 최저수입 : <fmt:formatNumber value="${minIncome }" type="currency" /></td>
 
 							</tr>
 							<tr>
-								<td>최고지출 : <fmt:formatNumber value="${maxOutcome }" type="currency" /></td>
-								<td>최저지출 : <fmt:formatNumber value="${minOutcome }" type="currency" /></td>
+								<td>일일 최고지출 : <fmt:formatNumber value="${maxOutcome }" type="currency" /></td>
+								<td>일일 최저지출 : <fmt:formatNumber value="${minOutcome }" type="currency" /></td>
 
 							</tr>
 							<tr>
-								<td>평균수입 : <fmt:formatNumber value="${avgIncome }" type="currency" /></td>
-								<td>평균지출 : <fmt:formatNumber value="${avgOutcome }" type="currency" /></td>
+								<td>일일 평균수입 : <fmt:formatNumber value="${avgIncome }" type="currency" /></td>
+								<td>일일 평균지출 : <fmt:formatNumber value="${avgOutcome }" type="currency" /></td>
 							</tr>
 						</table>
 					</div>
@@ -284,7 +290,7 @@
 	//그래프 데이터 리스트형 전처리
 	var dateList = new Array();
 	<c:forEach items="${dateList}" var="item">
-	dateList.push("${item}");
+		dateList.push("${item}");
 	</c:forEach>
 	dateList.unshift("x");
 
@@ -296,6 +302,9 @@
 
 	var revenueList = ${revenueList};
 	revenueList.unshift("data3");
+	
+	var pincomeList = ${pincomeList};
+	pincomeList.unshift("data4");
 	</script>
 	
 	<!-- 그래프 디자인 및 설정 -->
@@ -310,22 +319,22 @@
 
 		var chart = bb.generate({
 			title : {
-				text : "일별 지출/수입 그래프"
+				text : "일별 매출/예상매출 비교 그래프"
 			},
 			data : {
 				x : "x",
-				columns : [ dateList, incomeList, outcomeList ],
+				columns : [ dateList, incomeList, pincomeList ],
 				names : {
-					data1 : "수입",
-					data2 : "지출"
+					data1 : "매출",
+					data4 : "예상매출"
 				},
 				types : {
 					data1 : "area-spline",
-					data2 : "area-spline"
+					data4 : "area-spline"
 				},
 				colors : {
-					data1 : "#f38181",
-					data2 : "#f89d13"
+					data1 : "#f89d13",
+					data4 : "#f38181"
 				},
 				labels : {
 					position : {
@@ -447,7 +456,7 @@
 		bindto : "#areaChart2"
 	});
 	</script>
-
+	<!-- 수익 분류 차트 -->
 	<script type="text/javascript">
 	var chart = bb.generate({
 		  data: {
@@ -466,6 +475,12 @@
 				data3 : "계좌이체",
 				data4 : "기타"
 			},
+			colors : {
+				data1 : "#f38181",
+				data2 : "#f89d13",
+				data3 : "#ffc9c9",
+				data4 : "#FBF697"
+			},
 		    groups: [
 		      [
 		        "data1",
@@ -479,11 +494,13 @@
 		    rotated: true,
 		    x: {
 		      type: "category",
+		      clipPath: false,
+		      inner: false,
 		      tick: {
 		        text: {
 		          position: {
-		            x: 0,
-		            y: 0
+		              x: 0,
+		              y: 0
 		          }
 		        }
 		      }
@@ -518,7 +535,7 @@
 					if (i == 0) {
 						tags += '<td scope="row" size='+maxlength[i]+'>추가중</td>'
 					} else if (i == 1) {
-						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" onchange="checkDateData(this)"></td>';
+						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date"></td>';
 					} else if (i == 2) {
 						tags += '<td>';
 						tags += '<div class="btn-group">';
@@ -556,7 +573,7 @@
 						var input;
 
 						if (i == 1) {
-							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" value='+data[i].innerText+' onchange="checkDateData(this)">';
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" value='+data[i].innerText+'>';
 						} else if (i == 2) {
 							input = '<div class="btn-group">';
 							input += '<select id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" style="background-color : #ffc9c9">';
@@ -628,26 +645,52 @@
 	</script>
 
 	<!-- ajax통신 -->
-	<script>
+	<script>	
 		function insertAccountBook(){
+			var temperature = 0; 
+			var precipitation = 0;
+			
+			var date = $("#account_Date").val().replace($("#account_Date").val().split("-")[0],$("#account_Date").val().split("-")[0]-1);
+			date = replaceAll(date,"-","");
+
+			console.log(date);
+			
 			$.ajax({
-				url : "${pageContext.request.contextPath}/accountBook/insertAccountBook.do?partner_No=${partner_No}",
-				type : "post",
-				data : {
-					'account_Date':$("#account_Date").val(),
-					'account_Type':$("#account_Type").val(),
-					'account_Clause':$("#account_Clause").val(),
-					'account_Item':$("#account_Item").val(),
-					'account_Summary':$("#account_Summary").val(),
-					'account_Outcome':$("#account_Outcome").val(),
-					'account_Income':$("#account_Income").val(),
-					'account_Balance':$("#account_Balance").val()
-				},
+				url: "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/DailyWeatherStation/1/5/"+date,
+				type : "get",
 				success : function(data){
-					console.log("추가성공");
-					location.reload();
+					for(var i=0; i<data['DailyWeatherStation']['row'].length; i++){						
+						temperature += data['DailyWeatherStation']['row'][i]['SAWS_TA_AVG'];
+						precipitation += data['DailyWeatherStation']['row'][i]['SAWS_RN_SUM'];
+					}
+					
+					temperature /= data['DailyWeatherStation']['row'].length;
+					precipitation /= data['DailyWeatherStation']['row'].length;
+					
+					$.ajax({
+						url : "${pageContext.request.contextPath}/accountBook/insertAccountBook.do?partner_No=${partner_No}",
+						type : "post",
+						data : {
+							'temperature':temperature,
+							'precipitation':precipitation,
+							'account_Date':$("#account_Date").val(),
+							'account_Type':$("#account_Type").val(),
+							'account_Clause':$("#account_Clause").val(),
+							'account_Item':$("#account_Item").val(),
+							'account_Summary':$("#account_Summary").val(),
+							'account_Outcome':$("#account_Outcome").val(),
+							'account_Income':$("#account_Income").val(),
+							'account_Balance':$("#account_Balance").val()
+						},
+						success : function(data){
+							console.log("추가성공");
+							location.reload(); 
+						}
+					});
+					
 				}
-			});
+			});			
+
 		}
 		
 		function deleteAccountBook(id){
@@ -667,27 +710,53 @@
 		}
 		
 		function updateAccountBook(id){
-			var account_No = $(id).parent().parent().children().eq(0).children().val();	
+			var temperature = 0; 
+			var precipitation = 0;
+			
+			var date = $("#account_Date").val().replace($("#account_Date").val().split("-")[0],$("#account_Date").val().split("-")[0]-1);
+			date = replaceAll(date,"-","");
+
+			
 			$.ajax({
-				url : "${pageContext.request.contextPath}/accountBook/updateAccountBook.do",
-				type : "post",
-				data : {
-					'account_No': account_No,
-					'account_Date':$("#account_Date").val(),
-					'account_Type':$("#account_Type").val(),
-					'account_Clause':$("#account_Clause").val(),
-					'account_Item':$("#account_Item").val(),
-					'account_Summary':$("#account_Summary").val(),
-					'account_Outcome':$("#account_Outcome").val(),
-					'account_Income':$("#account_Income").val(),
-					'account_Balance':$("#account_Balance").val()
-				},
+				url: "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/DailyWeatherStation/1/5/"+date,
+				type : "get",
 				success : function(data){
-					console.log("수정성공");
-					location.reload();
+					for(var i=0; i<data['DailyWeatherStation']['row'].length; i++){						
+						temperature += data['DailyWeatherStation']['row'][i]['SAWS_TA_AVG'];
+						precipitation += data['DailyWeatherStation']['row'][i]['SAWS_RN_SUM'];
+					}
+					
+					temperature /= data['DailyWeatherStation']['row'].length;
+					precipitation /= data['DailyWeatherStation']['row'].length;
+					
+					var account_No = $(id).parent().parent().children().eq(0).children().val();	
+					$.ajax({
+						url : "${pageContext.request.contextPath}/accountBook/updateAccountBook.do",
+						type : "post",
+						data : {
+							'temperature':temperature,
+							'precipitation':precipitation,
+							'account_No': account_No,
+							'account_Date':$("#account_Date").val(),
+							'account_Type':$("#account_Type").val(),
+							'account_Clause':$("#account_Clause").val(),
+							'account_Item':$("#account_Item").val(),
+							'account_Summary':$("#account_Summary").val(),
+							'account_Outcome':$("#account_Outcome").val(),
+							'account_Income':$("#account_Income").val(),
+							'account_Balance':$("#account_Balance").val()
+						},
+						success : function(data){
+							console.log("수정성공");
+							location.reload();
+						}
+					});
+					
 				}
 			});
-			}
+
+
+		}
 		
 /* 		function checkDateData(id){
 			var account_No = $(id).parent().parent().children().eq(0).children().val();
@@ -727,6 +796,10 @@
         center: new kakao.maps.LatLng(37.5306475369695   ,126.928706300305), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
+	
+	function replaceAll(str, searchStr, replaceStr) {
+		  return str.split(searchStr).join(replaceStr);
+	}
 
 	</script>
 </section>
