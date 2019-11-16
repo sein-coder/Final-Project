@@ -1,6 +1,7 @@
 package com.kh.letEatGo.order.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,8 +17,8 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 public class OrderDaoImpl implements OrderDao {
 
 	@Override
-	public int selectCount(SqlSessionTemplate session) {
-		int count = session.selectOne("order.selectCount");
+	public int selectCount(SqlSessionTemplate session, Map<String, Object> menu) {
+		int count = session.selectOne("order.selectCount", menu);
 		return count;
 	}
 
@@ -45,9 +46,9 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<Partner> selectTruckList(SqlSessionTemplate session, int cPage, int numPerPage) {
+	public List<Partner> selectTruckList(SqlSessionTemplate session, int cPage, int numPerPage, Map<String, Object> menu) {
 		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
-		List<Partner> list = session.selectList("order.selectTruckList", null, rb);
+		List<Partner> list = session.selectList("order.selectTruckList", menu, rb);
 		return list;
 	}
 

@@ -1,6 +1,7 @@
 package com.kh.letEatGo.order.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,14 @@ public class OrderServiceImpl implements OrderService {
 	SqlSessionTemplate session;
 
 	@Override
-	public int selectCount() {
-		int count = dao.selectCount(session);
+	public int selectCount(Map<String, Object> menu) {
+		int count = dao.selectCount(session, menu);
 		return count;
 	}
 
 	@Override
-	public List<Partner> selectTruckList(int cPage, int numPerPage) {
-		List<Partner> list = dao.selectTruckList(session, cPage, numPerPage);
+	public List<Partner> selectTruckList(int cPage, int numPerPage, Map<String, Object> menu) {
+		List<Partner> list = dao.selectTruckList(session, cPage, numPerPage, menu);
 		return list;
 	}
 

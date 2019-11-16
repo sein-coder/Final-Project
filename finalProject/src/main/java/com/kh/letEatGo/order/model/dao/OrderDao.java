@@ -1,6 +1,7 @@
 package com.kh.letEatGo.order.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -12,8 +13,8 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 
 public interface OrderDao {
 
-	int selectCount(SqlSessionTemplate session);
-	List<Partner> selectTruckList(SqlSessionTemplate session, int cPage, int numPerPage);
+	int selectCount(SqlSessionTemplate session, Map<String, Object> menu);
+	List<Partner> selectTruckList(SqlSessionTemplate session, int cPage, int numPerPage, Map<String, Object> menu);
 	List<Menu> selectMenu(SqlSessionTemplate session, int partner_No);
 	double selectStar(SqlSessionTemplate session, int partner_No);
 	int selectReviewCount(SqlSessionTemplate session, int partner_No);

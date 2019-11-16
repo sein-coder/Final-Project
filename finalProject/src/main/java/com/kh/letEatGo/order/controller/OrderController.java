@@ -1,7 +1,9 @@
 package com.kh.letEatGo.order.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,17 +37,33 @@ public class OrderController {
 	private OrderService service;
 	
 	@RequestMapping("/order")
-	public ModelAndView order(@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
+	public ModelAndView order(
+			@RequestParam(value="cPage", required=false, defaultValue="1")int cPage,
+			@RequestParam(value="keyword", required=false)String keyword) {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		Map<String, Object> menu = new HashMap();
+		List<String> category = new ArrayList();
+		String[] str;
+		
+		if(keyword != null && keyword != "") {
+			str = keyword.split("/");
+			for(int i = 0; i < str.length; i++) {
+				category.add(str[i]);
+			}
+		}
+		
+		System.out.println(category);
+		
+		menu.put("category", category);
+		
 		int numPerPage = 5;
 		
-		int totalCount = service.selectCount();
 		
 		List<List<Menu>> menuList = new ArrayList();
-				
-		List<Partner> list = service.selectTruckList(cPage, numPerPage);
+		List<Partner> list = service.selectTruckList(cPage, numPerPage, menu);
+		int totalCount = service.selectCount(menu);
 		
 		for(Partner p : list) {
 			menuList.add(service.selectMenu(p.getPartner_No()));

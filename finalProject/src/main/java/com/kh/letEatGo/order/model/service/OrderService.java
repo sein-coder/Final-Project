@@ -1,6 +1,7 @@
 package com.kh.letEatGo.order.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.letEatGo.order.model.vo.Menu;
 import com.kh.letEatGo.order.model.vo.Order;
@@ -10,8 +11,8 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 
 public interface OrderService {
 
-	int selectCount();
-	List<Partner> selectTruckList(int cPage, int numPerPage);
+	int selectCount(Map<String, Object> menu);
+	List<Partner> selectTruckList(int cPage, int numPerPage, Map<String, Object> menu);
 	List<Menu> selectMenu(int partner_No);
 	double selectStar(int partner_No);
 	int selectReviewCount(int partner_No);
