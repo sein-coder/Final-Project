@@ -17,6 +17,8 @@ public class Calendar {
 	private String schedule;
 	private String startDate;
 	private String endDate;
+	private String calendar_Content;
+	
 	
 	
 	

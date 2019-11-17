@@ -1,5 +1,9 @@
 package com.kh.letEatGo.calendar.model.dao;
 
-public interface CalendarDao {
+import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.letEatGo.calendar.model.vo.Calendar;
+
+public interface CalendarDao {
+	int insertCalendar(SqlSessionTemplate session,Calendar c);
 }
