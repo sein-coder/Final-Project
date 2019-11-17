@@ -24,6 +24,18 @@ public class OrderServiceImpl implements OrderService {
 	SqlSessionTemplate session;
 
 	@Override
+	public int selectDefaultCount() {
+		int totalCount = dao.selectDefaultCount(session);
+		return totalCount;
+	}
+
+	@Override
+	public List<Partner> selectDefaultTruckList(int cPage, int numPerPage) {
+		List<Partner> list = dao.selectDefaultTruckList(session, cPage, numPerPage);
+		return list;
+	}
+
+	@Override
 	public int selectCount(Map<String, Object> menu) {
 		int count = dao.selectCount(session, menu);
 		return count;
@@ -82,7 +94,17 @@ public class OrderServiceImpl implements OrderService {
 		List<Menu> menuList = dao.selectMenuList(session, m);
 		return menuList;
 	}
-	
-	
+
+	@Override
+	public List<Partner> selectMenuTruckList(int cPage, int numPerPage, String menu_Name) {
+		List<Partner> list = dao.selectMenuTruckList(session, cPage, numPerPage, menu_Name);
+		return list;
+	}
+
+	@Override
+	public int selectMenuCount(String menu_Name) {
+		int result = dao.selectMenuCount(session, menu_Name);
+		return result;
+	}
 	
 }

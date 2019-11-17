@@ -17,6 +17,19 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 public class OrderDaoImpl implements OrderDao {
 
 	@Override
+	public int selectDefaultCount(SqlSessionTemplate session) {
+		int totalCount = session.selectOne("order.selectDefaultCount");
+		return totalCount;
+	}
+
+	@Override
+	public List<Partner> selectDefaultTruckList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		List<Partner> list = session.selectList("order.selectDefaultTruckList", null, rb);
+		return list;
+	}
+
+	@Override
 	public int selectCount(SqlSessionTemplate session, Map<String, Object> menu) {
 		int count = session.selectOne("order.selectCount", menu);
 		return count;
@@ -88,6 +101,18 @@ public class OrderDaoImpl implements OrderDao {
 		System.out.println(m.getMenu_Name());
 		List<Menu> menuList = session.selectList("order.selectMenuList", m);
 		return menuList;
+	}
+
+	@Override
+	public List<Partner> selectMenuTruckList(SqlSessionTemplate session, int cPage, int numPerPage, String menu_Name) {
+		List<Partner> list = session.selectList("order.selectMenuTruckList", menu_Name); 
+		return list;
+	}
+	
+	@Override
+	public int selectMenuCount(SqlSessionTemplate session, String menu_Name) {
+		int result = session.selectOne("order.selectMenuCount", menu_Name);
+		return result;
 	}
 	
 }

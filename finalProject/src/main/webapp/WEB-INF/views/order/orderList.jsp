@@ -28,7 +28,7 @@
 						<label for="foodSearch"><span class="icon icon-cutlery"></span> 메뉴로 직접 검색하기</label>
 						<input type="text" list="menuData" class="form-control" name="menu_Name" id="menu_Name" placeholder="검색할 메뉴를 입력하세요."/>
 						<datalist id="menuData"></datalist>
-						<input type="button" class="form-control btn btn-warning" value="검색하기" onClick="searchMenuName();"/>
+						<input type="button" class="form-control btn btn-warning" value="검색하기" onClick="searchMenuName(this);"/>
 					</div>
 				</div>
 				<div class="form-group col-md-7 mx-#"> 
@@ -37,49 +37,53 @@
 						<div class="form-check input-toggle">
 							<label class="form-check-label">
 								<input type="checkbox" name="partner_Menu" class="form-check-input" value="한식" style='left:-9999px'/>
-								<button class="btn btn-outline-info" onClick="searchConsole(this);">한식</button>
+								<button class="btn btn-outline-info" >한식</button>
 							</label>
 						</div>
 						<div class="form-check input-toggle">
 							<label class="form-check-label">
 								<input type="checkbox" name="partner_Menu" class="form-check-input" value="중식" style='left:-9999px'/>
-								<button class="btn btn-outline-info" onClick="searchConsole(this);">중식</button>
+								<button class="btn btn-outline-info" >중식</button>
 							</label>
 						</div>
 						<div class="form-check input-toggle">
 							<label class="form-check-label">
 								<input type="checkbox" name="partner_Menu" class="form-check-input" value="일식" style='left:-9999px'/>
-								<button class="btn btn-outline-info" onClick="searchConsole(this);">일식</button>
+								<button class="btn btn-outline-info" >일식</button>
 							</label>
 						</div>
 						<div class="form-check input-toggle">
 							<label class="form-check-label">
 								<input type="checkbox" name="partner_Menu" class="form-check-input" value="양식" style='left:-9999px'/>
-								<button class="btn btn-outline-info" onClick="searchConsole(this);">양식</button>
+								<button class="btn btn-outline-info" >양식</button>
 							</label>
 						</div>
 						<div class="form-check input-toggle">
 							<label class="form-check-label">
 								<input type="checkbox" name="partner_Menu" class="form-check-input" value="디저트" style='left:-9999px'/>
-								<button class="btn btn-outline-info" onClick="searchConsole(this);">디저트</button>
+								<button class="btn btn-outline-info" >디저트</button>
 							</label>
 						</div>
 						<div class="form-check input-toggle">
 							<label class="form-check-label">
 								<input type="checkbox" name="partner_Menu" class="form-check-input" value="기타" style='left:-9999px'/>
-								<button class="btn btn-outline-info" onClick="searchConsole(this);">기타</button>
+								<button class="btn btn-outline-info" >기타</button>
 							</label>
 						</div>
 					</div>
 					<label for="ordering"><span class="icon icon-th-list"></span> 정렬기준</label>
 					<div class="row" id="ordering">
-						<div class="form-check">
-							<input type="checkbox" name="starCount" class="form-check-input" value="desc" style='left:-9999px'/>
-							<button class="btn btn-outline-primary" onClick="searchConsole(this);">리뷰 평점 높은 순</button>
+						<div class="form-check input-order">
+							<label class="form-check-label">
+								<input type="checkbox" name="starCount" class="form-check-input" value="desc" style='left:-9999px'/>
+								<button class="btn btn-outline-primary" >리뷰 평점 높은 순</button>
+							</label>
 						</div>
-						<div class="form-check">
-							<input type="checkbox" name="starCount" class="form-check-input" value="asc" style='left:-9999px'/>
-							<button class="btn btn-outline-primary" onClick="searchConsole(this);">리뷰 평점 낮은 순</button>
+						<div class="form-check input-order">
+							<label class="form-check-label">
+								<input type="checkbox" name="starCount" class="form-check-input" value="asc" style='left:-9999px'/>
+								<button class="btn btn-outline-primary" >리뷰 평점 낮은 순</button>
+							</label>
 						</div>
 					</div>
 				</div>
@@ -154,38 +158,47 @@ $(document).ready(function(){
 			})
 		});
 
-	var keyword = "";
-
+	var keyword = '${keyword}' != null?'${keyword}' : "";
+	console.log(keyword);
+	// partner_Menu 관련 function
 	$('.input-toggle').on('click',function(){
 		var thisbtn = $(this).children().children().eq(1);
-		
-		if(thisbtn.attr('class').includes('btn-outline-info')){
-	 		thisbtn.removeClass("btn-outline-info");
-			thisbtn.addClass("btn-info");
-			console.log(thisbtn.siblings().val());
-			keyword += thisbtn.siblings().val() + "/";
+		if(thisbtn.siblings().val() != null && !((thisbtn.siblings().val()).includes('asc') || (thisbtn.siblings().val()).includes('desc'))){
+			if(thisbtn.attr('class').includes('btn-outline-info')){
+		 		thisbtn.removeClass("btn-outline-info");
+				thisbtn.addClass("btn-info");
+				keyword += thisbtn.siblings().val()+"/";
+			}else{
+				thisbtn.removeClass("btn-info");
+				thisbtn.addClass("btn-outline-info");
+				keyword = keyword.replace(thisbtn.siblings().val() + "/","");
+			}
+			console.log(keyword);
+			location.href = "${pageContext.request.contextPath}/order/orderListSearch?keyword="+keyword;
+		} else if(thisbtn.siblings().val() != null && ((thisbtn.siblings().val()).includes('asc') || (thisbtn.siblings().val()).includes('desc'))){
+			if(thisbtn.attr('class').includes('btn-outline-primary')){
+		 		thisbtn.removeClass("btn-outline-primary");
+				thisbtn.addClass("btn-primary");
+				ordering = thisbtn.siblings().val();
+			}else{
+				thisbtn.removeClass("btn-primary");
+				thisbtn.addClass("btn-outline-primary");
+				ordering = "";
+			}
+		} else {
 			
-		}else{
-			thisbtn.removeClass("btn-info");
-			thisbtn.addClass("btn-outline-info");
-			keyword = keyword.replace(thisbtn.siblings().val() + "/","");
 		}
-		
-	$.ajax({
-		url : "${path}/order",
-		data : {
-			"keyword" : keyword
-		},
-		success : function(data){
-			var content = $(data).html().find('#content');
-			console.log(content);
-			$('#content').html(content);
-			console.log($('#content'));
-		}
-	})
-});
-		
-		
+	});
+	
+	// 평점 정렬 관련 function
+	$('.input-order').on('click',function(){
+		var thisbtn = $(this).children().children().eq(1);
+		var ordering = thisbtn.siblings().val();
+			
+		console.log(ordering);
+		//location.href = "${pageContext.request.contextPath}/order/orderListSearch?keyword="+keyword+"&ordering="+ordering;
+	});
+	
 	$("input[name=data_No]").each(function(){
       var starCount = $(this).val();
       $($(this).siblings()).each(function(){
@@ -198,17 +211,14 @@ $(document).ready(function(){
    });
 });
 
+// 메뉴 검색 function
 function searchMenuName(){
 	var menu_Name = $('#menu_Name').val();
-	$.ajax({
-		url : "${path}/order",
-		data : {
-			"menu_Name" : menu_Name
-		},
-		success: function(data){
-			console.log('검색창 작동되니?');
-		}
-	})
+	if($('#menu_Name').val() == null || $('#menu_Name').val().length == 0){
+		alert('검색어를 입력하세요.');
+	} else {
+		location.href = "${pageContext.request.contextPath}/order/orderListSearch?menu_Name="+menu_Name;
+	}
 }
 
 /* 페이징처리용 함수 추가 */

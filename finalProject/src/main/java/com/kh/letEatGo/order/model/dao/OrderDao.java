@@ -13,6 +13,8 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 
 public interface OrderDao {
 
+	int selectDefaultCount(SqlSessionTemplate session);
+	List<Partner> selectDefaultTruckList(SqlSessionTemplate session, int cPage, int numPerPage);
 	int selectCount(SqlSessionTemplate session, Map<String, Object> menu);
 	List<Partner> selectTruckList(SqlSessionTemplate session, int cPage, int numPerPage, Map<String, Object> menu);
 	List<Menu> selectMenu(SqlSessionTemplate session, int partner_No);
@@ -23,4 +25,6 @@ public interface OrderDao {
 	int insertOrder(SqlSessionTemplate session, Order order);
 	List<ReviewComment> selectReviewComment(SqlSessionTemplate session, int comment_To);
 	List<Menu> selectMenuList(SqlSessionTemplate session, Menu m);
+	List<Partner> selectMenuTruckList(SqlSessionTemplate session, int cPage, int numPerPage, String menu_Name);
+	int selectMenuCount(SqlSessionTemplate session, String menu_Name);
 }
