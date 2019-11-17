@@ -339,14 +339,15 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_3_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/박세인.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>박세인</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
 							<p>
-								&ldquo;안녕하세요 @@@조의 Let Eat Go프로젝트를 총괄하는 박세인이라고 합니다. <br>
+								&ldquo;안녕하세요 Error is Life팀의 Let Eat Go프로젝트 팀장을 맡은 박세인이라고 합니다. <br>
+								담당 파트는 메인페이지와 장부관리시스템을 담당하였습니다. <br> 
 								부족한 실력으로 구현해보았지만 좋게 봐주셨으면 감사하겠습니다.&rdquo;
 							</p>
 						</blockquote>
@@ -358,7 +359,7 @@
 							<img
 								src="${pageContext.request.contextPath }/resources/images/person_2_sq.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>이지연</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
@@ -376,7 +377,7 @@
 							<img
 								src="${pageContext.request.contextPath }/resources/images/person_4_sq.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>강보승</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
@@ -392,17 +393,16 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/유연성.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>유연성</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;The Big Oxmox advised her not to do so, because
-								there were thousands of bad Commas, wild Question Marks and
-								devious Semikoli, but the Little Blind Text didn’t listen. She
-								packed her seven versalia, put her initial into the belt and
-								made herself on the way.&rdquo;</p>
+							<p>&ldquo;안녕하세요 신입개발자 유연성입니다. 짧고 파이팅 넘치게 세 마디만 하겠습니다.<br>
+								BUG를 JAVA라! <br>
+								C Perl GNOME JAVA!<br>
+								알고리즘을 알고있쯤!&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -412,7 +412,7 @@
 							<img
 								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>국푸름</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
@@ -430,7 +430,7 @@
 							<img
 								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>박영진</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">

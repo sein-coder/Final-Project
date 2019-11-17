@@ -1,6 +1,7 @@
 package com.kh.letEatGo.accountBook.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -65,6 +66,18 @@ public class AccountBookDaoImpl implements AccountBookDao {
 	public int insertAccount(SqlSessionTemplate session, Account account) {
 		// TODO Auto-generated method stub
 		return session.insert("account.insertAccount",account);
+	}
+
+	@Override
+	public List<Map<String,String>> selectCalRate(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectList("accountBook.selectCalRate",partner_No);
+	}
+
+	@Override
+	public int selectMonthlyIncome(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectOne("accountBook.selectMonthlyIncome",partner_No);
 	}
 	
 	
