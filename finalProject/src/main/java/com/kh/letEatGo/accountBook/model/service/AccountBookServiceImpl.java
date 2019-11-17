@@ -1,6 +1,7 @@
 package com.kh.letEatGo.accountBook.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,18 @@ public class AccountBookServiceImpl implements AccountBookService {
 	public int insertAccount(Account account) {
 		// TODO Auto-generated method stub
 		return dao.insertAccount(session, account);
+	}
+
+	@Override
+	public List<Map<String,String>> selectCalRate(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectCalRate(session, partner_No);
+	}
+
+	@Override
+	public int selectMonthlyIncome(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectMonthlyIncome(session, partner_No);
 	}
 	
 	

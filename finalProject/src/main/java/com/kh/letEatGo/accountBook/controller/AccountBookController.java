@@ -1,8 +1,16 @@
 package com.kh.letEatGo.accountBook.controller;
 
+import static com.kh.letEatGo.common.ml.Linear_Regression.predict;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +22,6 @@ import com.kh.letEatGo.accountBook.model.service.AccountBookService;
 import com.kh.letEatGo.accountBook.model.vo.Account;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
 import com.kh.letEatGo.common.page.PageFactory;
-import com.kh.letEatGo.partner.model.service.PartnerService;
-import com.kh.letEatGo.partner.model.service.PartnerServiceImpl;
-import com.kh.letEatGo.partner.model.vo.Partner;
-
 @Controller
 public class AccountBookController {
 	
@@ -44,6 +48,7 @@ public class AccountBookController {
 			List outcomeList = new ArrayList();
 			List revenueList = new ArrayList();
 			List<String> dateList = new ArrayList();
+			List pincomeList = new ArrayList();
 			
 			int avgIncome = 0 , avgOutcome = 0 , avgRevenue = 0; //평균 수익 , 평균 지출 , 평균 순수익
 			
@@ -52,12 +57,14 @@ public class AccountBookController {
 				incomeList.add(ab.getAccount_Income());
 				outcomeList.add(ab.getAccount_Outcome());
 				revenueList.add(ab.getAccount_Revenue());
+				pincomeList.add(ab.getAccount_Predict());
 				dateList.add(ab.getAccount_Date());
 				
 				//평균값 계산
 				avgIncome += ab.getAccount_Income();
 				avgOutcome += ab.getAccount_Outcome();
 				avgRevenue += ab.getAccount_Revenue();
+				
 			}
 			
 			//각 갯수만큼 평균값 나누기
@@ -82,6 +89,7 @@ public class AccountBookController {
 			mv.addObject("incomeList",incomeList);
 			mv.addObject("outcomeList",outcomeList);
 			mv.addObject("revenueList",revenueList);
+			mv.addObject("pincomeList",pincomeList);
 			mv.addObject("dateList",dateList);
 		}
 		
@@ -105,7 +113,31 @@ public class AccountBookController {
 	
 	@RequestMapping("/accountBook/insertAccountBook.do")
 	public ModelAndView insertAccoountBook(String account_Date, String account_LocCode, String account_Type, String account_Clause,
-			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance, int partner_No) {
+			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance, int partner_No,
+			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
+			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
+
+		//예측용 데이터 전처리 과정(각각 요일, 온도, 강수량)
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = sdf.parse(account_Date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		
+		int day = cal.get(Calendar.DAY_OF_WEEK);
+		if(day == 1) {
+			day = 7;
+		}else {
+			day -=1;
+		}
+		//예측
+		double predictincome = predict(temperature,precipitation,day);
+		
 		ModelAndView mv = new ModelAndView();
 		AccountBook ab = new AccountBook();
 		ab.setAccount_Date(account_Date);
@@ -116,6 +148,7 @@ public class AccountBookController {
 		ab.setAccount_Income(account_Income);
 		ab.setAccount_Outcome(account_Outcome);
 		ab.setAccount_Balance(account_Balance);
+		ab.setAccount_Predict((int)predictincome);
 		ab.setPartner_No(partner_No);
 		int result = service.insertAccountBook(ab);
 		System.out.println(result);
@@ -133,9 +166,35 @@ public class AccountBookController {
 	
 	@RequestMapping("/accountBook/updateAccountBook.do")
 	public ModelAndView updateAccountBook(int account_No, String account_Date, String account_LocCode, String account_Type, String account_Clause,
-			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance) {
+			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance,
+			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
+			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
+		
 		ModelAndView mv = new ModelAndView();
+		
+		//예측용 데이터 전처리 과정(각각 요일, 온도, 강수량)
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = sdf.parse(account_Date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		
+		int day = cal.get(Calendar.DAY_OF_WEEK);
+		if(day == 1) {
+			day = 7;
+		}else {
+			day -=1;
+		}
+		//예측
+		double predictincome = predict(temperature,precipitation,day);
+		
 		AccountBook ab = new AccountBook();
+		
 		ab.setAccount_No(account_No);
 		ab.setAccount_Date(account_Date);
 		ab.setAccount_Type(account_Type);
@@ -145,6 +204,7 @@ public class AccountBookController {
 		ab.setAccount_Income(account_Income);
 		ab.setAccount_Outcome(account_Outcome);
 		ab.setAccount_Balance(account_Balance);
+		ab.setAccount_Predict((int)predictincome);
 		
 		int result = service.updateAccountBook(ab);
 		mv.addObject("result",result);
@@ -205,8 +265,78 @@ public class AccountBookController {
 		return mv;
 	}
 
+	@RequestMapping("/accountBook/calculate.do")
+	public ModelAndView calculate(int partner_No) {
+		ModelAndView mv = new ModelAndView();
 
+		List<Map<String,String>> calList = service.selectCalRate(partner_No); 
+		
+		// 날짜 분류 리스트
+		List<String> caldateList = new ArrayList();
+		
+		for(Map<String,String> m : calList) {
+			caldateList.add(m.get("ACCOUNT_DATE"));			
+		}
+		
+		//중복 날짜데이터 삭제
+		caldateList = caldateList.parallelStream().distinct().collect(Collectors.toList());
 
+		// 현금비율 리스트, 카드비율 리스트, 계좌이체비율 리스트, 기타비율 리스트
+		List<Integer> cashList = new ArrayList();
+		List<Integer> cardList = new ArrayList();
+		List<Integer> bankTransferList = new ArrayList();
+		List<Integer> otherList = new ArrayList();
+		
+		for(int i=0; i<caldateList.size(); i++) {
+			cashList.add(0);
+			cardList.add(0);
+			bankTransferList.add(0);
+			otherList.add(0);
+		}
+		
+		// 각 리스트에 맞게 분류
+		for(Map<String,String> m : calList) {
+			
+			int index = caldateList.indexOf(m.get("ACCOUNT_DATE"));
+			
+			switch (m.get("ACCOUNT_TYPE")) {
+			case "현금":
+				cashList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "카드":
+				cardList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "계좌이체":
+				bankTransferList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "기타":
+				otherList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			}
+		}
+		
+		mv.addObject("caldateList",caldateList);
+		mv.addObject("cashList",cashList);
+		mv.addObject("cardList",cardList);
+		mv.addObject("bankTransferList",bankTransferList);
+		mv.addObject("otherList",otherList);
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
 
+	@RequestMapping("/accountBook/cardCalculate.do")
+	public ModelAndView cardCalculate(int partner_No) {
+		ModelAndView mv = new ModelAndView();
+		
+		int monthlyIncome = service.selectMonthlyIncome(partner_No);
+		int incomeRate_Monthly;
+		int yesterday_today_incomeRate;
+		int sell_Count;
+		
+		mv.addObject("monthlyIncome",monthlyIncome);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 
 }

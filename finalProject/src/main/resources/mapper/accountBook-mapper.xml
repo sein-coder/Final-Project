@@ -14,15 +14,20 @@
 	
 	<select id="selectAllAccountBookList" parameterType="_int" resultType="accountBook">
 		SELECT * FROM( 
-			SELECT ab.*, (Account_Income - Account_Outcome) as Account_Revenue 
-			FROM AccountBook ab 
-			WHERE Partner_No=#{partner_No}) ORDER BY Account_Date ASC
+			SELECT account_date, account_predict,
+				sum(account_outcome) as account_outcome ,
+				sum(account_income) as account_income ,
+				(sum(Account_Income) - sum(Account_Outcome)) as Account_Revenue 
+			FROM AccountBook
+			WHERE Partner_No=#{partner_No}
+			GROUP BY account_date, account_predict) 
+		ORDER BY Account_Date ASC
 	</select>
 	
 	<insert id="insertAccountBook" parameterType="accountBook">
 		INSERT INTO AccountBook VALUES(SEQ_Account_No.nextval, #{account_Date},
 			#{account_Type}, #{account_Clause}, #{account_Item}, #{account_Summary},
-			#{account_Outcome}, #{account_Income}, #{account_Balance}, #{partner_No})
+			#{account_Outcome}, #{account_Income}, #{account_Predict}, #{account_Balance}, #{partner_No})
 	</insert>
 	
 	<delete id="deleteAccountBook" parameterType="_int">
@@ -38,8 +43,9 @@
 			account_Summary = #{account_Summary},
 			account_Outcome = #{account_Outcome}, 
 			account_Income = #{account_Income}, 
+			account_Predict = #{account_Predict},
 			account_Balance = #{account_Balance}
-			WHERE Account_No = #{account_No}
+		WHERE Account_No = #{account_No}
 	</update>
 	
 	<select id="selectAccountBook" parameterType="accountBook" resultType="accountBook">
@@ -47,4 +53,23 @@
 			WHERE account_Date = #{account_Date} AND partner_No = #{partner_No}
 	</select>
 	
+	<select id="selectCalRate" parameterType="_int" resultType="java.util.HashMap">
+		SELECT ACCOUNT_DATE, ACCOUNT_TYPE, ROUND(RATIO_TO_REPORT(SUM(ACCOUNT_INCOME)) OVER(PARTITION BY account_date)*100) rating
+		FROM AccountBook
+		WHERE PARTNER_NO = #{partner_No} AND ACCOUNT_DATE IN ( SELECT ACCOUNT_DATE FROM (
+		                        SELECT ROWNUM , a.* FROM (
+		                        SELECT  DISTINCT(account_date) FROM AccountBook ORDER BY ACCOUNT_DATE DESC) a
+		                        WHERE <![CDATA[ROWNUM <=5]]> ) )
+		GROUP BY ACCOUNT_DATE , ACCOUNT_TYPE
+		ORDER BY ACCOUNT_DATE
+	</select>
+	
+	<select id="selectMonthlyIncome" parameterType="_int" resultType="_int">
+		SELECT SUM(ACCOUNT_INCOME) 
+		FROM AccountBook 
+		WHERE PARTNER_NO = #{partner_No} 
+			AND TO_NUMBER(SUBSTR(SYSDATE,4,2)) 
+					= TO_NUMBER(SUBSTR(ACCOUNT_DATE,6,2))
+	</select>
+		
 </mapper>
