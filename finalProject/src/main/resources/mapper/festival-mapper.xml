@@ -53,8 +53,8 @@
   <select id="selectSearchFestival" resultType="festival">
   	SELECT  FESTIVAL_TITLE, FESTIVAL_CONTENT
   	FROM FESTIVAL 
-  	WHERE FESTIVAL_TITLE LIKE '%' || #{festival_Title} || '%'  OR
-  		  FESTIVAL_CONTENT LIKE '%' || %#{festival_Content} || '%'  OR
+  	WHERE FESTIVAL_TITLE LIKE '%' || 'FESTIVAL_TITLE' || '%'  OR
+  		  FESTIVAL_CONTENT LIKE '%' || 'FESTIVAL_CONTENT' || '%'
   </select>
 
 </mapper>

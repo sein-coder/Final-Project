@@ -256,7 +256,7 @@ public class FestivalController {
 		 
 		 ModelAndView mv=new ModelAndView();
 		 List<Festival> list = service.selectSearchFestival(festival);
-
+		 System.out.println(list);
 		 mv.addObject("list",list);
 		 mv.setViewName("festival/festivalList");
 		 return mv;

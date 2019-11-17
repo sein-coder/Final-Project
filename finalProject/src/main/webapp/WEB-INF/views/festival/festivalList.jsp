@@ -93,7 +93,7 @@
             	
             	<div id="search-Title">
             		<form action="${pageContext.request.contextPath }/festival/searchFestival.do">
-						<input type="hidden" name="searchType" value="festival_Title+fesitval_Content">
+						<input type="hidden" name="searchType" value="festival_Title||fesitval_Content">
 						
 		              <input type="text" class="form-control" placeholder="Search for..."
 		              	value="">
@@ -134,7 +134,7 @@
           </div>
         </div>
 
-        <!-- Categories Widget -->
+      <!--   <!-- Categories Widget 
         <div class="card my-4">
           <h5 class="card-header" style="background-color:#ffc9c9;">안해</h5>
           <div class="card-body">
@@ -167,7 +167,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Side Widget -->
         <c:if test="${not empty list2}">
