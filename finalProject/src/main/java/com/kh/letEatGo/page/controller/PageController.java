@@ -33,8 +33,6 @@ public class PageController {
 	public String memberPage(Member m,Model model) {
 		Member result=member_service.selectMemberOne(m);
 		model.addAttribute("member",result);
-		
-		
 		return "mypage/memberPage";
 	}
 	
@@ -42,7 +40,6 @@ public class PageController {
 	public String partnerPage(Partner p,Model model) {
 		Partner result2=partner_service.selectPartnerOne(p);
 		model.addAttribute("partner",result2);
-		
 		return "mypage/partnerPage";
 	}
 	

@@ -105,24 +105,23 @@ public class MemberController {
 		  Member m=new Member();
 		  String msg="dd";
 		  String loc="";
-		  
 		  m.setMember_Id(id);
-		  m.setMember_Password("1111");
-		  m.setMember_Age("19");
-		  m.setMember_Phone("01012341234");
+		  m.setMember_Password("비밀번호를 입력하시오.");
+		  m.setMember_Age("나이를 입력하시오.");
+		  m.setMember_Phone("전화번호를 입력하시오.");
 		  if(gender!=null) {
-		  if(gender=="male") {
-		  m.setMember_Gender("남");
+			  if(gender==("male")) {
+			  m.setMember_Gender("남");
+			  }else {
+			  m.setMember_Gender("여");
+			  }
 		  }else {
-		  m.setMember_Gender("여");
-		  }
-		  }else {
-		  m.setMember_Gender("남");
+		  m.setMember_Gender("성별을 입력하시오.");
 		  }
 		  if(email!=null) {
 			  m.setMember_Email(email);
 		  }else {
-			  m.setMember_Email("aaaaa@naver.com");
+			  m.setMember_Email("이메일을 입력하시오.");
 		  }
 		  
 		  Member result2;
