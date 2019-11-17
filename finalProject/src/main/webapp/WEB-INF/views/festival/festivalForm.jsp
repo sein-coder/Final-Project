@@ -101,8 +101,6 @@ textarea {
 									<div class="preview-pic ">
 										<div class="tab-pane active-ml-3" id="pic-1">
 											<img src="http://placekitten.com/400/252" />
-											
-											
 										</div>
 										<!-- 썸네일 부분   -->
 										<div class="pull-left ml-4 mt-2 " style="display:inline;">
@@ -141,7 +139,7 @@ textarea {
 										<p>해시태그 :</p>
 
 										<div class="content">
-											<input type="hidden" value="" name="festival_Hashtag"
+											<input type="hidden" value="" name="festival_Tag"
 												id="festival_Hashtag" />
 											<ul id="tag-list"></ul>
 											<input type="text" id="tag" size="7" placeholder="태그입력" />

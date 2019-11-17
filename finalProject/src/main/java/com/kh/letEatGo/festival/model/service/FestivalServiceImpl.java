@@ -65,6 +65,11 @@ public class FestivalServiceImpl implements FestivalService {
 	public int selectFestivalCount() {
 		return dao.selectFestivalCount(session);
 	}
-	
 
+	@Override
+	public List<Festival> selectSearchFestival(Festival festival) {
+		return dao.selectSearchFestival(session);
+	}
+	
+	 
 }

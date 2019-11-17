@@ -90,23 +90,59 @@
           <h5 class="card-header" style="background-color:#ffc9c9;">Search</h5>
           <div class="card-body">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
+            	
+            	<div id="search-Title">
+            		<form action="${pageContext.request.contextPath }/festival/searchFestival.do">
+						<input type="hidden" name="searchType" value="festival_Title+fesitval_Content">
+						
+		              <input type="text" class="form-control" placeholder="Search for..."
+		              	value="">
+		              <span class="input-group-btn">
+		                <button class="btn btn-secondary" type="button">Go!</button>
+		              </span>
+             		</form>
+            	</div>
+            
+            
+            
+            
+            <%-- 		<div id="search-container">
+				검색타입:
+				
+				<div id="search-memberId">
+					<form action="<%=request.getContextPath()%>/search/searchFinder">
+					 <input type="hidden" name="searchType" value="userId"/>
+					 <input type="text" name="searchKeyword" size="25" placeholder="아이디입력"
+					 value='<%=type!=null&&type.equals("memberId")?keyword:"" %>'/>
+					 <button type="submit">검색</button>
+					</form>
+				</div>
+				<div id="search-memberName">
+					<form action="<%=request.getContextPath()%>/search/searchFinder">
+					 <input type="hidden" name="searchType" value="userName"/>
+					 <input type="text" name="searchKeyword" size="25" placeholder="회원이름입력" >
+					 value='<%=type!=null&&type.equals("memberName")?keyword:"" %>'/>
+					 <button type="submit">검색</button>
+					</form>
+				</div>
+				
+				
+			</div> --%>
+			
+			
             </div>
           </div>
         </div>
 
         <!-- Categories Widget -->
         <div class="card my-4">
-          <h5 class="card-header" style="background-color:#ffc9c9;">해시태그</h5>
+          <h5 class="card-header" style="background-color:#ffc9c9;">안해</h5>
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
                   <li>
-                    <a href="#">${festival.festival_Tag }</a>
+                    <a href="#">css</a>
                   </li>
                   <li>
                     <a href="#">HTML</a>

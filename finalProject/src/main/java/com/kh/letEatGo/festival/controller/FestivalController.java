@@ -175,6 +175,8 @@ public class FestivalController {
 	@RequestMapping("/festival/festivalUpdateFormEnd.do")
 	public ModelAndView updateFormFestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
+		
+		System.out.println(festival.getFestival_Tag());
 	
 		String saveDir = req.getSession().getServletContext()
 				.getRealPath("/resources/images/festival"); 		
@@ -247,9 +249,19 @@ public class FestivalController {
 		
 		mv.setViewName("jsonView");
 		return mv;
-		
-		
 	}
+//검색기능
+	 @RequestMapping("/festival/searchFestival.do")
+	 public ModelAndView selectSearchFestival(Festival festival) {
+		 
+		 ModelAndView mv=new ModelAndView();
+		 List<Festival> list = service.selectSearchFestival(festival);
+
+		 mv.addObject("list",list);
+		 mv.setViewName("festival/festivalList");
+		 return mv;
+		 
+	 }
 	
 	
 	

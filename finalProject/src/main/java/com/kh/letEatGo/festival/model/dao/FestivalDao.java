@@ -23,4 +23,6 @@ public interface FestivalDao {
 	List<Festival> selectLikeCount(SqlSessionTemplate session ,Festival festival );
 
 	int selectFestivalCount(SqlSessionTemplate session);
+
+	List<Festival> selectSearchFestival(SqlSessionTemplate session);
 }

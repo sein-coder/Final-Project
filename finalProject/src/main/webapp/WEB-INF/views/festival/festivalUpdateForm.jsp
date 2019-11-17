@@ -103,8 +103,8 @@ textarea {
 
     
 </style>
-    <body>
     <section class="content">
+    <body>
 	<div class="site-section" style="padding-top: 0px">
 	  <!-- Page Content -->
 	<div id="container">
@@ -166,6 +166,8 @@ textarea {
 									<br>
 									<div style="display: inline-block">
 										<div class="content-tag">
+											<input type="hidden" name="festival_Tag" value="${festival.festival_Tag }"
+												id="festival_Hashtag">
 											<ul class="p-0" id="tag-list">
 											</ul>
 											<input type="text" id="tag" size="7" placeholder="태그입력" />
@@ -217,7 +219,9 @@ textarea {
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">전화번호</a> <strong>:</strong>
 											<input type="tel" id="festival_Phone" name="festival_Phone"  value="${festival.festival_Phone}"
-												pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+												pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" placeholder="02(0)-123(4)-5678" 
+												title="하이픈(-)을  넣어 입력해주세요"
+												 required>
 										</div>
 									</td>
 									<td>
@@ -271,8 +275,7 @@ textarea {
 				<nav class="site-navigation position-relative text-center" role="navigation">
 					<ul class=" justify-content-center">
 						<li class="list-inline-item">
-
-							<input type="submit" href="#" value="저장"  style="background-color: #f38181;border-color: #f38181;">
+							<input type="submit" value="저장" style="background-color: #f38181;border-color: #f38181;">
 						</li>
 						<li class="list-inline-item">
 							<button class="btn-cancel" type="button" onclick="btn-cancel();" style="background-color: #f38181; border-color: #f38181; " >
@@ -303,78 +306,68 @@ textarea {
 	</script>
 	<script>
 	/* 해시태그 */
-	//해시태그 기능
+		var tags = "${festival.festival_Tag}".split(',');
+		var counter = 0;
+		var tag = {};
 		
-        var tag = {};
-        var counter = 0;
-
-        // 태그를 추가한다.
-        function addTag (value) {
-            tag[counter] = value; // 태그를 Object 안에 추가
-            counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
-        }
-        
-        $("#tag").on("keypress", function (e) {
-            // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
-            if (e.key === "Enter" || e.keyCode == 32) {
-                var tagValue = $(this).val(); // 값 가져오기
-                // 값이 없으면 동작 ㄴㄴ
-                if (tagValue !== "") {
-                    // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
-                    var result = Object.values(tag).filter(function (word) {
-                        return word === tagValue;
-                    })
-                    // 태그 중복 검사
-                    if (result.length == 0) { 
-                        $("#tag-list").append("<li class='tag-item'>"+"#"+tagValue+"<span class='del-btn' idx='"+counter+"'>x</span></li>");
-                        addTag(tagValue);
-                        $(this).val("");
-                    } else {
-                        alert("태그값이 중복됩니다.");
-                    }
-                }
-                e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
-            }
-        });
-        </script>
-        <script>
-        // 해시 태그 삭제 버튼 
-        // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
-        $(document).on("click", ".del-btn", function (e) {
-            var index = $(this).attr("idx");
-            tag[index] = "";
-            $(this).parent().remove();
-        });
-        
-        function submit(){
-			var tags = "";
-			
-			for(var i=0; i<counter; i++){
-				if(i==counter-1){
-					tags += tag[i];
-				}
-				else if(tag[i] != "") {
-					tags += tag[i] + ",";											
-				}
+		$.each(tags,function(i,item){
+			if(tags[i]!='null'){
+			addTag(tags[i]);
+			$("#tag-list").append("<li class='tag-item'>"+"#"+item+"<span class='del-btn' idx='"+i+"'>x</span></li>");
 			}
-			$("#festival_Hashtag").val(tags);
-			$("#frm").submit();
-			return true;
-        };
-        </script>
-    	<script>
-    	/* 태그 불러오기 */
-    	 	var tag = '${festival.festival_Tag}'.split(",");
-    	 	var lastT= '${festival.festival_Tag}'.split(",").length;
+		});
+		
+		// 태그를 추가한다.
+	    function addTag (value) {
+	        tag[counter] = value; // 태그를 Object 안에 추가
+	        counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+	    }
+	    
+	    $("#tag").on("keypress", function (e) {
+	        // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
+	        if (e.key === "Enter" || e.keyCode == 32) {
+	            var tagValue = $(this).val(); // 값 가져오기
+	            // 값이 없으면 동작 ㄴㄴ
+	            if (tagValue !== "") {
+	                // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
+	                var result = Object.values(tag).filter(function (word) {
+	                    return word === tagValue;
+	                })
+	                // 태그 중복 검사
+	                if (result.length == 0) { 
+	                    $("#tag-list").append("<li class='tag-item'>"+"#"+tagValue+"<span class='del-btn' idx='"+counter+"'>x</span></li>");
+	                    addTag(tagValue);
+	                    $(this).val("");
+	                } else {
+	                    alert("태그값이 중복됩니다.");
+	                }
+	            }
+	            e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+	        
+	            tags = "";
+				
+				for(var i=0; i<counter; i++){
+					if(i==counter-1){
+						tags += tag[i];
+					}
+					else if(tag[i] != "") {
+						tags += tag[i] + ",";											
+					}
+				}
+				$("#festival_Hashtag").val(tags);
+	            
+	        }
+	    });
+	
+	    // 삭제 버튼 
+	    // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
+	    $(document).on("click", ".del-btn", function (e) {
+	        var index = $(this).attr("idx");
+	        tag[index] = "";
+	        $(this).parent().remove();
+	    });
 
-     		$(document).ready(function(){
-    	 		
-    	 		for(var count=0; count<lastT;){
-    	 				
-    	 		$('ul#tag-list').append("<li class='tag-item p-0'>"+"#"+tag[count]+"</li>");
-    	 			count++;
-    	 		}
-    	 	}); 
+	    
         </script>
         
         <script>
@@ -416,9 +409,7 @@ textarea {
         	location.href = "${pageContext.request.contextPath }/festival/festivalList";
 	    });
 		</script>
-		
-		
-	</script>
+
 </section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
     

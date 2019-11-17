@@ -499,16 +499,6 @@ h1 {
 											style="background-color: #fff;">주 소</a> <strong>:</strong>
 										${festival.festival_Address }
 									</div>
-									<div style="display: inline-block">
-
-										<!-- <a href="#none" class="hashtag_copy" style="background-color: #f38181"
-											data-clipboard-action="copy" data-clipboard-target="p.copy">
-											<span>copy</span>
-										</a> 
-
-										<script
-											src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-									</div>-->
 								</td>
 								<td>
 									<div class="alert alert-danger4">
@@ -561,7 +551,7 @@ h1 {
 			<div class="row">
 			</div>
 		</div>
-		<br>
+
 		<h2>지도보기!</h2>
 		
 		<br>
@@ -579,11 +569,6 @@ h1 {
 				$(this).val($(this).val().substring(0, 4000));
 			}
 		});
-		/* var clipboard = new ClipboardJS('.hashtag_copy');
-		clipboard.on('success', function(e) {
-			alert('복사되었습니다.');
-		});
-		 */
 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
@@ -673,12 +658,6 @@ h1 {
 	 				count++;
 	 		}
 	 	}); 
-
-		
-		
-		
-		
-		
 	</script>
 	
 </section>

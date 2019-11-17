@@ -31,7 +31,7 @@
   		FESTIVAL_HOST=#{festival_Host},
   		FESTIVAL_SUB=#{festival_Sub},
   		FESTIVAL_PRICE=#{festival_Price},
-  		FESTIVAL_TAG=#{festival_tag},
+  		FESTIVAL_TAG=#{festival_Tag},
   		FESTIVAL_PROCEEDING=#{festival_Proceeding}
   	WHERE FESTIVAL_NO=#{festival_No}
   </update>
@@ -49,6 +49,12 @@
   </select>
   <select id="selectFestivalCount" resultType="_int">
   	SELECT COUNT(*) FROM FESTIVAL
+  </select>
+  <select id="selectSearchFestival" resultType="festival">
+  	SELECT  FESTIVAL_TITLE, FESTIVAL_CONTENT
+  	FROM FESTIVAL 
+  	WHERE FESTIVAL_TITLE LIKE '%' || #{festival_Title} || '%'  OR
+  		  FESTIVAL_CONTENT LIKE '%' || %#{festival_Content} || '%'  OR
   </select>
 
 </mapper>

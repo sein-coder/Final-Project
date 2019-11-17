@@ -23,6 +23,8 @@ public interface FestivalService{
 
 	int selectFestivalCount();
 
+	List<Festival> selectSearchFestival(Festival festival);
+
 	
 	
 
