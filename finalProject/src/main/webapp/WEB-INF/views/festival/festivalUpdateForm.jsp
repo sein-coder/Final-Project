@@ -7,6 +7,8 @@
 	<jsp:param name="pageTitle" value="" />
 </jsp:include>
 <style>
+
+
 .pink-textarea textarea .md-textarea :focus :not([readonly])
 {
 	border-bottom:1px solid #f48fb1;
@@ -70,11 +72,43 @@ textarea {
         cursor: pointer;
         margin-left: 8px;
     }
+    
+ /* 해시태그  */
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #fff;
+        color: #f38181;
+    }
+
+    .tag-item:hover {
+        background-color: #f38181;
+        color: #fff;
+    }
+    ul#tag-list {
+        padding: 16px 0;
+    }
+
+    ul#tag-list li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
+
+    
 </style>
     <body>
-
-
-	<section id="content">
+    <section class="content">
+	<div class="site-section" style="padding-top: 0px">
+	  <!-- Page Content -->
+	<div id="container">
+	
 		<form
 			id="frm"
 			action="${pageContext.request.contextPath}/festival/festivalUpdateFormEnd.do?festival_No=${festival.festival_No}"
@@ -84,8 +118,8 @@ textarea {
 			<div class="site-section pb-0">
 				<div class="row">
 					<!-- 새로운 뷰 -->
-					<div class="container" style="background-color: white;">
-						<div class="card col-md-12" style="border: 3px solid #ffc9c9;">
+					<div class="container p-0 pr-auto pl-auto" style="background-color: white;">
+						<div class="card col-md-12 pb-0" style="border: 3px solid #ffc9c9;">
 
 							<div class="wrapper row" style="background-color: white;">
 								<div class="preview col-md-5">
@@ -125,18 +159,14 @@ textarea {
 											rows="40" placeholder="축제 내용을 입력하세요">${festival.festival_Content }</textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
-											type="text" readonly disabled value="2000" name="counter"
+											type="text" readonly disabled value="4000" name="counter"
 											id="counter"></span>
 									</div>
 									
 									<br>
 									<div style="display: inline-block">
-										<p>해시태그 :</p>
-
-										<div class="content">
-											<input type="hidden" value="" name="festival_Hashtag" value=""
-												id="festival_Hashtag" />
-											<ul id="tag-list">
+										<div class="content-tag">
+											<ul class="p-0" id="tag-list">
 											</ul>
 											<input type="text" id="tag" size="7" placeholder="태그입력" />
 										</div>
@@ -150,13 +180,13 @@ textarea {
 				</div>
 			</div>
 			<div class="row">
-				<div class="container">
-					<div class="col-md-12 mt-0 pt-0"
+				<div class="container p-0">
+					<div class="col-md-12  mt-0 pt-0"
 						style="border: 3px solid #ffc9c9; border-top: 0px solid white;">
 
 						<!-- 더 보기 버튼 생성  -->
 
-						<input value="상세설명" class="btn btn-danger btn-block"  style="background-color: #f38181; border: none;"
+						<input value="상세설명" class="btn btn-danger pl-0 pr-0 btn-block"  style="background-color: #f38181; border: none;"
 							readonly="readonly" />
 						<div
 							class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
@@ -237,19 +267,15 @@ textarea {
 					</div>
 				</div>
 			</div>
-			<div class="site-navbar col-13 col-md-9 d-none d-xl-block"
-				style="background-color: white;">
-				<nav class="site-navigation position-relative text-right"
-					role="navigation">
-
-					<ul
-						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
+			<div class="site-navbar" style="background-color: white; justify-content: center;">
+				<nav class="site-navigation position-relative text-center" role="navigation">
+					<ul class=" justify-content-center">
 						<li class="list-inline-item">
 
 							<input type="submit" href="#" value="저장"  style="background-color: #f38181;border-color: #f38181;">
 						</li>
 						<li class="list-inline-item">
-							<button class="btn-cancel" type="button" onclick="btn-cancel();" style="background-color: #f38181;border-color: #f38181; " >
+							<button class="btn-cancel" type="button" onclick="btn-cancel();" style="background-color: #f38181; border-color: #f38181; " >
 								<span>취소</span>
 							</button>
 						</li>
@@ -257,23 +283,28 @@ textarea {
 				</nav>
 			</div>
 		</form>
+	</div>
+	</div>
+
+	
+	</body>
 		
-		<script>
+	<script>
 		
 	/*글자 수 제한*/
 			$('#festival_Content').keyup(function (e){
 	      var content = $(this).val();       
-	      $('#counter').val(100-content.length);
+	      $('#counter').val(4000-content.length);
 	
-	          if(content.length > 2000) {
-	            $(this).val($(this).val().substring(0, 2000));
+	          if(content.length > 4000) {
+	            $(this).val($(this).val().substring(0, 4000));
 	          }
 	      });
-      
-		
-		
+	</script>
+	<script>
 	/* 해시태그 */
 	//해시태그 기능
+		
         var tag = {};
         var counter = 0;
 
@@ -305,7 +336,8 @@ textarea {
                 e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
             }
         });
-
+        </script>
+        <script>
         // 해시 태그 삭제 버튼 
         // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
         $(document).on("click", ".del-btn", function (e) {
@@ -329,7 +361,23 @@ textarea {
 			$("#frm").submit();
 			return true;
         };
+        </script>
+    	<script>
+    	/* 태그 불러오기 */
+    	 	var tag = '${festival.festival_Tag}'.split(",");
+    	 	var lastT= '${festival.festival_Tag}'.split(",").length;
+
+     		$(document).ready(function(){
+    	 		
+    	 		for(var count=0; count<lastT;){
+    	 				
+    	 		$('ul#tag-list').append("<li class='tag-item p-0'>"+"#"+tag[count]+"</li>");
+    	 			count++;
+    	 		}
+    	 	}); 
+        </script>
         
+        <script>
         /* 각 input 태그 체크이벤트  */
 
         $("input").change(function(){
@@ -338,8 +386,8 @@ textarea {
         		$(this).parent().append(img);
         	}
         });
-	
-    	
+		</script>
+    	<script>
 		/* 썸네일 사진 */
 		 $('#upFile').on('change',function (e) {
 		        var get_file = e.target.files;
@@ -361,20 +409,17 @@ textarea {
 		            console.log(2);
 		        }
 		    });
-		
+		</script>
+		<script>
 		/* 취소버튼 */
 		 $('.btn-cancel').on("click",function(){
         	location.href = "${pageContext.request.contextPath }/festival/festivalList";
 	    });
-
+		</script>
 		
 		
-	
 	</script>
-	</section>
-
-
-
+</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
     

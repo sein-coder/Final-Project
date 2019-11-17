@@ -1,10 +1,7 @@
-package com.kh.letEatGo.festival.model.controller;
-
-import static com.kh.letEatGo.common.page.PageFactory.getPageBar;
+package com.kh.letEatGo.festival.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.letEatGo.common.page.PageFactory;
 import com.kh.letEatGo.festival.model.service.FestivalService;
 import com.kh.letEatGo.festival.model.vo.Festival;
 
@@ -46,12 +42,11 @@ public class FestivalController {
 		List<Festival> list = service.selectFestival(cPage,numPerPage);
 		List<Festival> list2   = service.selectLikeCount(festival);
 		int totalData=service.selectFestivalCount();
-
+		
+		mv.addObject("cPage",cPage);
 		mv.addObject("list", list);
 		mv.addObject("list2",list2);
-		mv.addObject("totalCount",totalData);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerPage,"/letEatGo/festival/festivalList"));
-		
+		mv.addObject("totalCount",totalData);		
 		
 		mv.setViewName("festival/festivalList");
 		return mv;
@@ -133,6 +128,9 @@ public class FestivalController {
 	public ModelAndView selectFestivalOne(int festival_No) {
 		ModelAndView mv=new ModelAndView();
 		Festival festival=service.selectFestivalOne(festival_No);
+		
+		System.out.println(festival);
+		
 		mv.addObject("festival",festival);
 		mv.setViewName("festival/festivalView");
 	

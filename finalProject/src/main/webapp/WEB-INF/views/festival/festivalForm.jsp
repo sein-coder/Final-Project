@@ -75,9 +75,11 @@ textarea {
     }
 </style>
 <body>
-
-
 	<section id="content">
+
+	<div class="site-section" style="padding-top: 0px">
+	<div class="container pl-0 pr-0">
+	  <!-- Page Content -->
 		<form
 			id="frm"
 			action="${pageContext.request.contextPath}/festival/festivalFormEnd.do"
@@ -90,10 +92,10 @@ textarea {
 					<!-- 새로운 뷰 -->
 
 
-					<div class="container" style="background-color: white;">
+					<div class="container p-0 pr-auto pl-auto" style="background-color: white;">
 						<div class="card col-md-12" style="border: 3px solid #ffc9c9;">
 
-							<div class="wrapper row" style="background-color: white;">
+							<div class="wrapper row mt-2" style="background-color: white;">
 								<div class="preview col-md-5">
 
 									<div class="preview-pic ">
@@ -131,7 +133,7 @@ textarea {
 											rows="40" placeholder="축제 내용을 입력하세요"></textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white;  "								
-											type="text" readonly disabled value="2000" name="counter"
+											type="text" readonly disabled value="4000" name="counter"
 											   id="counter"></span>
 									</div>
 									<br>
@@ -141,8 +143,7 @@ textarea {
 										<div class="content">
 											<input type="hidden" value="" name="festival_Hashtag"
 												id="festival_Hashtag" />
-											<ul id="tag-list">
-											</ul>
+											<ul id="tag-list"></ul>
 											<input type="text" id="tag" size="7" placeholder="태그입력" />
 										</div>
 										
@@ -157,7 +158,7 @@ textarea {
 				</div>
 			</div>
 			<div class="row">
-				<div class="container">
+				<div class="container p-0">
 					<div class="col-md-12 mt-0 pt-0"
 						style="border: 3px solid #ffc9c9; border-top: 0px solid white;">
 
@@ -247,13 +248,10 @@ textarea {
 					</div>
 				</div>
 			</div>
-			<div class="site-navbar col-13 col-md-9 d-none d-xl-block"
-				style="background-color: white;">
-				<nav class="site-navigation position-relative text-right"
-					role="navigation">
-
-					<ul
-						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
+			
+			<div class="site-navbar" style="background-color: white; justify-content: center;">
+				<nav class="site-navigation position-relative text-center" role="navigation">
+					<ul class="justify-content-center">
 						<li class="list-inline-item ">
 							<input type="submit" value="등록" style="background-color: #f38181;border-color: #f38181;"/>
 						</li>
@@ -266,16 +264,18 @@ textarea {
 				</nav>
 			</div>
 		</form>
-		
+	</div>
+	</div>
+
 		<script>
 		
 	/*글자 수 제한*/
 			$('#festival_Content').keyup(function (e){
 	      var content = $(this).val();       
-	      $('#counter').val(2000-content.length);
+	      $('#counter').val(4000-content.length);
 	
-	          if(content.length > 2000) {
-	            $(this).val($(this).val().substring(0, 2000));
+	          if(content.length > 4000) {
+	            $(this).val($(this).val().substring(0, 4000));
 	          }
 	      });
       
@@ -382,16 +382,8 @@ textarea {
 	    });
 
 
-
-	    
-
-        
    </script>
 
-
 	</section>
-
-
-
-
+	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />

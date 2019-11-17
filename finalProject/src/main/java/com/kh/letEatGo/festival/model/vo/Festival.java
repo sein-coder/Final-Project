@@ -26,6 +26,7 @@ public class Festival {
 	private String festival_Host;
 	private String festival_Sub;
 	private String festival_Price;
+	private String festival_Tag;
 	private String festival_Proceeding;
 
 	

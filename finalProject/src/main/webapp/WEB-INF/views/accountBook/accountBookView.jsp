@@ -75,7 +75,7 @@
 
 <section id="content">
 	<div class="site-section" style="background-color: #f4f4f4;">
-		<div i class="container" style="background-color: white;">
+		<div class="container" style="background-color: white;">
 			
 			<c:if test="${not empty account }">
 			

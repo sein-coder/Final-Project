@@ -32,20 +32,22 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8 t-3">
 
-        <h1 class="my-4" style="text-align: center;">Enjoy the festival with
+        <h1 class="my-4" style="text-align: center;text-shadow: 0px 5px 0px #fff; font-weight: bold; color:#f38181">Enjoy the festival with
           <small>'let Eat Go'</small>
         </h1>
-		
-		<div style="pull-right; color:#f38181;">
-			
-				<ul class="site-menu js-clone-nav m-auto d-none d-lg-block">
-					<li class="active col-md-3" ><a
-						href="${pageContext.request.contextPath}/festival/festivalForm"><span>축제등록</span></a></li>
-				</ul>
-			
+		 
+		<div row>
+			<div class="site-menu js-clone-nav m-auto d-none d-lg-block" style="color:#f38181;text-align: right;">
+				
+					<ul class="">
+						<li class="pull-right active" style="list-style-type: none;" ><a
+							href="${pageContext.request.contextPath}/festival/festivalForm"><span>축제등록</span></a></li>
+					</ul>
+				
+			</div>
 		</div>
         <!-- Blog Post -->
-       <div class="carousel-inner col-md-11 " style="border-color:#ffc9c9; ">
+       <div class="carousel-inner col-md-13 " style="border-color:#ffc9c9; ">
         <c:if test="${not empty list }">
 		<c:forEach items="${list}" var="v" varStatus="s">
 	          		<div class="card mb-4 t-6" id="pic" style="background-color:#ffc9c9;">
@@ -67,11 +69,14 @@
    
        <!--  Pagination -->
         <ul class="pagination justify-content-center mb-4" id="this">
-          <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
+          <li id="prePage" class="page-item">
+            <a class="page-link" href="${pageContext.request.contextPath }/festival/festivalList?cPage=${cPage-1}">&larr; Older</a>
           </li>
-          <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
+          <li>
+          	
+          </li>
+          <li id="nextPage" class="page-item">
+            <a class="page-link" href="${pageContext.request.contextPath }/festival/festivalList?cPage=${cPage+1}">Newer &rarr;</a>
           </li>
         </ul>
 
@@ -101,7 +106,7 @@
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
                   <li>
-                    <a href="#">Web Design</a>
+                    <a href="#">${festival.festival_Tag }</a>
                   </li>
                   <li>
                     <a href="#">HTML</a>
@@ -157,13 +162,14 @@
 	        </c:forEach>
 		</c:if>
       </div>
-
+    
     </div>
     <!-- /.row -->
 
   </div>
-  </body>
-	
+  </div>
+ </body>
+
 
 	<script>
 	/*  축제 진행여부 */
@@ -202,7 +208,18 @@
 	   });
 	</script>
 	
-
+	<script>
+		$(document).ready(function(){
+			var lastP = "${totalCount}"%3!=0?"${totalCount}"/3+1:"${totalCount}"/3; 
+					
+			var nowP = ${cPage}
+			if(nowP >= lastP){
+				$("#nextPage").addClass("disabled");
+			}else if(nowP <= 1){
+				$("#prePage").addClass("disabled");
+			}
+		});
+	</script>
 
 
 

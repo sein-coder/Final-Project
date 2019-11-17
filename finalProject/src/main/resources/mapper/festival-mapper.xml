@@ -5,7 +5,7 @@
   	INSERT INTO FESTIVAL VALUES(SEQ_Festival_No.nextval, #{festival_Title},#{festival_Content},
   		default,default,#{festival_Thumbnail},#{festival_StartDate},#{festival_EndDate},
   		#{festival_Phone},#{festival_Homepage},#{festival_Address},#{festival_Host},
-  		#{festival_Sub},#{festival_Price},#{festival_Proceeding}
+  		#{festival_Sub},#{festival_Price},#{festival_Tag},#{festival_Proceeding}
   	)
   </insert>
   <select id="selectFestival" resultType="festival">
@@ -31,12 +31,13 @@
   		FESTIVAL_HOST=#{festival_Host},
   		FESTIVAL_SUB=#{festival_Sub},
   		FESTIVAL_PRICE=#{festival_Price},
+  		FESTIVAL_TAG=#{festival_tag},
   		FESTIVAL_PROCEEDING=#{festival_Proceeding}
   	WHERE FESTIVAL_NO=#{festival_No}
   </update>
   <update id="updateFestivalLike" parameterType="festival">
 	  UPDATE FESTIVAL
-	  SET FESTIVAL_COUNT = #{festival_Count} +1 
+	  SET FESTIVAL_LIKE = #{festival_Like} +1 
 	  WHERE FESTIVAL_NO= #{festival_No}
   </update>
   <select id="selectLikeCount" resultType="festival">
