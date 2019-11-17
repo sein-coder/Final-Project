@@ -9,6 +9,5 @@
 		INSERT INTO ACCOUNT VALUES(
 			#{account_Number},#{account_Bank},#{partner_No},#{account_Name},#{account_Balance}
 		) 
-	</insert>
-	
+	</insert>	
 </mapper>

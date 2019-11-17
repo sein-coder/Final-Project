@@ -84,6 +84,30 @@ public class AccountBookServiceImpl implements AccountBookService {
 		// TODO Auto-generated method stub
 		return dao.selectMonthlyIncome(session, partner_No);
 	}
+
+	@Override
+	public List<Map<String, String>> selectYesterday_today_incomeRate(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectYesterday_today_incomeRate(session, partner_No);
+	}
+
+	@Override
+	public int selectSumRevenue(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectSumRevenue(session, partner_No);
+	}
+
+	@Override
+	public double selectGoalMonthly(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectGoalMonthly(session, partner_No);
+	}
+
+	@Override
+	public List<Map<String, String>> selectCalRoundChart(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectCalRoundChart(session, partner_No);
+	}
 	
 	
 	
