@@ -14,5 +14,5 @@ public interface MemberDao {
 	
 	int deleteMemberPage(SqlSessionTemplate session,Member m);
 
-
+	int insertKakao(SqlSessionTemplate session,Member m);
 }

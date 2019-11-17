@@ -1,5 +1,7 @@
 package com.kh.letEatGo.member.model.service;
 
+import org.springframework.ui.Model;
+
 import com.kh.letEatGo.member.model.vo.Member;
 
 public interface MemberService {
@@ -12,5 +14,5 @@ public interface MemberService {
 	
 	int deleteMemberPage(Member m);
 
-
+	int insertKakao(Member m);
 }

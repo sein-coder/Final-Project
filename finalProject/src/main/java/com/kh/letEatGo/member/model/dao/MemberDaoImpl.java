@@ -28,4 +28,9 @@ public class MemberDaoImpl implements MemberDao {
 		return session.delete("member.deleteMemberPage",m);
 	}
 
+	@Override
+	public int insertKakao(SqlSessionTemplate session,Member m) {
+		return session.insert("member.insertKakao",m);
+	}
+
 }

@@ -3,6 +3,7 @@ package com.kh.letEatGo.member.model.service;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.kh.letEatGo.member.model.dao.MemberDao;
 import com.kh.letEatGo.member.model.vo.Member;
@@ -33,6 +34,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int deleteMemberPage(Member m) {
 		return dao.deleteMemberPage(session,m);
+	}
+
+	@Override
+	public int insertKakao(Member m) {
+		return dao.insertKakao(session,m);
 	}
 
 }

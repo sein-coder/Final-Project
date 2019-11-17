@@ -280,9 +280,7 @@
                </div>
                <!-- Modal footer -->
                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary">페이스북</button>
-                  <button type="button" class="btn btn-primary">네이버</button>
-                  <button type="button" id="kakao" class="btn btn-primary" onclick="kakao();">카카오톡</button>
+                  <a id="kakao"   onclick="kakao();" style="cursor:pointer"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="240"/></a>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                </div>
             </div>
@@ -325,7 +323,7 @@
 					    		sessionStorage.setItem('email', email);
 					    		sessionStorage.setItem('gender', gender);
 					    		sessionStorage.setItem('birthday', birthday);
-					    	   location.reload();
+					    		location.reload();
 			 		      }
 				       })
 			        },

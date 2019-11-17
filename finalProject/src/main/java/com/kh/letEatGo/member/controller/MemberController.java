@@ -122,6 +122,18 @@ public class MemberController {
 				e.printStackTrace();
 			}
 		}
-	  
+	  @RequestMapping("/kakao")
+	  public ModelAndView kakao(String email,String gender,HttpSession session) {
+		  Member m=new Member();
+		  m.setMember_Email(email);
+		  m.setMember_Gender(gender);
+		  int result=service.insertKakao(m);
+		  
+		  ModelAndView mv=new ModelAndView();
+		  
+		  
+		  return mv;
+	  }
 
+	  
 }
