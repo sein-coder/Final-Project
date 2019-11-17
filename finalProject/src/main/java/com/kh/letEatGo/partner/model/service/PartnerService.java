@@ -13,4 +13,5 @@ public interface PartnerService {
 
 	Partner selectPartnerNo(Partner p);
 
+	 int deletePartnerPage(Partner p);
 }

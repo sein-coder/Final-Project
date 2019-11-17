@@ -41,5 +41,15 @@ public class MemberServiceImpl implements MemberService {
 		return dao.insertKakao(session, m);
 	}
 
+	@Override
+	public Member selectMemberOne2(Member m) {
+		 return dao.selectMemberOne2(session,m);
+	}
+
+	@Override
+	public int updateAdminPage(Member m) {
+		return dao.updateAdminPage(session,m);
+	}
+
 
 }

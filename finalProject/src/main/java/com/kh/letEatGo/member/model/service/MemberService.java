@@ -10,9 +10,13 @@ public interface MemberService {
 
 	Member selectMemberOne(Member m);
 
+	Member selectMemberOne2(Member m);
+	 
 	int updateMemberPage(Member m);
 	
 	int deleteMemberPage(Member m);
 
+	int updateAdminPage(Member m);
+	
 	int insertKakao(Member m);
 }

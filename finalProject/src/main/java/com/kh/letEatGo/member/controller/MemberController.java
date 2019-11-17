@@ -135,9 +135,10 @@ public class MemberController {
 		 
 		  session.setAttribute("loginMember", result2);
 		  session.setAttribute("type", "member");
-		  mv.addObject("msg", msg);
-		  mv.addObject("loc", loc);
-		  mv.setViewName("redirect:/");
+		  Member result3=service.selectMemberOne(m);
+		  session.setAttribute("member",result3);
+		  //mv.setViewName("redirect:/");
+		  mv.setViewName("/mypage/memberPage");
 		return mv;
 
 	  }

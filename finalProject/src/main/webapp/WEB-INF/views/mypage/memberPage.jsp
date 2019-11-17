@@ -18,6 +18,13 @@
 
 <script>
   $(document).ready(function(){
+if(token!=null){
+	document.getElementById("btnDelete").style.display ='none';
+	document.getElementById("id").style.display ='none';
+}else{
+	document.getElementById("btnDelete").style.display ='noset';
+	document.getElementById("id").style.display ='noset';
+}
      $("#btnUpdate").click(function(){
         document.updateMember.action="${path}/member/updateMember"; //쿼리스트링으로 아이디를 넘겨버리면 DB에 아이디가 2개가 저장되어버렸음
         document.updateMember.submit();
@@ -39,9 +46,9 @@
       
        <form name="updateMember" method="post">
        <table class="table" id="tbl-dev">
-        <div class="form-group">
+        <div id="id" class="form-group">
                <label for="form-label">아이디</label>
-         <input name="member_Id" value="${member.member_Id}" readonly="readonly" class="form-control">
+         <input  name="member_Id" value="${member.member_Id}" readonly="readonly" class="form-control">
       </div>
        <div class="form-group">
                <label for="form-label">비밀번호</label>
@@ -66,7 +73,7 @@
       <tr>
         <td colspan="2" align="center">
            <input type="button" class="btn btn-outline-success" value="수정" id="btnUpdate">
-           <input type="button" class="btn btn-outline-success" value="탈퇴" id="btnDelete" onclick="/member/deleteMember">
+           <input  type="button" class="btn btn-outline-success" value="탈퇴" id="btnDelete"  >
         </td>
       </tr>
     </table>
