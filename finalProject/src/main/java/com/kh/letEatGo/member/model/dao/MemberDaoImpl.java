@@ -29,8 +29,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int insertKakao(SqlSessionTemplate session,Member m) {
+	public int insertKakao(SqlSessionTemplate session, Member m) {
 		return session.insert("member.insertKakao",m);
 	}
+
 
 }

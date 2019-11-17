@@ -184,15 +184,9 @@
                            	  <button id="regist" class="btn btn-outline-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/member/memberEnrollEnd'">회원가입</button>
                            </li>
                         </c:if>
-                        <li>
-							<span id="welecome" ></span>
-						</li>
-						<li>
-							<button id="weblogout" class="btn btn-outline-primary" type="button" onclick="weblogout();" style="display:none;">로그아웃</button>
-						</li>
                         <c:if test="${not empty loginMember }">
                            <c:if test="${ type == 'member' && loginMember.member_Id ne 'admin'  }">
-                        <li><a href="${pageContext.request.contextPath }/memberPage?Member_Id=${loginMember.member_Id}"><span>고객 페이지</span></a></li>
+                        <li><a id="memberPage" href="${pageContext.request.contextPath }/memberPage?Member_Id=${loginMember.member_Id}"><span>고객 페이지</span></a></li>
                            </c:if>
                            <c:if test="${ type == 'partner' }">
                         <li><a href="${pageContext.request.contextPath }/partnerPage?Partner_Id=${loginMember.partner_Id}"><span>사업자 페이지</span></a></li>   
@@ -202,7 +196,7 @@
                            </c:if>
                         <li><button class="btn btn-outline-primary"
                               type="button"
-                              onclick="location.href='${pageContext.request.contextPath}/Logout.do'">로그아웃</button></li>         
+                              onclick="weblogout();">로그아웃</button></li>         
                         </c:if>
                      </ul>
                   </nav>
@@ -288,20 +282,14 @@
       </div>
    </div>
 		<script type="text/javascript">
-			var name= sessionStorage.getItem('name');
+			 var name= sessionStorage.getItem('name');
 			var token=sessionStorage.getItem('token');
 			var id=sessionStorage.getItem('id');
 			var email=sessionStorage.getItem('email');
 			var gender=sessionStorage.getItem('gender');
 			var birthday=sessionStorage.getItem('birthday');
 			console.log(id+" "+name+" "+token+" "+email+" "+gender+" "+birthday);
-			if(token!=null){
-				document.getElementById("login").style.display ='none';
-				document.getElementById("regist").style.display ='none';
-				document.getElementById("weblogout").style.display ='block';
-				document.getElementById("welecome").innerText=name+'님 환영합니다.';
-				document.getElementById("welecome").style.color='white';
-			}
+			
 			Kakao.init('4524f2a578ce5b005f1a8157e72c3d3a');
 			 function kakao() {
 			      Kakao.Auth.loginForm({
@@ -311,19 +299,23 @@
 			 		       url: '/v2/user/me',
 			 		       success: function(res) {
 			 		    	  Kakao.Auth.setAccessToken(Kakao.Auth.getAccessToken(), true);
+					    	   if(JSON.stringify(res.kakao_account["email"])!=null){
 					    	   var name=res.properties['nickname'];
 					    	   var token=authObj.access_token;
 					    	   var id=res.id;
 					    	   var email=JSON.stringify(res.kakao_account["email"]);
 					    	   var gender=JSON.stringify(res.kakao_account["gender"]);
 					    	   var birthday=JSON.stringify(res.kakao_account["birthday"]);
-					    		sessionStorage.setItem('name', name);
+					    		 sessionStorage.setItem('name', name);
 					    		sessionStorage.setItem('token', token);
 					    		sessionStorage.setItem('id', id);
 					    		sessionStorage.setItem('email', email);
 					    		sessionStorage.setItem('gender', gender);
-					    		sessionStorage.setItem('birthday', birthday);
-					    		location.reload();
+					    		sessionStorage.setItem('birthday', birthday); 
+					    		location.href="${pageContext.request.contextPath}/kakao?email="+email+"&gender="+gender+"&id="+id;
+					    	   }else{
+					    		   alert("이메일 동의해주십시오.");
+					    	   }
 			 		      }
 				       })
 			        },
@@ -335,10 +327,8 @@
 		     
 		     function weblogout() {
 		    	 Kakao.Auth.logout(function(){
-		    		 alert("카카오 로그아웃");
 		    		 sessionStorage.clear();
-		    		 document.getElementById("weblogout").style.display ='none';
-		    		 location.reload();
+					 location.href='${pageContext.request.contextPath}/Logout.do';
  		    		 });
 			}
 		     

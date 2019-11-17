@@ -309,7 +309,6 @@ function toOrderHistory(){
 	$("#list tr.orderdata").each(function(){
 		orderlists += $(this).children().eq(0).text() + "-" + $(this).children().eq(1).text() + "/";
 	})
-	
 	$.ajax({
 		url : "${path}/order/orderEnd",
 		type: "POST",
@@ -329,6 +328,7 @@ function toOrderHistory(){
 			alert("결제 처리에 실패하였습니다. 관리자에게 문의하세요.");
 		}
 	})
+
 }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

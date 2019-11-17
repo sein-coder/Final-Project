@@ -38,7 +38,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertKakao(Member m) {
-		return dao.insertKakao(session,m);
+		return dao.insertKakao(session, m);
 	}
+
 
 }

@@ -68,24 +68,6 @@ public class MapController {
 	}
 	
 	
-	
-//	@RequestMapping("/truckPosition")
-//	@ResponseBody
-//	public String selectPosition() {
-//		List<TruckMap> trucklist=service.categoryList();
-//		 ObjectMapper mapper=new ObjectMapper();
-//		 String str="";
-//		 try {
-//			str=mapper.writeValueAsString(trucklist);
-//		} catch (JsonProcessingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		 System.out.println(str);
-//		 return str;
-//	}
-	
-	//화면전환용 method
 		@RequestMapping("/foodTruck")
 		public String foodTruck(String foodTruck,Model model) {
 			return "";
