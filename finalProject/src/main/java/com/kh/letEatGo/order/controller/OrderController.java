@@ -1,8 +1,11 @@
 package com.kh.letEatGo.order.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,8 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.letEatGo.common.page.PageFactory;
 import com.kh.letEatGo.order.model.service.OrderService;
 import com.kh.letEatGo.order.model.vo.Menu;
@@ -26,22 +32,22 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 public class OrderController {
 
 	private Logger logger = LoggerFactory.getLogger(OrderController.class);
+	private int numPerPage = 5;
 	
 	@Autowired
 	private OrderService service;
 	
 	@RequestMapping("/order")
-	public ModelAndView order(@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
-		
+	public ModelAndView order(
+			@RequestParam(value="cPage", required=false, defaultValue="1")int cPage
+			) {
 		ModelAndView mv = new ModelAndView();
 		
-		int numPerPage = 5;
-		
-		int totalCount = service.selectCount();
-		
 		List<List<Menu>> menuList = new ArrayList();
-				
-		List<Partner> list = service.selectTruckList(cPage, numPerPage);
+		
+		int totalCount = service.selectDefaultCount();
+		List<Partner> list = service.selectDefaultTruckList(cPage, numPerPage);
+		
 		for(Partner p : list) {
 			menuList.add(service.selectMenu(p.getPartner_No()));
 			p.setStarCount(service.selectStar(p.getPartner_No()));
@@ -53,7 +59,64 @@ public class OrderController {
 		mv.addObject("totalCount", totalCount);
 		mv.addObject("pageBar", PageFactory.getPageBar(totalCount, cPage, numPerPage, "/letEatGo/order/orderList"));
 		mv.setViewName("order/orderList");
-		logger.debug(""+list);
+		return mv;
+	}
+	
+	@RequestMapping("/order/orderListSearch")
+	@ResponseBody
+	public ModelAndView orderListSearch(@RequestParam(value="menu_Name", required=false)String menu_Name,
+			@RequestParam(value="keyword", required=false)String keyword,
+			@RequestParam(value="ordering", required=false)String ordering,
+			@RequestParam(value="cPage", required=false, defaultValue="1")int cPage,
+			HttpServletResponse res) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		List<Partner> list = new ArrayList();
+		int totalCount = 0;
+		List<List<Menu>> menuList = new ArrayList();
+		
+		if(menu_Name != null && menu_Name != "") {
+			// 메뉴검색창 관련 처리 비즈니스 로직
+			list = service.selectMenuTruckList(cPage, numPerPage, menu_Name);
+			totalCount = service.selectMenuCount(menu_Name);
+			
+		} else if(keyword != null && keyword != "") {
+			// partner_Menu 관련 처리 비즈니스로직
+			System.out.println("여긴 태그검색이야 들어오니?");
+			Map<String, Object> menu = new HashMap();
+			List<String> category = new ArrayList();
+			
+			String[] str = keyword.split("/");
+			for(int i = 0; i < str.length; i++) {
+				category.add(str[i]);
+			}
+			menu.put("category", category);
+			totalCount = service.selectCount(menu);
+			
+			if(ordering != null && ordering != "") {
+				menu.put("ordering", ordering);
+			}
+			
+			list = service.selectTruckList(cPage, numPerPage, menu);
+			mv.addObject("keyword", keyword);
+		} else {
+			// 기본 조회 결과 처리 비즈니스 로직
+		}
+		
+		for(Partner p : list) {
+			menuList.add(service.selectMenu(p.getPartner_No()));
+			p.setStarCount(service.selectStar(p.getPartner_No()));
+			p.setReviewCount(service.selectReviewCount(p.getPartner_No()));
+		}
+		
+		res.setContentType("application/json;charset=utf-8");
+		
+		mv.addObject("pageBar", PageFactory.getPageBar(totalCount, cPage, numPerPage, "/letEatGo/order/orderList"));
+		mv.addObject("list", list);
+		mv.addObject("menuList", menuList);
+		mv.addObject("totalCount", totalCount);
+		mv.setViewName("/order/orderList");
 		return mv;
 	}
 	
@@ -71,7 +134,7 @@ public class OrderController {
 		
 		mv.addObject("comment", commentList);
 		mv.addObject("menu", list);
-		mv.addObject("partner", result);
+		mv.addObject("partner", result); 
 		mv.addObject("reviewList", reviewList);
 		
 		mv.setViewName("order/orderListView");
@@ -107,14 +170,19 @@ public class OrderController {
 		model.addAttribute("loc", loc);
 		return "common/msg";
 	}
-	  
-	/*
-	 * @RequestMapping("/order/searchConsole") public List<Partner> searchConsole(
-	 * 
-	 * @RequestParam(value="menu_Name", required=false)String menu_Name,
-	 * 
-	 * @RequestParam(value="partner_Menu", required=false)String partner_Menu ){
-	 * List<Partner> list = service.selectTruckList(cPage, numPerPage); return list;
-	 * }
-	 */
+	
+	@RequestMapping("/order/selectMenu")
+	@ResponseBody
+	public String selectMenu(Menu m, HttpServletResponse res){
+		ObjectMapper mapper = new ObjectMapper();
+		List<Menu> result = service.selectMenuList(m);
+		String jsonStr = "";
+		try {
+			jsonStr = mapper.writeValueAsString(result);
+		} catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
 }
