@@ -31,23 +31,31 @@ public class PageController {
    
    
    @RequestMapping("/memberPage")
-   public String memberPage(Member m,Model model) {
+   public String memberPage(Member m,Model model)  throws Exception {
       Member result=member_service.selectMemberOne(m);
+      result.setMember_Email(enc.decrypt(result.getMember_Email()));
+      result.setMember_Phone(enc.decrypt(result.getMember_Phone()));
       model.addAttribute("member",result);
       return "mypage/memberPage";
    }
    
    @RequestMapping("/partnerPage")
-   public String partnerPage(Partner p,Model model) {
+   public String partnerPage(Partner p,Model model) throws Exception{
       Partner result2=partner_service.selectPartnerOne(p);
+      result2.setPartner_Address(enc.decrypt(result2.getPartner_Address()));
+      result2.setPartner_Email(enc.decrypt(result2.getPartner_Email()));
+      result2.setPartner_Permission_No(enc.decrypt(result2.getPartner_Permission_No()));
+      result2.setPartner_Phone(enc.decrypt(result2.getPartner_Phone()));
       model.addAttribute("partner",result2);
       
       return "mypage/partnerPage";
    }
    
    @RequestMapping("/adminPage")
-   public String adminPage(Member m,Model model) {
+   public String adminPage(Member m,Model model) throws Exception {
       Member result3=member_service.selectMemberOne2(m);
+      result3.setMember_Email(enc.decrypt(result3.getMember_Email()));
+      result3.setMember_Phone(enc.decrypt(result3.getMember_Phone()));
       model.addAttribute("member", result3);
       return "mypage/adminPage";
    }
@@ -58,16 +66,12 @@ public class PageController {
       m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
       int result=0;
       try {
-         m.setMember_Email(pwEncoder.encode(m.getMember_Email()));
-         m.setMember_Phone(pwEncoder.encode(m.getMember_Phone()));
-         result=member_service.updateMemberPage(m);
-         
+    	  m.setMember_Email(enc.encrypt(m.getMember_Email()));
+          m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
+          result=member_service.updateMemberPage(m);
       } catch (Exception e) {
-         
          e.printStackTrace();
       }
-      
-      
       String msg="";
       String loc="/";
       if(result>0) {
@@ -77,7 +81,6 @@ public class PageController {
       }
       model.addAttribute("msg",msg);
       model.addAttribute("loc",loc);
-      
       return "common/msg";
       
    }
@@ -90,8 +93,8 @@ public class PageController {
             result=member_service.deleteMemberPage(m);
          }
           String msg="";
-         String loc="/";
-         if(result>0) {
+          String loc="/Logout.do";
+          if(result>0) {
             msg="회원 탈퇴 성공";
             session.invalidate();
          }else {
@@ -99,16 +102,12 @@ public class PageController {
          }
          model.addAttribute("msg",msg);
          model.addAttribute("loc",loc);
-         
          return "common/msg";     
          }
-    
     @RequestMapping("/partner/updatePartner") //멤버 회원 정보 수정
       public String updatePartnerPage(Partner p,Model model) {
-         
          p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));
          int result=0;
-         
          try {
             p.setPartner_Address(pwEncoder.encode(p.getPartner_Address()));
             p.setPartner_Email(pwEncoder.encode(p.getPartner_Email()));
@@ -116,11 +115,8 @@ public class PageController {
             p.setPartner_Phone(pwEncoder.encode(p.getPartner_Phone()));
             result=partner_service.updatePartnerPage(p);
          } catch (Exception e) {
-            
             e.printStackTrace();
          }
-         
-         
          String msg="";
          String loc="/";
          if(result>0) {
@@ -130,34 +126,26 @@ public class PageController {
          }
          model.addAttribute("msg",msg);
          model.addAttribute("loc",loc);
-         
          return "common/msg";
-         
       }
     @RequestMapping("/member/deleteMember")
     public String deleteMember() {
        return "mypage/deleteMember";
     }
-    
-    
     @RequestMapping("/partner/deletePartner")
       public String deletePartner() {
-         
-         
          return "mypage/deletePartner";
       }
       
        @RequestMapping("/partner/deletePartnerPage") //멤버 회원 탈퇴
         public String deletePartnerPage(Partner p,HttpSession session,Model model) {
-          
-             
             int result=0;
             Partner resultPartner=partner_service.selectPartnerOne(p);
             if(pwEncoder.matches(p.getPartner_Password(), resultPartner.getPartner_Password())) {   
                result=partner_service.deletePartnerPage(p);
             }
-                      String msg="";
-            String loc="/";
+            String msg="";
+            String loc="/Logout.do";
             if(result>0) {
                msg="회원 탈퇴 성공";
                session.invalidate();
@@ -166,29 +154,20 @@ public class PageController {
             }
             model.addAttribute("msg",msg);
             model.addAttribute("loc",loc);
-            
             return "common/msg";     
             }
        
        @RequestMapping("/member/updateAdmin") //멤버 회원 정보 수정
          public String updateAdminPage(Member m,Model model) {
-            
             m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
-             
             int result=0;
-            
-            
             try {
-               m.setMember_Email(pwEncoder.encode(m.getMember_Email()));
-               m.setMember_Phone(pwEncoder.encode(m.getMember_Phone()));
+               m.setMember_Email(enc.decrypt(m.getMember_Email()));
+               m.setMember_Phone(enc.decrypt(m.getMember_Phone()));
                result=member_service.updateAdminPage(m);
-               
             } catch (Exception e) {
-               
                e.printStackTrace();
             }
-            
-            
             String msg="";
             String loc="/";
             if(result>0) {
@@ -198,9 +177,7 @@ public class PageController {
             }
             model.addAttribute("msg",msg);
             model.addAttribute("loc",loc);
-            
             return "common/msg";
-            
          }
    
 

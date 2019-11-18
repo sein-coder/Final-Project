@@ -288,7 +288,6 @@
 			var email=sessionStorage.getItem('email');
 			var gender=sessionStorage.getItem('gender');
 			var birthday=sessionStorage.getItem('birthday');
-			console.log(id+" "+name+" "+token+" "+email+" "+gender+" "+birthday);
 			
 			Kakao.init('4524f2a578ce5b005f1a8157e72c3d3a');
 			 function kakao() {
