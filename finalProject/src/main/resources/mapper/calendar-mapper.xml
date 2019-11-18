@@ -3,8 +3,20 @@
 <mapper namespace="calendar">
 
  <insert id="insertCalendar" parameterType="calendar">
-      INSERT INTO CALENDAR VALUES(seq_calendar_no.nextval,#{partnerNo},#{schedule},#{startDate},#{endDate},#{calendar_Content})
+      INSERT INTO CALENDAR VALUES(seq_calendar_no.nextval,#{partner_No},#{schedule},#{start_Date},#{end_Date},#{calendar_Content})
    </insert>
+   
+   <select id="selectCalendarOne" parameterType="calendar">
+      SELECT * FROM CALENDAR WHERE PARTNER_NO=#{partner_No}
+   
+   </select>
+   
+   <select id="selectCalendar" parameterType="string" resultType="calendar">
+     SELECT * FROM CALENDAR WHERE PARTNER_NO=#{partner_No}
+   
+   </select>
+
+
 
 
 </mapper>
