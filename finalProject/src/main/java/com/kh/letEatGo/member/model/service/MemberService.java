@@ -16,6 +16,10 @@ public interface MemberService {
 	
 	int deleteMemberPage(Member m);
 
+	Member selectMemberEmail(Member m);
+
+	int updateMemberPassword(Member m);
+
 	int updateAdminPage(Member m);
 	
 	int insertKakao(Member m);
