@@ -126,15 +126,14 @@ public class MemberController {
 			  m.setMember_Email("이메일을 입력하시오.");
 		  }
 		  
-		
-		 
 		  Member result2;
 		  
 		  result2 = service.selectMemberOne(m);
-		  
+		  mv.setViewName("redirect:/");
 		  if(result2==null) {
 			  int result=service.insertKakao(m);
 			  result2 = service.selectMemberOne(m);
+			  mv.setViewName("/mypage/memberPage");
 		  }
 		  try {
 			result2.setMember_Phone(enc.decrypt(result2.getMember_Phone()));
@@ -148,8 +147,14 @@ public class MemberController {
 		  session.setAttribute("type", "member");
 		  Member result3=service.selectMemberOne(m);
 		  session.setAttribute("member",result3);
+		  try {
+			result3.setMember_Phone(enc.decrypt(result3.getMember_Phone()));
+			result3.setMember_Email(enc.decrypt(result3.getMember_Email()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		  //mv.setViewName("redirect:/");
-		  mv.setViewName("/mypage/memberPage");
 		return mv;
 
 	  }
