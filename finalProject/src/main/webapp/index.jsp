@@ -315,10 +315,7 @@
 							<p>이지연</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;A small river named Duden flows by their place and
-								supplies it with the necessary regelialia. It is a paradisematic
-								country, in which roasted parts of sentences fly into your
-								mouth.&rdquo;</p>
+							<p>&ldquo;안녕하세요.저는 렛잇고에서 축제알리미와 1:1문의를 맡은 이지연입니다.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -333,7 +330,7 @@
 							<p>강보승</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;안녕하세요!  직장인이 되고싶은 강보승입니다. 회사원이 되는 그날까지 열심히 달리겠습니다. .&rdquo;</p>
+							<p>&ldquo;안녕하세요!<br>직장인이 되고싶은 강보승입니다.<br>회사원이 되는 그날까지 열심히 달리겠습니다. .&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
