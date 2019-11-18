@@ -1,6 +1,7 @@
 package com.kh.letEatGo.accountBook.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -25,5 +26,17 @@ public interface AccountBookDao {
 	Account selectAccount(SqlSessionTemplate session, int partner_No);
 	
 	int insertAccount(SqlSessionTemplate session, Account account);
+
+	List<Map<String,String>> selectCalRate(SqlSessionTemplate session, int partner_No);
+	
+	int selectMonthlyIncome(SqlSessionTemplate session, int partner_No);
+
+	List<Map<String,String>> selectYesterday_today_incomeRate(SqlSessionTemplate session, int partner_No);
+
+	int selectSumRevenue(SqlSessionTemplate session, int partner_No);
+	
+	double selectGoalMonthly(SqlSessionTemplate session, int partner_No);
+	
+	List<Map<String,String>> selectCalRoundChart(SqlSessionTemplate session, int partner_No);
 	
 }

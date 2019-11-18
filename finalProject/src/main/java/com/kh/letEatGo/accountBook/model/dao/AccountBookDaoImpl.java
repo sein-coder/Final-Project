@@ -1,6 +1,7 @@
 package com.kh.letEatGo.accountBook.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -66,7 +67,42 @@ public class AccountBookDaoImpl implements AccountBookDao {
 		// TODO Auto-generated method stub
 		return session.insert("account.insertAccount",account);
 	}
-	
+
+	@Override
+	public List<Map<String,String>> selectCalRate(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectList("accountBook.selectCalRate",partner_No);
+	}
+
+	@Override
+	public int selectMonthlyIncome(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectOne("accountBook.selectMonthlyIncome",partner_No);
+	}
+
+	@Override
+	public List<Map<String, String>> selectYesterday_today_incomeRate(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectList("accountBook.selectYesterday_today_incomeRate",partner_No);
+	}
+
+	@Override
+	public int selectSumRevenue(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectOne("accountBook.selectSumRevenue",partner_No);
+	}
+
+	@Override
+	public double selectGoalMonthly(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectOne("accountBook.selectGoalMonthly",partner_No);
+	}
+
+	@Override
+	public List<Map<String, String>> selectCalRoundChart(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectList("accountBook.selectCalRoundChart",partner_No);
+	}
 	
 	
 	

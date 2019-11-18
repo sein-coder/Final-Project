@@ -9,6 +9,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -263,8 +267,127 @@ public class AccountBookController {
 		return mv;
 	}
 
+	@RequestMapping("/accountBook/calculate.do")
+	public ModelAndView calculate(int partner_No) {
+		ModelAndView mv = new ModelAndView();
 
+		List<Map<String,String>> calList = service.selectCalRate(partner_No); 
+		
+		// 날짜 분류 리스트
+		List<String> caldateList = new ArrayList();
+		
+		for(Map<String,String> m : calList) {
+			caldateList.add(m.get("ACCOUNT_DATE"));			
+		}
+		
+		//중복 날짜데이터 삭제
+		caldateList = caldateList.parallelStream().distinct().collect(Collectors.toList());
 
+		// 현금비율 리스트, 카드비율 리스트, 계좌이체비율 리스트, 기타비율 리스트
+		List<Integer> cashList = new ArrayList();
+		List<Integer> cardList = new ArrayList();
+		List<Integer> bankTransferList = new ArrayList();
+		List<Integer> otherList = new ArrayList();
+		
+		for(int i=0; i<caldateList.size(); i++) {
+			cashList.add(0);
+			cardList.add(0);
+			bankTransferList.add(0);
+			otherList.add(0);
+		}
+		
+		// 각 리스트에 맞게 분류
+		for(Map<String,String> m : calList) {
+			
+			int index = caldateList.indexOf(m.get("ACCOUNT_DATE"));
+			
+			switch (m.get("ACCOUNT_TYPE")) {
+			case "현금":
+				cashList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "카드":
+				cardList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "계좌이체":
+				bankTransferList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			case "기타":
+				otherList.set(index, Integer.parseInt(String.valueOf(m.get("RATING"))));
+				break;
+			}
+		}
+		
+		mv.addObject("caldateList",caldateList);
+		mv.addObject("cashList",cashList);
+		mv.addObject("cardList",cardList);
+		mv.addObject("bankTransferList",bankTransferList);
+		mv.addObject("otherList",otherList);
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
 
+	@RequestMapping("/accountBook/cardCalculate.do")
+	public ModelAndView cardCalculate(int partner_No) {
+		ModelAndView mv = new ModelAndView();
+		
+		//월 단위 매출 합계
+		int monthlyIncome = 0;
+		monthlyIncome = service.selectMonthlyIncome(partner_No);
+		
+		double goalMonthly = 0;
+		goalMonthly = service.selectGoalMonthly(partner_No);
+		
+		//전일 대비 매출 증감율 계산
+		List<Map<String,String>> yesterday_today_incomeRate = service.selectYesterday_today_incomeRate(partner_No);
+		if(yesterday_today_incomeRate!=null) {
+			double yt_IncomeRate=1;
+			double y_IncomeRate=1;
+			double t_IncomeRate=1;
+			for(Map<String,String> m : yesterday_today_incomeRate) {
+				if(String.valueOf(m.get("ROWNUM")).equals("1")) {
+					t_IncomeRate = Integer.parseInt(String.valueOf(m.get("SUM(ACCOUNT_INCOME)")));
+				}else {
+					y_IncomeRate = Integer.parseInt(String.valueOf(m.get("SUM(ACCOUNT_INCOME)")));
+				}
+			}
+			
+			yt_IncomeRate = Math.round((double)(t_IncomeRate - y_IncomeRate) / y_IncomeRate * 100);
+			mv.addObject("yt_IncomeRate",yt_IncomeRate);
+			mv.addObject("yt_Income",(int)t_IncomeRate-y_IncomeRate);
+		}
 
+		int sumRevenue = 0;
+		sumRevenue = service.selectSumRevenue(partner_No);
+		
+		mv.addObject("goalMonthly",goalMonthly);
+		mv.addObject("sumRevenue",sumRevenue);
+		mv.addObject("monthlyIncome",monthlyIncome);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	@RequestMapping("/accountBook/roundChartcalculate.do")
+	public ModelAndView roundChartcalculate(int partner_No, HttpServletResponse res) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Map<String,String>> roundCharList = service.selectCalRoundChart(partner_No);
+		
+		List<String> labelList = new ArrayList();
+		List<String> countList = new ArrayList();
+		
+		for(Map<String,String> m : roundCharList) {
+			System.out.println(m);
+			labelList.add(String.valueOf(m.get("연령대"))+String.valueOf(m.get("성별")));
+			countList.add(String.valueOf(m.get("명")));
+		}
+		
+		res.setContentType("text/html;charset=utf-8");
+		
+		mv.addObject("labelList",labelList);
+		mv.addObject("countList",countList);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
 }

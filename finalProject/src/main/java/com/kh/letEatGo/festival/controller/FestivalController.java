@@ -95,9 +95,11 @@ public class FestivalController {
 		  
 		  
 		  if(!upFile.isEmpty()) {
-			   String oriFileName=upFile.getOriginalFilename();			   festival.setFestival_Thumbnail(oriFileName);
+			   String oriFileName=upFile.getOriginalFilename();
+			   festival.setFestival_Thumbnail(oriFileName);
 		   try { 
-			  //transferTo는 multipa 제공 			   upFile.transferTo(new File(saveDir+"/"+oriFileName));
+			  //transferTo는 multipa 제공 
+			   upFile.transferTo(new File(saveDir+"/"+oriFileName));
 		   
 		  }catch(IOException  e) {
 			   e.printStackTrace();
