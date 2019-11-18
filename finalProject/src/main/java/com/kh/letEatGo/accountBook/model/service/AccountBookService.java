@@ -28,4 +28,13 @@ public interface AccountBookService {
 	List<Map<String,String>> selectCalRate(int partner_No);
 	
 	int selectMonthlyIncome(int partner_No);
+	
+	List<Map<String,String>> selectYesterday_today_incomeRate(int partner_No);
+	
+	int selectSumRevenue(int partner_No);
+
+	double selectGoalMonthly(int partner_No);
+	
+	List<Map<String,String>> selectCalRoundChart(int partner_No);
+	
 }

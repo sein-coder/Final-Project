@@ -71,5 +71,36 @@
 			AND TO_NUMBER(SUBSTR(SYSDATE,4,2)) 
 					= TO_NUMBER(SUBSTR(ACCOUNT_DATE,6,2))
 	</select>
+	
+	<select id="selectYesterday_today_incomeRate" parameterType="_int" resultType="java.util.HashMap">
+		SELECT ROWNUM, a.* 
+		FROM (
+			SELECT ACCOUNT_DATE, SUM(ACCOUNT_INCOME)
+			FROM ACCOUNTBOOK
+			WHERE PARTNER_NO = #{partner_No} AND TO_NUMBER(SUBSTR(SYSDATE,4,2)) = TO_NUMBER(SUBSTR(ACCOUNT_DATE,6,2))
+			GROUP BY ACCOUNT_DATE
+			ORDER BY ACCOUNT_DATE DESC ) a
+		WHERE <![CDATA[ROWNUM <= 2]]>
+	</select>
+		
+	<select id="selectSumRevenue" parameterType="_int" resultType="_int">
+		SELECT (SUM(ACCOUNT_INCOME) - SUM(ACCOUNT_OUTCOME)) AS SUM_REVENUE
+		FROM ACCOUNTBOOK
+		WHERE partner_no = #{partner_No} AND TO_NUMBER(SUBSTR(SYSDATE,4,2)) = TO_NUMBER(SUBSTR(ACCOUNT_DATE,6,2))
+	</select>
+		
+	<select id="selectGoalMonthly" parameterType="_int" resultType="_double">
+		SELECT ROUND(SUM(ACCOUNT_INCOME) / SUM(ACCOUNT_PREDICT) * 100,1) AS GOAL
+		FROM ACCOUNTBOOK
+		WHERE PARTNER_NO = #{partner_No} and TO_NUMBER(SUBSTR(SYSDATE,4,2)) = TO_NUMBER(SUBSTR(ACCOUNT_DATE,6,2))
+	</select>
+		
+	<select id="selectCalRoundChart" parameterType="_int" resultType="java.util.HashMap">
+		SELECT FLOOR(MEMBER_AGE/10)*10||'대' 연령대, MEMBER_GENDER 성별, COUNT(*) 명
+		FROM ORDER_HISTORY o
+		INNER JOIN MEMBER m ON o.MEMBER_NO = m.MEMBER_NO
+		WHERE PARTNER_NO = #{partner_No}
+		GROUP BY FLOOR(MEMBER_AGE/10), MEMBER_GENDER
+	</select>
 		
 </mapper>

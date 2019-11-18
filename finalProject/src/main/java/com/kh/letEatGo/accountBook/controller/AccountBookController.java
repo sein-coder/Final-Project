@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -329,14 +331,63 @@ public class AccountBookController {
 	public ModelAndView cardCalculate(int partner_No) {
 		ModelAndView mv = new ModelAndView();
 		
-		int monthlyIncome = service.selectMonthlyIncome(partner_No);
-		int incomeRate_Monthly;
-		int yesterday_today_incomeRate;
-		int sell_Count;
+		//월 단위 매출 합계
+		int monthlyIncome = 0;
+		monthlyIncome = service.selectMonthlyIncome(partner_No);
 		
+		double goalMonthly = 0;
+		goalMonthly = service.selectGoalMonthly(partner_No);
+		
+		//전일 대비 매출 증감율 계산
+		List<Map<String,String>> yesterday_today_incomeRate = service.selectYesterday_today_incomeRate(partner_No);
+		if(yesterday_today_incomeRate!=null) {
+			double yt_IncomeRate=1;
+			double y_IncomeRate=1;
+			double t_IncomeRate=1;
+			for(Map<String,String> m : yesterday_today_incomeRate) {
+				if(String.valueOf(m.get("ROWNUM")).equals("1")) {
+					t_IncomeRate = Integer.parseInt(String.valueOf(m.get("SUM(ACCOUNT_INCOME)")));
+				}else {
+					y_IncomeRate = Integer.parseInt(String.valueOf(m.get("SUM(ACCOUNT_INCOME)")));
+				}
+			}
+			
+			yt_IncomeRate = Math.round((double)(t_IncomeRate - y_IncomeRate) / y_IncomeRate * 100);
+			mv.addObject("yt_IncomeRate",yt_IncomeRate);
+			mv.addObject("yt_Income",(int)t_IncomeRate-y_IncomeRate);
+		}
+
+		int sumRevenue = 0;
+		sumRevenue = service.selectSumRevenue(partner_No);
+		
+		mv.addObject("goalMonthly",goalMonthly);
+		mv.addObject("sumRevenue",sumRevenue);
 		mv.addObject("monthlyIncome",monthlyIncome);
 		mv.setViewName("jsonView");
 		return mv;
 	}
 
+	@RequestMapping("/accountBook/roundChartcalculate.do")
+	public ModelAndView roundChartcalculate(int partner_No, HttpServletResponse res) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Map<String,String>> roundCharList = service.selectCalRoundChart(partner_No);
+		
+		List<String> labelList = new ArrayList();
+		List<String> countList = new ArrayList();
+		
+		for(Map<String,String> m : roundCharList) {
+			System.out.println(m);
+			labelList.add(String.valueOf(m.get("연령대"))+String.valueOf(m.get("성별")));
+			countList.add(String.valueOf(m.get("명")));
+		}
+		
+		res.setContentType("text/html;charset=utf-8");
+		
+		mv.addObject("labelList",labelList);
+		mv.addObject("countList",countList);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
 }
