@@ -315,7 +315,9 @@
 							<p>이지연</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;안녕하세요.저는 렛잇고에서 축제알리미와 1:1문의를 맡은 이지연입니다.&rdquo;</p>
+							<p>&ldquo;안녕하세요.저는 Let Eat Go에서 축제알리미와 1:1문의를 맡은 이지연입니다.<br>
+							積土成山이란 흙이 쌓여 산이된다는 말로 작은것도 많이 모이면 커진다는 것을 의미합니다 .<br>
+							비록 지금은 조그마한 흙이지만 개발자의 한사람으로서 전문성을 갖출수 있도록 노력하는 사람이 되겠습니다.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -356,17 +358,15 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/국푸름.jpg"
 								alt="Free Website Template by Free-Template.co"
 								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>국푸름</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;The Big Oxmox advised her not to do so, because
-								there were thousands of bad Commas, wild Question Marks and
-								devious Semikoli, but the Little Blind Text didn’t listen. She
-								packed her seven versalia, put her initial into the belt and
-								made herself on the way.&rdquo;</p>
+							<p>&ldquo;안녕하세요 Error is Life 팀의 팀원 국푸름입니다.<br>
+							담당파트는 MAP , 카카오톡 로그인 , 리캡챠 API입니다.<br>
+							앞으로도 열심히 하겠습니다!.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -374,17 +374,13 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/박영진.jpg"
 								alt="Free Website Template by Free-Template.co"
 								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>박영진</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;The Big Oxmox advised her not to do so, because
-								there were thousands of bad Commas, wild Question Marks and
-								devious Semikoli, but the Little Blind Text didn’t listen. She
-								packed her seven versalia, put her initial into the belt and
-								made herself on the way.&rdquo;</p>
+							<p>&ldquo;회원 페이지 관리와 일정관리 맡은 박영진입니다.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
