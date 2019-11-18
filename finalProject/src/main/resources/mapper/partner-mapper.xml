@@ -11,12 +11,12 @@
   	</select>
   	<select id="selectPartnerNo" parameterType="partner" resultType="partner">
   		select * from PARTNER WHERE partner_Permission_No=#{partner_Permission_No}
-  	</select>
-  	
+  	</select>  	
   	
   	<!-- 파트너 회원 정보 수정 -->
   	<update id="updatePartnerPage">
-  	  UPDATE PARTNER SET
+  	  UPDATE PARTNER SET 
+  	                     PARTNER_RE=#{partner_Re},
   	                     PARTNER_ID=#{partner_Id},
   	                     PARTNER_TRUCKNAME=#{partner_TruckName},
   	                     PARTNER_ADDRESS=#{partner_Address},
@@ -34,7 +34,8 @@
 
   	<!-- 파트너 회원 탈퇴  -->
   	<delete id="deletePartnerPage">
-  	  DELETE FROM PARTNER WHERE PARTNER_ID=#{partner_Id} and PARTNER_PASSWORD=#{partner_Password}
+  	  DELETE FROM PARTNER 
+  	    WHERE PARTNER_ID=#{partner_Id}
   	</delete>
 
   

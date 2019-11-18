@@ -9,10 +9,14 @@ public interface MemberDao {
 	int insertMember(SqlSessionTemplate session, Member m);
 
 	Member selectMemberOne(SqlSessionTemplate session, Member m);
+	
+	Member selectMemberOne2(SqlSessionTemplate session, Member m);
 
 	int updateMemberPage(SqlSessionTemplate session,Member m);
 	
 	int deleteMemberPage(SqlSessionTemplate session,Member m);
+	
+	int updateAdminPage(SqlSessionTemplate session,Member m);
 
 
 }

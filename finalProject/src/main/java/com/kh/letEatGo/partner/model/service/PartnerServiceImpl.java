@@ -42,6 +42,15 @@ public class PartnerServiceImpl implements PartnerService {
 	public Partner selectPartnerNo(Partner p) {
 		return dao.selectPartnerNo(session,p);
 	}
+
+
+
+	@Override
+	public int deletePartnerPage(Partner p) {
+		return dao.deletePartnerPage(session,p);
+	}
+	
+	
 	
 	
 }

@@ -29,6 +29,7 @@ public class PageController {
 	@Autowired
 	private MyEncrypt enc;
 	
+	
 	@RequestMapping("/memberPage")
 	public String memberPage(Member m,Model model) {
 		Member result=member_service.selectMemberOne(m);
@@ -46,14 +47,10 @@ public class PageController {
 		return "mypage/partnerPage";
 	}
 	
-	@RequestMapping("/pageList")
-	public String pageList() {
-		return "mypage/list";
-	}
-	
-	
 	@RequestMapping("/adminPage")
-	public String adminPage() {
+	public String adminPage(Member m,Model model) {
+		Member result3=member_service.selectMemberOne2(m);
+		model.addAttribute("member", result3);
 		return "mypage/adminPage";
 	}
 	
@@ -62,10 +59,13 @@ public class PageController {
 	public String updateMemberPage(Member m,Model model) {
 		
 		m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
+	    
 		int result=0;
 		
 		
 		try {
+			m.setMember_Email(pwEncoder.encode(m.getMember_Email()));
+			m.setMember_Phone(pwEncoder.encode(m.getMember_Phone()));
 			result=member_service.updateMemberPage(m);
 			
 		} catch (Exception e) {
@@ -97,26 +97,18 @@ public class PageController {
 	 @RequestMapping("/member/deleteMemberPage") //멤버 회원 탈퇴
 	  public String deleteMemberPage(Member m,HttpSession session,Model model) {
 		 
-		    m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
-		   
-		    int result=0;
-			
 		    
-			try {
+			int result=0;
+			Member resultMember=member_service.selectMemberOne(m);
+			if(pwEncoder.matches(m.getMember_Password(), resultMember.getMember_Password())) {	
 				result=member_service.deleteMemberPage(m);
-			    System.out.println(result);
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
 			}
-			
-		 
 		    String msg="";
 			String loc="/";
 			if(result>0) {
 				msg="회원 탈퇴 성공";
 				session.invalidate();
+				//회원탈퇴 성공후에도 로그아웃 안되는것 문제
 			}else {
 				msg="회원 탈퇴 실패";
 			}
@@ -135,7 +127,10 @@ public class PageController {
 			int result=0;
 			
 			try {
-				
+				p.setPartner_Address(pwEncoder.encode(p.getPartner_Address()));
+				p.setPartner_Email(pwEncoder.encode(p.getPartner_Email()));
+				p.setPartner_Permission_No(pwEncoder.encode(p.getPartner_Permission_No()));
+				p.setPartner_Phone(pwEncoder.encode(p.getPartner_Phone()));
 				result=partner_service.updatePartnerPage(p);
 			} catch (Exception e) {
 				
@@ -156,9 +151,75 @@ public class PageController {
 			return "common/msg";
 			
 		}
-	  
-	
-
+	 
+	 @RequestMapping("/partner/deletePartner")
+		public String deletePartner() {
+			
+			
+			return "mypage/deletePartner";
+		}
+		
+		 @RequestMapping("/partner/deletePartnerPage") //멤버 회원 탈퇴
+		  public String deletePartnerPage(Partner p,HttpSession session,Model model) {
+			 
+			    
+				int result=0;
+				Partner resultPartner=partner_service.selectPartnerOne(p);
+				if(pwEncoder.matches(p.getPartner_Password(), resultPartner.getPartner_Password())) {	
+					result=partner_service.deletePartnerPage(p);
+				}
+			             String msg="";
+				String loc="/";
+				if(result>0) {
+					msg="회원 탈퇴 성공";
+					session.invalidate(); 
+				}else {
+					msg="회원 탈퇴 실패";
+				}
+				model.addAttribute("msg",msg);
+				model.addAttribute("loc",loc);
+				
+				
+				
+				return "common/msg";	  
+				}
+		 
+		 @RequestMapping("/member/updateAdmin") //멤버 회원 정보 수정
+			public String updateAdminPage(Member m,Model model) {
+				
+				m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
+			    
+				int result=0;
+				
+				
+				try {
+					m.setMember_Email(pwEncoder.encode(m.getMember_Email()));
+					m.setMember_Phone(pwEncoder.encode(m.getMember_Phone()));
+					result=member_service.updateAdminPage(m);
+					
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+				
+				
+				String msg="";
+				String loc="/";
+				if(result>0) {
+					msg="정보 수정 성공";
+				}else {
+					msg="정보 수정 실패";
+				}
+				model.addAttribute("msg",msg);
+				model.addAttribute("loc",loc);
+				
+				return "common/msg";
+				
+			}
+		 
+		 
+		 
+		 
 	
 
 }

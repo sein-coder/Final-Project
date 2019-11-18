@@ -65,12 +65,20 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
      .info .link {color: #5085BB;}  
 
+@media(min-width:768px) {
+     .bb-text {font-size: 13px; font-family: BinggraeMelona;}
+     .bb-line {stroke-width: 1px; font-family: BinggraeMelona;}
+     .bb-axis {font-size: 13px; font-family: BinggraeMelona;}
+	 .bb-legend-item{font-size:13px; font-family: BinggraeMelona;}
+
 </style>
 
 <section id="content">
 	<div class="site-section" style="background-color: #f4f4f4;">
 		<div i class="container" style="background-color: white;">
-
+			
+			<c:if test="${not empty account }">
+			
 			<!-- 이용자 아이디 출력 구역 -->
 			<div class="row mb-4 justify-content-start">
 				<h2>사용자(사업자)님의 장부</h2>
@@ -84,7 +92,6 @@
 						<tr>
 							<th scope="col">번호</th>
 							<th scope="col">날짜</th>
-							<th scope="col">지역코드</th>
 							<th scope="col">분류</th>
 							<th scope="col">항</th>
 							<th scope="col">목</th>
@@ -105,7 +112,6 @@
 							<tr>
 								<td scope="row">${i.count }<input type="hidden" value="${ab.account_No }"></td>
 								<td>${ab.account_Date }</td>
-								<td>${ab.account_LocCode }</td>
 								<td>${ab.account_Type }</td>
 								<td>${ab.account_Clause }</td>
 								<td>${ab.account_Item }</td>
@@ -155,88 +161,189 @@
 
 			<!-- 차트화면 구역 -->
 			<div class="row mb-3 justify-content-start">
-				<h3>월별(일별) 지출/수입/잔액 그래프</h3>
+				<h3>월별(일별) 지출/수입 그래프</h3>
 			</div>
-			<div class="row mb-5" id="barChart"></div>
+			<div class="row mb-5" id="areaChart"></div>
 
 			<!-- 통계지도 구역 -->
+			<h3>예상 매출 및 순수익</h3>
 			<div class="row mb-3 justify-content-start">
-				<h3>지역별 순수익 지도</h3>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8">
-					<div id="map" style="width:100%;height:350px;"></div>
+				<div class="col">
+					<h4>일별 순수익 그래프</h4>
+					<div class="mb-5" id="areaChart2"></div>				
+				</div>
+				<div class="col">
+					<h4>일별 수익 분류 매출액</h4>
+					<div class="mb-5" id="barChart"></div>
 				</div>
 			</div>
 
+			
+			</c:if>
+			<c:if test="${empty account }">
+
+				<div class="modal fade" id="myModal2">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">계좌 등록</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<!-- Modal body -->
+							<div class="modal-body">
+								<div class="container">
+									<div class="row">
+										<div class="col">
+											<p>장부관리 기능을 활용하기 위해서 계좌를 등록해주세요.</p>
+												<div class="tab-pane fade show active" id="member_log">
+													<div>
+													<form id="accountfrm" action="${pageContext.request.contextPath}/accountBook/insertAccount.do?partner_No=${partner_No}" method="POST">
+														<div class="row justify-content-start pb-3 pl-5">
+															<span class="pr-1">계좌 번호 : </span>
+															<input type="text" placeholder="계좌번호를 입력해주세요('-빼고')" name="account_Number" size="40"/>
+														</div>
+														<div class="row justify-content-start pb-3 pl-5">
+															<span class="pr-1">계좌 번호 : </span>
+															<input type="text" placeholder="예금주명" name="account_Name" /> 
+														</div> 
+														<div class="row justify-content-center">
+															<div class="btn-group btn-group-toggle" data-toggle="buttons">
+															  <label class="btn btn-secondary active mr-3">
+															    <input type="radio" name="account_Bank" autocomplete="off" value="농협" checked> 농협
+															  </label>
+															  <label class="btn btn-secondary mr-3">
+															    <input type="radio" name="account_Bank" autocomplete="off" value="신한"> 신한
+															  </label>
+															  <label class="btn btn-secondary mr-3">
+															    <input type="radio" name="account_Bank" autocomplete="off" value="국민"> 국민
+															  </label>
+															  <label class="btn btn-secondary mr-3">
+															    <input type="radio" name="account_Bank" autocomplete="off" value="신협"> 신협
+															  </label>
+															  <label class="btn btn-secondary mr-3">
+															    <input type="radio" name="account_Bank" autocomplete="off" value="우리"> 우리
+															  </label>
+															</div>
+														</div>
+													</form>
+													</div>
+												</div>
+											<script type="text/javascript">
+												var onloadCallback = function() {
+													grecaptcha
+															.render(
+																	'html_element',
+																	{
+																		'sitekey' : '6LcTHL0UAAAAAEkwWVCn3v37_ufKUIWC6rIZ7_LT'
+																	});
+												};
+												function reCapchar() {
+													if (typeof (grecaptcha) != 'undefined') {
+														if (grecaptcha
+																.getResponse() == "") {
+															alert("스팸방지코드 확인하세요");
+															return false;
+														}
+													}
+												}
+											</script>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" onclick="accountsubmit();">계좌등록</button>
+								<button type="button" class="btn btn-secondary" onclick="accountExit();">닫기</button>
+							</div>							
+						</div>
+					</div>
+				</div>
+
+				<script>
+					$(document).ready(function() {
+						$("#myModal2").modal();
+					});
+					
+					function accountsubmit(){
+						console.log("실행");
+						$("#accountfrm").submit();
+					}
+					
+					function accountExit(){
+						$("#myModal2").hide();
+						location.href = "${pageContext.request.contextPath}/";
+					}
+					
+				</script>
+					
+			</c:if>
+			
 		</div>
 	</div>
+	
+	<!-- 통계용 데이터 처리 -->
+	<script type="text/javascript">
+	//그래프 데이터 리스트형 전처리
+	var dateList = new Array();
+	<c:forEach items="${dateList}" var="item">
+	dateList.push("${item}");
+	</c:forEach>
+	dateList.unshift("x");
+
+	var incomeList = ${incomeList};
+	incomeList.unshift("data1");
+
+	var outcomeList = ${outcomeList};
+	outcomeList.unshift("data2");
+
+	var revenueList = ${revenueList};
+	revenueList.unshift("data3");
+	</script>
+	
 	<!-- 그래프 디자인 및 설정 -->
-	<script type="text/javascript">		
-		//그래프 데이터 리스트형 전처리
-		var dateList = new Array();
-		<c:forEach items="${dateList}" var="item">
-			dateList.push("${item}");
-		</c:forEach>		
-		dateList.unshift("x");
-		
-		var incomeList = ${incomeList};
-		incomeList.unshift("data1");
-		
-		var outcomeList = ${outcomeList};		
-		outcomeList.unshift("data2");
-		
-		var revenueList = ${revenueList};
-		revenueList.unshift("data3");
-		
+	<script type="text/javascript">
 		/* 그래프 원화 formatting */
-      	d3.formatDefaultLocale({
- 			 "decimal": ".",
- 			 "thousands": ",",
- 			 "grouping": [3],
- 			 "currency": ["₩", ""]
- 		});
-		
+		d3.formatDefaultLocale({
+			"decimal" : ".",
+			"thousands" : ",",
+			"grouping" : [ 3 ],
+			"currency" : [ "₩", "" ]
+		});
+
 		var chart = bb.generate({
 			title : {
-				text : "일별 지출/수입/잔액 그래프"
+				text : "일별 지출/수입 그래프"
 			},
 			data : {
 				x : "x",
-				columns : [
-					dateList,
-					incomeList,
-					outcomeList,
-					revenueList ],
+				columns : [ dateList, incomeList, outcomeList ],
 				names : {
 					data1 : "수입",
-					data2 : "지출",
-					data3 : "순수익"
+					data2 : "지출"
 				},
 				types : {
-					data1 : "bar",
-					data2 : "bar",
-					data3 : "spline"
+					data1 : "area-spline",
+					data2 : "area-spline"
 				},
 				colors : {
 					data1 : "#f38181",
-					data2 : "#ffc9c9",
-					data3 : "#f89d13"
+					data2 : "#f89d13"
 				},
 				labels : {
 					position : {
 						y : -5
 					},
-					format: {
-						data1 : function(x){			               	 
+					format : {
+						data1 : function(x) {
 							return d3.format('$,')(x);
 						},
-						data2 : function(x){			               	 
+						data2 : function(x) {
 							return d3.format('$,')(x);
-						},
-						data3 : function(x){		               	 
-							return d3.format('$,')(x);
-						},
+						}
 					}
 				}
 			},
@@ -255,12 +362,12 @@
 					},
 					height : 40
 				},
-				y: {
-	                 tick: {
-	                 format: function(x) {
-		                 return d3.format("$,")(x); 
-		                 }
-	                 }
+				y : {
+					tick : {
+						format : function(x) {
+							return d3.format("$,")(x);
+						}
+					}
 				}
 
 			},
@@ -275,11 +382,135 @@
 			zoom : {
 				enabled : true
 			},
-			bindto : "#barChart"
-		});		
-		
+			bindto : "#areaChart"
+		});
+	</script>
+	
+	<!-- 두번째 순수익 차트 -->
+	<script type="text/javascript">
+	var chart = bb.generate({
+		title : {
+			text : "일별 순수익 경향 그래프"
+		},
+		data : {
+			x : "x",
+			columns : [ dateList, revenueList ],
+			names : {
+				data3 : "순수익"
+			},
+			types : {
+				data3 : "area-spline"
+			},
+			colors : {
+				data3 : "#f38181"
+			},
+			labels : {
+				position : {
+					y : -5
+				},
+				format : {
+					data3 : function(x) {
+						return d3.format('$,')(x);
+					}
+				}
+			}
+		},
+		bar : {
+			width : {
+				ratio : 0.75
+			},
+			padding : 5
+		},
+		axis : {
+			x : {
+				type : "category",
+				tick : {
+					multiline : false,
+					tooltip : true
+				},
+				height : 40
+			},
+			y : {
+				tick : {
+					format : function(x) {
+						return d3.format("$,")(x);
+					}
+				}
+			}
+
+		},
+		grid : {
+			x : {
+				show : true
+			},
+			y : {
+				show : true
+			}
+		},
+		zoom : {
+			enabled : true
+		},
+		bindto : "#areaChart2"
+	});
+	</script>
+	<!-- 수익 분류 차트 -->
+	<script type="text/javascript">
+	var chart = bb.generate({
+		  data: {
+		    x: "x",
+		    columns: [
+		    	dateList,
+			["data1", 50, 50, 40, 40],
+			["data2", 10, 10, 25, 15],
+			["data3", 20, 25, 20, 35],
+			["data4", 20, 15, 15, 10]
+		    ],
+		    type: "bar",
+			names : {
+				data1 : "현금",
+				data2 : "카드",
+				data3 : "계좌이체",
+				data4 : "기타"
+			},
+			colors : {
+				data1 : "#f38181",
+				data2 : "#f89d13",
+				data3 : "#ffc9c9",
+				data4 : "#FBF697"
+			},
+		    groups: [
+		      [
+		        "data1",
+		        "data2",
+		        "data3",
+		        "data4"
+		      ]
+		    ]
+		  },
+		  axis: {
+		    rotated: true,
+		    x: {
+		      type: "category",
+		      clipPath: false,
+		      inner: false,
+		      tick: {
+		        text: {
+		          position: {
+		              x: 0,
+		              y: 0
+		          }
+		        }
+		      }
+		    },
+		    y: {
+		      show: false
+		    }
+		  },
+		  bindto: "#barChart"
+		});
 	</script>
 
+	
 
 	<!-- 테이블에 대한 이벤트 -->
 	<script type="text/javascript">
@@ -287,11 +518,11 @@
 
 		function addRow() {
 			if (flag) {
-				var inputNames = ['account_No','account_Date','account_LocCode','account_Type',
+				var inputNames = ['account_No','account_Date','account_Type',
 					'account_Clause','account_Item','account_Summary','account_Income','account_Outcome',
 					'account_Balance']
 				
-				var maxlength = [ 3, 8, 2, 7, 4, 4, 15, 8, 8, 8 ];
+				var maxlength = [ 3, 8, 7, 4, 4, 15, 8, 8, 8 ];
 
 				var tbody = $("#tbody");
 
@@ -302,7 +533,7 @@
 						tags += '<td scope="row" size='+maxlength[i]+'>추가중</td>'
 					} else if (i == 1) {
 						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" onchange="checkDateData(this)"></td>';
-					} else if (i == 3) {
+					} else if (i == 2) {
 						tags += '<td>';
 						tags += '<div class="btn-group">';
 						tags += '<select id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" style="background-color : #ffc9c9; padding : 0;">분류';
@@ -330,8 +561,8 @@
 		$("tr").on('dblclick',function() {
 			if (flag) {
 				var data = $(this).children();
-				var maxlength = [ 3, 8, 2, 7, 4, 4, 15, 8, 8, 8 ];
-				var inputNames = ['account_No','account_Date','account_LocCode','account_Type',
+				var maxlength = [ 3, 8, 7, 4, 4, 15, 8, 8, 8 ];
+				var inputNames = ['account_No','account_Date','account_Type',
 					'account_Clause','account_Item','account_Summary','account_Income','account_Outcome',
 					'account_Balance']
 				if (data[0].innerText != '행 추가하기') {
@@ -340,7 +571,7 @@
 
 						if (i == 1) {
 							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" value='+data[i].innerText+' onchange="checkDateData(this)">';
-						} else if (i == 3) {
+						} else if (i == 2) {
 							input = '<div class="btn-group">';
 							input += '<select id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" style="background-color : #ffc9c9">';
 							input += '<option value="현금">현금</option>';
@@ -348,7 +579,7 @@
 							input += '<option value="계좌이체">계좌이체</option>';
 							input += '<option value="기타">기타</option>';
 							input += '</select></div>';
-						} else if (i == 7 || i == 8 || i == 9){
+						} else if (i == 6 || i == 7 || i == 8){
 							var money;
 							console.log(data[i].innerText);
 							money = replaceAll(data[i].innerText,",","");
@@ -414,11 +645,10 @@
 	<script>
 		function insertAccountBook(){
 			$.ajax({
-				url : "${pageContext.request.contextPath}/accountBook/insertAccountBook.do?partner_No=1234",
+				url : "${pageContext.request.contextPath}/accountBook/insertAccountBook.do?partner_No=${partner_No}",
 				type : "post",
 				data : {
 					'account_Date':$("#account_Date").val(),
-					'account_LocCode':$("#account_LocCode").val(),
 					'account_Type':$("#account_Type").val(),
 					'account_Clause':$("#account_Clause").val(),
 					'account_Item':$("#account_Item").val(),
@@ -458,7 +688,6 @@
 				data : {
 					'account_No': account_No,
 					'account_Date':$("#account_Date").val(),
-					'account_LocCode':$("#account_LocCode").val(),
 					'account_Type':$("#account_Type").val(),
 					'account_Clause':$("#account_Clause").val(),
 					'account_Item':$("#account_Item").val(),
@@ -504,7 +733,7 @@
 	<!-- 페이징처리용 함수 -->
 	<script>
 	function fn_paging(cPage) {
-		location.href='${pageContext.request.contextPath}/accountBook/accountBookView?cPage='+cPage+'&partner_No=1234';
+		location.href='${pageContext.request.contextPath}/accountBook/accountBookView?cPage='+cPage+'&partner_No=${partner_No}';
 	}
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -513,101 +742,6 @@
         level: 5 // 지도의 확대 레벨
     };
 
-// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-var map = new kakao.maps.Map(mapContainer, mapOption),
-    customOverlay = new kakao.maps.CustomOverlay({}),
-    infowindow = new kakao.maps.InfoWindow({removable: false});
-//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-var mapTypeControl = new kakao.maps.MapTypeControl();
-
-// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-var zoomControl = new kakao.maps.ZoomControl();
-map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-var marker = new daum.maps.Marker({
-    /* position: new daum.maps.LatLng(37.537187, 127.005476), */
-    map: map
-})
-
-var places = new kakao.maps.services.Places();
-
-
-
-
-var positions = [
-    {
-        title: '막대그래프',//이름 
-        latlng: new kakao.maps.LatLng(37.52634778919655,126.93359546197759),//좌표
-        img : "",
-        time : 	"",
-        phone : ""
-    }
-];
-
-    
-    
-    var markers=[];
-    var overlays=[];
-    for(var i=0; i<positions.length; i++){
-	// 마커 이미지의 이미지 주소입니다
-	var imageSrc = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkwMc6bfZ7Q5n4UObzmIrU8h8W8m__SLdi53U98Aq561bGntx5Ww&s"; 
-    // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new kakao.maps.Size(24, 100); //10,0000 × 0.001 = 10
-    // 마커 이미지를 생성합니다    
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-        var maker = new kakao.maps.Marker({
-            map: map, // 마커를 표시할 지도
-            position: positions[i].latlng, // 마커를 표시할 위치
-            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            image : markerImage // 마커 이미지 
-        })	
-        
-        markers.push(maker);
-    var content = '<div class="wrap">' + 
-    '    <div class="info">' + 
-    '        <div class="title">' + 
-    			positions[i].title + 
-    '            <div class="close" onclick="closeOverlay('+i+')" title="닫기"></div>' + 
-    '        </div>' + 
-    '        <div class="body">' + 
-    '            <div class="img">' +
-    '                <img src="'+positions[i].img+'" width="73" height="70">' +
-    '           </div>' + 
-    '            <div class="desc">' + 
-    '                <div class="ellipsis">'+positions[i].time+'</div>' + 
-    '                <div class="jibun ellipsis">'+positions[i].phone+'</div>' + 
-    '                <div><a href="" class="link">ㅇㅇ</a></div>' + 
-    '            </div>' + 
-    '        </div>' + 
-    '    </div>' +    
-    '</div>';
-    
-    
-    var overlay = new kakao.maps.CustomOverlay({
-   	content: content,
-   	map: map,
-   	position: markers[i].getPosition()       
-   	});
-    overlays.push(overlay);
-    
-    function closeOverlay(i) {
-   	overlays[i].setMap(null);     
-   		} 
-    	
- 	overlays[i].setMap(null); 
- 	
-    }
-
-    $.each(overlays,function(i,item){
-    	kakao.maps.event.addListener(markers[i], 'click', function() {
-    		overlays[i].setMap(map);
-    		}); 
-    });
-	
-	
 	</script>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

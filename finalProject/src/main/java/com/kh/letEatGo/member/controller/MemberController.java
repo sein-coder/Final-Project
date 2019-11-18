@@ -44,9 +44,11 @@ public class MemberController {
 	  public String insertMember(Member m,Model model) {
 		  System.out.println(m);
 		  m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
-			logger.debug(m.getMember_Password());
+			
 			
 			try {
+				m.setMember_Email(pwEncoder.encode(m.getMember_Email()));
+				m.setMember_Phone(pwEncoder.encode(m.getMember_Phone()));
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

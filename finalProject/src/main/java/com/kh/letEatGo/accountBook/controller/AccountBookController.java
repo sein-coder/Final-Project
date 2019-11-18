@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.accountBook.model.service.AccountBookService;
+import com.kh.letEatGo.accountBook.model.vo.Account;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
 import com.kh.letEatGo.common.page.PageFactory;
+import com.kh.letEatGo.partner.model.service.PartnerService;
+import com.kh.letEatGo.partner.model.service.PartnerServiceImpl;
+import com.kh.letEatGo.partner.model.vo.Partner;
 
 @Controller
 public class AccountBookController {
@@ -22,14 +26,19 @@ public class AccountBookController {
 	
 	@RequestMapping("/accountBook/accountBookView")
 	public ModelAndView accountBookView(int partner_No, @RequestParam(value = "cPage", required = false, defaultValue = "1")int cPage) {		
+		ModelAndView mv = new ModelAndView();
+		
+		Account account = service.selectAccount(partner_No);
+		
+		if(account!=null) {
+		
 		int numPerPage = 5;
 		int totalData = service.selectAccountBookCount(partner_No);		
 		List<AccountBook> list = service.selectAccountBookList(partner_No,cPage, numPerPage);
-		ModelAndView mv = new ModelAndView();
 		
 		List<AccountBook> alllist = service.selectAllAccountBookList(partner_No);
-		
-		if(alllist!=null) {
+
+		if(alllist.size()!=0) {
 			// 최대/최소/평균 수익,지출,순수익 구하기
 			List incomeList = new ArrayList();
 			List outcomeList = new ArrayList();
@@ -76,10 +85,21 @@ public class AccountBookController {
 			mv.addObject("dateList",dateList);
 		}
 		
+		mv.addObject("account",account);
+		mv.addObject("partner_No",partner_No);
 		mv.addObject("list",list);
 		mv.addObject("totalCount",totalData);
 		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerPage,"/accountBook/accountBookView?partner_No=1234"));
 		mv.setViewName("accountBook/accountBookView");
+		
+		}
+		
+		else {
+			mv.addObject("account",account);
+			mv.addObject("partner_No",partner_No);
+			mv.setViewName("accountBook/accountBookView");
+		}
+		
 		return mv;
 	}
 	
@@ -89,7 +109,6 @@ public class AccountBookController {
 		ModelAndView mv = new ModelAndView();
 		AccountBook ab = new AccountBook();
 		ab.setAccount_Date(account_Date);
-		ab.setAccount_LocCode(account_LocCode);
 		ab.setAccount_Type(account_Type);
 		ab.setAccount_Clause(account_Clause);
 		ab.setAccount_Item(account_Item);
@@ -119,7 +138,6 @@ public class AccountBookController {
 		AccountBook ab = new AccountBook();
 		ab.setAccount_No(account_No);
 		ab.setAccount_Date(account_Date);
-		ab.setAccount_LocCode(account_LocCode);
 		ab.setAccount_Type(account_Type);
 		ab.setAccount_Clause(account_Clause);
 		ab.setAccount_Item(account_Item);
@@ -156,4 +174,39 @@ public class AccountBookController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
+
+	@RequestMapping("/accountBook/insertAccount.do")
+	public ModelAndView insertAccount(Account account) {
+		ModelAndView mv = new ModelAndView();
+		
+		account.setAccount_Balance(1000000);
+
+		System.out.println(account);
+		
+		int result = service.insertAccount(account);
+		
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result>0) {
+			msg = "계좌등록이 성공했습니다.";
+			loc = "/accountBook/accountBookView?partner_No="+account.getPartner_No();
+			System.out.println(loc);
+		}else {
+			msg = "계좌등록이 실패했습니다.";
+			loc = "/";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		
+		mv.setViewName("common/msg");
+		return mv;
+	}
+
+
+
+
+
 }

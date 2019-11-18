@@ -50,7 +50,7 @@ public class PartnerController {
 		  
 		  ModelAndView mv=new ModelAndView();
 		  
-		  String saveDir=req.getSession().getServletContext().getRealPath("/resources/upload/board");
+		  String saveDir=req.getSession().getServletContext().getRealPath("/resources/images/foodtruck");
 		  File dir=new File(saveDir);
 		  if(!dir.exists()) logger.debug("폴더생성 "+dir.mkdirs());
 			//다중파일 서버에 저장로직
@@ -75,13 +75,18 @@ public class PartnerController {
 					
 					p.setProfile_Old(oriFileName);
 					p.setProfile_Re(reName);
-					System.out.println(oriFileName);
+					
 				}
 			}
 		  p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));
-			logger.debug(p.getPartner_Password());
+			
 			
 			try {
+				p.setPartner_Address(pwEncoder.encode(p.getPartner_Address()));
+				p.setPartner_Email(pwEncoder.encode(p.getPartner_Email()));
+				p.setPartner_Permission_No(pwEncoder.encode(p.getPartner_Permission_No()));
+				p.setPartner_Phone(pwEncoder.encode(p.getPartner_Phone()));
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -104,7 +109,7 @@ public class PartnerController {
 	}
 	
 	@RequestMapping("/partner/partnerLogin.do")
-	public ModelAndView partnerlogin(Partner p,HttpSession session) {
+	public ModelAndView partnerlogin(Partner p, HttpSession session) {
 		ModelAndView mv=new ModelAndView();
 		Partner result=null;
 		result=service.selectPartnerOne(p);

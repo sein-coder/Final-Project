@@ -8,6 +8,11 @@
 <style>
  .btn-outline-light{
  color:black;}
+ 
+ 
+
+ 
+ .photo{width:300px;}
 
 </style>
 
@@ -21,8 +26,13 @@
   
   $(document).ready(function(){
 	  $("#pbtnDelete").click(function(){
-		  document.deletePartner.action="${path}/partner/deletePartner";
-		  document.deletePartner.submit();
+		  location.href="${path}/partner/deletePartner?Partner_Id="+'${loginMember.partner_Id}';
+	  });
+  }); 
+  
+  $(document).ready(function(){
+	  $("#cbtnMove").click(function(){
+		  location.href="${path}/calendar";
 	  });
   });
   
@@ -38,24 +48,27 @@
        <form name="updatePartner" method="post">
         <table class="table" id="tbl-dev">
         <div class="form-group">
+			<img src="${path}/resources/images/foodtruck/${partner.profile_Re}" class="photo" />
+	    </div>
+        <div class="form-group">
 					<label for="form-label">아이디</label>
-			<input name="partner_Id" value="${partner.partner_Id}" readonly="readonly">
+			<input name="partner_Id" value="${partner.partner_Id}" readonly="readonly" class="form-control">
 	    </div>
 		<div class="form-group">
 					<label for="form-label">비밀번호</label>
-			<input type="password" name="partner_Password" value="${partner.partner_Password}">
+			<input type="password" name="partner_Password" value="${partner.partner_Password}" class="form-control">
 		</div>
 		<div class="form-group">
 					<label for="form-label">업체 이름</label>
-					<input name="partner_TruckName" value="${partner.partner_TruckName}">
+					<input name="partner_TruckName" value="${partner.partner_TruckName}" class="form-control">
 		</div>
 		<div class="form-group">
 					<label for="form-label">주소</label>
-					<input name="partner_Address" value="${partner.partner_Address}">
+					<input name="partner_Address" value="${partner.partner_Address}" class="form-control">
 		</div>
 		<div class="form-group">
 					<label for="form-label">이메일</label>
-					<input name="partner_Email" value="${partner.partner_Email}">
+					<input name="partner_Email" value="${partner.partner_Email}" class="form-control">
 		</div>
 		<div class="form-group">
 					<label for="form-label">연락처</label>
@@ -69,11 +82,12 @@
 		  <td colspan="2" align="center">
 		     <input type="button" class="btn btn-outline-success" value="수정" id="pbtnUpdate">
 		     <input type="button" class="btn btn-outline-success" value="탈퇴" id="pbtnDelete">
+		     <input type="button" class="btn btn-outline-success" value="캘린더" id="cbtnMove">
 		  </td>
 		</tr>
 	</table>
 	</form>
-	    <ul><li><a href="${pageContext.request.contextPath }/calendar"><span>캘린더</span></a></li></ul>
+	    
 	     </div>
       </div>
    </div>

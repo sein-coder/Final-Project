@@ -134,8 +134,8 @@
 <section id="content">
 
 
-	<div class="site-section" style="padding-top: 4em;">
-		<div class="container">
+	<div class="site-section pt-0 pb-0">
+		<div class="container pb-5" style="padding-top: 4em;">
 			<div class="row justify-content-center mb-8">
 				<div class="col-md-7 text-center border-primary">
 					<h2 class="font-weight-light text-primary">Let Eat Go</h2>
@@ -192,8 +192,8 @@
 
 	<!-- 갤러리 -->
 	<!-- 갤러리 시작 -->
-	<div class="site-section" style="padding: 0">
-		<div class="container">
+	<div class="site-section" style="padding: 0;">
+		<div class="container pb-5">
 			<div class="row">
 				<div class="col-md-12 d-flex justify-content-center">
 					<button type="button"
@@ -206,7 +206,7 @@
 				<!-- Grid column -->
 			</div>
 			<!-- Grid row -->
-			<div class="gallery" id="gallery" style="color: white;">
+			<div class="gallery mb-0" id="gallery" style="color: white;">
 
 				<!-- Grid column -->
 				<div class="mb-3 pics animation all 2">
@@ -321,7 +321,7 @@
 	</div>
 
 	<!-- 팀원 소개 파트 -->
-	<div class="site-section bg-light" style="padding: 0">
+	<div class="site-section bg-light" style="padding: 0;">
 		<div class="container">
 
 			<div class="row justify-content-center mb-5">

@@ -1,0 +1,17 @@
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\bin\WebApplication1.dll.config
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\bin\WebApplication1.dll
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\bin\WebApplication1.pdb
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
+C:\Users\thekr\source\repos\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\thekr\OneDrive\바탕 화면\WebApplication1\WebApplication1\bin\WebApplication1.dll.config
+C:\Users\thekr\OneDrive\바탕 화면\WebApplication1\WebApplication1\bin\WebApplication1.dll
+C:\Users\thekr\OneDrive\바탕 화면\WebApplication1\WebApplication1\bin\WebApplication1.pdb
+C:\Users\thekr\OneDrive\바탕 화면\WebApplication1\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\thekr\OneDrive\바탕 화면\WebApplication1\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\thekr\OneDrive\바탕 화면\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
+C:\Users\thekr\OneDrive\바탕 화면\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
+C:\Users\thekr\OneDrive\바탕 화면\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb

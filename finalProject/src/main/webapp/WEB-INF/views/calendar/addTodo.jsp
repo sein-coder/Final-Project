@@ -12,7 +12,7 @@
 		<table>
 			<tr>
 				<td>일정제목</td>
-				<td><input type="text" name="title"></td>
+				<td><input type="text" name="schedule"></td>
 			</tr>
 			<tr>
 				<td>일정시작일</td>
@@ -21,6 +21,10 @@
 			<tr>
 				<td>일정종료일</td>
 				<td><input type="date" name="endDate"></td>
+			</tr>
+			<tr>
+				<td>일정 상세</td>
+				<td><input type="text" name="calendar_Content"></td>
 			</tr>
 			<tr>
 				<td colspan="2">

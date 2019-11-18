@@ -2,5 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="calendar">
 
+ <insert id="insertCalendar" parameterType="calendar">
+		INSERT INTO CALENDAR VALUES(seq_calendar_no.nextval,#{partnerNo},#{schedule},#{startDate},#{endDate},#{calendar_Content})
+	</insert>
+
 
 </mapper>

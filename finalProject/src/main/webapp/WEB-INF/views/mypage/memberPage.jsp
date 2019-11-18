@@ -9,6 +9,9 @@
 <style>
  .btn-outline-light{
  color:black;}
+ 
+ 
+ 
 
 
 </style>
@@ -38,27 +41,27 @@
        <table class="table" id="tbl-dev">
         <div class="form-group">
 					<label for="form-label">아이디</label>
-			<input name="member_Id" value="${member.member_Id}" readonly="readonly">
+			<input name="member_Id" value="${member.member_Id}" readonly="readonly" class="form-control">
 		</div>
 		 <div class="form-group">
 					<label for="form-label">비밀번호</label>
-			<input type="password" name="member_Password" value="${member.member_Password}" >
+			<input type="password" name="member_Password" value="${member.member_Password}" class="form-control">
 		</div>
 		<div class="form-group">
 					<label for="form-label">나이</label>
-			<input name="member_Age" value="${member.member_Age}">
+			<input name="member_Age" value="${member.member_Age}" class="form-control">
 		</div>
 		<div class="form-group">
 					<label for="form-label">성별</label>
-			<input name="member_Gender" value='${member.member_Gender eq "남" ? "남":"여" }'>
+			<input name="member_Gender" value='${member.member_Gender eq "남" ? "남":"여" }' class="form-control">
 		</div>
 		 <div class="form-group">
 					<label for="form-label">이메일</label>
-			<input name="member_Email" value="${member.member_Email}">
+			<input name="member_Email" value="${member.member_Email}" class="form-control">
 		</div>
 		 <div class="form-group">
 					<label for="form-label">연락처</label>
-			<input name="member_Phone" value="${member.member_Phone}">
+			<input name="member_Phone" value="${member.member_Phone}" class="form-control">
 		</div>
 		<tr>
 		  <td colspan="2" align="center">

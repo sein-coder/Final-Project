@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-	<!-- 회원 정보 조회 -->
+	<!-- 회원 가입 -->
+	
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,#{member_Id},#{member_Password},#{member_Age},#{member_Gender},#{member_Email},#{member_Phone})
 	</insert>
+	
+	<!-- 회원 정보 조회,관리자 정보 조회 -->
 	<select id="selectMemberOne" parameterType="member" resultType="member">
+		select * from  Member WHERE MEMBER_ID=#{member_Id}
+	</select>
+	
+	<select id="selectMemberOne2" parameterType="member" resultType="member">
 		select * from  Member WHERE MEMBER_ID=#{member_Id}
 	</select>
 	
@@ -21,11 +28,23 @@
 	                    MEMBER_PHONE=#{member_Phone} where MEMBER_ID=#{member_Id} 
 	</update> 
 	
+	<update id="updateAdminPage">
+	 UPDATE MEMBER SET
+	                   MEMBER_ID=#{member_Id},
+	                    MEMBER_PASSWORD=#{member_Password},
+	                    MEMBER_AGE=#{member_Age},
+	                    MEMBER_GENDER=#{member_Gender},
+	                    MEMBER_EMAIL=#{member_Email},
+	                    MEMBER_PHONE=#{member_Phone} where MEMBER_ID=#{member_Id} 
+	
+	</update>
+	
+	
+	
 	<!-- 회원 탈퇴 -->
 	<delete id="deleteMemberPage">
 	  DELETE FROM MEMBER 
 	     WHERE MEMBER_ID=#{member_Id}
-	       and MEMBER_PASSWORD=#{member_Password}
 	</delete>
 
 </mapper>

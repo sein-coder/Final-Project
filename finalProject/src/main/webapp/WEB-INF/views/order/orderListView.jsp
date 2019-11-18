@@ -12,7 +12,6 @@
   font-size:1.25em;	
   
 }
-
 .star-rating .icon-star{
   color: yellow;
   transition : 0.5s;
@@ -212,10 +211,8 @@ $(function(){
 	      });
 	   });
 })
-
 	// 평점 별 출력 부분
 var star_rating = $('.star-rating .icon-star');
-
 var SetRatingStar = function() {
   return star_rating.each(function() {
     if (parseInt(star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
@@ -225,9 +222,7 @@ var SetRatingStar = function() {
     }
   });
 };
-
 var payment = 0;
-
 function orderPlusMinus(data){
 	
 	var countInput;
@@ -293,12 +288,10 @@ function orderPlusMinus(data){
 	}
 	$('.pay-total').html(payment).val();
 }
-
 function changeValue(elementInput){
 	var value=$(elementInput).val();
 }
 SetRatingStar();
-
 // 결제포트 실행전 첫 번째 모달 숨기기
 function fadeModal(){
 	$('#payModal').modal('hide');
@@ -310,7 +303,6 @@ function fadeModal(){
 	var open = window.open('${path}/order/payment.do?order_Price='+payment, "_target ", windowSize);
 	
 }
-
 function toOrderHistory(){
 	var orderlists = "";
 	
@@ -331,12 +323,12 @@ function toOrderHistory(){
 		},
 		success : function(data){
 			alert("결제 정보가 전송 중 입니다.");
+			location.href="${path}/order/complete";
 		},
 		fail : function(data){
 			alert("결제 처리에 실패하였습니다. 관리자에게 문의하세요.");
 		}
 	})
 }
-
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

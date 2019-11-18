@@ -2,6 +2,7 @@ package com.kh.letEatGo.accountBook.model.service;
 
 import java.util.List;
 
+import com.kh.letEatGo.accountBook.model.vo.Account;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
 
 public interface AccountBookService {
@@ -18,4 +19,9 @@ public interface AccountBookService {
 	int updateAccountBook(AccountBook ab);
 	
 	AccountBook selectAccountBook(AccountBook ab);
+	
+	Account selectAccount(int partner_No);
+	
+	int insertAccount(Account account);
+	
 }
