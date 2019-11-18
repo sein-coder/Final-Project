@@ -67,7 +67,7 @@
 						<div class="form-check input-toggle">
 							<label class="form-check-label">
 								<input type="checkbox" name="partner_Menu" class="form-check-input" value="기타" style='left:-9999px'/>
-								<button class="btn btn-outline-info" >기타</button>
+								<button class="btn btn-outline-info">기타</button>
 							</label>
 						</div>
 					</div>
@@ -76,13 +76,13 @@
 						<div class="form-check input-order">
 							<label class="form-check-label">
 								<input type="checkbox" name="starCount" class="form-check-input" value="desc" style='left:-9999px'/>
-								<button class="btn btn-outline-primary" >리뷰 평점 높은 순</button>
+								<button class="btn btn-outline-primary">리뷰 평점 높은 순</button>
 							</label>
 						</div>
 						<div class="form-check input-order">
 							<label class="form-check-label">
 								<input type="checkbox" name="starCount" class="form-check-input" value="asc" style='left:-9999px'/>
-								<button class="btn btn-outline-primary" >리뷰 평점 낮은 순</button>
+								<button class="btn btn-outline-primary">리뷰 평점 낮은 순</button>
 							</label>
 						</div>
 					</div>
@@ -134,9 +134,15 @@
 		</div>
 		<!-- 페이징 처리 -->
 		${pageBar }
+		
 </section>
 
 <script>
+var keyword = '${keyword}' != null?'${keyword}' : "";
+var ordering = '${ordering}' != null?'${ordering}' : "";
+var url ="${path}/order";
+var cPage = "${cPage}" != null? "${cPage}" : 1;
+
 $(document).ready(function(){
 		// 메뉴 검색 자동완성 기능
 		$('#menu_Name').on('keyup', function(){
@@ -157,11 +163,76 @@ $(document).ready(function(){
 				}
 			})
 		});
-
-	var keyword = '${keyword}' != null?'${keyword}' : "";
-	var ordering = '${ordering}' != null?'${ordering}' : "";
 	
-	var url ="";
+	// partner_Menu toggle 관련 function
+	$('.input-toggle').on('click',function(){
+		var thisbtn = $(this).children().children().eq(1);
+		url = "${path}/order/orderListSearch?";
+		if(thisbtn.attr('class').includes('btn-outline-info')){
+	 		thisbtn.removeClass("btn-outline-info");
+			thisbtn.addClass("btn-info");
+			keyword = keyword.replace(thisbtn.siblings().val() + "/","");
+			keyword += thisbtn.siblings().val()+"/";
+		}else{
+			thisbtn.removeClass("btn-info");
+			thisbtn.addClass("btn-outline-info");
+			keyword = keyword.replace(thisbtn.siblings().val() + "/","");
+		}
+		if(ordering != null && ordering != ''){
+			location.href = url+"keyword="+keyword+"&ordering="+ordering;
+		} else {
+			if(keyword == null || keyword == ''){
+				location.href="${path}/order";
+			} else {
+				location.href = url+"keyword="+keyword;
+			}
+		}
+	});
+	
+	// 평점 정렬 관련 function
+	$('.input-order').on('click',function(){
+		var thisbtn = $(this).children().children().eq(1);
+		url = "${path}/order/orderListSearch?";
+			if(keyword != null && keyword != ''){
+				if(thisbtn.attr('class').includes('btn-outline-primary')){
+			 		thisbtn.removeClass("btn-outline-primary");
+					thisbtn.addClass("btn-primary");
+					ordering = ordering.replace(thisbtn.siblings().val() +"/","");
+					ordering = thisbtn.siblings().val() +"/";
+				}else{
+					thisbtn.removeClass("btn-primary");
+					thisbtn.addClass("btn-outline-primary");
+					ordering = ordering.replace(thisbtn.siblings().val() + "/","");
+				}
+				
+				 location.href = url+"keyword="+keyword+"&ordering="+ordering; 
+			} else {
+				if(thisbtn.attr('class').includes('btn-outline-primary')){
+			 		thisbtn.removeClass("btn-outline-primary");
+					thisbtn.addClass("btn-primary");
+					ordering = ordering.replace(thisbtn.siblings().val() +"/","");
+					ordering = thisbtn.siblings().val() +"/";
+				}else{
+					thisbtn.removeClass("btn-primary");
+					thisbtn.addClass("btn-outline-primary");
+					ordering = ordering.replace(thisbtn.siblings().val() + "/","");
+				}
+				if(ordering!=''){
+			 	location.href = url+"ordering="+ordering;
+				} else {
+					location.href="${path}/order";
+				}
+			}
+	});
+	
+	/////////////////////// 지금 안되는 거  
+	/////////////////////// 1) 검색어 클릭 해제 시 주소창에 keyword= 남아있음
+	/////////////////////// 2) 카테고리 검색 후 평점 검색 시 평점만 나옴
+	/////////////////////// 3) 리뷰평점 버튼 CSS 변경이 안됨
+	/////////////////////// 4) ordering값이 있는 경우 $ 받아오게끔 하는데 안받아와짐
+	
+	
+	///////////////////// 페이지 로딩 후 주소값으로 보낸 querystring과 검색하기 버튼 설정하는 부분 ///////////////////
 	//keyword가 null or 빈칸이 아닐때(설정 : 버튼 css, url설정!)
 	//1) keyword가 없을 때
 	//2) ordering이 없을 떄
@@ -169,61 +240,57 @@ $(document).ready(function(){
 	if(keyword != null && keyword != ' '){
 		// keyword가 빈칸이 아닐 때
 		var keywords = keyword.split('/');
-		
+		for(var i = 0; i < keywords.length; i++){
+			$('input[name=partner_Menu]').each(function(){
+				if(keywords[i] == $(this).val()){
+					// 주소에 있는 값과 일치한게 있다면?
+					$(this).siblings().eq(0).removeClass('btn-outline-info');
+					$(this).siblings().eq(0).addClass('btn-info');
+				}
+			})
+		}
 		if(ordering != null && ordering != ' '){
 			// ordering이 빈칸이 아닐 때
-		} else {
-			//ordering이 빈칸일 때
+			var orders = ordering.split('/');
+			for(var i = 0; i < orders.length; i++){
+				$('input[name=starCount]').each(function(){
+					if(ordering == $(this).val()+'/'){
+						$(this).next().removeClass('btn-outline-primary');
+						$(this).next().addClass('btn-primary');
+					}
+				})
+			}
 		}
-	} else {
+	}else {
 		// keyword가 빈칸일 때
 		if(ordering != null && ordering != ' '){
 			// ordering이 빈칸이 아닐 때
-		} else {
-			//ordering이 빈칸일 때
-		}
+			var orders = ordering.split('/');
+			for(var i = 0; i < orders.length; i++){
+				$('input[name=starCount]').each(function(){
+					if(ordering == $(this).val()+'/'){
+						$(this).next().removeClass('btn-outline-primary');
+						$(this).next().addClass('btn-primary');
+					}
+				})
+			}
+		} 
 	}
 	
-	
-	
-	// partner_Menu toggle 관련 function
-	$('.input-toggle').on('click',function(){
-		var thisbtn = $(this).children().children().eq(1);
-		if(thisbtn.siblings().val() != null && !((thisbtn.siblings().val()).includes('asc') || (thisbtn.siblings().val()).includes('desc'))){
-			if(thisbtn.attr('class').includes('btn-outline-info')){
-		 		thisbtn.removeClass("btn-outline-info");
-				thisbtn.addClass("btn-info");
-				keyword += thisbtn.siblings().val()+"/";
-			}else{
-				thisbtn.removeClass("btn-info");
-				thisbtn.addClass("btn-outline-info");
-				keyword = keyword.replace(thisbtn.siblings().val() + "/","");
-			}
-			console.log(keyword);
-			location.href = "${pageContext.request.contextPath}/order/orderListSearch?keyword="+keyword;
-		} else if(thisbtn.siblings().val() != null && ((thisbtn.siblings().val()).includes('asc') || (thisbtn.siblings().val()).includes('desc'))){
-			if(thisbtn.attr('class').includes('btn-outline-primary')){
-		 		thisbtn.removeClass("btn-outline-primary");
-				thisbtn.addClass("btn-primary");
-				ordering = thisbtn.siblings().val();
-			}else{
-				thisbtn.removeClass("btn-primary");
-				thisbtn.addClass("btn-outline-primary");
-				ordering = "";
-			}
-		} else {
-			
+	if(ordering != null && ordering != ' '){
+		// ordering이 빈칸이 아닐 때
+		var orders = ordering.split('/');
+		for(var i = 0; i < orders.length; i++){
+			$('input[name=starCount]').each(function(){
+				if(ordering == $(this).val()+'/'){
+					$(this).next().removeClass('btn-outline-primary');
+					$(this).next().addClass('btn-primary');
+				}
+			})
 		}
-	});
-	
-	// 평점 정렬 관련 function
-	$('.input-order').on('click',function(){
-		var thisbtn = $(this).children().children().eq(1);
-		var ordering = thisbtn.siblings().val();
-			
-		console.log(ordering);
-		location.href = "${pageContext.request.contextPath}/order/orderListSearch?&ordering="+ordering;
-	});
+	}else {
+			//ordering이 빈칸일 때
+	}
 	
 	$("input[name=data_No]").each(function(){
       var starCount = $(this).val();
@@ -250,6 +317,17 @@ function searchMenuName(){
 /* 페이징처리용 함수 추가 */
 function fn_paging(cPage) {
 	location.href='${pageContext.request.contextPath}/order?cPage='+cPage;
+}
+
+function fn_menuPaging(cPage){
+	var page_url = "${path}/order/orderListSearch?cPage="+cPage;
+	if(keyword != null) {
+		page_url += "&keyword="+keyword;
+	}
+	if(ordering != null) {
+		page_url += "&ordering="+ordering;
+	}
+	location.href=page_url;
 }
 
 </script>

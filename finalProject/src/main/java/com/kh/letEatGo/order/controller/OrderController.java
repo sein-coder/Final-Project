@@ -73,17 +73,20 @@ public class OrderController {
 		ModelAndView mv = new ModelAndView();
 		
 		List<Partner> list = new ArrayList();
+		List<Partner> ptlist = new ArrayList();
 		int totalCount = 0;
 		List<List<Menu>> menuList = new ArrayList();
 		
 		if(menu_Name != null && menu_Name != "") {
 			// 메뉴검색창 관련 처리 비즈니스 로직
-			list = service.selectMenuTruckList(cPage, numPerPage, menu_Name);
+			ptlist = service.selectMenuTruckList(cPage, numPerPage, menu_Name);
+			for(int i = 0; i < ptlist.size(); i++) {
+				list.add(service.selectTruck(ptlist.get(i).getPartner_No()));
+			}
 			totalCount = service.selectMenuCount(menu_Name);
 			
 		} else if(keyword != null && keyword != "") {
 			// partner_Menu 관련 처리 비즈니스로직
-			System.out.println("여긴 태그검색이야 들어오니?");
 			Map<String, Object> menu = new HashMap();
 			List<String> category = new ArrayList();
 			
@@ -96,12 +99,18 @@ public class OrderController {
 			
 			if(ordering != null && ordering != "") {
 				menu.put("ordering", ordering);
+				mv.addObject("ordering", ordering);
 			}
 			
 			list = service.selectTruckList(cPage, numPerPage, menu);
 			mv.addObject("keyword", keyword);
-		} else {
-			// 기본 조회 결과 처리 비즈니스 로직
+			
+		} else if(ordering != null && ordering != "") {
+			Map<String, Object> menu = new HashMap();
+			menu.put("ordering", ordering);
+			totalCount = service.selectCount(menu);
+			list = service.selectTruckList(cPage, numPerPage, menu);
+			mv.addObject("ordering", ordering);
 		}
 		
 		for(Partner p : list) {
@@ -112,10 +121,11 @@ public class OrderController {
 		
 		res.setContentType("application/json;charset=utf-8");
 		
-		mv.addObject("pageBar", PageFactory.getPageBar(totalCount, cPage, numPerPage, "/letEatGo/order/orderList"));
+		mv.addObject("pageBar", PageFactory.menuPageBar(totalCount, cPage, numPerPage, "/letEatGo/order/orderList", keyword, ordering));
 		mv.addObject("list", list);
 		mv.addObject("menuList", menuList);
 		mv.addObject("totalCount", totalCount);
+		mv.addObject("cPage", cPage);
 		mv.setViewName("/order/orderList");
 		return mv;
 	}
@@ -136,7 +146,6 @@ public class OrderController {
 		mv.addObject("menu", list);
 		mv.addObject("partner", result); 
 		mv.addObject("reviewList", reviewList);
-		
 		mv.setViewName("order/orderListView");
 		return mv;
 	}

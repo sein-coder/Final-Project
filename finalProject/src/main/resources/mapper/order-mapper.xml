@@ -18,26 +18,40 @@
   </select>
   
   <select id="selectTruckList" resultType="partner" parameterType="java.util.HashMap">
-  	SELECT PARTNER.PARTNER_NO, PARTNER.PARTNER_TRUCKNAME, PARTNER.PARTNER_MENU, AVG(REVIEW_STAR) AS STARCOUNT FROM PARTNER 
-  	JOIN REVIEW ON PARTNER.PARTNER_NO = REVIEW.PARTNER_NO 
+  	SELECT PARTNER.PARTNER_NO, PARTNER.PARTNER_ID, PARTNER.PARTNER_TRUCKNAME, PROFILE_OLD, PROFILE_RE, PARTNER.PARTNER_MENU, NVL(AVG(REVIEW_STAR), 0) AS STARCOUNT FROM PARTNER
+  	LEFT JOIN REVIEW ON PARTNER.PARTNER_NO = REVIEW.PARTNER_NO 
   	WHERE 1 = 1
 		<if test="category != null">
 			AND PARTNER.PARTNER_MENU IN
 			<foreach collection="category" item="item" index="index" separator="," open=" (" close=")">
 				 #{item}
 			</foreach>
-		</if>
-	GROUP BY (PARTNER.PARTNER_NO, PARTNER.PARTNER_TRUCKNAME, PARTNER.PARTNER_MENU)
-		<if test="ordering != null and ordering != ''">
-			<choose>
-				<when test="ordering.equals('desc')">
-					ORDER BY AVG(REVIEW_STAR) DESC
+			GROUP BY (PARTNER.PARTNER_NO, PARTNER.PARTNER_ID, PARTNER.PARTNER_TRUCKNAME, PROFILE_OLD, PROFILE_RE, PARTNER.PARTNER_MENU)
+			<if test="ordering != null and ordering != ''">
+				<choose>
+				<when test="ordering.equals('desc/')">
+					ORDER BY AVG(REVIEW_STAR) DESC NULLS LAST
 				</when>
-				<when test="ordering.equals('asc')">
-					ORDER BY AVG(REVIEW_STAR) DESC
+				<when test="ordering.equals('asc/')">
+					ORDER BY AVG(REVIEW_STAR) ASC NULLS LAST
 				</when>
 				<otherwise>
-					ORDER BY PARTNER.PARTNER_NO
+					ORDER BY PARTNER.PARTNER_NO NULLS LAST
+				</otherwise>
+			</choose>
+			</if>
+		</if>
+		<if test="category == null and ordering != null and ordering != ''">
+			GROUP BY (PARTNER.PARTNER_NO, PARTNER.PARTNER_ID, PARTNER.PARTNER_TRUCKNAME, PROFILE_OLD, PROFILE_RE, PARTNER.PARTNER_MENU)
+			<choose>
+				<when test="ordering.equals('desc/')">
+					ORDER BY AVG(REVIEW_STAR) DESC NULLS LAST
+				</when>
+				<when test="ordering.equals('asc/')">
+					ORDER BY AVG(REVIEW_STAR) ASC NULLS LAST
+				</when>
+				<otherwise>
+					ORDER BY PARTNER.PARTNER_NO NULLS LAST
 				</otherwise>
 			</choose>
 		</if>
@@ -76,9 +90,9 @@
   	SELECT * FROM MENU WHERE MENU_NAME LIKE #{menu_Name}
   </select>
   <select id="selectMenuCount" parameterType="String" resultType="_int">
-  	SELECT COUNT(*) FROM PARTNER WHERE PARTNER_MENU LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
+  	SELECT COUNT(DISTINCT PARTNER_NO) FROM MENU WHERE MENU_NAME LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
   </select>
   <select id="selectMenuTruckList" parameterType="String" resultType="partner">
-  	SELECT PARTNER_NO FROM MENU  WHERE MENU_NAME LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
+  	SELECT DISTINCT PARTNER_NO FROM MENU  WHERE MENU_NAME LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
   </select>
 </mapper>

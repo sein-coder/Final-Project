@@ -202,6 +202,7 @@
 $(function(){
 	$("input[name=data_No]").each(function(){
 	      var starCount = $(this).val();
+	      	console.log(starCount);
 	      $($(this).siblings()).each(function(){
 	         if(starCount >= $(this).data('rating')){
 	            return $(this).removeClass('text-secondary').addClass('text-warning');
@@ -215,7 +216,7 @@ $(function(){
 		$('#completeOrder').prop("disabled", "true");
 	}
 })
-	// 평점 별 출력 부분
+/* 	// 평점 별 출력 부분
 var star_rating = $('.star-rating .icon-star');
 var SetRatingStar = function() {
   return star_rating.each(function() {
@@ -225,7 +226,7 @@ var SetRatingStar = function() {
       return $(this).removeClass('text-warning').addClass('text-secondary');
     }
   });
-};
+}; */
 var payment = 0;
 function orderPlusMinus(data){
 	
