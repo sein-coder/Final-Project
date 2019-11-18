@@ -213,7 +213,7 @@ keyframes opacity { 0% {
 	-webkit-transform: scale(3);
 	transform: scale(3);
 }
-100%
+38181;100%
 {
 opacity:1;
 -webkit-transform
@@ -331,7 +331,39 @@ h1 {
         margin-left: 8px;
     }
 /*our-team-main*/
+
+/* 해시태그  */
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #fff;
+        color: #f38181;
+    }
+
+    .tag-item:hover {
+        background-color: #f38181;
+        color: #fff;
+    }
+    ul#tag-list {
+        padding: 16px 0;
+    }
+
+    ul#tag-list li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
+
+
+
 </style>
+
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
@@ -342,8 +374,12 @@ h1 {
 	<div class="site-section pb-0">
 
 		<div class="row">
-			<div class="container" style="background-color: white;">
-				<div class="card col-md-12" style="border: 3px solid #ffc9c9;">
+			<div class="container pb-0" style="background-color: white;">
+			<div class="row">
+
+					<!-- 새로운 뷰 -->
+			
+				<div class="card pr-auto pl-auto" style="border: 3px solid #ffc9c9;">
 
 					<div class="wrapper row" style="background-color: white;">
 						<div class="preview col-md-5">
@@ -367,38 +403,49 @@ h1 {
 								</div>
 
 							</div>
-							<div id="festival_No" style="disaplay:none;">
+							<div type="hidden" id="festival_No" style="disaplay:none;">
 								${festival.festival_No}
 							</div>
 							<p class="product-description">
-							<button id="proceeding" style="color: #fff; text-align: center;">
+							<button id="proceeding" style="color: #fff; text-align: center; border: none;">
 								${festival.festival_Proceeding }
 							</button>
 							<p class="text-break">
 								${festival.festival_Content }
 							</p>
-							<div class="action" style="display: inline-block;">
-										<button class="add-to-cart btn btn-default" type="button">
-									 		<span class="icon-heart" id="heart"></span>
-										</button>
-							</div>
-							<div style="display: inline-block;">
-							<p class="vote">
-								이 글에 좋아요를 누른 회원수 입니다. 
-								<b id="count">(${festival.festival_Count} votes)</b>
-							</p>
-							</div>
+							<div>
+								<div class="action" style="display: inline-block;">
+											<button class="add-to-cart btn btn-default" type="button">
+										 		<span class="icon-heart" id="heart"></span>
+											</button>
+								</div>
+								<div style="display: inline-block;">
+								<p class="vote">
+									이 글에 좋아요를 누른 회원수 입니다. 
+									<b id="count">(${festival.festival_Like} votes)</b>
+								</p>
+								</div>
+								</div>
+							
+									<div style="display: inline-block">
+										<div class="content-tag">
+											<ul class="p-0" id="tag-list"></ul>
+										</div>
+										
+										
+									</div>
 
 						</div>
 					</div>
 
+				</div>
 				</div>
 
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="container">
+		<div class="container p-1">
 			<div class="col-md-12 mt-0 pt-0"
 				style="border: 3px solid #ffc9c9; border-top: 0px solid white;">
 
@@ -406,7 +453,7 @@ h1 {
 				<div
 					class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
 					style="padding-left: 0; padding-right: 0;">
-					<input value="더보기"
+					<input value="더보기" style="background-color: f38181;border: none;"
 						onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display != ''){this.parentNode.getElementsByTagName('div')[0].style.display = '';this.value = '숨기기';}
 												else{this.parentNode.getElementsByTagName('div')[0].style.display = 'none'; this.value = '더보기';}"
 						type="button" class="btn btn-danger btn-block" />
@@ -452,16 +499,6 @@ h1 {
 											style="background-color: #fff;">주 소</a> <strong>:</strong>
 										${festival.festival_Address }
 									</div>
-									<div style="display: inline-block">
-
-										<a href="#none" class="hashtag_copy" style="background-color: #f38181"
-											data-clipboard-action="copy" data-clipboard-target="p.copy">
-											<span>copy</span>
-										</a>
-
-										<script
-											src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-									</div>
 								</td>
 								<td>
 									<div class="alert alert-danger4">
@@ -494,16 +531,16 @@ h1 {
 		</div>
 	</div>
 	<div class="row justify-content-center">
-		<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" 
+		<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
 			onclick="location.href='${pageContext.request.contextPath}/festival/festivalList'">목록</button>
 	</div>
 	<div>
 		<div>
-			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
+			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
 				onclick="location.href='${pageContext.request.contextPath}/festival/deleteFestival?festival_No=${festival.festival_No }'">삭제</button>
 		</div>
 		<div>
-			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block"
+			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
 				onclick="location.href='${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }'">수정</button>
 		</div>
 	</div>
@@ -512,80 +549,9 @@ h1 {
 	<div class="container mt-5">
 		<div class="col-md-12">
 			<div class="row">
-
-				<!--team-4-->
-				<div class="col-lg-4">
-					<div class="our-team-main">
-
-						<div class="team-front">
-							<img src="http://placehold.it/110x110/4caf50/fff?text=ONE"
-								class="img-fluid" />
-							<h3>축제이름</h3>
-							<p>축제날짜</p>
-						</div>
-
-						<div class="team-back">
-							<span> Lorem ipsum dolor sit amet, consectetuer adipiscing
-								elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-								natoque penatibus et magnis dis parturient montes, Lorem ipsum
-								dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-								ligula eget dolor. Aenean massa. Cum sociis natoque. </span>
-						</div>
-
-					</div>
-				</div>
-				<!--team-4-->
-
-				<!--team-5-->
-				<div class="col-lg-4">
-					<div class="our-team-main">
-
-						<div class="team-front">
-							<img src="http://placehold.it/110x110/e91e63/fff?text=TWO"
-								class="img-fluid" />
-							<h3>축제이름</h3>
-							<p>축제날짜</p>
-						</div>
-
-						<div class="team-back">
-							<span> Lorem ipsum dolor sit amet, consectetuer adipiscing
-								elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-								natoque penatibus et magnis dis parturient montes, Lorem ipsum
-								dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-								ligula eget dolor. Aenean massa. Cum sociis natoque. </span>
-						</div>
-
-					</div>
-				</div>
-				<!--team-5-->
-
-				<!--team-6-->
-				<div class="col-lg-4">
-					<div class="our-team-main">
-
-						<div class="team-front">
-							<img src="http://placehold.it/110x110/2196f3/fff?text=THREE"
-								class="img-fluid" />
-							<h3>축제이름</h3>
-							<p>축제기간</p>
-						</div>
-
-						<div class="team-back">
-							<span> Lorem ipsum dolor sit amet, consectetuer adipiscing
-								elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-								natoque penatibus et magnis dis parturient montes, Lorem ipsum
-								dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-								ligula eget dolor. Aenean massa. Cum sociis natoque. </span>
-						</div>
-
-					</div>
-				</div>
-				<!--team-6-->
-
-
 			</div>
 		</div>
-		<br>
+
 		<h2>지도보기!</h2>
 		
 		<br>
@@ -597,17 +563,12 @@ h1 {
 	<script>
 		$('#contentText').keyup(function(e) {
 			var content = $(this).val();
-			$('#counter').val(500 - content.length);
+			$('#counter').val(4000 - content.length);
 
-			if (content.length > 500) {
-				$(this).val($(this).val().substring(0, 500));
+			if (content.length > 4000) {
+				$(this).val($(this).val().substring(0, 4000));
 			}
 		});
-		var clipboard = new ClipboardJS('.hashtag_copy');
-		clipboard.on('success', function(e) {
-			alert('복사되었습니다.');
-		});
-		
 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
@@ -656,7 +617,7 @@ h1 {
 	            url: "${pageContext.request.contextPath}/festival/updateFestivalLike.do",
 	            type: "POST",
 	            data: {
-	            	'festival_Count':${festival.festival_Count},
+	            	'festival_Like':${festival.festival_Like},
 	            	'festival_No':${festival.festival_No}
 	            },	
 	            success: function(data) {
@@ -684,7 +645,20 @@ h1 {
 			}
 		});
 	</script>
-	
+	<script>
+	/* 태그 불러오기 */
+	 	var tag = '${festival.festival_Tag}'.split(",");
+	 	var lastT= '${festival.festival_Tag}'.split(",").length;
+
+ 		$(document).ready(function(){
+	 		
+	 		for(var count=0; count<lastT;){
+	 				
+	 		$('ul#tag-list').append("<li class='tag-item p-0'>"+"#"+tag[count]+"</li>");
+	 				count++;
+	 		}
+	 	}); 
+	</script>
 	
 </section>
 

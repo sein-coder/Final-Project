@@ -75,9 +75,11 @@ textarea {
     }
 </style>
 <body>
-
-
 	<section id="content">
+
+	<div class="site-section" style="padding-top: 0px">
+	<div class="container pl-0 pr-0">
+	  <!-- Page Content -->
 		<form
 			id="frm"
 			action="${pageContext.request.contextPath}/festival/festivalFormEnd.do"
@@ -90,17 +92,15 @@ textarea {
 					<!-- 새로운 뷰 -->
 
 
-					<div class="container" style="background-color: white;">
+					<div class="container p-0 pr-auto pl-auto" style="background-color: white;">
 						<div class="card col-md-12" style="border: 3px solid #ffc9c9;">
 
-							<div class="wrapper row" style="background-color: white;">
+							<div class="wrapper row mt-2" style="background-color: white;">
 								<div class="preview col-md-5">
 
 									<div class="preview-pic ">
 										<div class="tab-pane active-ml-3" id="pic-1">
 											<img src="http://placekitten.com/400/252" />
-											
-											
 										</div>
 										<!-- 썸네일 부분   -->
 										<div class="pull-left ml-4 mt-2 " style="display:inline;">
@@ -111,9 +111,9 @@ textarea {
 									<div style="margin-top: 10px; margin-bottom: 10px;"></div>
 
 								</div>
-								<div class="details col-md-7" style="display: inline-block">
+								<div class="details col-md-7" style="display: inline-block;">
 									<h3 class="product-title">
-										<input id="festival_Title" name="festival_Title" type="text" placeholder="00축제">
+										<input class="check" id="festival_Title" name="festival_Title" type="text" placeholder="[00월] 00축제">
 									</h3>
 									<div class="rating">
 										<div class="stars">
@@ -127,22 +127,21 @@ textarea {
 									<p class="product-description" />
 
 									<div>
-										<textarea name="festival_Content" id="festival_Content" cols="40"
+										<textarea class="check" name="festival_Content" id="festival_Content" cols="40"
 											rows="40" placeholder="축제 내용을 입력하세요"></textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
-											style="background-color: white; border: 0px solid white"
-											type="text" readonly disabled value="2000" name="counter"
-											id="counter"></span>
+											style="background-color: white; border: 0px solid white;  "								
+											type="text" readonly disabled value="4000" name="counter"
+											   id="counter"></span>
 									</div>
 									<br>
 									<div style="display: inline-block">
 										<p>해시태그 :</p>
 
 										<div class="content">
-											<input type="hidden" value="" name="festival_Hashtag"
+											<input type="hidden" value="" name="festival_Tag"
 												id="festival_Hashtag" />
-											<ul id="tag-list">
-											</ul>
+											<ul id="tag-list"></ul>
 											<input type="text" id="tag" size="7" placeholder="태그입력" />
 										</div>
 										
@@ -157,13 +156,13 @@ textarea {
 				</div>
 			</div>
 			<div class="row">
-				<div class="container">
+				<div class="container p-0">
 					<div class="col-md-12 mt-0 pt-0"
 						style="border: 3px solid #ffc9c9; border-top: 0px solid white;">
 
 						<!-- 더 보기 버튼 생성  -->
 
-						<input value="상세설명" class="btn btn-danger btn-block"
+						<input value="상세설명" class="btn btn-danger btn-block" style="background-color: #f38181;"
 							readonly="readonly" />
 						<div
 							class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
@@ -177,14 +176,14 @@ textarea {
 										<div class="alert alert-danger1">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-											<input id="festival_StartDate" name="festival_StartDate" type="date" />
+											<input class="check" id="festival_StartDate" name="festival_StartDate" type="date" required/>
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-											<input id="festival_EndDate" name="festival_EndDate" type="date" />
+											<input class="check" id="festival_EndDate" name="festival_EndDate" type="date" required/>
 										</div>
 									</td>
 								</tr>
@@ -193,15 +192,18 @@ textarea {
 										<div class="alert alert-danger3">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">전화번호</a> <strong>:</strong>
-											<input type="tel" id="festival_Phone" name="festival_Phone"
-												pattern="[0-9]{3}-[0-9]{3}{4}-[0-9]{4}" required>
+											<input class="check" type="tel" id="festival_Phone" name="festival_Phone"
+												pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" placeholder="02(0)-123(4)-5678"
+												title="하이픈(-)을  넣어 입력해주세요"
+												required>
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">홈페이지</a> <strong>:</strong>
-											<input type="url" id="festival_Homepage" name="festival_Homepage">
+											<input class="check" type="url" id="festival_Homepage" name="festival_Homepage"
+													placeholder="https://www.letEatGo.com"	required>
 
 										</div>
 									</td>
@@ -211,7 +213,7 @@ textarea {
 										<div class="alert alert-danger4" style="display: inline-block">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 소</a> <strong>:</strong> <input
-												type="text" name="festival_Address" id="festival_Address">
+												class="check" type="text" name="festival_Address" id="festival_Address" required>
 										</div>
 
 									</td>
@@ -219,7 +221,7 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 최</a> <strong>:</strong> <input
-												type="text" name="festival_Host" id="festival_Host">
+												class="check" type="text" name="festival_Host" id="festival_Host" required>
 										</div>
 									</td>
 								</tr>
@@ -228,14 +230,14 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">주 관</a> <strong>:</strong> <input
-												type="text" name="festival_Sub" id="festival_Sub">
+												class="check" type="text" name="festival_Sub" id="festival_Sub" required>
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">이용요금</a> <strong>:</strong>
-											<input type="text" name="festival_Price" id="festival_Price">
+											<input class="check" type="text" name="festival_Price" id="festival_Price" required>
 										</div>
 									</td>
 								</tr>
@@ -244,36 +246,34 @@ textarea {
 					</div>
 				</div>
 			</div>
-			<div class="site-navbar col-13 col-md-9 d-none d-xl-block"
-				style="background-color: white;">
-				<nav class="site-navigation position-relative text-right"
-					role="navigation">
-
-					<ul
-						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
-						<li class="list-inline-item">
-							<input type="submit" href="#" value="등록" style="background-color: #f23a2e;">
-							</input>
+			
+			<div class="site-navbar" style="background-color: white; justify-content: center;">
+				<nav class="site-navigation position-relative text-center" role="navigation">
+					<ul class="justify-content-center">
+						<li class="list-inline-item ">
+							<input type="submit" value="등록" style="background-color: #f38181;border-color: #f38181;"/>
 						</li>
-						<li class="list-inline-item">
-							<a href="festival/festivalList">
-								<span style="background-color: #f23a2e;">취소</span>
-							</a>
+						<li class="list-inline-item ">
+							<button class="btn-cancel" type="button" onclick="btn-cancel();" style="background-color: #f38181;border-color: #f38181;">
+								<span>취소</span>
+							</button>
 						</li>
 					</ul>
 				</nav>
 			</div>
 		</form>
-		
+	</div>
+	</div>
+
 		<script>
 		
 	/*글자 수 제한*/
 			$('#festival_Content').keyup(function (e){
 	      var content = $(this).val();       
-	      $('#counter').val(2000-content.length);
+	      $('#counter').val(4000-content.length);
 	
-	          if(content.length > 2000) {
-	            $(this).val($(this).val().substring(0, 2000));
+	          if(content.length > 4000) {
+	            $(this).val($(this).val().substring(0, 4000));
 	          }
 	      });
       
@@ -339,12 +339,22 @@ textarea {
         
         /* 각 input 태그 체크이벤트  */
 
-        $("input").change(function(){
-        	if($(this).val()!="" && $(this).attr("id")!='tag'){
-        		var img = "<img src='https://media.istockphoto.com/vectors/tick-icon-vector-symbol-marker-red-checkmark-isolated-on-white-icon-vector-id897303186?k=6&m=897303186&s=170667a&w=0&h=Z5Z6OQfZFwns6G5saUzBQMSpBviQaKPqISaU6_dcRKY=' alt='check' width='100px' height='100px'/>"
-        		$(this).parent().append(img);
+        $(".check").change(function(){
+        	if($(this).val()!=""&&$(this).attr("id")!='tag'){
+        		if($(this).attr("class").includes("already")){
+        			false;    			   			
+        		}else{
+        			var img = "<img src='https://img.icons8.com/cotton/2x/like--v3.png' alt='check' width='50px' height='50px'/>";
+    				$(this).parent().append(img);   
+        			$(this).addClass("already");
+        		}
         	}
         });
+        
+        
+        
+        
+        
         
         /* [썸네일] */
         
@@ -362,36 +372,21 @@ textarea {
 	                aImg.attr({"width":"400px","height":"252px"});
 	            }
 	        })(image)
-	 
+	 		
 	        if(get_file){
 	            reader.readAsDataURL(get_file[0]);
 	            console.log(2);
 	        }
 	    });
-		/* count */
-	/* 	$("#heart").click(function() {
-		    $('#count').html(function(count,val) {
-		        $.ajax({
-		            url: '/.festivalView.jsp',
-		            type: 'POST',
-		            data: 'count='+count,
-		            success: function(e) {
-		            	alert('heart를 주셨습니다.'); 
-		            	$('#count').val(e.count);	
-		            }
-		        });
-        		return +val+1;
-		    });	    
-		});
-        
- */
-        
+		
+	    /* 취소버튼 */
+	    $('.btn-cancel').on("click",function(){
+        	location.href = "${pageContext.request.contextPath }/festival/festivalList";
+	    });
+
+
    </script>
 
-
 	</section>
-
-
-
-
+	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
