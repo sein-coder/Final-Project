@@ -169,6 +169,56 @@
 		              </div>
 		            </div>
 		        </div>
+		        
+		        				<!-- 장부 구역 -->
+				<div id="accountBookList" class="row justify-content-center m-2 mb-3">
+					<table id="tbl" class="table table-bordered table-hover" style="text-align: center;">
+						<thead style="background-color: #ffc9c9; color: #fff;">
+							<tr>
+								<th scope="col">번호</th>
+								<th scope="col">날짜</th>
+								<th scope="col">분류</th>
+								<th scope="col">항</th>
+								<th scope="col">목</th>
+								<th scope="col">적요</th>
+								<th scope="col">수입</th>
+								<th scope="col">지출</th>
+								<th scope="col">잔액</th>
+								<th scope="col"
+									style="background-color: #fff; border-color: #fff;"></th>
+								<th scope="col"
+									style="background-color: #fff; border-color: #fff;"></th>
+								<th scope="col"
+									style="background-color: #fff; border-color: #fff;"></th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+							<c:forEach items="${list}" varStatus="i" var="ab">
+								<tr>
+									<td scope="row">${i.count }<input type="hidden" value="${ab.account_No }"></td>
+									<td>${ab.account_Date }</td>
+									<td>${ab.account_Type }</td>
+									<td>${ab.account_Clause }</td>
+									<td>${ab.account_Item }</td>
+									<td>${ab.account_Summary }</td>
+									<td><fmt:formatNumber value="${ab.account_Income }" type="currency" /></td>
+									<td><fmt:formatNumber value="${ab.account_Outcome }" type="currency" /></td>
+									<td><fmt:formatNumber value="${ab.account_Balance }" type="currency" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+						<tfoot id="tfoot">
+							<tr>
+								<td colspan="10" style="padding: 0;"><button
+										class="btn btn-primary btn-block" onclick="addRow();">행
+										추가하기</button></td>
+							</tr>
+						</tfoot>
+					</table>
+					
+					${pageBar }
+					
+				</div>	
 	
 				<!-- 차트화면 구역 -->
 				<div class="row ml-2 mb-3 justify-content-start">
@@ -316,84 +366,7 @@
 						</div>
 					</div>
 				</div>
-	
-				<!-- 장부 구역 -->
-				<div id="accountBookList" class="row justify-content-center m-2 mb-3">
-					<table id="tbl" class="table table-bordered table-hover" style="text-align: center;">
-						<thead style="background-color: #ffc9c9; color: #fff;">
-							<tr>
-								<th scope="col">번호</th>
-								<th scope="col">날짜</th>
-								<th scope="col">분류</th>
-								<th scope="col">항</th>
-								<th scope="col">목</th>
-								<th scope="col">적요</th>
-								<th scope="col">수입</th>
-								<th scope="col">지출</th>
-								<th scope="col">잔액</th>
-								<th scope="col"
-									style="background-color: #fff; border-color: #fff;"></th>
-								<th scope="col"
-									style="background-color: #fff; border-color: #fff;"></th>
-								<th scope="col"
-									style="background-color: #fff; border-color: #fff;"></th>
-							</tr>
-						</thead>
-						<tbody id="tbody">
-							<c:forEach items="${list}" varStatus="i" var="ab">
-								<tr>
-									<td scope="row">${i.count }<input type="hidden" value="${ab.account_No }"></td>
-									<td>${ab.account_Date }</td>
-									<td>${ab.account_Type }</td>
-									<td>${ab.account_Clause }</td>
-									<td>${ab.account_Item }</td>
-									<td>${ab.account_Summary }</td>
-									<td><fmt:formatNumber value="${ab.account_Income }" type="currency" /></td>
-									<td><fmt:formatNumber value="${ab.account_Outcome }" type="currency" /></td>
-									<td><fmt:formatNumber value="${ab.account_Balance }" type="currency" /></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot id="tfoot">
-							<tr>
-								<td colspan="10" style="padding: 0;"><button
-										class="btn btn-primary btn-block" onclick="addRow();">행
-										추가하기</button></td>
-							</tr>
-						</tfoot>
-					</table>
-					
-					${pageBar }
-					
-				</div>
-	
-				<!-- 간략정보 구역 -->
-				<div class="row flex-row-reverse mb-1 pb-5">
-					<div class="col-md-5">
-						<div class="d-flex justify-content-end">
-							<table class="table table-borderless">
-								<tr>
-									<td>일일 최고수입 : </td>
-									<td>일일 최저수입 : </td>
-	
-								</tr>
-								<tr>
-									<td>일일 최고지출 : </td>
-									<td>일일 최저지출 : </td>
-	
-								</tr>
-								<tr>
-									<td>일일 평균수입 : <fmt:formatNumber value="${avgIncome }" type="currency" /></td>
-									<td>일일 평균지출 : <fmt:formatNumber value="${avgOutcome }" type="currency" /></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-				
-
-				
-				
+		
 				</c:if>
 				<c:if test="${empty account }">
 	
