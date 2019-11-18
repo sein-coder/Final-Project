@@ -53,16 +53,18 @@ public class FestivalDaoImpl implements FestivalDao {
 	public int selectFestivalCount(SqlSessionTemplate session) {
 		return session.selectOne("festival.selectFestivalCount");
 	}
-
+ 
 	@Override
-	public List<Festival> selectSearchFestival(Festival festival) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("searchType","searchType");
-		map.put("search","search");
-		return getSqlSession.selectList("festival.selectSearchFestival",map);
+	public List<Festival> selectSearchFestival(SqlSessionTemplate session, String searchKeyword, int cPage, int numPerPage) {
+		RowBounds r = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return session.selectList("festival.selectSearchFestival", searchKeyword,r);
 	}
 
-	
+	@Override
+	public int selectSearchTotal(SqlSessionTemplate session, String searchKeyword) {
+		return session.selectOne("festival.selectSearchTotal",searchKeyword);
+	}
+
 	
 	
 }

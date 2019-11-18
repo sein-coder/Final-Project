@@ -130,8 +130,8 @@ textarea {
 												src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
 											<!-- 썸네일 부분   -->
 										<div class="pull-left ml-2 mt-2" style="display:inline;">
-											<input type="file" value="파일 선택" name="upFile" id="upFile"/>
-											<input type="hidden" name="festival_Thumbnail" value="${festival.festival_Thumbnail }">
+											<input class="check" type="file" value="파일 선택" name="upFile" id="upFile"/>
+											<input class="check" type="hidden" name="festival_Thumbnail" value="${festival.festival_Thumbnail }">
 										</div>
 										
 										</div>
@@ -141,7 +141,7 @@ textarea {
 								</div>
 								<div class="details col-md-7">
 									<h3 class="product-title">
-										<input id="festival_Title" name="festival_Title" type="text" value="${festival.festival_Title }" placeholder="00축제" >
+										<input class="check" id="festival_Title" name="festival_Title" type="text" value="${festival.festival_Title }" placeholder="00축제" >
 									</h3>
 									<div class="rating">
 										<div class="stars">
@@ -155,7 +155,7 @@ textarea {
 									<p class="product-description" />
 
 									<div>
-										<textarea name="festival_Content" id="festival_Content" cols="40"
+										<textarea class="check" name="festival_Content" id="festival_Content" cols="40"
 											rows="40" placeholder="축제 내용을 입력하세요">${festival.festival_Content }</textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
@@ -166,11 +166,11 @@ textarea {
 									<br>
 									<div style="display: inline-block">
 										<div class="content-tag">
-											<input type="hidden" name="festival_Tag" value="${festival.festival_Tag }"
+											<input class="check" type="hidden" name="festival_Tag" value="${festival.festival_Tag }"
 												id="festival_Hashtag">
 											<ul class="p-0" id="tag-list">
 											</ul>
-											<input type="text" id="tag" size="7" placeholder="태그입력" />
+											<input class="check" type="text" id="tag" size="7" placeholder="태그입력" />
 										</div>
 									</div>
 								</div>
@@ -202,14 +202,14 @@ textarea {
 										<div class="alert alert-danger1">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-											<input id="festival_StartDate" name="festival_StartDate" type="date" value=${festival.festival_StartDate} />
+											<input class="check" id="festival_StartDate" name="festival_StartDate" type="date" value=${festival.festival_StartDate} />
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-											<input id="festival_EndDate" name="festival_EndDate" type="date" value=${festival.festival_EndDate} />
+											<input class="check" id="festival_EndDate" name="festival_EndDate" type="date" value=${festival.festival_EndDate} />
 										</div>
 									</td>
 								</tr>
@@ -218,7 +218,7 @@ textarea {
 										<div class="alert alert-danger3">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">전화번호</a> <strong>:</strong>
-											<input type="tel" id="festival_Phone" name="festival_Phone"  value="${festival.festival_Phone}"
+											<input class="check" type="tel" id="festival_Phone" name="festival_Phone"  value="${festival.festival_Phone}"
 												pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" placeholder="02(0)-123(4)-5678" 
 												title="하이픈(-)을  넣어 입력해주세요"
 												 required>
@@ -228,7 +228,7 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">홈페이지</a> <strong>:</strong>
-											<input type="url" id="festival_Homepage" name="festival_Homepage" value="${festival.festival_Homepage}">
+											<input class="check" type="url" id="festival_Homepage" name="festival_Homepage" value="${festival.festival_Homepage}">
 
 										</div>
 									</td>
@@ -237,7 +237,7 @@ textarea {
 									<td scope="row">
 										<div class="alert alert-danger4" style="display: inline-block">
 											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주 소</a> <strong>:</strong> <input
+												style="background-color: #fff;">주 소</a> <strong>:</strong> <input class="check"
 												type="text" name="festival_Address" id="festival_Address" value="${festival.festival_Address}" >
 										</div>
 
@@ -245,8 +245,8 @@ textarea {
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주 최</a> <strong>:</strong> <input
-												type="text" name="festival_Host" id="festival_Host" value="${festival.festival_Host}" >
+												style="background-color: #fff;">주 최</a> <strong>:</strong> 
+												<input class="check" type="text" name="festival_Host" id="festival_Host" value="${festival.festival_Host}" >
 										</div>
 									</td>
 								</tr>
@@ -254,7 +254,7 @@ textarea {
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주 관</a> <strong>:</strong> <input
+												style="background-color: #fff;">주 관</a> <strong>:</strong> <input class="check"
 												type="text" name="festival_Sub" id="festival_Sub" value="${festival.festival_Sub}">
 										</div>
 									</td>
@@ -262,7 +262,7 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">이용요금</a> <strong>:</strong>
-											<input type="text" name="festival_Price" id="festival_Price" value="${festival.festival_Price}" >
+											<input class="check" type="text" name="festival_Price" id="festival_Price" value="${festival.festival_Price}" >
 										</div>
 									</td>
 								</tr>
@@ -373,12 +373,18 @@ textarea {
         <script>
         /* 각 input 태그 체크이벤트  */
 
-        $("input").change(function(){
-        	if($(this).val()!="" && $(this).attr("id")!='tag'){
-        		var img = "<img src='https://img.icons8.com/cotton/2x/like--v3.png' alt='check' width='100px' height='100px'/>"
-        		$(this).parent().append(img);
+        $(".check").change(function(){
+        	if($(this).val()!=""&&$(this).attr("id")!='tag'){
+        		if($(this).attr("class").includes("already")){
+        			false;    			   			
+        		}else{
+        			var img = "<img src='https://img.icons8.com/cotton/2x/like--v3.png' alt='check' width='50px' height='50px'/>";
+    				$(this).parent().append(img);   
+        			$(this).addClass("already");
+        		}
         	}
         });
+        
 		</script>
     	<script>
 		/* 썸네일 사진 */

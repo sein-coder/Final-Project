@@ -1,6 +1,7 @@
 package com.kh.letEatGo.festival.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,10 +68,15 @@ public class FestivalServiceImpl implements FestivalService {
 	}
 
 	@Override
-	public List<Festival> selectSearchFestival(Festival festival) {
-		return dao.selectSearchFestival(festival);
+	public List<Festival> selectSearchFestival(String searchKeyword,int cPage, int numPerPage) {
+		return dao.selectSearchFestival(session,searchKeyword,cPage,numPerPage);
 	}
 
+	@Override
+	public int selectSearchTotal(String searchKeyword) {
+		return dao.selectSearchTotal(session, searchKeyword);
+	}
+	
 	
 	
 	 

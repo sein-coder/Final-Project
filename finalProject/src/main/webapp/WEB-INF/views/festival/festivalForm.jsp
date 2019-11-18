@@ -341,9 +341,14 @@ textarea {
 
         $(".check").change(function(){
         	if($(this).val()!=""&&$(this).attr("id")!='tag'){
-        		var img = "<img src='https://img.icons8.com/cotton/2x/like--v3.png' alt='check' width='50px' height='50px'/>"
-    				$(this).parent().append(img);
-				}
+        		if($(this).attr("class").includes("already")){
+        			false;    			   			
+        		}else{
+        			var img = "<img src='https://img.icons8.com/cotton/2x/like--v3.png' alt='check' width='50px' height='50px'/>";
+    				$(this).parent().append(img);   
+        			$(this).addClass("already");
+        		}
+        	}
         });
         
         

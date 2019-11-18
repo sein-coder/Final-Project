@@ -1,6 +1,7 @@
 package com.kh.letEatGo.festival.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.letEatGo.festival.model.vo.Festival;
 
@@ -23,7 +24,9 @@ public interface FestivalService{
 
 	int selectFestivalCount();
 
-	List<Festival> selectSearchFestival(Festival festival);
+	List<Festival> selectSearchFestival(String searchKeyword,int cPage, int numPerPage);
+
+	int selectSearchTotal(String searchKeyword);
 
 
 	

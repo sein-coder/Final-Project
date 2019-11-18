@@ -24,10 +24,35 @@
 
 <body>
 <div class="site-section">
+	<div class="container">
+	<div class="row justify-content-center mb-0">
+		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img class="d-block" style="width: 100%; height: 200px;" src="${pageContext.request.contextPath }/resources/images/festival/포스터1.png" alt="First slide">
+		    </div>
+		    <div class="carousel-item">
+		      <img class="d-block" style="width: 100%; height: 200px;" src="${pageContext.request.contextPath }/resources/images/festival/포스터2.png" alt="Second slide">
+		    </div>
+		    <div class="carousel-item">
+		      <img class="d-block" style="width: 100%; height: 200px;" src="${pageContext.request.contextPath }/resources/images/festival/포스터3.png" alt="Third slide">
+		    </div>
+		  </div>
+		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </a>
+		</div>
+	</div>
+	</div>
   <!-- Page Content -->
   <div class="container">
 
-    <div class="row">
+	 <div class="row">
 
       <!-- Blog Entries Column -->
       <div class="col-md-8 t-3">
@@ -70,13 +95,23 @@
        <!--  Pagination -->
         <ul class="pagination justify-content-center mb-4" id="this">
           <li id="prePage" class="page-item">
-            <a class="page-link" href="${pageContext.request.contextPath }/festival/festivalList?cPage=${cPage-1}">&larr; Older</a>
+	          	<c:if test="${not empty searchKeyword }">
+	          		 <a class="page-link" href="${pageContext.request.contextPath }/festival/searchFestival.do?cPage=${cPage-1}&searchKeyword=${searchKeyword}">&larr; Older</a>
+	          	</c:if>
+	          	<c:if test="${empty searchKeyword }">
+	          		  <a class="page-link" href="${pageContext.request.contextPath }/festival/searchFestival.do?cPage=${cPage-1}">&larr; Older</a>
+	          	</c:if>
           </li>
           <li>
           	
           </li>
           <li id="nextPage" class="page-item">
-            <a class="page-link" href="${pageContext.request.contextPath }/festival/festivalList?cPage=${cPage+1}">Newer &rarr;</a>
+	          <c:if test="${not empty searchKeyword }">
+	         	<a class="page-link" href="${pageContext.request.contextPath }/festival/searchFestival.do?cPage=${cPage+1}&searchKeyword=${searchKeyword}">Newer &rarr;</a>
+	          </c:if>
+	          <c:if test="${empty searchKeyword }">
+	            <a class="page-link" href="${pageContext.request.contextPath }/festival/searchFestival.do?cPage=${cPage+1}">Newer &rarr;</a>
+	          </c:if>
           </li>
         </ul>
 
@@ -92,82 +127,19 @@
             <div class="input-group">
             	
             	<div id="search-Title">
-            		<form action="${pageContext.request.contextPath }/festival/searchFestival.do" method="post">
+            		<form action="${pageContext.request.contextPath }/festival/searchFestival.do" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="searchType" value="festival_Title||fesitval_Content">
-						
-		              <input type="text" name="search" class="form-control" placeholder="Search for..."
-		              	value="">
+		                <input type="text" name="searchKeyword" class="form-control" placeholder="Search for..."
+		              	value="" style="width:300px;">
 		              <span class="input-group-btn">
 		                <button class="btn btn-secondary" type="submit">Go!</button>
 		              </span>
              		</form>
-            	</div>
-            
-            
-            
-            
-            <%-- 		<div id="search-container">
-				검색타입:
-				
-				<div id="search-memberId">
-					<form action="<%=request.getContextPath()%>/search/searchFinder">
-					 <input type="hidden" name="searchType" value="userId"/>
-					 <input type="text" name="searchKeyword" size="25" placeholder="아이디입력"
-					 value='<%=type!=null&&type.equals("memberId")?keyword:"" %>'/>
-					 <button type="submit">검색</button>
-					</form>
-				</div>
-				<div id="search-memberName">
-					<form action="<%=request.getContextPath()%>/search/searchFinder">
-					 <input type="hidden" name="searchType" value="userName"/>
-					 <input type="text" name="searchKeyword" size="25" placeholder="회원이름입력" >
-					 value='<%=type!=null&&type.equals("memberName")?keyword:"" %>'/>
-					 <button type="submit">검색</button>
-					</form>
-				</div>
-				
-				
-			</div> --%>
-			
-			
+            	</div>	
             </div>
           </div>
         </div>
 
-      <!--   <!-- Categories Widget 
-        <div class="card my-4">
-          <h5 class="card-header" style="background-color:#ffc9c9;">안해</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">css</a>
-                  </li>
-                  <li>
-                    <a href="#">HTML</a>
-                  </li>
-                  <li>
-                    <a href="#">Freebies</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">JavaScript</a>
-                  </li>
-                  <li>
-                    <a href="#">CSS</a>
-                  </li>
-                  <li>
-                    <a href="#">Tutorials</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div> -->
 
         <!-- Side Widget -->
         <c:if test="${not empty list2}">
@@ -245,23 +217,25 @@
 	</script>
 	
 	<script>
-		$(document).ready(function(){
-			var lastP = "${totalCount}"%3!=0?"${totalCount}"/3+1:"${totalCount}"/3; 
-					
-			var nowP = ${cPage}
+	$(document).ready(function(){
+		var lastP = Math.ceil("${totalCount}"/3); 
+		
+		console.log(lastP);
+		
+		var nowP = ${cPage};
+
+		if("${totalCount}"==1 || "${totalCount}"==2 || "${totalCount}"==3){
+			$("#nextPage").addClass("disabled");
+			$("#prePage").addClass("disabled");
+		}else{
 			if(nowP >= lastP){
 				$("#nextPage").addClass("disabled");
 			}else if(nowP <= 1){
 				$("#prePage").addClass("disabled");
 			}
-		});
+		}
+	});
 	</script>
-
-
-
-
-
-
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

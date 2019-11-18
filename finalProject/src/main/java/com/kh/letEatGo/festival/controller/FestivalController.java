@@ -2,8 +2,11 @@ package com.kh.letEatGo.festival.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,8 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.letEatGo.festival.model.service.FestivalService;
 import com.kh.letEatGo.festival.model.vo.Festival;
-
-
 
 
 @Controller
@@ -37,7 +38,6 @@ public class FestivalController {
 		ModelAndView mv=new ModelAndView();
 		
 		int numPerPage=3;
-		
 		
 		List<Festival> list = service.selectFestival(cPage,numPerPage);
 		List<Festival> list2   = service.selectLikeCount(festival);
@@ -254,15 +254,28 @@ public class FestivalController {
 	}
 //검색기능
 	 @RequestMapping("/festival/searchFestival.do")
-	 public ModelAndView selectSearchFestival() {
-		 
-		 ModelAndView mv=new ModelAndView();
-		 String searchType="";
-		 String search="";
-		 
-		 List<Festival> list = service.selectSearchFestival();
-		 
-		 mv.addObject("list",list);
+	 public ModelAndView selectSearchFestival(
+			 Festival festival, HttpServletRequest req,
+			 @RequestParam(value="searchKeyword", required=false, defaultValue = "")String searchKeyword, 
+			 @RequestParam(value="cPage",required=false, defaultValue = "1") int cPage,
+			 @RequestParam(value="upFile", required=false) MultipartFile upFile 
+			 ) {
+	 
+		ModelAndView mv = new ModelAndView(); 
+		
+		Map<String,String> map =  new HashMap<String,String>();//실제 검색조건이 담길 리스트
+		map.put("searchKeyword", searchKeyword);
+		int numPerPage =3;
+		  
+		List<Festival> list = service.selectSearchFestival(searchKeyword,cPage,numPerPage);
+		List<Festival> list2 = service.selectLikeCount(festival);	
+		int totalData = service.selectSearchTotal(searchKeyword);
+		
+		mv.addObject("searchKeyword", searchKeyword);
+		mv.addObject("cPage",cPage);
+		mv.addObject("totalCount",totalData);
+		mv.addObject("list",list); //검색결과리스트
+		mv.addObject("list2",list2); //오른쪽 조회수 상위 3개			
 		 mv.setViewName("festival/festivalList");
 		 return mv;
 		 

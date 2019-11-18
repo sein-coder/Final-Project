@@ -1,6 +1,7 @@
 package com.kh.letEatGo.festival.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -24,7 +25,7 @@ public interface FestivalDao {
 
 	int selectFestivalCount(SqlSessionTemplate session);
 
-	List<Festival> selectSearchFestival(SqlSessionTemplate session);
+	List<Festival> selectSearchFestival(SqlSessionTemplate session, String searchKeyword, int cPage, int numPerPage);
 
-	List<Festival> selectSearchFestival(Festival festival);
+	int selectSearchTotal(SqlSessionTemplate session, String searchKeyword);
 }
