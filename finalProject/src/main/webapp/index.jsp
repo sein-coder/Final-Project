@@ -214,14 +214,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/S_2.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴1<span>부메뉴1</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -232,14 +224,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_1.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴2<span>부메뉴2</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -250,14 +234,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_4.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴3<span>부메뉴3</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -268,14 +244,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/S_6.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴4<span>부메뉴4</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -286,14 +254,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/S_1.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴5<span>부메뉴5</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -304,14 +264,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_3.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴6<span>부메뉴6</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->

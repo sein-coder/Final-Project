@@ -202,8 +202,118 @@
 						<h5 class="mt-2">-성별 선호도-</h5>
 						<div id="pieChart2"></div>
 					</div>
+					<!-- 소규모통계자료 추가 -->
 					<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
-						뭐넣을까...
+						<div class="row pt-3 mt-2">
+							<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">일일&nbsp;최고수입&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${maxIncome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				            
+				            <div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">일일&nbsp;최저수입&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${minIncome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+
+							<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">일일&nbsp;최고지출&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${maxOutcome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				            
+				            <div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">일일&nbsp;최저지출&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${minOutcome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+			            
+			            	<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">일일&nbsp;평균수입&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${avgIncome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+
+			            	<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">일일&nbsp;평균지출&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+										<fmt:formatNumber value="${avgOutcome }" type="currency" />
+									  </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+
+						</div>
 					</div>
 				</div>
 	
@@ -263,13 +373,13 @@
 						<div class="d-flex justify-content-end">
 							<table class="table table-borderless">
 								<tr>
-									<td>일일 최고수입 : <fmt:formatNumber value="${maxIncome }" type="currency" /></td>
-									<td>일일 최저수입 : <fmt:formatNumber value="${minIncome }" type="currency" /></td>
+									<td>일일 최고수입 : </td>
+									<td>일일 최저수입 : </td>
 	
 								</tr>
 								<tr>
-									<td>일일 최고지출 : <fmt:formatNumber value="${maxOutcome }" type="currency" /></td>
-									<td>일일 최저지출 : <fmt:formatNumber value="${minOutcome }" type="currency" /></td>
+									<td>일일 최고지출 : </td>
+									<td>일일 최저지출 : </td>
 	
 								</tr>
 								<tr>
