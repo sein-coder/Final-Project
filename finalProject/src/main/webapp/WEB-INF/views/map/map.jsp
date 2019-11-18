@@ -70,6 +70,7 @@
           <div class="col-md-10 text-center border-primary">
            <!--  -->         
           <div class="col-md-8 offset-md-2  input-group mb-3 ">
+          <!-- =================================================================================================== -->
           <button class="icon icon-room btn btn-success" style="background: #f38181; color:#fff" onclick="map_gps();"></button>
            <input type="text" id="sample5_address" placeholder="주소" class="col-md-10 form-control"  placeholder="Search">
              <button class="col-md-2 btn btn-success icon icon-search" onclick="sample5_execDaumPostcode();" style="background: #f38181; color:#fff"></button>
@@ -83,6 +84,7 @@
 
     </div>
     </div>        
+   <%--  ${trucklist } --%>
     
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
@@ -124,8 +126,9 @@ function showPosition(position) {
 	       };
 	       geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 	}
+	
+	/* ==================================================================== */
 if('${mapAddress}'!=''){
-	console.log('${mapAddress}')
 var mapSeacrh= function(result, status) {
     if (status === kakao.maps.services.Status.OK) {
     	 var result = result[0];
@@ -243,7 +246,7 @@ function displayArea(area) {
                     '            <div class="desc">' + 
                     '                <div class="ellipsis">'+area.address+'</div>' + 
                     '                <div class="jibun ellipsis">'+area.address2+'</div>' + 
-                    '                <div><a href=""  class="link">축제더보기</a></div>' + 
+                    '                <div><a href="${pageContext.request.contextPath }/festival/festivalList"  class="link">축제더보기</a></div>' + 
                     '            </div>' + 
                     '        </div>' + 
                     '    </div>' +    
@@ -276,17 +279,25 @@ var callback = function(result, status) {
 places.keywordSearch(document.getElementById("sample5_address").value, callback);
 }
 var positions=[];
+
+
 <c:forEach items="${trucklist}" var="truck">
+<c:forEach items="${partnerlist}" var="partner">
+if("${partner.partner_No}"=="${truck.partner_No}"){
+console.log("${partner.partner_Phone}")
 var position = 
     {
-        title: '푸드트럭', 
+        title: "${partner.partner_TruckName}", 
         latlng: new kakao.maps.LatLng("${truck.XCode}","${truck.YCode}"),
-        img : "",
+        img : "${partner.profile_Re}",
         time : 	"${truck.map_Strart_Time}"+"~"+"${truck.map_End_Time}",
-        phone : "12345"
+        phone : "${partner.partner_Phone}",
+        partner : "${truck.partner_No}"
     }
 ;
 positions.push(position);
+}
+</c:forEach>
 </c:forEach>
 // 마커 이미지의 이미지 주소입니다
 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -317,12 +328,12 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     '        </div>' + 
     '        <div class="body">' + 
     '            <div class="img">' +
-    '                <img src="'+positions[i].img+'" width="73" height="70">' +
+    '                <img src="${pageContext.request.contextPath}/resources/images/foodtruck/'+positions[i].img+'" width="73" height="70">' +
     '           </div>' + 
     '            <div class="desc">' + 
     '                <div class="ellipsis">영업시간:'+positions[i].time+'</div>' + 
     '                <div class="jibun ellipsis">전화번호:'+positions[i].phone+'</div>' + 
-    '                <div><a href="" class="link">홈페이지</a></div>' + 
+    '                <div><a href="${path}/order/orderListView?partner_No='+positions[i].partner+'" class="link">홈페이지</a></div>' + 
     '            </div>' + 
     '        </div>' + 
     '    </div>' +    

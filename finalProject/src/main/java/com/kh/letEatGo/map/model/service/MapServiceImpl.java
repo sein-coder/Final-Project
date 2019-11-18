@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.letEatGo.map.model.dao.MapDao;
 import com.kh.letEatGo.map.model.vo.ZoneMap;
+import com.kh.letEatGo.partner.model.vo.Partner;
 import com.kh.letEatGo.map.model.vo.TruckMap;
 
 @Service
@@ -28,4 +29,9 @@ public class MapServiceImpl implements MapService {
 		return dao.selectMapList(session);
 	}
 
+	@Override
+	public List<Partner> selectPartnerList() {
+		return dao.selectPartnerList(session);
+	}
+	
 }

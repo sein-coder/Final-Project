@@ -14,6 +14,6 @@ public class TruckMap {
 	private String addr_old;
 	private String map_Strart_Time;
 	private String map_End_Time;
-	
+	private int partner_No; 
 	
 }
