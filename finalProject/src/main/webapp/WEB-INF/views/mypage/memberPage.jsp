@@ -21,6 +21,7 @@
 if(token!=null){
 	document.getElementById("btnDelete").style.display ='none';
 	document.getElementById("id").style.display ='none';
+	document.getElementById("pw").style.display ='none';
 }else{
 	document.getElementById("btnDelete").style.display ='noset';
 	document.getElementById("id").style.display ='noset';
@@ -50,9 +51,9 @@ if(token!=null){
                <label for="form-label">아이디</label>
          <input  name="member_Id" value="${member.member_Id}" readonly="readonly" class="form-control">
       </div>
-       <div class="form-group">
+       <div id="pw" class="form-group">
                <label for="form-label">비밀번호</label>
-         <input type="password" name="member_Password" value="${member.member_Password}" class="form-control">
+         <input  type="password" name="member_Password" value="${member.member_Password}" class="form-control">
       </div>
       <div class="form-group">
                <label for="form-label">나이</label>

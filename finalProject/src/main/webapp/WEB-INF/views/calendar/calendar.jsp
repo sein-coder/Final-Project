@@ -42,60 +42,52 @@
       setCalendar();
    });
    
-  
    function setCalendar(){
 
-      var calendarEl = document.getElementById('calendar');
+	      var calendarEl = document.getElementById('calendar');
 
-
-      calendar = new FullCalendar.Calendar(calendarEl, {
-         plugins: [ 'dayGrid', 'timeGrid', 'list', 'interaction' ],
-         header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth'
-         },
-         dateClick:function(){
-            var win=window.open("${pageContext.request.contextPath}/calendar/toDo.do?partnerno="+'${partnerno}',"일정 입력","width=500,height=500");
-         },
-         defaultView: 'dayGridMonth',
-         locale: 'ko',
-         navLinks: true, // can click day/week names to navigate views
-         editable: true,
-         allDaySlot: false,
-         eventLimit: true, // allow "more" link when too many events
-         minTime: '10:00:00',
-         maxTime: '24:00:00',
-         contentHeight: 'auto',
-         selecttable:true,
-         selectHelper:true,
-         events: [
-            {
-            title:"11월 첫날",
-            start:'2019-11-01'
-         },
-         {
-            title:"수능",
-            start:'2019-11-14'
-         }
-         <c:forEach items="${calendar}" var="calendar1">
-         ,
-         {   title:'${calendar1.schedule}',
-            start:'${calendar1.start_Date}',
-            end:'${calendar1.end_Date}'
-         }
-          </c:forEach>
-         
-         ]
-         
-         
-      }); 
-         
-         
-      calendar.render();
-      
-   }
-   
+	      calendar = new FullCalendar.Calendar(calendarEl, {
+	         plugins: [ 'dayGrid', 'timeGrid', 'list', 'interaction' ],
+	         header: {
+	            left: 'prev,next today',
+	            center: 'title',
+	            right: 'dayGridMonth'
+	         },
+	         dateClick:function(){
+	            var win=window.open("${pageContext.request.contextPath}/calendar/toDo.do?partnerno="+'${partnerno}',"일정 입력","width=500,height=500");
+	         },
+	         defaultView: 'dayGridMonth',
+	         locale: 'ko',
+	         navLinks: true, // can click day/week names to navigate views
+	         editable: true,
+	         allDaySlot: false,
+	         eventLimit: true, // allow "more" link when too many events
+	         minTime: '10:00:00',
+	         maxTime: '24:00:00',
+	         contentHeight: 'auto',
+	         selecttable:true,
+	         selectHelper:true,
+	         events: [
+	            {
+	            title:"11월 첫날",
+	            start:'2019-11-01'
+	         },
+	         {
+	            title:"수능",
+	            start:'2019-11-14'
+	         }
+	          <c:forEach items="${calendar}" var="calendar1">
+	         ,
+	         {   title:'${calendar1.schedule}',
+	            start:'${calendar1.start_Date}',
+	            end:'${calendar1.end_Date}'
+	         }
+	          </c:forEach> 
+	         ]
+	      }); 
+	         
+	      calendar.render();
+	   }
    
    
    function eventAdd(data){

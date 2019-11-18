@@ -39,12 +39,12 @@
    <script>
       function addTodo(){
          var data=$("#addFrm").serialize();
-         $.ajax({
+          $.ajax({
             url:"${pageContext.request.contextPath}/schedule.cal",
             data:data,
             success:function(result){
                if(result=='true'){
-                  var v={"title":addFrm.schedule.value,"start":addFrm.startDate.value,"end":addFrm.endDate.value}
+                  var v={"title":addFrm.schedule.value,"start":addFrm.start_Date.value,"end":addFrm.end_Date.value}
                   window.opener.eventAdd(v);
                   alert("등록성공 창을 닫습니다.");
                   self.close();
@@ -52,7 +52,7 @@
                   alert("등록실패 다시 등록하세요");
                }
             }
-         });
+         }); 
       }
       
    </script>
