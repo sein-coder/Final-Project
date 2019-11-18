@@ -16,15 +16,18 @@
 			</tr>
 			<tr>
 				<td>일정시작일</td>
-				<td><input type="date" name="startDate"></td>
+				<td><input type="date" name="startDate" id="start"></td>
 			</tr>
 			<tr>
 				<td>일정종료일</td>
-				<td><input type="date" name="endDate"></td>
+				<td><input type="date" name="endDate" id="end"></td>
 			</tr>
 			<tr>
 				<td>일정 상세</td>
 				<td><input type="text" name="calendar_Content"></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="partnerNo" value="${partnerno}"></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -41,10 +44,9 @@
 				data:data,
 				success:function(result){
 					if(result=='true'){
-						var v={"title":addFrm.title.value,"start":addFrm.startDate.value,"end":addFrm.endDate.value}
+						var v={"title":addFrm.schedule.value,"start":addFrm.startDate.value,"end":addFrm.endDate.value}
 						window.opener.eventAdd(v);
 						alert("등록성공 창을 닫습니다.");
-						
 						self.close();
 					}else{
 						alert("등록실패 다시 등록하세요");

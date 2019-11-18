@@ -32,7 +32,7 @@
   
   $(document).ready(function(){
 	  $("#cbtnMove").click(function(){
-		  location.href="${path}/calendar";
+		  location.href="${path}/calendar?partnerno="+${partner.partner_No};
 	  });
   });
   

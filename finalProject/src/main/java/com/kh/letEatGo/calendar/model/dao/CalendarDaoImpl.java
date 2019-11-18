@@ -1,5 +1,7 @@
 package com.kh.letEatGo.calendar.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +14,20 @@ public class CalendarDaoImpl implements CalendarDao {
 	public int insertCalendar(SqlSessionTemplate session, Calendar c) {
 		return session.insert("calendar.insertCalendar",c);
 	}
+
+	@Override
+	public Calendar selectCalendarOne(SqlSessionTemplate session, Calendar c) {
+		return session.selectOne("calendar.selectCalendarOne",c);
+	}
+
+	@Override
+	public List<Calendar> selectCalendar(SqlSessionTemplate session, String partnerno) {
+		return session.selectList("calendar.selectCalendar", partnerno);
+	}
+	
+	
+	
+	
 	
 	
 

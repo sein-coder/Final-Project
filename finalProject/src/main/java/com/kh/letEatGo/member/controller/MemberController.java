@@ -47,8 +47,8 @@ public class MemberController {
 			
 			
 			try {
-				m.setMember_Email(pwEncoder.encode(m.getMember_Email()));
-				m.setMember_Phone(pwEncoder.encode(m.getMember_Phone()));
+				m.setMember_Email(enc.encrypt(m.getMember_Email()));
+				m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

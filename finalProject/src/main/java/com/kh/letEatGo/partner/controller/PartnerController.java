@@ -82,10 +82,10 @@ public class PartnerController {
 			
 			
 			try {
-				p.setPartner_Address(pwEncoder.encode(p.getPartner_Address()));
-				p.setPartner_Email(pwEncoder.encode(p.getPartner_Email()));
-				p.setPartner_Permission_No(pwEncoder.encode(p.getPartner_Permission_No()));
-				p.setPartner_Phone(pwEncoder.encode(p.getPartner_Phone()));
+				p.setPartner_Address(enc.encrypt(p.getPartner_Address()));
+				p.setPartner_Email(enc.encrypt(p.getPartner_Email()));
+				p.setPartner_Permission_No(enc.encrypt(p.getPartner_Permission_No()));
+				p.setPartner_Phone(enc.encrypt(p.getPartner_Phone()));
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

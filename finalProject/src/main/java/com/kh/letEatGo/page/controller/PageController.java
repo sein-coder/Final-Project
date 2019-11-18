@@ -31,8 +31,10 @@ public class PageController {
 	
 	
 	@RequestMapping("/memberPage")
-	public String memberPage(Member m,Model model) {
+	public String memberPage(Member m,Model model) throws Exception {
 		Member result=member_service.selectMemberOne(m);
+		result.setMember_Email(enc.decrypt(result.getMember_Email()));
+		result.setMember_Phone(enc.decrypt(result.getMember_Phone()));
 		model.addAttribute("member",result);
 		
 		
@@ -40,16 +42,22 @@ public class PageController {
 	}
 	
 	@RequestMapping("/partnerPage")
-	public String partnerPage(Partner p,Model model) {
+	public String partnerPage(Partner p,Model model) throws Exception {
 		Partner result2=partner_service.selectPartnerOne(p);
+		result2.setPartner_Address(enc.decrypt(result2.getPartner_Address()));
+		result2.setPartner_Email(enc.decrypt(result2.getPartner_Email()));
+		result2.setPartner_Permission_No(enc.decrypt(result2.getPartner_Permission_No()));
+		result2.setPartner_Phone(enc.decrypt(result2.getPartner_Phone()));
 		model.addAttribute("partner",result2);
 		
 		return "mypage/partnerPage";
 	}
 	
 	@RequestMapping("/adminPage")
-	public String adminPage(Member m,Model model) {
+	public String adminPage(Member m,Model model) throws Exception {
 		Member result3=member_service.selectMemberOne2(m);
+		result3.setMember_Email(enc.decrypt(result3.getMember_Email()));
+		result3.setMember_Phone(enc.decrypt(result3.getMember_Phone()));
 		model.addAttribute("member", result3);
 		return "mypage/adminPage";
 	}
@@ -64,8 +72,8 @@ public class PageController {
 		
 		
 		try {
-			m.setMember_Email(pwEncoder.encode(m.getMember_Email()));
-			m.setMember_Phone(pwEncoder.encode(m.getMember_Phone()));
+			m.setMember_Email(enc.encrypt(m.getMember_Email()));
+			m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
 			result=member_service.updateMemberPage(m);
 			
 		} catch (Exception e) {
@@ -104,11 +112,10 @@ public class PageController {
 				result=member_service.deleteMemberPage(m);
 			}
 		    String msg="";
-			String loc="/";
+			String loc="/Logout.do";
 			if(result>0) {
 				msg="회원 탈퇴 성공";
-				session.invalidate();
-				//회원탈퇴 성공후에도 로그아웃 안되는것 문제
+				
 			}else {
 				msg="회원 탈퇴 실패";
 			}
@@ -127,10 +134,10 @@ public class PageController {
 			int result=0;
 			
 			try {
-				p.setPartner_Address(pwEncoder.encode(p.getPartner_Address()));
-				p.setPartner_Email(pwEncoder.encode(p.getPartner_Email()));
-				p.setPartner_Permission_No(pwEncoder.encode(p.getPartner_Permission_No()));
-				p.setPartner_Phone(pwEncoder.encode(p.getPartner_Phone()));
+				p.setPartner_Address(enc.encrypt(p.getPartner_Address()));
+				p.setPartner_Email(enc.encrypt(p.getPartner_Email()));
+				p.setPartner_Permission_No(enc.encrypt(p.getPartner_Permission_No()));
+				p.setPartner_Phone(enc.encrypt(p.getPartner_Phone()));
 				result=partner_service.updatePartnerPage(p);
 			} catch (Exception e) {
 				
@@ -168,18 +175,19 @@ public class PageController {
 				if(pwEncoder.matches(p.getPartner_Password(), resultPartner.getPartner_Password())) {	
 					result=partner_service.deletePartnerPage(p);
 				}
-			             String msg="";
-				String loc="/";
+			    
+				String msg="";
+				String loc="/Logout.do";
 				if(result>0) {
 					msg="회원 탈퇴 성공";
-					session.invalidate(); 
+					
 				}else {
 					msg="회원 탈퇴 실패";
 				}
 				model.addAttribute("msg",msg);
 				model.addAttribute("loc",loc);
 				
-				
+				 
 				
 				return "common/msg";	  
 				}
@@ -193,8 +201,8 @@ public class PageController {
 				
 				
 				try {
-					m.setMember_Email(pwEncoder.encode(m.getMember_Email()));
-					m.setMember_Phone(pwEncoder.encode(m.getMember_Phone()));
+					m.setMember_Email(enc.decrypt(m.getMember_Email()));
+					m.setMember_Phone(enc.decrypt(m.getMember_Phone()));
 					result=member_service.updateAdminPage(m);
 					
 				} catch (Exception e) {
