@@ -126,6 +126,8 @@ public class MemberController {
 			  m.setMember_Email("이메일을 입력하시오.");
 		  }
 		  
+		
+		 
 		  Member result2;
 		  
 		  result2 = service.selectMemberOne(m);
@@ -134,6 +136,13 @@ public class MemberController {
 			  int result=service.insertKakao(m);
 			  result2 = service.selectMemberOne(m);
 		  }
+		  try {
+			result2.setMember_Phone(enc.decrypt(result2.getMember_Phone()));
+			result2.setMember_Email(enc.decrypt(result2.getMember_Email()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 
 		  session.setAttribute("loginMember", result2);
 		  session.setAttribute("type", "member");
