@@ -309,7 +309,7 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_2_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/이지연.jfif"
 								alt="Free Website Template by Free-Template.co"
 								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>이지연</p>
@@ -327,16 +327,13 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_4_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/강보승.jpg"
 								alt="Free Website Template by Free-Template.co"
 								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>강보승</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;Even the all-powerful Pointing has no control about
-								the blind texts it is an almost unorthographic life One day
-								however a small line of blind text by the name of Lorem Ipsum
-								decided to leave for the far World of Grammar.&rdquo;</p>
+							<p>&ldquo;안녕하세요!  직장인이 되고싶은 강보승입니다. 회사원이 되는 그날까지 열심히 달리겠습니다. .&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
