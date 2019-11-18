@@ -92,13 +92,13 @@
             <div class="input-group">
             	
             	<div id="search-Title">
-            		<form action="${pageContext.request.contextPath }/festival/searchFestival.do">
+            		<form action="${pageContext.request.contextPath }/festival/searchFestival.do" method="post">
 						<input type="hidden" name="searchType" value="festival_Title||fesitval_Content">
 						
-		              <input type="text" class="form-control" placeholder="Search for..."
+		              <input type="text" name="search" class="form-control" placeholder="Search for..."
 		              	value="">
 		              <span class="input-group-btn">
-		                <button class="btn btn-secondary" type="button">Go!</button>
+		                <button class="btn btn-secondary" type="submit">Go!</button>
 		              </span>
              		</form>
             	</div>

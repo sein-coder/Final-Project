@@ -50,11 +50,11 @@
   <select id="selectFestivalCount" resultType="_int">
   	SELECT COUNT(*) FROM FESTIVAL
   </select>
-  <select id="selectSearchFestival" resultType="festival">
-  	SELECT  FESTIVAL_TITLE, FESTIVAL_CONTENT
+  <select id="selectSearchFestival" parameterType="map" resultType="festival" >
+  	SELECT  *
   	FROM FESTIVAL 
-  	WHERE FESTIVAL_TITLE LIKE '%' || 'FESTIVAL_TITLE' || '%'  OR
-  		  FESTIVAL_CONTENT LIKE '%' || 'FESTIVAL_CONTENT' || '%'
+  	WHERE FESTIVAL_TITLE LIKE '%' || #{FESTIVAL_TITLE} || '%'   AND
+  		  FESTIVAL_CONTENT LIKE '%' || #{FESTIVAL_CONTENT} || '%'
   </select>
 
 </mapper>

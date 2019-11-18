@@ -25,6 +25,7 @@ public interface FestivalService{
 
 	List<Festival> selectSearchFestival(Festival festival);
 
+
 	
 	
 

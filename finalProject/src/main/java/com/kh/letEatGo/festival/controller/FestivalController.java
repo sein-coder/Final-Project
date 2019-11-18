@@ -252,11 +252,14 @@ public class FestivalController {
 	}
 //검색기능
 	 @RequestMapping("/festival/searchFestival.do")
-	 public ModelAndView selectSearchFestival(Festival festival) {
+	 public ModelAndView selectSearchFestival() {
 		 
 		 ModelAndView mv=new ModelAndView();
-		 List<Festival> list = service.selectSearchFestival(festival);
-		 System.out.println(list);
+		 String searchType="";
+		 String search="";
+		 
+		 List<Festival> list = service.selectSearchFestival();
+		 
 		 mv.addObject("list",list);
 		 mv.setViewName("festival/festivalList");
 		 return mv;

@@ -1,6 +1,8 @@
 package com.kh.letEatGo.festival.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -53,9 +55,13 @@ public class FestivalDaoImpl implements FestivalDao {
 	}
 
 	@Override
-	public List<Festival> selectSearchFestival(SqlSessionTemplate session) {
-		return session.selectList("festival.selectSearchFestival");
+	public List<Festival> selectSearchFestival(Festival festival) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("searchType","searchType");
+		map.put("search","search");
+		return getSqlSession.selectList("festival.selectSearchFestival",map);
 	}
+
 	
 	
 	

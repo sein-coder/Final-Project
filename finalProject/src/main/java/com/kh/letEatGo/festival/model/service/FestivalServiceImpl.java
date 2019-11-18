@@ -68,8 +68,10 @@ public class FestivalServiceImpl implements FestivalService {
 
 	@Override
 	public List<Festival> selectSearchFestival(Festival festival) {
-		return dao.selectSearchFestival(session);
+		return dao.selectSearchFestival(festival);
 	}
+
+	
 	
 	 
 }
