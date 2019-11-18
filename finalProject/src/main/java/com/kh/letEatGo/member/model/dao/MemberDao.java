@@ -16,5 +16,7 @@ public interface MemberDao {
 
 	Member selectMemberEmail(SqlSessionTemplate session, Member m);
 
+	int updateMemberPassword(SqlSessionTemplate session, Member m);
+
 
 }

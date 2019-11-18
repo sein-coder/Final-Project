@@ -12,6 +12,10 @@
 	<select id="selectMemberEmail" parameterType="member" resultType="member">
 		select * from  Member WHERE MEMBER_EMAIL=#{member_Email}
 	</select>
+	<!--updateMemberPassword -->
+	<update id="updateMemberPassword" parameterType="member">
+		update member set member_Password = #{member_Password} where member_Id = #{member_Id}
+	</update>
 	
 	<!-- 회원 정보 수정 -->
 	<update id="updateMemberPage">

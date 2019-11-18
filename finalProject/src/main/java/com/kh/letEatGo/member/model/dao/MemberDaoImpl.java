@@ -33,6 +33,13 @@ public class MemberDaoImpl implements MemberDao {
 	
 		return session.selectOne("member.selectMemberEmail",m);
 	}
+
+	@Override
+	public int updateMemberPassword(SqlSessionTemplate session, Member m) {
+		return session.update("member.updateMemberPassword",m);
+	}
+
+	
 	
 
 }

@@ -14,5 +14,7 @@ public interface MemberService {
 
 	Member selectMemberEmail(Member m);
 
+	int updateMemberPassword(Member m);
+
 
 }

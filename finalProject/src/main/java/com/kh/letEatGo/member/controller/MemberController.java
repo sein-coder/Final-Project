@@ -184,9 +184,56 @@ public class MemberController {
 		}
 	 
 	 @RequestMapping("/member/find_pw.do")
-	 public String send_mailPw(Member m) throws Exception {
+	 public ModelAndView send_mailPw(Member m) throws Exception {
 		 ModelAndView mv = new ModelAndView();
 		 Member result=service.selectMemberEmail(m);
+		 
+		 //난수발생시켜
+		 
+		 //난수값을 enc로 encode
+		 //원래메일로 보낼애 하나
+		 
+		 String  pswd = "";
+		 StringBuffer sb = new StringBuffer();
+		 StringBuffer sc = new StringBuffer("!@#$%^&*-=?~");  // 특수문자 모음, {}[] 같은 비호감문자는 뺌
+
+		 // 대문자 4개를 임의 발생 
+		 sb.append((char)((Math.random() * 26)+65));  // 첫글자는 대문자, 첫글자부터 특수문자 나오면 안 이쁨
+
+		 for( int i = 0; i<3; i++) {
+		    sb.append((char)((Math.random() * 26)+65));  // 아스키번호 65(A) 부터 26글자 중에서 택일
+		 } 
+
+		 // 소문자 4개를 임의발생
+		 for( int i = 0; i<4; i++) {
+		     sb.append((char)((Math.random() * 26)+97)); // 아스키번호 97(a) 부터 26글자 중에서 택일
+		 }  
+
+		 // 숫자 2개를 임의 발생
+		 for( int i = 0; i<2; i++) {
+		     sb.append((char)((Math.random() * 10)+48)); //아스키번호 48(1) 부터 10글자 중에서 택일
+		 }
+
+
+		 // 특수문자를 두개  발생시켜 랜덤하게 중간에 끼워 넣는다 
+		 sb.setCharAt(((int)(Math.random()*3)+1), sc.charAt((int)(Math.random()*sc.length()-1))); //대문자3개중 하나   
+		 sb.setCharAt(((int)(Math.random()*4)+4), sc.charAt((int)(Math.random()*sc.length()-1))); //소문자4개중 하나
+
+		 pswd = sb.toString();
+		 
+		 // 난수를 이메일로 전송
+		 m.setMember_Password(pswd);
+
+		 //주의할꺼는 변수를 두개로 나눠 하나는(원래였던) 메일로 보내, 하나는 암호화해서 저장
+		 
+		 int result2=service.updateMemberPassword(m);
+		 m.setMember_Password(enc.encrypt(result.getMember_Email()));
+		 
+		 
+		 mv.addObject("result",result);
+		 mv.addObject("result2",result2);
+		 mv.setViewName("/member/findIp");
+		 
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com";
@@ -199,7 +246,7 @@ public class MemberController {
 		String subject = "비밀번호 찾기 및 변경 인증 메일입니다.\r\n";
 		String msg ="";
 		msg += "<div align='center'>";
-		msg += "<p>'"+result.getMember_Id()+"'</p>";
+		msg += "<p>'"+"'</p>";
 		msg += "<div style='font-size: 130%'>";
 		msg += "</div><br/>";
 		
@@ -224,7 +271,7 @@ public class MemberController {
 		} catch (Exception e) {
 			System.out.println("메일발송 실패 : " + e);
 		}
-		return "/member/findIp";
+		return mv;
 }
 	  
 
