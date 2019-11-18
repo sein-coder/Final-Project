@@ -159,8 +159,34 @@ $(document).ready(function(){
 		});
 
 	var keyword = '${keyword}' != null?'${keyword}' : "";
-	console.log(keyword);
-	// partner_Menu 관련 function
+	var ordering = '${ordering}' != null?'${ordering}' : "";
+	
+	var url ="";
+	//keyword가 null or 빈칸이 아닐때(설정 : 버튼 css, url설정!)
+	//1) keyword가 없을 때
+	//2) ordering이 없을 떄
+	//3) 둘다 있을 때
+	if(keyword != null && keyword != ' '){
+		// keyword가 빈칸이 아닐 때
+		var keywords = keyword.split('/');
+		
+		if(ordering != null && ordering != ' '){
+			// ordering이 빈칸이 아닐 때
+		} else {
+			//ordering이 빈칸일 때
+		}
+	} else {
+		// keyword가 빈칸일 때
+		if(ordering != null && ordering != ' '){
+			// ordering이 빈칸이 아닐 때
+		} else {
+			//ordering이 빈칸일 때
+		}
+	}
+	
+	
+	
+	// partner_Menu toggle 관련 function
 	$('.input-toggle').on('click',function(){
 		var thisbtn = $(this).children().children().eq(1);
 		if(thisbtn.siblings().val() != null && !((thisbtn.siblings().val()).includes('asc') || (thisbtn.siblings().val()).includes('desc'))){
@@ -196,7 +222,7 @@ $(document).ready(function(){
 		var ordering = thisbtn.siblings().val();
 			
 		console.log(ordering);
-		//location.href = "${pageContext.request.contextPath}/order/orderListSearch?keyword="+keyword+"&ordering="+ordering;
+		location.href = "${pageContext.request.contextPath}/order/orderListSearch?&ordering="+ordering;
 	});
 	
 	$("input[name=data_No]").each(function(){
