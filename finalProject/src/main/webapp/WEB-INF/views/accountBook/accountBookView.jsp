@@ -75,293 +75,317 @@
 <section id="content">
 	<div class="site-section" style="background-color: #f4f4f4;">
 		<div class="container mt-3" style="background-color: white;">
-			
-			<c:if test="${not empty account }">
-			
-			<!-- 이용자 아이디 출력 구역 -->
-			<div class="row pl-4 pt-3 mb-4 justify-content-start">
-				<h2>${loginMember.partner_TruckName }님의 11월 통계 및 장부</h2>
-			</div>
-			
-			<!-- Content Row -->
-	        <div class="row m-1 mb-4">
-	
-	            <!-- Earnings (Monthly) Card Example -->
-	            <div class="col-xl-3 col-md-6 mb-4">
-	              <div class="card border-left-primary shadow h-100 py-2">
-	                <div class="card-body">
-	                  <div class="row no-gutters align-items-center">
-	                    <div class="col mr-2">
-	                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">현재까지 매출&nbsp;(월 단위)</div>
-	                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-	                    </div>
-	                    <div class="col-auto">
-	                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-	                    </div>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
-	            
-	            <div class="col-xl-3 col-md-6 mb-4">
-	              <div class="card border-left-info shadow h-100 py-2">
-	                <div class="card-body">
-	                  <div class="row no-gutters align-items-center">
-	                    <div class="col mr-2">
-	                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">매출 달성률&nbsp;(월 단위)</div>
-	                      <div class="row no-gutters align-items-center">
-	                        <div class="col-auto">
-	                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0%</div>
-	                        </div>
-	                        <div class="col">
-	                          <div class="progress progress-sm mr-2">
-	                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-	                          </div>
-	                        </div>
-	                      </div>
-	                    </div>
-	                    <div class="col-auto">
-	                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-	                    </div>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
-	
-	            <!-- Earnings (Monthly) Card Example -->
-	            <div class="col-xl-3 col-md-6 mb-4">
-	              <div class="card border-left-success shadow h-100 py-2">
-	                <div class="card-body">
-	                  <div class="row no-gutters align-items-center">
-	                    <div class="col mr-2">
-	                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">직전 일 대비 매출 증감율</div>
-	                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-	                    </div>
-	                    <div class="col-auto">
-	                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-	                    </div>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
-	            <!-- Earnings (Monthly) Card Example -->
-
-	            <!-- Pending Requests Card Example -->
-	            <div class="col-xl-3 col-md-6 mb-4">
-	              <div class="card border-left-warning shadow h-100 py-2">
-	                <div class="card-body">
-	                  <div class="row no-gutters align-items-center">
-	                    <div class="col mr-2">
-	                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">현재까지 순수익&nbsp;(월 단위)</div>
-	                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-	                    </div>
-	                    <div class="col-auto">
-	                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-	                    </div>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
-	        </div>
-
-			<!-- 차트화면 구역 -->
-			<div class="row ml-2 mb-3 justify-content-start">
-				<h3>월 일별 예상매출 대비 매출</h3>
-			</div>
-			<div class="mb-4 m-3" style="border: 1px solid #f38181; border-radius: 10px"">
-				<div class="row m-3" id="areaChart"></div>
-			</div>
-
-			<!-- 통계지도 구역 -->
-			<h3 class="mb-3 ml-2">예상 매출 및 순수익</h3>
-			<div class="row m-3 pb-5 justify-content-start">
-				<div class="col mr-1" style="border: 1px solid #f38181; border-radius: 10px">
-					<h5 class="mt-2">-월 일별 순수익 경향 그래프-</h5>
-					<div id="areaChart2"></div>				
-				</div>
-				<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
-					<h5 class="mt-2">-최근 일별 수익 분류 매출액-</h5>
-					<div id="barChart"></div>
-				</div>
-			</div>
-
-			<!-- 장부 구역 -->
-			<div id="accountBookList" class="row justify-content-center m-2 mb-3">
-				<table id="tbl" class="table table-bordered table-hover" style="text-align: center;">
-					<thead style="background-color: #ffc9c9; color: #fff;">
-						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">날짜</th>
-							<th scope="col">분류</th>
-							<th scope="col">항</th>
-							<th scope="col">목</th>
-							<th scope="col">적요</th>
-							<th scope="col">수입</th>
-							<th scope="col">지출</th>
-							<th scope="col">잔액</th>
-							<th scope="col"
-								style="background-color: #fff; border-color: #fff;"></th>
-							<th scope="col"
-								style="background-color: #fff; border-color: #fff;"></th>
-							<th scope="col"
-								style="background-color: #fff; border-color: #fff;"></th>
-						</tr>
-					</thead>
-					<tbody id="tbody">
-						<c:forEach items="${list}" varStatus="i" var="ab">
-							<tr>
-								<td scope="row">${i.count }<input type="hidden" value="${ab.account_No }"></td>
-								<td>${ab.account_Date }</td>
-								<td>${ab.account_Type }</td>
-								<td>${ab.account_Clause }</td>
-								<td>${ab.account_Item }</td>
-								<td>${ab.account_Summary }</td>
-								<td><fmt:formatNumber value="${ab.account_Income }" type="currency" /></td>
-								<td><fmt:formatNumber value="${ab.account_Outcome }" type="currency" /></td>
-								<td><fmt:formatNumber value="${ab.account_Balance }" type="currency" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-					<tfoot id="tfoot">
-						<tr>
-							<td colspan="10" style="padding: 0;"><button
-									class="btn btn-primary btn-block" onclick="addRow();">행
-									추가하기</button></td>
-						</tr>
-					</tfoot>
-				</table>
+			<c:if test="${empty loginMember }">
+				<script type="text/javascript">
+					alert("로그인 후 이용할 수 있는 서비스입니다.");
+					location.href = "${pageContext.request.contextPath}/"
+				</script>
+			</c:if>
+			<c:if test="${not empty loginMember }">
+				<c:if test="${not empty account }">
 				
-				${pageBar }
+				<!-- 이용자 아이디 출력 구역 -->
+				<div class="row pl-4 pt-3 mb-4 justify-content-start">
+					<h2>${loginMember.partner_TruckName }님의 11월 통계 및 장부</h2>
+				</div>
 				
-			</div>
-
-			<!-- 간략정보 구역 -->
-			<div class="row flex-row-reverse mb-1 pb-5">
-				<div class="col-md-5">
-					<div class="d-flex justify-content-end">
-						<table class="table table-borderless">
-							<tr>
-								<td>일일 최고수입 : <fmt:formatNumber value="${maxIncome }" type="currency" /></td>
-								<td>일일 최저수입 : <fmt:formatNumber value="${minIncome }" type="currency" /></td>
-
-							</tr>
-							<tr>
-								<td>일일 최고지출 : <fmt:formatNumber value="${maxOutcome }" type="currency" /></td>
-								<td>일일 최저지출 : <fmt:formatNumber value="${minOutcome }" type="currency" /></td>
-
-							</tr>
-							<tr>
-								<td>일일 평균수입 : <fmt:formatNumber value="${avgIncome }" type="currency" /></td>
-								<td>일일 평균지출 : <fmt:formatNumber value="${avgOutcome }" type="currency" /></td>
-							</tr>
-						</table>
+				<!-- Content Row -->
+		        <div class="row m-1 mb-4">
+		
+		            <!-- Earnings (Monthly) Card Example -->
+		            <div class="col-xl-3 col-md-6 mb-4">
+		              <div class="card border-left-primary shadow h-100 py-2">
+		                <div class="card-body">
+		                  <div class="row no-gutters align-items-center">
+		                    <div class="col mr-2">
+		                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">현재까지 매출&nbsp;(월 단위)</div>
+		                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+		                    </div>
+		                    <div class="col-auto">
+		                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		            
+		            <div class="col-xl-3 col-md-6 mb-4">
+		              <div class="card border-left-info shadow h-100 py-2">
+		                <div class="card-body">
+		                  <div class="row no-gutters align-items-center">
+		                    <div class="col mr-2">
+		                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">예상 매출 달성률&nbsp;(월 단위)</div>
+		                      <div class="row no-gutters align-items-center">
+		                        <div class="col-auto">
+		                          <div id="goalMonthly" class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0%</div>
+		                        </div>
+		                        <div class="col">
+		                          <div class="progress progress-sm mr-2">
+		                            <div id="goalMonthlyBar" class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+		                          </div>
+		                        </div>
+		                      </div>
+		                    </div>
+		                    <div class="col-auto">
+		                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		
+		            <!-- Earnings (Monthly) Card Example -->
+		            <div class="col-xl-3 col-md-6 mb-4">
+		              <div class="card border-left-success shadow h-100 py-2">
+		                <div class="card-body">
+		                  <div class="row no-gutters align-items-center">
+		                    <div class="col mr-2">
+		                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">직전 일 대비 매출 증감율</div>
+		                      <div id="yt_IncomeRate" class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+		                    </div>
+		                    <div class="col-auto">
+		                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		            <!-- Earnings (Monthly) Card Example -->
+	
+		            <!-- Pending Requests Card Example -->
+		            <div class="col-xl-3 col-md-6 mb-4">
+		              <div class="card border-left-warning shadow h-100 py-2">
+		                <div class="card-body">
+		                  <div class="row no-gutters align-items-center">
+		                    <div class="col mr-2">
+		                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">현재까지 순수익&nbsp;(월 단위)</div>
+		                      <div id="sumRevenue" class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+		                    </div>
+		                    <div class="col-auto">
+		                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		        </div>
+	
+				<!-- 차트화면 구역 -->
+				<div class="row ml-2 mb-3 justify-content-start">
+					<h3>일별 예상매출 대비 매출 (월 단위)</h3>
+				</div>
+				<div class="mb-4 m-3" style="border: 1px solid #f38181; border-radius: 10px"">
+					<div class="row m-3" id="areaChart"></div>
+				</div>
+	
+				<!-- 작은 차트 구역 -->
+				<h3 class="mb-3 ml-2">예상 매출 및 순수익</h3>
+				<div class="row m-3 pb-2 justify-content-start">
+					<div class="col mr-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<h5 class="mt-2">-일별 순수익 경향 그래프 (월 단위)-</h5>
+						<div id="areaChart2"></div>				
+					</div>
+					<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<h5 class="mt-2">-최근 일별 수익 분류 매출액-</h5>
+						<div id="barChart"></div>
 					</div>
 				</div>
-			</div>
-			
-			</c:if>
-			<c:if test="${empty account }">
-
-				<div class="modal fade" id="myModal2">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-
-							<!-- Modal Header -->
-							<div class="modal-header">
-								<h4 class="modal-title">계좌 등록</h4>
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-							</div>
-
-							<!-- Modal body -->
-							<div class="modal-body">
-								<div class="container">
-									<div class="row">
-										<div class="col">
-											<p>장부관리 기능을 활용하기 위해서 계좌를 등록해주세요.</p>
-												<div class="tab-pane fade show active" id="member_log">
-													<div>
-													<form id="accountfrm" action="${pageContext.request.contextPath}/accountBook/insertAccount.do?partner_No=${partner_No}" method="POST">
-														<div class="row justify-content-start pb-3 pl-5">
-															<span class="pr-1">계좌 번호 : </span>
-															<input type="text" placeholder="계좌번호를 입력해주세요('-빼고')" name="account_Number" size="40"/>
-														</div>
-														<div class="row justify-content-start pb-3 pl-5">
-															<span class="pr-1">계좌 번호 : </span>
-															<input type="text" placeholder="예금주명" name="account_Name" /> 
-														</div> 
-														<div class="row justify-content-center">
-															<div class="btn-group btn-group-toggle" data-toggle="buttons">
-															  <label class="btn btn-secondary active mr-3">
-															    <input type="radio" name="account_Bank" autocomplete="off" value="농협" checked> 농협
-															  </label>
-															  <label class="btn btn-secondary mr-3">
-															    <input type="radio" name="account_Bank" autocomplete="off" value="신한"> 신한
-															  </label>
-															  <label class="btn btn-secondary mr-3">
-															    <input type="radio" name="account_Bank" autocomplete="off" value="국민"> 국민
-															  </label>
-															  <label class="btn btn-secondary mr-3">
-															    <input type="radio" name="account_Bank" autocomplete="off" value="신협"> 신협
-															  </label>
-															  <label class="btn btn-secondary mr-3">
-															    <input type="radio" name="account_Bank" autocomplete="off" value="우리"> 우리
-															  </label>
-															</div>
-														</div>
-													</form>
-													</div>
-												</div>
-											<script type="text/javascript">
-												var onloadCallback = function() {
-													grecaptcha
-															.render(
-																	'html_element',
-																	{
-																		'sitekey' : '6LcTHL0UAAAAAEkwWVCn3v37_ufKUIWC6rIZ7_LT'
-																	});
-												};
-												function reCapchar() {
-													if (typeof (grecaptcha) != 'undefined') {
-														if (grecaptcha
-																.getResponse() == "") {
-															alert("스팸방지코드 확인하세요");
-															return false;
-														}
-													}
-												}
-											</script>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Modal footer -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" onclick="accountsubmit();">계좌등록</button>
-								<button type="button" class="btn btn-secondary" onclick="accountExit();">닫기</button>
-							</div>							
+				
+				<!-- 작은 원형 차트 구역 -->
+				<h3 class="mb-3 ml-2">연령대 및 성별 선호도</h3>
+				<div class="row m-3 pb-5 justify-content-start">
+					<div class="col-md-3 mr-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<h5 class="mt-2">-연령대별 선호도-</h5>
+						<div id="pieChart"></div>			
+					</div>
+					<div class="col-md-3 ml-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<h5 class="mt-2">-성별 선호도-</h5>
+						<div id="pieChart2"></div>
+					</div>
+					<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
+						뭐넣을까...
+					</div>
+				</div>
+	
+				<!-- 장부 구역 -->
+				<div id="accountBookList" class="row justify-content-center m-2 mb-3">
+					<table id="tbl" class="table table-bordered table-hover" style="text-align: center;">
+						<thead style="background-color: #ffc9c9; color: #fff;">
+							<tr>
+								<th scope="col">번호</th>
+								<th scope="col">날짜</th>
+								<th scope="col">분류</th>
+								<th scope="col">항</th>
+								<th scope="col">목</th>
+								<th scope="col">적요</th>
+								<th scope="col">수입</th>
+								<th scope="col">지출</th>
+								<th scope="col">잔액</th>
+								<th scope="col"
+									style="background-color: #fff; border-color: #fff;"></th>
+								<th scope="col"
+									style="background-color: #fff; border-color: #fff;"></th>
+								<th scope="col"
+									style="background-color: #fff; border-color: #fff;"></th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+							<c:forEach items="${list}" varStatus="i" var="ab">
+								<tr>
+									<td scope="row">${i.count }<input type="hidden" value="${ab.account_No }"></td>
+									<td>${ab.account_Date }</td>
+									<td>${ab.account_Type }</td>
+									<td>${ab.account_Clause }</td>
+									<td>${ab.account_Item }</td>
+									<td>${ab.account_Summary }</td>
+									<td><fmt:formatNumber value="${ab.account_Income }" type="currency" /></td>
+									<td><fmt:formatNumber value="${ab.account_Outcome }" type="currency" /></td>
+									<td><fmt:formatNumber value="${ab.account_Balance }" type="currency" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+						<tfoot id="tfoot">
+							<tr>
+								<td colspan="10" style="padding: 0;"><button
+										class="btn btn-primary btn-block" onclick="addRow();">행
+										추가하기</button></td>
+							</tr>
+						</tfoot>
+					</table>
+					
+					${pageBar }
+					
+				</div>
+	
+				<!-- 간략정보 구역 -->
+				<div class="row flex-row-reverse mb-1 pb-5">
+					<div class="col-md-5">
+						<div class="d-flex justify-content-end">
+							<table class="table table-borderless">
+								<tr>
+									<td>일일 최고수입 : <fmt:formatNumber value="${maxIncome }" type="currency" /></td>
+									<td>일일 최저수입 : <fmt:formatNumber value="${minIncome }" type="currency" /></td>
+	
+								</tr>
+								<tr>
+									<td>일일 최고지출 : <fmt:formatNumber value="${maxOutcome }" type="currency" /></td>
+									<td>일일 최저지출 : <fmt:formatNumber value="${minOutcome }" type="currency" /></td>
+	
+								</tr>
+								<tr>
+									<td>일일 평균수입 : <fmt:formatNumber value="${avgIncome }" type="currency" /></td>
+									<td>일일 평균지출 : <fmt:formatNumber value="${avgOutcome }" type="currency" /></td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>
+				
 
-				<script>
-					$(document).ready(function() {
-						$("#myModal2").modal();
-					});
-					
-					function accountsubmit(){
-						console.log("실행");
-						$("#accountfrm").submit();
-					}
-					
-					function accountExit(){
-						$("#myModal2").hide();
-						location.href = "${pageContext.request.contextPath}/";
-					}
-					
-				</script>
-					
+				
+				
+				</c:if>
+				<c:if test="${empty account }">
+	
+					<div class="modal fade" id="myModal2">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+	
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">계좌 등록</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+	
+								<!-- Modal body -->
+								<div class="modal-body">
+									<div class="container">
+										<div class="row">
+											<div class="col">
+												<p>장부관리 기능을 활용하기 위해서 계좌를 등록해주세요.</p>
+													<div class="tab-pane fade show active" id="member_log">
+														<div>
+														<form id="accountfrm" action="${pageContext.request.contextPath}/accountBook/insertAccount.do?partner_No=${partner_No}" method="POST">
+															<div class="row justify-content-start pb-3 pl-5">
+																<span class="pr-1">계좌 번호 : </span>
+																<input type="text" placeholder="계좌번호를 입력해주세요('-빼고')" name="account_Number" size="40"/>
+															</div>
+															<div class="row justify-content-start pb-3 pl-5">
+																<span class="pr-1">계좌 번호 : </span>
+																<input type="text" placeholder="예금주명" name="account_Name" /> 
+															</div> 
+															<div class="row justify-content-center">
+																<div class="btn-group btn-group-toggle" data-toggle="buttons">
+																  <label class="btn btn-secondary active mr-3">
+																    <input type="radio" name="account_Bank" autocomplete="off" value="농협" checked> 농협
+																  </label>
+																  <label class="btn btn-secondary mr-3">
+																    <input type="radio" name="account_Bank" autocomplete="off" value="신한"> 신한
+																  </label>
+																  <label class="btn btn-secondary mr-3">
+																    <input type="radio" name="account_Bank" autocomplete="off" value="국민"> 국민
+																  </label>
+																  <label class="btn btn-secondary mr-3">
+																    <input type="radio" name="account_Bank" autocomplete="off" value="신협"> 신협
+																  </label>
+																  <label class="btn btn-secondary mr-3">
+																    <input type="radio" name="account_Bank" autocomplete="off" value="우리"> 우리
+																  </label>
+																</div>
+															</div>
+														</form>
+														</div>
+													</div>
+												<script type="text/javascript">
+													var onloadCallback = function() {
+														grecaptcha
+																.render(
+																		'html_element',
+																		{
+																			'sitekey' : '6LcTHL0UAAAAAEkwWVCn3v37_ufKUIWC6rIZ7_LT'
+																		});
+													};
+													function reCapchar() {
+														if (typeof (grecaptcha) != 'undefined') {
+															if (grecaptcha
+																	.getResponse() == "") {
+																alert("스팸방지코드 확인하세요");
+																return false;
+															}
+														}
+													}
+												</script>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" onclick="accountsubmit();">계좌등록</button>
+									<button type="button" class="btn btn-secondary" onclick="accountExit();">닫기</button>
+								</div>							
+							</div>
+						</div>
+					</div>
+	
+					<script>
+						$(document).ready(function() {
+							$("#myModal2").modal();
+						});
+						
+						function accountsubmit(){
+							$("#accountfrm").submit();
+						}
+						
+						function accountExit(){
+							$("#myModal2").hide();
+							location.href = "${pageContext.request.contextPath}/";
+						}
+						
+					</script>
+						
+				</c:if>
 			</c:if>
-			
 		</div>
 	</div>
 	
@@ -590,7 +614,61 @@
 	}
 	</script>
 
-	
+	<script type="text/javascript">
+		function makeRoundChart(labelList, countList){
+			
+			maleData = ["남자", 0];
+			femaleData = ["여자", 0];
+			
+			for(var i = 0; i < labelList.length; i++){
+				if(labelList[i].includes("남",0)){
+					maleData[1] = parseInt(countList[i]);
+				}else{
+					femaleData[1] += parseInt(countList[i]);
+				}
+			}			
+			
+			var chart = bb.generate({
+				  data: {
+				    columns: [
+					maleData,
+					femaleData
+				    ],
+				    type: "pie",
+				  },
+				  bindto: "#pieChart2"
+				});
+			}
+	function makeRoundChart2(labelList, countList){
+		
+
+		youngData = ["10~20대",0];
+		middleData = ["30~40대",0];
+		matureData = ["50~대",0];
+		
+		for(var i = 0; i < labelList.length; i++){
+			if(labelList[i].substring(0,2) == 10 || labelList[i].substring(0,2) == 20){
+				youngData[1] = parseInt(countList[i]);
+			}else if(labelList[i].substring(0,2) == 30 || labelList[i].substring(0,2) == 40){
+				middleData[1] += parseInt(countList[i]);
+			}else{
+				matureData[1] += parseInt(countList[i]);
+			}
+		}			
+		
+		var chart = bb.generate({
+			  data: {
+			    columns: [
+			    	youngData,
+			    	middleData,
+			    	matureData
+			    ],
+			    type: "pie",
+			  },
+			  bindto: "#pieChart"
+			});
+		}
+	</script>
 
 	<!-- 테이블에 대한 이벤트 -->
 	<script type="text/javascript">
@@ -661,7 +739,6 @@
 							input += '</select></div>';
 						} else if (i == 6 || i == 7 || i == 8){
 							var money;
-							console.log(data[i].innerText);
 							money = replaceAll(data[i].innerText,",","");
 							money = money.substring(1,money.length);
 							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+money+'>';
@@ -729,8 +806,6 @@
 			
 			var date = $("#account_Date").val().replace($("#account_Date").val().split("-")[0],$("#account_Date").val().split("-")[0]-1);
 			date = replaceAll(date,"-","");
-
-			console.log(date);
 			
 			$.ajax({
 				url: "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/DailyWeatherStation/1/5/"+date,
@@ -760,7 +835,6 @@
 							'account_Balance':$("#account_Balance").val()
 						},
 						success : function(data){
-							console.log("추가성공");
 							location.reload(); 
 						}
 					});
@@ -780,7 +854,6 @@
 					'account_No': account_No
 				},
 				success : function(data){
-					console.log("삭제성공");
 					location.reload();
 				}
 			});
@@ -824,7 +897,6 @@
 							'account_Balance':$("#account_Balance").val()
 						},
 						success : function(data){
-							console.log("수정성공");
 							location.reload();
 						}
 					});
@@ -877,6 +949,10 @@
 			url : "${pageContext.request.contextPath}/accountBook/cardCalculate.do?partner_No=${partner_No}",
 			success : function(data){
 				$("#monthlyIncome").html(preprocessing(data.monthlyIncome));
+				$("#yt_IncomeRate").html(data.yt_IncomeRate+"% ("+preprocessing(data.yt_Income)+")");
+				$("#sumRevenue").html(preprocessing(data.sumRevenue));
+				$("#goalMonthly").html(data.goalMonthly+"%");
+				$("#goalMonthlyBar").width(data.goalMonthly);
 			}
 		});
 		
@@ -903,7 +979,16 @@
 				
 				makeTypeChart(caldateList, cashList, cardList, bankTransferList, otherList);
 			}
-		});	
+		});
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/accountBook/roundChartcalculate.do?partner_No=${partner_No}",
+			type : "post",
+			success : function(data){				
+				makeRoundChart(data.labelList, data.countList);
+				makeRoundChart2(data.labelList, data.countList);
+			}
+		});
 	});			
 	
 	</script>
