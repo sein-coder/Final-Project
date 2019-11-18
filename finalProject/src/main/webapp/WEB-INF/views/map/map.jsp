@@ -84,7 +84,6 @@
 
     </div>
     </div>        
-     ${partnerlist} 
    <%--  ${trucklist } --%>
     
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -247,7 +246,7 @@ function displayArea(area) {
                     '            <div class="desc">' + 
                     '                <div class="ellipsis">'+area.address+'</div>' + 
                     '                <div class="jibun ellipsis">'+area.address2+'</div>' + 
-                    '                <div><a href=""  class="link">축제더보기</a></div>' + 
+                    '                <div><a href="${pageContext.request.contextPath }/festival/festivalList"  class="link">축제더보기</a></div>' + 
                     '            </div>' + 
                     '        </div>' + 
                     '    </div>' +    

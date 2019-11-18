@@ -50,8 +50,10 @@ public class MapController {
 	public String mapGps(String latitude,String longitude,Model model) {
 		List<TruckMap> truckList=service.categoryList();
 		List<ZoneMap> zonelist=service.selectMapList();
+		List<Partner> partnerlist=service.selectPartnerList();
 		model.addAttribute("latitude",latitude);
 		model.addAttribute("longitude",longitude);
+		model.addAttribute("partnerlist",partnerlist);
 		model.addAttribute("trucklist",truckList);
 		model.addAttribute("zonelist",zonelist);
 		return "map/map";
@@ -61,7 +63,9 @@ public class MapController {
 	public String mapGps(String mapAddress,Model model) {
 		List<TruckMap> truckList=service.categoryList();
 		List<ZoneMap> zonelist=service.selectMapList();
+		List<Partner> partnerlist=service.selectPartnerList();
 		model.addAttribute("mapAddress",mapAddress);
+		model.addAttribute("partnerlist",partnerlist);
 		model.addAttribute("trucklist",truckList);
 		model.addAttribute("zonelist",zonelist);
 		return "map/map";
