@@ -106,5 +106,4 @@ public class OrderServiceImpl implements OrderService {
 		int result = dao.selectMenuCount(session, menu_Name);
 		return result;
 	}
-	
 }

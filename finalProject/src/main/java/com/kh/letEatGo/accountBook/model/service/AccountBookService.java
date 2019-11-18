@@ -37,4 +37,6 @@ public interface AccountBookService {
 	
 	List<Map<String,String>> selectCalRoundChart(int partner_No);
 	
+	int updateAccount(Map<String,Integer> map);
+	
 }

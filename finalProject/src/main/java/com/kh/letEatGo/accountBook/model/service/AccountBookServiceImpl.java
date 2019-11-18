@@ -1,5 +1,6 @@
 package com.kh.letEatGo.accountBook.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -107,6 +108,12 @@ public class AccountBookServiceImpl implements AccountBookService {
 	public List<Map<String, String>> selectCalRoundChart(int partner_No) {
 		// TODO Auto-generated method stub
 		return dao.selectCalRoundChart(session, partner_No);
+	}
+
+	@Override
+	public int updateAccount(Map<String,Integer> map) {
+		// TODO Auto-generated method stub
+		return dao.updateAccount(session, map);
 	}
 	
 	

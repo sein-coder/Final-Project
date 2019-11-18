@@ -45,10 +45,10 @@ public class MemberController {
 	  @RequestMapping("/member/memberEnrollEnd.do") 
 	  public String insertMember(Member m,Model model) {
 		  System.out.println(m);
-		  m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
 			logger.debug(m.getMember_Password());
 			
 			try {
+				  m.setMember_Password(enc.encrypt(m.getMember_Password()));
 				  m.setMember_Email(enc.encrypt(m.getMember_Email()));
 		          m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
 

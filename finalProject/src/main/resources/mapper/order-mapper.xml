@@ -94,5 +94,6 @@
   </select>
   <select id="selectMenuTruckList" parameterType="String" resultType="partner">
   	SELECT DISTINCT PARTNER_NO FROM MENU  WHERE MENU_NAME LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
-  </select>
+  </select> 
+  
 </mapper>

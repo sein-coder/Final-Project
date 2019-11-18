@@ -113,6 +113,6 @@ public class OrderDaoImpl implements OrderDao {
 	public int selectMenuCount(SqlSessionTemplate session, String menu_Name) {
 		int result = session.selectOne("order.selectMenuCount", menu_Name);
 		return result;
-	}
+	}	
 	
 }
