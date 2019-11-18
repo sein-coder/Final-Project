@@ -75,11 +75,9 @@ public class PartnerController {
 					
 					p.setProfile_Old(oriFileName);
 					p.setProfile_Re(reName);
-					System.out.println(oriFileName);
 				}
 			}
 		  p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));
-			logger.debug(p.getPartner_Password());
 			
 			try {
 				p.setPartner_Phone(enc.encrypt(p.getPartner_Phone()));

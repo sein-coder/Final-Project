@@ -284,7 +284,6 @@ var positions=[];
 <c:forEach items="${trucklist}" var="truck">
 <c:forEach items="${partnerlist}" var="partner">
 if("${partner.partner_No}"=="${truck.partner_No}"){
-console.log("${partner.partner_Phone}")
 var position = 
     {
         title: "${partner.partner_TruckName}", 

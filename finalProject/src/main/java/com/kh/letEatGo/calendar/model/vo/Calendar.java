@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Calendar {
 	
-	private int calendarNo;
-	private int partnerNo;
-	private String schedule;
-	private String startDate;
-	private String endDate;
-	private String calendar_Content;
+   private int calendar_No;
+   private int partner_No;
+   private String schedule;
+   private Date start_Date;
+   private Date end_Date;
+   private String calendar_Content;
 	
 	
 	
