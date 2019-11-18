@@ -35,4 +35,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.deleteMemberPage(session,m);
 	}
 
+	@Override
+	public Member selectMemberEmail(Member m) {
+		
+		return dao.selectMemberEmail(session,m);
+	}
+	
+
 }

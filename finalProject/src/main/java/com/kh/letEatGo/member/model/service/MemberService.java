@@ -12,5 +12,7 @@ public interface MemberService {
 	
 	int deleteMemberPage(Member m);
 
+	Member selectMemberEmail(Member m);
+
 
 }

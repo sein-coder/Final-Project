@@ -28,4 +28,11 @@ public class MemberDaoImpl implements MemberDao {
 		return session.delete("member.deleteMemberPage",m);
 	}
 
+	@Override
+	public Member selectMemberEmail(SqlSessionTemplate session, Member m) {
+	
+		return session.selectOne("member.selectMemberEmail",m);
+	}
+	
+
 }

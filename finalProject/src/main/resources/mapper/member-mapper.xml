@@ -8,7 +8,10 @@
 	<select id="selectMemberOne" parameterType="member" resultType="member">
 		select * from  Member WHERE MEMBER_ID=#{member_Id}
 	</select>
-	
+	<!--아이디찾기 -->
+	<select id="selectMemberEmail" parameterType="member" resultType="member">
+		select * from  Member WHERE MEMBER_EMAIL=#{member_Email}
+	</select>
 	
 	<!-- 회원 정보 수정 -->
 	<update id="updateMemberPage">

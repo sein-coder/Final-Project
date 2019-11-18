@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -122,6 +124,108 @@ public class MemberController {
 				e.printStackTrace();
 			}
 		}
+	  @RequestMapping("/findIp")
+	  public String findmember() {
+		  return "member/findIp";		  
+	  }
+	 @RequestMapping("/member/find_id.do")
+		 public String send_mailId(Member m) throws Exception { 
+		 	Member result=service.selectMemberEmail(m);
+			// Mail Server 설정
+			String charSet = "utf-8";
+			String hostSMTP = "smtp.naver.com";
+			String hostSMTPid = "rkdqhtmd23@naver.com";
+			String hostSMTPpwd = "rkdqhtmd12";
+			
+			// 보내는 사람 EMail, 제목, 내용
+			String fromEmail = "rkdqhtmd23@naver.com";
+			String fromName = "KBS";
+			String subject = "아이디 찾기 인증 메일입니다.\r\n";
+			String msg ="";
+			msg += "<div align='center'>";
+			msg += "<input type=text value='"+result.getMember_Id()+"'";
+			msg += "<div style='font-size: 130%'>";
+			msg += "</div><br/>";
+		
+			// 받는 사람 E-Mail 주소
+			String mail = result.getMember_Email() ;
+			try {
+				HtmlEmail htmlemail = new HtmlEmail();
+				htmlemail.setDebug(true);
+				htmlemail.setCharset(charSet);
+				htmlemail.setSSL(true);
+				htmlemail.setHostName(hostSMTP);
+				htmlemail.setSmtpPort(587);
+
+				htmlemail.setAuthentication(hostSMTPid, hostSMTPpwd);
+				htmlemail.setTLS(true);
+				htmlemail.addTo(mail, charSet);	
+				htmlemail.setFrom(fromEmail, fromName, charSet);
+				htmlemail.setSubject(subject);
+				htmlemail.setHtmlMsg(msg);
+				htmlemail.send();
+			} catch (Exception e) {
+				System.out.println("메일발송 실패 : " + e);
+			}
+			return "/member/findIp";
+		}
+	 @RequestMapping("/memberEmail.do")
+		public void findEmail(Member m, HttpServletResponse res) {
+			System.out.println(m);
+			Member result=service.selectMemberEmail(m);
+			String flag=result!=null?"false":"true";
+			res.setContentType("application/json;charset=utf-8");
+			try {
+				res.getWriter().write(flag);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	 
+	 @RequestMapping("/member/find_pw.do")
+	 public String send_mailPw(Member m) throws Exception {
+		 ModelAndView mv = new ModelAndView();
+		 Member result=service.selectMemberEmail(m);
+		// Mail Server 설정
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.naver.com";
+		String hostSMTPid = "rkdqhtmd23@naver.com";
+		String hostSMTPpwd = "rkdqhtmd12";
+
+		// 보내는 사람 EMail, 제목, 내용
+		String fromEmail = "rkdqhtmd23@naver.com";
+		String fromName = "KBS";
+		String subject = "비밀번호 찾기 및 변경 인증 메일입니다.\r\n";
+		String msg ="";
+		msg += "<div align='center'>";
+		msg += "<p>'"+result.getMember_Id()+"'</p>";
+		msg += "<div style='font-size: 130%'>";
+		msg += "</div><br/>";
+		
+		
+		// 받는 사람 E-Mail 주소
+		String mail = result.getMember_Email() ;
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);
+			email.setSmtpPort(587);
+
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg(msg);
+			email.send();
+		} catch (Exception e) {
+			System.out.println("메일발송 실패 : " + e);
+		}
+		return "/member/findIp";
+}
 	  
 
 }

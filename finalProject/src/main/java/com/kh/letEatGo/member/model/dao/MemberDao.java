@@ -14,5 +14,7 @@ public interface MemberDao {
 	
 	int deleteMemberPage(SqlSessionTemplate session,Member m);
 
+	Member selectMemberEmail(SqlSessionTemplate session, Member m);
+
 
 }
