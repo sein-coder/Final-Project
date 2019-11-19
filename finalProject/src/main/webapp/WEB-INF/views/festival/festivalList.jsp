@@ -386,8 +386,8 @@ body.play ul li.active .down .shadow {
           </div>
         </div>
 
-		<div class="row">
-			<div class="col">
+		<div class="row justify-content-center">
+			<div class="col-pl-0">
 			    <ul class="flip minutePlay" style="list-style-type: none;">
 			        <li>
 			            <a href="#">
@@ -442,7 +442,7 @@ body.play ul li.active .down .shadow {
 			    </ul>
 		    </div>		    
 		
-			<div class="col">
+			<div class="col-pl-0">
 			    <ul class="flip thirdPlay" style="list-style-type: none;">
 			        <li>
 			            <a href="#">
