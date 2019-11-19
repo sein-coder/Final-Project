@@ -137,18 +137,21 @@
 						</div>
 						</li>
 						<!-- 사장님 댓글영역 -->
-						<ul class="children">
-							<li class="comment">
-								<div class="vcard bio">
-								<img src="${path }/resources/images/person_4.jpg" alt="사장님 이미지">
+						${type }
+						<c:if test="${type }">
+							<ul class="children">
+								<li class="comment">
+									<div class="vcard bio">
+									<img src="${path }/resources/images/person_4.jpg" alt="사장님 이미지">
+									</div>
+								<div class="comment-body">
+									<h3>Jean Doe</h3>
+									<div class="meta">January 9, 2018 at 2:21pm</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
 								</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-							</div>
-							</li>
-						</ul>
+								</li>
+							</ul>
+						</c:if>
 					</ul>
 				</c:forEach>
 		</div>
@@ -323,8 +326,8 @@ function toOrderHistory(){
 			"add_Request" : $("#add_request").val(),
 			"order_Price" : payment,
 			"reservation_YN" : "N",
-			"partner_No" : ${partner.partner_No},
-			"member_No" : ${loginMember.member_No}
+			"partner_No" : ${partner.partner_No}
+			/* ,"member_No" : ${loginMember.member_No} */
 		},
 		success : function(data){
 			alert("결제 정보가 전송 중 입니다.");
