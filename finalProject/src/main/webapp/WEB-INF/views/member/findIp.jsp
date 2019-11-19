@@ -55,7 +55,7 @@
 						<label for="form-label">계정 찾기</label>
 						<div>
 						<label>가입시 이메일<input type="email" class="form-control" id="partner_Email" name="partner_Email" required/></label>
-						<span id="email_check" class="w3-text-red"></span>
+						<span id="email_check2" class="w3-text-red"></span>
 						</div>
 					</div>
 					<button type="submit" class="btn btn-outline-success" id="find_Id_partner">아이디찾기</button>
@@ -65,12 +65,12 @@
 					<div class="form-group">
 						<label for="form-label">비밀번호 찾기</label>
 						<div>	
-						<label>아이디<input type="text" class="form-control" id="partnerId" name="partner_Id" required/></label>
+						<label>아이디<input type="text" class="form-control" id="partner_Id" name="partner_Id" required/></label>
 							<span id="id_check" class="btn-outline-primary"></span>
 						</div>
 						<div>
 						<label>가입시 이메일<input type="email" class="form-control" id="partnerEmail" name="partner_Email" required/></label>
-						<span id="email_check2" class="w3-text-red"></span>
+						<span id="email_check3" class="w3-text-red"></span>
 						</div>
 					<button type="submit" class="btn btn-outline-success" id="find_Id_partner">비밀번호찾기</button>
 					</div>
@@ -158,7 +158,7 @@ $("#memberId").keyup(function(){
 		
 	
 		
-$("#partner_Id").blur(function(){
+$("#partner_Id").keyup(function(){
 	var partner_Id = $('#partner_Id').val();
 	$.ajax({
 		url : '${pageContext.request.contextPath}/partner/checkId.do',
@@ -186,27 +186,27 @@ $("#partner_Id").blur(function(){
 			data : {"partner_Email":partner_Email},
 			success : function(data) {
 				console.log(data);
-					 if (data == "false") {
-						$("#email_check1").text("확인");
-						$("#email_check1").css("color", "green");
+					 if (data == false) {
+						$("#email_check3").text("확인");
+						$("#email_check3").css("color", "green");
 						$("#partner_Email").css("border-color", "green");
 					} else{
-						$("#email_check1").text("잘못된이메일입니다.");
-						$("#email_check1").css("color", "red");
+						$("#email_check3").text("잘못된이메일입니다.");
+						$("#email_check3").css("color", "red");
 						$("#partner_Email").css("border-color", "red");			
 						}  
 					} 
 				});
 			});
  $("#partnerEmail").keyup(function(){
-		var partner_Email = $('#partnerEmail').val();
+		var partnerEmail = $('#partnerEmail').val();
 		$.ajax({
 			url : '${pageContext.request.contextPath}/partner_Email.do',
 			type : "get",
-			data : {"partner_Email":partner_Email},
+			data : {"partner_Email":partnerEmail},
 			success : function(data) { 	
 				console.log(data);
-					 if (data == "false") {
+					 if (data == false) {
 						$("#email_check2").text("확인");
 						$("#email_check2").css("color", "green");
 						$("#partnerEmail").css("border-color", "green");

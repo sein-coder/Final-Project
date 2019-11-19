@@ -18,7 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -216,25 +215,25 @@ public class PartnerController {
 			return "/member/findIp";
 		}
 	 @RequestMapping("/partner_Email.do")
-	 @ResponseBody
-		public String findEmail(Partner p, HttpServletResponse res) throws Exception {
-		 String flag = "true";
+		public void findEmail(Partner p, HttpServletResponse res)  {
+		 Partner result=service.selectPartnerEmail(p);
+		 String flag=result!=null?"false":"true";
+		 res.setContentType("application/json;charset=utf-8");
+		 try {
+			 res.getWriter().write(flag);
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+		 
+				
+		 
 		 	//List 로 다가져와서 for문을 돌림 하나씩 다decrypt해서 
 		 	//select * from service가져와서
 		 	
-		 	List<Partner> list=service.selectPartnerList();
-		 	for(Partner p2:list) {
-		 		try {
-		 			if(p.getPartner_Email().equals(p2.getPartner_Email())) {
-		 				flag="false";
-		 			}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		 	}
-		 	return flag;
-		}
+//		 	List<Partner> list=service.selectPartnerList();\
+	}
+		 	
+		 	
 	 
 	 @RequestMapping("/partner/find_pw.do")
 	 public ModelAndView send_mailPw(Partner p) throws Exception {

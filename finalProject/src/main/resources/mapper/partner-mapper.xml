@@ -27,6 +27,7 @@
   	<update id="updatePartnerPage">
   	  UPDATE PARTNER SET
   	                     PARTNER_ID=#{partner_Id},
+  	                     PARTNER_PASSWORD=#{partner_Password},
   	                     PARTNER_TRUCKNAME=#{partner_TruckName},
   	                     PARTNER_ADDRESS=#{partner_Address},
   	                     PARTNER_EMAIL=#{partner_Email},

@@ -109,10 +109,6 @@ public class PageController {
          p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));
          int result=0;
          try {
-            p.setPartner_Address(p.getPartner_Address());
-            p.setPartner_Email(p.getPartner_Email());
-            p.setPartner_Permission_No(p.getPartner_Permission_No());
-            p.setPartner_Phone(p.getPartner_Phone());
             result=partner_service.updatePartnerPage(p);
          } catch (Exception e) {
             e.printStackTrace();
