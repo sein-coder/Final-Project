@@ -12,6 +12,65 @@
     margin-bottom: 1.5rem!important;
  
 }
+<!-- 우후 글씨 -->
+html, body {
+  width: 100%;  
+  height: 100%;
+  background: #FF7777;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  height: 50px;
+  
+}
+
+h1 span {
+  position: relative;
+  top: 20px;
+  display: inline-block;
+  animation: bounce .3s ease infinite alternate;
+  font-family: 'Titan One', cursive;
+  font-size: 80px;
+  color: #FF7777;
+  text-shadow: 0 1px 0 #CCC,
+               0 2px 0 #CCC,
+               0 3px 0 #CCC,
+               0 4px 0 #CCC,
+               0 5px 0 #CCC,
+               0 6px 0 transparent,
+               0 7px 0 transparent,
+               0 8px 0 transparent,
+               0 9px 0 transparent,
+               0 10px 10px rgba(0, 0, 0, .4);
+}
+
+h1 span:nth-child(2) { animation-delay: .1s; }
+h1 span:nth-child(3) { animation-delay: .2s; }
+h1 span:nth-child(4) { animation-delay: .3s; }
+h1 span:nth-child(5) { animation-delay: .4s; }
+h1 span:nth-child(6) { animation-delay: .5s; }
+h1 span:nth-child(7) { animation-delay: .6s; }
+h1 span:nth-child(8) { animation-delay: .7s; }
+
+@keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 #CCC,
+                 0 2px 0 #CCC,
+                 0 3px 0 #CCC,
+                 0 4px 0 #CCC,
+                 0 5px 0 #CCC,
+                 0 6px 0 #CCC,
+                 0 7px 0 #CCC,
+                 0 8px 0 #CCC,
+                 0 9px 0 #CCC,
+                 0 50px 25px rgba(0, 0, 0, .2);
+  }
+}
 </style>
 
 <section>
@@ -56,20 +115,9 @@
 
       <!-- Blog Entries Column -->
       <div class="col-md-8 t-3">
-
-        <h1 class="my-4" style="text-align: center;text-shadow: 0px 5px 0px #fff; font-weight: bold; color:#f38181">Enjoy the festival with
-          <small>'let Eat Go'</small>
-        </h1>
 		 
-		<div row>
-			<div class="site-menu js-clone-nav m-auto d-none d-lg-block" style="color:#f38181;text-align: right;">
-				
-					<ul class="">
-						<li class="pull-right active" style="list-style-type: none;" ><a
-							href="${pageContext.request.contextPath}/festival/festivalForm"><span>축제등록</span></a></li>
-					</ul>
-				
-			</div>
+		<div class="row justify-content-end mb-5">
+			
 		</div>
         <!-- Blog Post -->
        <div class="carousel-inner col-md-13 " style="border-color:#ffc9c9; ">
@@ -119,33 +167,60 @@
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-
+		<div class="row">
+			<div class="col-6">
+				<img src="https://item.kakaocdn.net/do/13223be410903921ff0f5725340e04aff43ad912ad8dd55b04db6a64cddaf76d" style="width:50px; height=50px;">
+			</div>
+			<div class="col">
+				<div class="site-menu js-clone-nav d-none d-lg-block" style="color:#f38181;text-align: right;">
+					<div class="dropdown mt-2">
+					  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black; background-color:#ffc9c9;border-color: white; ">
+					   	<img src="https://svgsilh.com/svg_v2/1295308.svg" style="width:25px; height=25px;">
+					   	설정
+					  </button>
+					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/festivalForm">등록</a>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
         <!-- Search Widget -->
-        <div class="card my-4">
+        <div class="card my-4" style="margin-top: 0px !important;">
           <h5 class="card-header" style="background-color:#ffc9c9;">Search</h5>
           <div class="card-body">
             <div class="input-group">
-            	
-            	<div id="search-Title">
             		<form action="${pageContext.request.contextPath }/festival/searchFestival.do" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="searchType" value="festival_Title||fesitval_Content">
-		                <input type="text" name="searchKeyword" class="form-control" placeholder="Search for..."
-		              	value="" style="width:300px;">
-		              <span class="input-group-btn">
-		                <button class="btn btn-secondary" type="submit">Go!</button>
-		              </span>
+						<div class="ml-2 row">
+		            	<div id="search-Title" style="width: 250px;">
+							<input type="hidden" name="searchType" value="festival_Title||fesitval_Content">
+		                	<input type="text" name="searchKeyword" class="form-control" placeholder="Search for..." value="">
+		            	</div>
+	                	<button class="btn btn-secondary" type="submit">Go!</button>
+						</div>
+             		
              		</form>
-            	</div>	
             </div>
           </div>
         </div>
+
+		<div class="card my-4">
+	          <div class="col" style="text-align: center;"><b>asdasd</b>
+	          	<button class="proceeding" id="proceeding" style="color: #fff; text-align: center; border: none;">
+						asd</button>
+	          </div>
+	          &nbsp;
+	          <div class="card-body" id="content">
+	          </div>
+          </div>
 
 
         <!-- Side Widget -->
         <c:if test="${not empty list2}">
         	<c:forEach items="${list2}" var="v" varStatus="s">
 	        <div class="card my-4">
-	          	<div style>
+	          	<div>
 		          	<a href="${pageContext.request.contextPath}/festival/festivalView?festival_No=${v.festival_No}">
 		          		<h5 class="card-header" style="background-color:#ffc9c9;">${v.festival_Title}</h5>
 		          	</a>

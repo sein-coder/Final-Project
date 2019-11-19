@@ -360,26 +360,87 @@ h1 {
         margin-left: 8px;
     }
 
-
+/* 메세지 css */
+.contact-form{
+    background: #fff;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+.contact-form .form-control{
+    border-radius:1rem;
+}
+.contact-image{
+    text-align: center;
+}
+.contact-image img{
+    border-radius: 6rem;
+    width: 11%;
+    margin-top: -3%;
+    transform: rotate(29deg);
+}
+.contact-form form{
+    padding: 14%;
+}
+.contact-form form .row{
+    margin-bottom: -7%;
+}
+.contact-form h3{
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: #0062cc;
+}
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.btnContactSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
+}
 
 </style>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
+
+
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="" />
 </jsp:include>
 <section id="content">
-	<div class="site-section pb-0">
-
-		<div class="row">
+	<div class="site-section pb-4">
 			<div class="container pb-0" style="background-color: white;">
-			<div class="row">
-
+				<div class="row">
+					<div class="col justify-content-end">
+						<div class="site-menu js-clone-nav mr-3 d-none d-lg-block" style="color:#f38181; text-align: right;">
+								<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black; background-color:#ffc9c9;border-color: white; ">
+								   	<img src="https://svgsilh.com/svg_v2/1295308.svg" style="width:25px; height=25px;">
+								   	설정
+								  </button>
+								  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }">축제 수정</a>
+								    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/deleteFestival?festival_No=${festival.festival_No }">축제 삭제</a>
+								  </div>
+								</div>
+						</div>
+					</div>
+				</div>
 					<!-- 새로운 뷰 -->
 			
-				<div class="card pr-auto pl-auto" style="border: 3px solid #ffc9c9;">
+				<div class="card pr-auto pl-auto" style="border: 3px solid #ffc9c9;" >
 
 					<div class="wrapper row" style="background-color: white;">
 						<div class="preview col-md-5">
@@ -426,159 +487,142 @@ h1 {
 								</p>
 								</div>
 								</div>
-							
 									<div style="display: inline-block">
 										<div class="content-tag">
 											<ul class="p-0" id="tag-list"></ul>
 										</div>
-										
-										
 									</div>
-
 						</div>
 					</div>
 
 				</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="container p-1">
-			<div class="col-md-12 mt-0 pt-0"
-				style="border: 3px solid #ffc9c9; border-top: 0px solid white;">
-
-				<!-- 더 보기 버튼 생성  -->
-				<div
-					class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
-					style="padding-left: 0; padding-right: 0;">
-					<input value="더보기" style="background-color: f38181;border: none;"
-						onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display != ''){this.parentNode.getElementsByTagName('div')[0].style.display = '';this.value = '숨기기';}
-												else{this.parentNode.getElementsByTagName('div')[0].style.display = 'none'; this.value = '더보기';}"
-						type="button" class="btn btn-danger btn-block" />
-					<div style="display: none;">
-						<!-- 내용 추가 부분  -->
-						<table class="table" style="margin: auto; text-align: left">
-							<tr>
-								<td scope="row">
-									<div class="alert alert-danger1">
-										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-												${festival.festival_StartDate}
-									</div>
-								</td>
-								<td>
-									<div class="alert alert-danger2">
-										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-										${festival.festival_EndDate }
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td scope="row">
-									<div class="alert alert-danger3">
-										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">전화번호</a> <strong>:</strong>
-										${festival.festival_Phone }
-									</div>
-								</td>
-								<td>
-									<div class="alert alert-danger4">
-										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">홈페이지</a> <strong>:</strong>
-										${festival.festival_Homepage }
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td scope="row">
-									<div class="alert alert-danger4">
-										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">주 소</a> <strong>:</strong>
-										${festival.festival_Address }
-									</div>
-								</td>
-								<td>
-									<div class="alert alert-danger4">
-										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">주 최</a> <strong>:</strong>
-										${festival.festival_Host}
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="alert alert-danger4">
-										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">주 관</a> <strong>:</strong>
-										${festival.festival_Sub }
-									</div>
-								</td>
-								<td>
-									<div class="alert alert-danger4">
-										<a class="btn btn-xs btn-danger pull-right"
-											style="background-color: #fff;">이용요금</a> <strong>:</strong>
-										${festival.festival_Price }
-									</div>
-								</td>
-							</tr>
-						</table>
+				
+				<div class="row">
+					<div class="col-md-12 mt-0 pt-0">
+						<!-- 더 보기 버튼 생성  -->
+						<div
+							class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
+							style="padding-left: 0; padding-right: 0;">
+							<input value="더보기" style="background-color: f38181;border: none;"
+								onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display != ''){this.parentNode.getElementsByTagName('div')[0].style.display = '';this.value = '숨기기';}
+														else{this.parentNode.getElementsByTagName('div')[0].style.display = 'none'; this.value = '더보기';}"
+								type="button" class="btn btn-danger btn-block" />
+							<div style="display: none;">
+								<!-- 내용 추가 부분  -->
+								<table class="table" style="margin: auto; text-align: left">
+									<tr>
+										<td scope="row">
+											<div class="alert alert-danger1">
+												<a class="btn btn-xs btn-danger pull-right"
+													style="background-color: #fff;">시 작 일</a> <strong>:</strong>
+														${festival.festival_StartDate}
+											</div>
+										</td>
+										<td>
+											<div class="alert alert-danger2">
+												<a class="btn btn-xs btn-danger pull-right"
+													style="background-color: #fff;">종 료 일</a> <strong>:</strong>
+												${festival.festival_EndDate }
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td scope="row">
+											<div class="alert alert-danger3">
+												<a class="btn btn-xs btn-danger pull-right"
+													style="background-color: #fff;">전화번호</a> <strong>:</strong>
+												${festival.festival_Phone }
+											</div>
+										</td>
+										<td>
+											<div class="alert alert-danger4">
+												<a class="btn btn-xs btn-danger pull-right"
+													style="background-color: #fff;">홈페이지</a> <strong>:</strong>
+												${festival.festival_Homepage }
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td scope="row">
+											<div class="alert alert-danger4">
+												<a class="btn btn-xs btn-danger pull-right"
+													style="background-color: #fff;">주 소</a> <strong>:</strong>
+												${festival.festival_Address }
+											</div>
+										</td>
+										<td>
+											<div class="alert alert-danger4">
+												<a class="btn btn-xs btn-danger pull-right"
+													style="background-color: #fff;">주 최</a> <strong>:</strong>
+												${festival.festival_Host}
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="alert alert-danger4">
+												<a class="btn btn-xs btn-danger pull-right"
+													style="background-color: #fff;">주 관</a> <strong>:</strong>
+												${festival.festival_Sub }
+											</div>
+										</td>
+										<td>
+											<div class="alert alert-danger4">
+												<a class="btn btn-xs btn-danger pull-right"
+													style="background-color: #fff;">이용요금</a> <strong>:</strong>
+												${festival.festival_Price }
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row justify-content-center">
-		<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
-			onclick="location.href='${pageContext.request.contextPath}/festival/festivalList'">목록</button>
-	</div>
-	<div>
-		<div>
-			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
-				onclick="location.href='${pageContext.request.contextPath}/festival/deleteFestival?festival_No=${festival.festival_No }'">삭제</button>
-		</div>
-		<div>
-			<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
-				onclick="location.href='${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }'">수정</button>
-		</div>
-	</div>
-	<!--추천글 -->
-
-	<div class="container mt-5">
-		<div class="col-md-12">
-			<div class="row">
-			</div>
-		</div>
-
-		<h2>지도보기!</h2>
-		
-		<br>
-		<div id="map" style="width:100%;height:350px;"></div>
-		<br>
-	</div>
-
+				<!--지도 -->
+				<div class="row mt-5">
+					<div class="col-md-12">
+						<div class="row">
+						</div>
+					</div>
+			
+					<h2>축제장 소개</h2>
+					
+					<br>
+					<br>
+					<div id="map" style="width:100%;height:350px;"></div>
+				</div>
 	
+				<div class="row justify-content-center pt-5 pb-5" style="background-color: white;">
+					<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
+						onclick="location.href='${pageContext.request.contextPath}/festival/festivalList'">목록</button>
+				</div>
+			</div>				
+			</div>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 	<script>
 		$('#contentText').keyup(function(e) {
 			var content = $(this).val();
 			$('#counter').val(4000 - content.length);
-
+	
 			if (content.length > 4000) {
 				$(this).val($(this).val().substring(0, 4000));
 			}
 		});
-
+	
+		$(document).ready(function(){
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 		    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 		    level: 3 // 지도의 확대 레벨
 		};  
-
+	
 		//지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
-
+	
 		//주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
 		var mapTypeControl = new kakao.maps.MapTypeControl();
@@ -591,12 +635,12 @@ h1 {
 		
 		//주소로 좌표를 검색합니다
 		geocoder.addressSearch("${festival.festival_Address}", function(result, status) {
-
+	
 		// 정상적으로 검색이 완료됐으면 
 		 if (status === kakao.maps.services.Status.OK) {
-
+	
 		    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
+	
 		    // 결과값으로 받은 위치를 마커로 표시합니다
 		    var marker = new kakao.maps.Marker({
 		        map: map,
@@ -607,7 +651,7 @@ h1 {
 		    map.setCenter(coords);
 		} 
 		});    
-	
+		});
 	</script>
 	<script>
 	/* count */
