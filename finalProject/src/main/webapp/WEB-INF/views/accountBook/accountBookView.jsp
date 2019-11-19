@@ -890,6 +890,8 @@
 			var date = $("#account_Date").val().replace($("#account_Date").val().split("-")[0],$("#account_Date").val().split("-")[0]-1);
 			date = replaceAll(date,"-","");
 			
+			alert(date);
+			
 			$.ajax({
 				url: "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/DailyWeatherStation/1/5/"+date,
 				type : "get",
@@ -901,6 +903,9 @@
 					
 					temperature /= data['DailyWeatherStation']['row'].length;
 					precipitation /= data['DailyWeatherStation']['row'].length;
+					
+					console.log(temperature);
+					console.log(precipitation);
 					
 					$.ajax({
 						url : "${pageContext.request.contextPath}/accountBook/insertAccountBook.do?partner_No=${partner_No}",

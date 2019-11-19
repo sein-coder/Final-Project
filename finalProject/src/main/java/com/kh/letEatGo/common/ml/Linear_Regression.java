@@ -1,5 +1,7 @@
 package com.kh.letEatGo.common.ml;
 
+import javax.servlet.http.HttpServletRequest;
+
 import weka.classifiers.functions.LinearRegression;
 import weka.core.DenseInstance;
 import weka.core.Instance;
@@ -8,10 +10,11 @@ import weka.core.converters.ConverterUtils.DataSource;
 
 public class Linear_Regression {
 	
-	public static double predict(double temperature,double precipitation,int day) {
+	public static double predict(HttpServletRequest req, double temperature,double precipitation,int day) {
 		try {
 			// Load Data set //훈련용 데이터셋 로딩
-			DataSource source = new DataSource("C:\\Users\\sein\\Desktop\\data\\Train.arff");
+			String Path = req.getServletContext().getRealPath("resources/arff/Train.arff");
+			DataSource source = new DataSource(Path);
 			Instances dataset = source.getDataSet();
 			// set class index to the last attribute //클래스 인덱스 설정 (마지막 속성위치에)
 			dataset.setClassIndex(dataset.numAttributes() - 1);
