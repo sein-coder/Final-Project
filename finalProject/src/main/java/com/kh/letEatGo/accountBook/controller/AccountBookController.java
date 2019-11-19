@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,7 +119,8 @@ public class AccountBookController {
 	public ModelAndView insertAccoountBook(String account_Date, String account_Type, String account_Clause,
 			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance, int partner_No,
 			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
-			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
+			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation,
+			HttpServletRequest req) {
 
 		//예측용 데이터 전처리 과정(각각 요일, 온도, 강수량)
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -138,8 +140,8 @@ public class AccountBookController {
 		}else {
 			day -=1;
 		}
-		//예측
-		double predictincome = predict(temperature,precipitation,day);
+
+		double predictincome = predict(req,temperature,precipitation,day);
 		
 		ModelAndView mv = new ModelAndView();
 		AccountBook ab = new AccountBook();
@@ -178,7 +180,8 @@ public class AccountBookController {
 	public ModelAndView updateAccountBook(int account_No, String account_Date, String account_LocCode, String account_Type, String account_Clause,
 			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance,
 			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
-			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
+			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation,
+			HttpServletRequest req) {
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -201,7 +204,7 @@ public class AccountBookController {
 			day -=1;
 		}
 		//예측
-		double predictincome = predict(temperature,precipitation,day);
+		double predictincome = predict(req,temperature,precipitation,day);
 		
 		AccountBook ab = new AccountBook();
 		
