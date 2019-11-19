@@ -109,6 +109,12 @@ public class AccountBookDaoImpl implements AccountBookDao {
 		// TODO Auto-generated method stub
 		return session.update("account.updateAccount",map);
 	}
+
+	@Override
+	public Map<String,Integer> selectSumInOutcome(SqlSessionTemplate session, int partner_No) {
+		// TODO Auto-generated method stub
+		return session.selectOne("accountBook.selectSumInOutcome",partner_No);
+	}
 	
 	
 	

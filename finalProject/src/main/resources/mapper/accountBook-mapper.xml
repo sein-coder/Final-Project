@@ -27,9 +27,7 @@
 	<insert id="insertAccountBook" parameterType="accountBook">
 		INSERT INTO AccountBook VALUES(SEQ_Account_No.nextval, #{account_Date},
 			#{account_Type}, #{account_Clause}, #{account_Item}, #{account_Summary},
-			#{account_Outcome}, #{account_Income}, #{account_Predict}, 
-			(SELECT ACCOUNT_BALANCE FROM ACCOUNT WHERE PARTNER_NO = #{partner_No})
-			, #{partner_No})
+			#{account_Outcome}, #{account_Income}, #{account_Predict}, #{partner_No})
 	</insert>
 	
 	<delete id="deleteAccountBook" parameterType="_int">
@@ -45,8 +43,7 @@
 			account_Summary = #{account_Summary},
 			account_Outcome = #{account_Outcome}, 
 			account_Income = #{account_Income}, 
-			account_Predict = #{account_Predict},
-			account_Balance = #{account_Balance}
+			account_Predict = #{account_Predict}
 		WHERE Account_No = #{account_No}
 	</update>
 	
@@ -103,6 +100,12 @@
 		INNER JOIN MEMBER m ON o.MEMBER_NO = m.MEMBER_NO
 		WHERE PARTNER_NO = #{partner_No}
 		GROUP BY FLOOR(MEMBER_AGE/10), MEMBER_GENDER
+	</select>
+		
+	<select id="selectSumInOutcome" parameterType="_int" resultType="java.util.HashMap">
+		SELECT SUM(ACCOUNT_INCOME) , SUM(ACCOUNT_OUTCOME) 
+		FROM ACCOUNTBOOK
+		WHERE PARTNER_NO = #{partner_No}
 	</select>
 		
 </mapper>

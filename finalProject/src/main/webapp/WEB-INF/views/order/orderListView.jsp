@@ -319,7 +319,6 @@ function toOrderHistory(){
 	var date = dt.getFullYear() - 1;
 	date += new String(dt.getMonth()+1);
 	date += new String(dt.getDate());
-	console.log(date);
 	$.ajax({
 		url: "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/DailyWeatherStation/1/5/"+date,
 		type : "get",

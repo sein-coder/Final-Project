@@ -117,7 +117,7 @@ public class AccountBookController {
 	
 	@RequestMapping("/accountBook/insertAccountBook.do")
 	public ModelAndView insertAccoountBook(String account_Date, String account_Type, String account_Clause,
-			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance, int partner_No,
+			String account_Item, String account_Summary, int account_Outcome, int account_Income, int partner_No,
 			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
 			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation,
 			HttpServletRequest req) {
@@ -152,16 +152,9 @@ public class AccountBookController {
 		ab.setAccount_Summary(account_Summary);
 		ab.setAccount_Income(account_Income);
 		ab.setAccount_Outcome(account_Outcome);
-		ab.setAccount_Balance(account_Balance);
 		ab.setAccount_Predict((int)predictincome);
 		ab.setPartner_No(partner_No);
 		
-		Map<String,Integer> map = new HashMap();
-		
-		map.put("partner_No", ab.getPartner_No());
-		map.put("account_Balance", ab.getAccount_Income()-ab.getAccount_Outcome());
-		
-		int r2 = service.updateAccount(map);
 		int result = service.insertAccountBook(ab);	
 		
 		mv.setViewName("jsonView");
@@ -178,7 +171,7 @@ public class AccountBookController {
 	
 	@RequestMapping("/accountBook/updateAccountBook.do")
 	public ModelAndView updateAccountBook(int account_No, String account_Date, String account_LocCode, String account_Type, String account_Clause,
-			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance,
+			String account_Item, String account_Summary, int account_Outcome, int account_Income,
 			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
 			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation,
 			HttpServletRequest req) {
@@ -216,7 +209,6 @@ public class AccountBookController {
 		ab.setAccount_Summary(account_Summary);
 		ab.setAccount_Income(account_Income);
 		ab.setAccount_Outcome(account_Outcome);
-		ab.setAccount_Balance(account_Balance);
 		ab.setAccount_Predict((int)predictincome);
 		
 		int result = service.updateAccountBook(ab);
@@ -397,6 +389,17 @@ public class AccountBookController {
 		
 		mv.addObject("labelList",labelList);
 		mv.addObject("countList",countList);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	@RequestMapping("/accountBook/Balance.do")
+	public ModelAndView balance(int partner_No) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(partner_No);
+		Map<String,Integer> sum = service.selectSumInOutcome(partner_No);
+		
+		mv.addObject("sum", sum);
 		mv.setViewName("jsonView");
 		return mv;
 	}

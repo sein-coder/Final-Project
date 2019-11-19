@@ -41,4 +41,7 @@ public interface AccountBookDao {
 	
 	int updateAccount(SqlSessionTemplate session, Map<String,Integer> map);
 	
+	Map<String,Integer> selectSumInOutcome(SqlSessionTemplate session, int partner_No);
+	
+	
 }

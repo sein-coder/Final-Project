@@ -115,7 +115,12 @@ public class AccountBookServiceImpl implements AccountBookService {
 		// TODO Auto-generated method stub
 		return dao.updateAccount(session, map);
 	}
-	
+
+	@Override
+	public Map<String,Integer> selectSumInOutcome(int partner_No) {
+		// TODO Auto-generated method stub
+		return dao.selectSumInOutcome(session, partner_No);
+	}
 	
 	
 }

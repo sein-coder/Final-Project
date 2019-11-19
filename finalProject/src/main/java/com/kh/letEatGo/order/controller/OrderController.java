@@ -22,6 +22,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -172,8 +174,9 @@ public class OrderController {
 	public String orderEnd(String order_List,String add_Request ,int order_Price 
 			,String reservation_YN ,int partner_No ,int member_No , HttpSession session,
 			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
-			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation,
-			HttpServletRequest req) {
+			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
+		
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		
 		Order o = new Order();
 		o.setAdd_Request(add_Request);
@@ -204,18 +207,9 @@ public class OrderController {
 		ab.setAccount_Outcome(0);
 		ab.setAccount_Income(o.getOrder_Price());
 		ab.setAccount_Predict((int)predict(req,temperature,precipitation,day));
-		ab.setAccount_Balance(0);
 		ab.setPartner_No(o.getPartner_No());
 		
-		Map<String,Integer> map = new HashMap();
-		
-		map.put("partner_No", ab.getPartner_No());
-		map.put("account_Balance", ab.getAccount_Income()-ab.getAccount_Outcome());
-		
-		int r2 = abservice.updateAccount(map);
-		
 		int result_InsertAccount = abservice.insertAccountBook(ab);
-		
 		
 		//종료
 		session.setAttribute("order", o);		
