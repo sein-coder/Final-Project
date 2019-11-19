@@ -12,64 +12,242 @@
     margin-bottom: 1.5rem!important;
  
 }
-<!-- 우후 글씨 -->
-html, body {
-  width: 100%;  
-  height: 100%;
-  background: #FF7777;
-  -webkit-font-smoothing: antialiased;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+</style>
+
+<style>
+/* Reset */
+a:hover {
+    color: #fff;
+}
+ul {
+    list-style: none
+}
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+/* Main */
+#social {
+    text-align: center;
+    position: absolute;
+    bottom: 14%;
+    width: 100%;
+}
+#social p{
+  margin-bottom: 10px;
 }
 
-h1 {
-  height: 50px;
-  
+#social ul,
+#social li {
+    display: inline-block;
 }
 
-h1 span {
-  position: relative;
-  top: 20px;
-  display: inline-block;
-  animation: bounce .3s ease infinite alternate;
-  font-family: 'Titan One', cursive;
-  font-size: 80px;
-  color: #FF7777;
-  text-shadow: 0 1px 0 #CCC,
-               0 2px 0 #CCC,
-               0 3px 0 #CCC,
-               0 4px 0 #CCC,
-               0 5px 0 #CCC,
-               0 6px 0 transparent,
-               0 7px 0 transparent,
-               0 8px 0 transparent,
-               0 9px 0 transparent,
-               0 10px 10px rgba(0, 0, 0, .4);
+/* Skeleton */
+
+ul.flip {
+    position: relative;
+    float: left;
+    margin: 5px;
+    width: 30px;
+    height: 45px;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 43.5px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .7);
 }
 
-h1 span:nth-child(2) { animation-delay: .1s; }
-h1 span:nth-child(3) { animation-delay: .2s; }
-h1 span:nth-child(4) { animation-delay: .3s; }
-h1 span:nth-child(5) { animation-delay: .4s; }
-h1 span:nth-child(6) { animation-delay: .5s; }
-h1 span:nth-child(7) { animation-delay: .6s; }
-h1 span:nth-child(8) { animation-delay: .7s; }
+ul.flip li {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 
-@keyframes bounce {
-  100% {
-    top: -20px;
-    text-shadow: 0 1px 0 #CCC,
-                 0 2px 0 #CCC,
-                 0 3px 0 #CCC,
-                 0 4px 0 #CCC,
-                 0 5px 0 #CCC,
-                 0 6px 0 #CCC,
-                 0 7px 0 #CCC,
-                 0 8px 0 #CCC,
-                 0 9px 0 #CCC,
-                 0 50px 25px rgba(0, 0, 0, .2);
-  }
+}
+
+ul.flip li:first-child {
+    z-index: 2;
+}
+
+ul.flip li a {
+    display: block;
+    height: 100%;
+    perspective: 200px;
+}
+
+ul.flip li a div {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+ul.flip li a div .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+ul.flip li a div.up {
+    transform-origin: 50% 100%;
+    top: 0;
+}
+
+ul.flip li a div.up:after {
+  content: "";
+  position:absolute;
+  top:44px;
+  left:0;
+  z-index: 5;
+    width: 100%;
+  height: 3px;
+  background-color: rgba(0,0,0,.4);
+}
+
+ul.flip li a div.down {
+    transform-origin: 50% 0%;
+    bottom: 0;
+}
+
+ul.flip li a div div.inn {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 200%;
+    color: #ccc;
+    text-shadow: 0 1px 2px #000;
+    text-align: center;
+    background-color: #333;
+    border-radius: 6px;
+}
+
+ul.flip li a div.up div.inn {
+    top: 0;
+
+}
+
+ul.flip li a div.down div.inn {
+    bottom: 0;
+}
+
+/* PLAY */
+
+body.play ul li.before {
+    z-index: 3;
+}
+
+body.play ul li.active {
+    animation: asd .5s .5s linear both;
+    z-index: 2;
+}
+
+@keyframes asd {
+    0% {
+        z-index: 2;
+    }
+    5% {
+        z-index: 4;
+    }
+    100% {
+        z-index: 4;
+    }
+}
+
+body.play ul li.active .down {
+    z-index: 2;
+    animation: turn .5s .5s linear both;
+}
+
+@keyframes turn {
+    0% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+body.play ul li.before .up {
+    z-index: 2;
+    animation: turn2 .5s linear both;
+}
+
+@keyframes turn2 {
+    0% {
+        transform: rotateX(0deg);
+    }
+    100% {
+        transform: rotateX(-90deg);
+    }
+}
+/* SHADOW */
+body.play ul li.before .up .shadow {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, .1)), color-stop(100%, rgba(0, 0, 0, 1)));
+    background: linear-gradient(top, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    animation: show .5s linear both;
+}
+
+body.play ul li.active .up .shadow {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, .1)), color-stop(100%, rgba(0, 0, 0, 1)));
+    background: linear-gradient(top, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, 1) 100%);
+    animation: hide .5s .3s linear both;
+}
+/*DOWN*/
+body.play ul li.before .down .shadow {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 1)), color-stop(100%, rgba(0, 0, 0, .1)));
+    background: linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    animation: show .5s linear both;
+}
+body.play ul li.active .down .shadow {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 1)), color-stop(100%, rgba(0, 0, 0, .1)));
+    background: linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1) 100%);
+    animation: hide .5s .3s linear both;
+}
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 </style>
 
@@ -83,7 +261,8 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 
 <body>
 <div class="site-section">
-	<div class="container">
+	<div class="container">	
+	
 	<div class="row justify-content-center mb-0">
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		  <div class="carousel-inner">
@@ -168,9 +347,6 @@ h1 span:nth-child(8) { animation-delay: .7s; }
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
 		<div class="row">
-			<div class="col-6">
-				<img src="https://item.kakaocdn.net/do/13223be410903921ff0f5725340e04aff43ad912ad8dd55b04db6a64cddaf76d" style="width:50px; height=50px;">
-			</div>
 			<div class="col">
 				<div class="site-menu js-clone-nav d-none d-lg-block" style="color:#f38181;text-align: right;">
 					<div class="dropdown mt-2">
@@ -199,27 +375,147 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 		            	</div>
 	                	<button class="btn btn-secondary" type="submit">Go!</button>
 						</div>
+						<div class="head_main_text">
+							<!-- 과정명 글자수가(length) 30이상이면 font-sizn를 13px로 한다.-->
+							
+							 
+						</div>
              		
              		</form>
             </div>
           </div>
         </div>
 
-		<div class="card my-4">
-	          <div class="col" style="text-align: center;"><b>asdasd</b>
-	          	<button class="proceeding" id="proceeding" style="color: #fff; text-align: center; border: none;">
-						asd</button>
-	          </div>
-	          &nbsp;
-	          <div class="card-body" id="content">
-	          </div>
-          </div>
+		<div class="row">
+			<div class="col">
+			    <ul class="flip minutePlay" style="list-style-type: none;">
+			        <li>
+			            <a href="#">
+			                <div class="up">
+			                    <div class="shadow"></div>
+			                    <div class="inn">0</div>
+			                </div>
+			                <div class="down">
+			                    <div class="shadow"></div>
+			                    <div class="inn">0</div>
+			                </div>
+			            </a>
+			        </li>
+			        <li>
+			            <a href="#">
+			                <div class="up">
+			                    <div class="shadow"></div>
+			                    <div class="inn">1</div>
+			                </div>
+			                <div class="down">
+			                    <div class="shadow"></div>
+			                    <div class="inn">1</div>
+			                </div>
+			            </a>
+			        </li>
+			    </ul>
+			    <ul class="flip secondPlay">
+			        <li>
+			            <a href="#">
+			                <div class="up">
+			                    <div class="shadow"></div>
+			                    <div class="inn">0</div>
+			                </div>
+			                <div class="down">
+			                    <div class="shadow"></div>
+			                    <div class="inn">0</div>
+			                </div>
+			            </a>
+			        </li>
+			        <li>
+			            <a href="#">
+			                <div class="up">
+			                    <div class="shadow"></div>
+			                    <div class="inn">1</div>
+			                </div>
+			                <div class="down">
+			                    <div class="shadow"></div>
+			                    <div class="inn">1</div>
+			                </div>
+			            </a>
+			        </li>
+			    </ul>
+		    </div>		    
+		
+			<div class="col">
+			    <ul class="flip thirdPlay" style="list-style-type: none;">
+			        <li>
+			            <a href="#">
+			                <div class="up">
+			                    <div class="shadow"></div>
+			                    <div class="inn">0</div>
+			                </div>
+			                <div class="down">
+			                    <div class="shadow"></div>
+			                    <div class="inn">0</div>
+			                </div>
+			            </a>
+			        </li>
+			       	<li>
+			            <a href="#">
+			                <div class="up">
+			                    <div class="shadow"></div>
+			                    <div class="inn">1</div>
+			                </div>
+			                <div class="down">
+			                    <div class="shadow"></div>
+			                    <div class="inn">1</div>
+			                </div>
+			            </a>
+			        </li>
+			    </ul>
+			    <ul class="flip fourthPlay">
+			        <li>
+			            <a href="#">
+			                <div class="up">
+			                    <div class="shadow"></div>
+			                    <div class="inn">0</div>
+			                </div>
+			                <div class="down">
+			                    <div class="shadow"></div>
+			                    <div class="inn">0</div>
+			                </div>
+			            </a>
+			        </li>
+			        <li>
+			            <a href="#">
+			                <div class="up">
+			                    <div class="shadow"></div>
+			                    <div class="inn">1</div>
+			                </div>
+			                <div class="down">
+			                    <div class="shadow"></div>
+			                    <div class="inn">1</div>
+			                </div>
+			            </a>
+			        </li>
+			    </ul>
+		    </div>
+			
+			
+		</div>
+		
+		
+
 
 
         <!-- Side Widget -->
+        	<div class="row">	
+        		<div class="ml-3" style="display: inline-block">
+					<img src="https://item.kakaocdn.net/do/13223be410903921ff0f5725340e04aff43ad912ad8dd55b04db6a64cddaf76d" style="width:50px; height=50px;">
+				</div>
+	        	<div class="col"style="display: inline-block">
+	        		<a href="#"><b>가장 많이 본 축제</b></a>
+     			</div>
+     		</div>
         <c:if test="${not empty list2}">
         	<c:forEach items="${list2}" var="v" varStatus="s">
-	        <div class="card my-4">
+	        <div class="card my-4" style="margin-top: 0px !important;">
 	          	<div>
 		          	<a href="${pageContext.request.contextPath}/festival/festivalView?festival_No=${v.festival_No}">
 		          		<h5 class="card-header" style="background-color:#ffc9c9;">${v.festival_Title}</h5>
@@ -310,6 +606,145 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 			}
 		}
 	});
+	</script>
+	<script>
+	/* 이번달 축제  */	
+	
+    setInterval(function () {
+        minutePlay()
+    }, 3000);
+	
+	function minutePlay() {
+		
+		$("body").removeClass("play");
+	    var aa = $("ul.secondPlay li.active");
+	
+	    if (aa.html() == undefined) {
+	        aa = $("ul.secondPlay li").eq(0);
+	        aa.addClass("before")
+	            .removeClass("active")
+	            .next("li")
+	            .addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	
+	    }
+	    else if (aa.is(":last-child")) {
+	        $("ul.secondPlay li").removeClass("before");
+	        aa.addClass("before").removeClass("active");
+	        aa = $("ul.secondPlay li").eq(0);
+	        aa.addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	    }
+	    else {
+	        $("ul.secondPlay li").removeClass("before");
+	        aa.addClass("before")
+	            .removeClass("active")
+	            .next("li")
+	            .addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	    }
+		
+		
+		
+	    $("body").removeClass("play");
+	    var aa = $("ul.minutePlay li.active");
+	
+	    if (aa.html() == undefined) {
+	        aa = $("ul.minutePlay li").eq(0);
+	        aa.addClass("before")
+	            .removeClass("active")
+	            .next("li")
+	            .addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	
+	    }
+	    else if (aa.is(":last-child")) {
+	        $("ul.minutePlay li").removeClass("before");
+	        aa.addClass("before").removeClass("active");
+	        aa = $("ul.minutePlay li").eq(0);
+	        aa.addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	    }
+	    else {
+	        $("ul.minutePlay li").removeClass("before");
+	        aa.addClass("before")
+	            .removeClass("active")
+	            .next("li")
+	            .addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	    }
+	    
+		$("body").removeClass("play");
+	    var aa = $("ul.thirdPlay li.active");
+	
+	    if (aa.html() == undefined) {
+	        aa = $("ul.thirdPlay li").eq(0);
+	        aa.addClass("before")
+	            .removeClass("active")
+	            .next("li")
+	            .addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	
+	    }
+	    else if (aa.is(":last-child")) {
+	        $("ul.thirdPlay li").removeClass("before");
+	        aa.addClass("before").removeClass("active");
+	        aa = $("ul.thirdPlay li").eq(0);
+	        aa.addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	    }
+	    else {
+	        $("ul.thirdPlay li").removeClass("before");
+	        aa.addClass("before")
+	            .removeClass("active")
+	            .next("li")
+	            .addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	    }
+		
+		
+		
+	    $("body").removeClass("play");
+	    var aa = $("ul.fourthPlay li.active");
+	
+	    if (aa.html() == undefined) {
+	        aa = $("ul.fourthPlay li").eq(0);
+	        aa.addClass("before")
+	            .removeClass("active")
+	            .next("li")
+	            .addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	
+	    }
+	    else if (aa.is(":last-child")) {
+	        $("ul.fourthPlay li").removeClass("before");
+	        aa.addClass("before").removeClass("active");
+	        aa = $("ul.fourthPlay li").eq(0);
+	        aa.addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	    }
+	    else {
+	        $("ul.fourthPlay li").removeClass("before");
+	        aa.addClass("before")
+	            .removeClass("active")
+	            .next("li")
+	            .addClass("active")
+	            .closest("body")
+	            .addClass("play");
+	    }
+	
+	}
 	</script>
 </section>
 
