@@ -256,6 +256,11 @@
                             <div class="tmp-set-nav">
 						        <ul class="nav nav-pills">
 						            <li><a href="${pageContext.request.contextPath }/findIp">아이디/비밀번호찾기</a></li>
+						        <c:if test="">
+						            </c:if>
+						        <c:if test="">
+						            <li><a href="${pageContext.request.contextPath }/findIpPartner">아이디/비밀번호찾기</a></li>
+						        </c:if>
 						        </ul>
 						    </div>
                            

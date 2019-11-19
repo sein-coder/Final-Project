@@ -1,5 +1,7 @@
 package com.kh.letEatGo.partner.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +36,25 @@ public class PartnerDaoImpl implements PartnerDao {
 	@Override
 	public int deletePartnerPage(SqlSessionTemplate session, Partner p) {
 		return session.delete("partner.deletePartnerPage",p);
+	}
+
+	@Override
+	public Partner selectPartnerEmail(SqlSessionTemplate session, Partner p) {
+		// TODO Auto-generated method stub
+		return session.selectOne("partner.selectPartnerEmail",p);
+	}
+
+	@Override
+	public int updatePartnerPassword(SqlSessionTemplate session, Partner p) {
+		// TODO Auto-generated method stub
+		return session.update("partner.updatePartnerPassword",p);
+	}
+
+	@Override
+	public List<Partner> selectPartnerList(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("partner.selectPartnerList");
 	}	
+	
 	
 }

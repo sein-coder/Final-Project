@@ -1,5 +1,7 @@
 package com.kh.letEatGo.partner.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.letEatGo.partner.model.vo.Partner;
@@ -16,5 +18,10 @@ public interface PartnerDao {
 	
 	 int deletePartnerPage(SqlSessionTemplate session,Partner p);
 
+	Partner selectPartnerEmail(SqlSessionTemplate session, Partner p);
+
+	int updatePartnerPassword(SqlSessionTemplate session, Partner p);
+
+	List<Partner> selectPartnerList(SqlSessionTemplate session);
 
 }

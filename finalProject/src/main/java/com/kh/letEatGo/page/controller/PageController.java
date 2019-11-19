@@ -33,8 +33,8 @@ public class PageController {
    @RequestMapping("/memberPage")
    public String memberPage(Member m,Model model)  throws Exception {
       Member result=member_service.selectMemberOne(m);
-      result.setMember_Email(enc.decrypt(result.getMember_Email()));
-      result.setMember_Phone(enc.decrypt(result.getMember_Phone()));
+      result.setMember_Email(result.getMember_Email());
+      result.setMember_Phone(result.getMember_Phone());
       model.addAttribute("member",result);
       return "mypage/memberPage";
    }
@@ -42,10 +42,10 @@ public class PageController {
    @RequestMapping("/partnerPage")
    public String partnerPage(Partner p,Model model) throws Exception{
       Partner result2=partner_service.selectPartnerOne(p);
-      result2.setPartner_Address(enc.decrypt(result2.getPartner_Address()));
-      result2.setPartner_Email(enc.decrypt(result2.getPartner_Email()));
+      result2.setPartner_Address(result2.getPartner_Address());
+      result2.setPartner_Email(result2.getPartner_Email());
       result2.setPartner_Permission_No(enc.decrypt(result2.getPartner_Permission_No()));
-      result2.setPartner_Phone(enc.decrypt(result2.getPartner_Phone()));
+      result2.setPartner_Phone(result2.getPartner_Phone());
       model.addAttribute("partner",result2);
       
       return "mypage/partnerPage";
@@ -54,8 +54,8 @@ public class PageController {
    @RequestMapping("/adminPage")
    public String adminPage(Member m,Model model) throws Exception {
       Member result3=member_service.selectMemberOne2(m);
-      result3.setMember_Email(enc.decrypt(result3.getMember_Email()));
-      result3.setMember_Phone(enc.decrypt(result3.getMember_Phone()));
+      result3.setMember_Email(result3.getMember_Email());
+      result3.setMember_Phone(result3.getMember_Phone());
       model.addAttribute("member", result3);
       return "mypage/adminPage";
    }
@@ -66,8 +66,8 @@ public class PageController {
       m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
       int result=0;
       try {
-    	  m.setMember_Email(enc.encrypt(m.getMember_Email()));
-          m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
+    	  m.setMember_Email(m.getMember_Email());
+          m.setMember_Phone(m.getMember_Phone());
           result=member_service.updateMemberPage(m);
       } catch (Exception e) {
          e.printStackTrace();
@@ -109,10 +109,10 @@ public class PageController {
          p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));
          int result=0;
          try {
-            p.setPartner_Address(pwEncoder.encode(p.getPartner_Address()));
-            p.setPartner_Email(pwEncoder.encode(p.getPartner_Email()));
-            p.setPartner_Permission_No(pwEncoder.encode(p.getPartner_Permission_No()));
-            p.setPartner_Phone(pwEncoder.encode(p.getPartner_Phone()));
+            p.setPartner_Address(p.getPartner_Address());
+            p.setPartner_Email(p.getPartner_Email());
+            p.setPartner_Permission_No(enc.encrypt(p.getPartner_Permission_No()));
+            p.setPartner_Phone(p.getPartner_Phone());
             result=partner_service.updatePartnerPage(p);
          } catch (Exception e) {
             e.printStackTrace();
@@ -159,11 +159,11 @@ public class PageController {
        
        @RequestMapping("/member/updateAdmin") //멤버 회원 정보 수정
          public String updateAdminPage(Member m,Model model) {
-            m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
+            m.setMember_Password(m.getMember_Password());
             int result=0;
             try {
-               m.setMember_Email(enc.decrypt(m.getMember_Email()));
-               m.setMember_Phone(enc.decrypt(m.getMember_Phone()));
+               m.setMember_Email(m.getMember_Email());
+               m.setMember_Phone(m.getMember_Phone());
                result=member_service.updateAdminPage(m);
             } catch (Exception e) {
                e.printStackTrace();

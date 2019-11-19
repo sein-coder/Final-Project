@@ -46,11 +46,10 @@ public class MemberController {
 	  public String insertMember(Member m,Model model) {
 		  System.out.println(m);
 			logger.debug(m.getMember_Password());
-			
+			m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
 			try {
-				  m.setMember_Password(enc.encrypt(m.getMember_Password()));
-				  m.setMember_Email(enc.encrypt(m.getMember_Email()));
-		          m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
+//				  m.setMember_Email(enc.encrypt(m.getMember_Email()));
+//		          m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -78,13 +77,14 @@ public class MemberController {
 	  }
 	  
 	  @RequestMapping("/member/memberLogin.do")
-	  public ModelAndView login(Member m, HttpSession session) {
+	  public ModelAndView login(Member m, HttpSession session) throws Exception {
 		  ModelAndView mv=new ModelAndView();
 		  Member result = null;
 		  result = service.selectMemberOne(m);
 		  String msg="";
 		  String loc="";
 		  if(result != null) {
+			  
 			  if(!pwEncoder.matches(m.getMember_Password(), result.getMember_Password())) {
 				  // 로그인실패
 				  msg="로그인실패";
@@ -131,18 +131,19 @@ public class MemberController {
 		  Member result2;
 		  
 		  result2 = service.selectMemberOne(m);
-		  
+		  mv.setViewName("redirect:/");
 		  if(result2==null) {
 			  int result=service.insertKakao(m);
 			  result2 = service.selectMemberOne(m);
+			  mv.setViewName("/mypage/memberPage");
 		  }
+	
 		 
 		  session.setAttribute("loginMember", result2);
 		  session.setAttribute("type", "member");
 		  Member result3=service.selectMemberOne(m);
 		  session.setAttribute("member",result3);
 		  //mv.setViewName("redirect:/");
-		  mv.setViewName("/mypage/memberPage");
 		return mv;
 
 	  }
@@ -217,7 +218,7 @@ public class MemberController {
 		}
 	 @RequestMapping("/memberEmail.do")
 		public void findEmail(Member m, HttpServletResponse res) {
-			System.out.println(m);
+//			System.out.println(m);
 			Member result=service.selectMemberEmail(m);
 			String flag=result!=null?"false":"true";
 			res.setContentType("application/json;charset=utf-8");
@@ -232,7 +233,6 @@ public class MemberController {
 	 @RequestMapping("/member/find_pw.do")
 	 public ModelAndView send_mailPw(Member m) throws Exception {
 		 ModelAndView mv = new ModelAndView();
-		 Member result=service.selectMemberEmail(m);
 		 
 		 //난수발생시켜
 		 
@@ -267,18 +267,11 @@ public class MemberController {
 
 		 pswd = sb.toString();
 		 
-		 // 난수를 이메일로 전송
-		 m.setMember_Password(pswd);
-
+		
 		 //주의할꺼는 변수를 두개로 나눠 하나는(원래였던) 메일로 보내, 하나는 암호화해서 저장
 		 
-		 int result2=service.updateMemberPassword(m);
-		 m.setMember_Password(enc.encrypt(result.getMember_Email()));
 		 
-		 
-		 mv.addObject("result",result);
-		 mv.addObject("result2",result2);
-		 mv.setViewName("/member/findIp");
+	
 		 
 		// Mail Server 설정
 		String charSet = "utf-8";
@@ -292,13 +285,13 @@ public class MemberController {
 		String subject = "비밀번호 찾기 및 변경 인증 메일입니다.\r\n";
 		String msg ="";
 		msg += "<div align='center'>";
-		msg += "<p>'"+"'</p>";
+		msg += "<p>'임시 비밀번호는"+ pswd+"입니다.'</p>";
 		msg += "<div style='font-size: 130%'>";
 		msg += "</div><br/>";
 		
-		
 		// 받는 사람 E-Mail 주소
-		String mail = result.getMember_Email() ;
+		String mail = m.getMember_Email() ;
+		// 난수를 이메일로 전송
 		try {
 			HtmlEmail email = new HtmlEmail();
 			email.setDebug(true);
@@ -306,7 +299,7 @@ public class MemberController {
 			email.setSSL(true);
 			email.setHostName(hostSMTP);
 			email.setSmtpPort(587);
-
+			
 			email.setAuthentication(hostSMTPid, hostSMTPpwd);
 			email.setTLS(true);
 			email.addTo(mail, charSet);
@@ -314,9 +307,15 @@ public class MemberController {
 			email.setSubject(subject);
 			email.setHtmlMsg(msg);
 			email.send();
+			
+			m.setMember_Password(pwEncoder.encode((pswd)));
+			int result=service.updateMemberPassword(m);
+			
 		} catch (Exception e) {
 			System.out.println("메일발송 실패 : " + e);
 		}
+		
+		mv.setViewName("/member/findIp");
 		return mv;
 	 }
 
