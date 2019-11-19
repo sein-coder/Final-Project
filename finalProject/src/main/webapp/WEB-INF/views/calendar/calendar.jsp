@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,27 +36,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/moment/main.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/locales/ko.js"></script>
-
 <script>
 
    $(document).ready(function() {
       setCalendar();
    });
-   var calendar;
+   
+  
    function setCalendar(){
 
       var calendarEl = document.getElementById('calendar');
+
 
       calendar = new FullCalendar.Calendar(calendarEl, {
          plugins: [ 'dayGrid', 'timeGrid', 'list', 'interaction' ],
          header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            right: 'dayGridMonth'
          },
          dateClick:function(){
-            var win=window.open("${pageContext.request.contextPath}/calendar/toDo.do","일정 입력","width=500,height=500");
-            
+            var win=window.open("${pageContext.request.contextPath}/calendar/toDo.do?partnerno="+'${partnerno}',"일정 입력","width=500,height=500");
          },
          defaultView: 'dayGridMonth',
          locale: 'ko',
@@ -74,18 +77,30 @@
          {
             title:"수능",
             start:'2019-11-14'
-         }]
-      });
-      
-            
+         }
+         <c:forEach items="${calendar}" var="calendar1">
+         ,
+         {   title:'${calendar1.schedule}',
+            start:'${calendar1.start_Date}',
+            end:'${calendar1.end_Date}'
+         }
+          </c:forEach>
+         
+         ]
+         
+         
+      }); 
+         
+         
       calendar.render();
-
+      
    }
+   
+   
+   
    function eventAdd(data){
-      //console.log(calendar);
-      //console.log(data);
+      
       calendar.addEvent(data);
-      //console.log(calendar.getEvents());
       calendar.render();
    }
    function eventClick(data){
@@ -99,12 +114,11 @@
 <div class="site-section">
    <div class="container">
       <div class="row justify-content-center mb-8">
-   
    <div id="calendar"></div>
      </div>
    </div>
 </div>
-   
+   <%-- ${calendar } --%>
    
 </body>
 </html>

@@ -6,12 +6,15 @@
   	</insert>
 
   	<!-- 파트너 회원 정보 조회 -->
-  	<select id="selectPartnerOne" parameterType="partner" resultType="partner">
-  		select * from PARTNER WHERE PARTNER_ID=#{partner_Id}
+  <select id="selectPartnerOne" parameterType="partner" resultType="partner">
+        select * from PARTNER WHERE PARTNER_ID=#{partner_Id}
+     </select>
+     <select id="selectPartnerNo" parameterType="partner" resultType="partner">
+        select * from PARTNER WHERE partner_Permission_No=#{partner_Permission_No}
+     </select>     
+<select id="selectPartnerList" resultType="partner">
+  		select * from PARTNER
   	</select>
-  	<select id="selectPartnerNo" parameterType="partner" resultType="partner">
-  		select * from PARTNER WHERE partner_Permission_No=#{partner_Permission_No}
-  	</select>  	
   	
   	<!-- 파트너 회원 정보 수정 -->
   	<update id="updatePartnerPage">
@@ -31,10 +34,12 @@
   		GROUP BY PARTNER_MENU
   	</select>
 
-  	<!-- 파트너 회원 탈퇴  -->
-  	<delete id="deletePartnerPage">
-  	  DELETE FROM PARTNER WHERE PARTNER_ID=#{partner_Id} and PARTNER_PASSWORD=#{partner_Password}
-  	</delete>
+  	   <!-- 파트너 회원 탈퇴  -->
+     <delete id="deletePartnerPage">
+       DELETE FROM PARTNER 
+         WHERE PARTNER_ID=#{partner_Id}
+     </delete>
+
 
   
 </mapper>

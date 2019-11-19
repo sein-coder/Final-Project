@@ -5,25 +5,52 @@
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,#{member_Id},#{member_Password},#{member_Age},#{member_Gender},#{member_Email},#{member_Phone})
 	</insert>
+	<insert id="insertKakao" parameterType="member">
+		INSERT INTO MEMBER VALUES(seq_MEMBER_NO.nextval,${member_Id},#{member_Password},#{member_Age},#{member_Gender},#{member_Email},#{member_Phone})
+	</insert>
+	
 	<select id="selectMemberOne" parameterType="member" resultType="member">
 		select * from  Member WHERE MEMBER_ID=#{member_Id}
 	</select>
 	
+  	<select id="selectMemberOne2" parameterType="member" resultType="member">
+     	select * from  Member WHERE MEMBER_ID=#{member_Id}
+ 	</select>
 	
-	<!-- 회원 정보 수정 -->
-	<update id="updateMemberPage">
-	  UPDATE MEMBER SET 
-	                    MEMBER_ID=#{member_Id},
-	                    MEMBER_PASSWORD=#{member_Password},
-	                    MEMBER_EMAIL=#{member_Email},
-	                    MEMBER_PHONE=#{member_Phone} where MEMBER_ID=#{member_Id} 
-	</update> 
-	
+   <!-- 회원 정보 수정 -->
+   <update id="updateMemberPage">
+     UPDATE MEMBER SET 
+                       MEMBER_ID=#{member_Id},
+                       MEMBER_PASSWORD=#{member_Password},
+                       MEMBER_AGE=#{member_Age},
+                       MEMBER_GENDER=#{member_Gender},
+                       MEMBER_EMAIL=#{member_Email},
+                       MEMBER_PHONE=#{member_Phone} where MEMBER_ID=#{member_Id} 
+   </update> 
+	<update id="updateAdminPage">
+    UPDATE MEMBER SET
+                      MEMBER_ID=#{member_Id},
+                       MEMBER_PASSWORD=#{member_Password},
+                       MEMBER_AGE=#{member_Age},
+                       MEMBER_GENDER=#{member_Gender},
+                       MEMBER_EMAIL=#{member_Email},
+                       MEMBER_PHONE=#{member_Phone} where MEMBER_ID=#{member_Id} 
+   
+   </update>
+
+	<!--아이디찾기 -->
+	<select id="selectMemberEmail" parameterType="member" resultType="member">
+		select * from  Member WHERE MEMBER_EMAIL=#{member_Email}
+	</select>
+	<!--updateMemberPassword -->
+	<update id="updateMemberPassword" parameterType="member">
+		update member set member_Password = #{member_Password} where member_Id = #{member_Id}
+	</update>
+
 	<!-- 회원 탈퇴 -->
 	<delete id="deleteMemberPage">
 	  DELETE FROM MEMBER 
-	     WHERE MEMBER_ID=#{member_Id}
-	       and MEMBER_PASSWORD=#{member_Password}
+        WHERE MEMBER_ID=#{member_Id}
 	</delete>
 
 </mapper>

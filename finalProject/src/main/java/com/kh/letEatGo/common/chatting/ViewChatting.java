@@ -1,4 +1,4 @@
-package com.kh.letEatGo.partner.chatting;
+package com.kh.letEatGo.common.chatting;
 
 import java.io.IOException;
 import java.util.ArrayList;

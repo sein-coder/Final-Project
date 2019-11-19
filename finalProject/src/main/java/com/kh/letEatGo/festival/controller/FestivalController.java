@@ -1,10 +1,12 @@
-package com.kh.letEatGo.festival.model.controller;
+package com.kh.letEatGo.festival.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,8 +23,6 @@ import com.kh.letEatGo.festival.model.service.FestivalService;
 import com.kh.letEatGo.festival.model.vo.Festival;
 
 
-
-
 @Controller
 public class FestivalController {
 	private Logger logger =LoggerFactory.getLogger(FestivalController.class);
@@ -32,10 +32,22 @@ public class FestivalController {
 	
 	@RequestMapping("/festival/festivalList")
 	//여기 어제걸로 되돌려놓을것@!!!!!!!
-	public ModelAndView selectfestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
+	public ModelAndView selectfestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req
+			,@RequestParam(value="cPage",required=false, defaultValue = "1") int cPage
+			) {
 		ModelAndView mv=new ModelAndView();
-		List<Festival> list = service.selectFestival();
+		
+		int numPerPage=3;
+		
+		List<Festival> list = service.selectFestival(cPage,numPerPage);
+		List<Festival> list2   = service.selectLikeCount(festival);
+		int totalData=service.selectFestivalCount();
+		
+		mv.addObject("cPage",cPage);
 		mv.addObject("list", list);
+		mv.addObject("list2",list2);
+		mv.addObject("totalCount",totalData);		
+		
 		mv.setViewName("festival/festivalList");
 		return mv;
 	}
@@ -83,9 +95,11 @@ public class FestivalController {
 		  
 		  
 		  if(!upFile.isEmpty()) {
-			   String oriFileName=upFile.getOriginalFilename();			   festival.setFestival_Thumbnail(oriFileName);
+			   String oriFileName=upFile.getOriginalFilename();
+			   festival.setFestival_Thumbnail(oriFileName);
 		   try { 
-			  //transferTo는 multipa 제공 			   upFile.transferTo(new File(saveDir+"/"+oriFileName));
+			  //transferTo는 multipa 제공 
+			   upFile.transferTo(new File(saveDir+"/"+oriFileName));
 		   
 		  }catch(IOException  e) {
 			   e.printStackTrace();
@@ -116,6 +130,9 @@ public class FestivalController {
 	public ModelAndView selectFestivalOne(int festival_No) {
 		ModelAndView mv=new ModelAndView();
 		Festival festival=service.selectFestivalOne(festival_No);
+		
+		System.out.println(festival);
+		
 		mv.addObject("festival",festival);
 		mv.setViewName("festival/festivalView");
 	
@@ -160,6 +177,8 @@ public class FestivalController {
 	@RequestMapping("/festival/festivalUpdateFormEnd.do")
 	public ModelAndView updateFormFestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
+		
+		System.out.println(festival.getFestival_Tag());
 	
 		String saveDir = req.getSession().getServletContext()
 				.getRealPath("/resources/images/festival"); 		
@@ -228,15 +247,40 @@ public class FestivalController {
 		
 		ModelAndView mv=new ModelAndView();
 		
-		System.out.println("sssssssss"+mv);
-		
 		int result=service.updateFestivalLike(festival);
 		
 		mv.setViewName("jsonView");
 		return mv;
-		
-		
 	}
+//검색기능
+	 @RequestMapping("/festival/searchFestival.do")
+	 public ModelAndView selectSearchFestival(
+			 Festival festival, HttpServletRequest req,
+			 @RequestParam(value="searchKeyword", required=false, defaultValue = "")String searchKeyword, 
+			 @RequestParam(value="cPage",required=false, defaultValue = "1") int cPage,
+			 @RequestParam(value="upFile", required=false) MultipartFile upFile 
+			 ) {
+	 
+		ModelAndView mv = new ModelAndView(); 
+		
+		Map<String,String> map =  new HashMap<String,String>();//실제 검색조건이 담길 리스트
+		map.put("searchKeyword", searchKeyword);
+		int numPerPage =3;
+		  
+		List<Festival> list = service.selectSearchFestival(searchKeyword,cPage,numPerPage);
+		List<Festival> list2 = service.selectLikeCount(festival);	
+		int totalData = service.selectSearchTotal(searchKeyword);
+		
+		mv.addObject("searchKeyword", searchKeyword);
+		mv.addObject("cPage",cPage);
+		mv.addObject("totalCount",totalData);
+		mv.addObject("list",list); //검색결과리스트
+		mv.addObject("list2",list2); //오른쪽 조회수 상위 3개			
+		 mv.setViewName("festival/festivalList");
+		 return mv;
+		 
+	 }
+	
 	
 	
 }

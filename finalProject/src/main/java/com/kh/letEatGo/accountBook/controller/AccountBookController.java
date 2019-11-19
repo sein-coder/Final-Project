@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -114,7 +115,7 @@ public class AccountBookController {
 	}
 	
 	@RequestMapping("/accountBook/insertAccountBook.do")
-	public ModelAndView insertAccoountBook(String account_Date, String account_LocCode, String account_Type, String account_Clause,
+	public ModelAndView insertAccoountBook(String account_Date, String account_Type, String account_Clause,
 			String account_Item, String account_Summary, int account_Outcome, int account_Income, int account_Balance, int partner_No,
 			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
 			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
@@ -152,8 +153,15 @@ public class AccountBookController {
 		ab.setAccount_Balance(account_Balance);
 		ab.setAccount_Predict((int)predictincome);
 		ab.setPartner_No(partner_No);
-		int result = service.insertAccountBook(ab);
-		System.out.println(result);
+		
+		Map<String,Integer> map = new HashMap();
+		
+		map.put("partner_No", ab.getPartner_No());
+		map.put("account_Balance", ab.getAccount_Income()-ab.getAccount_Outcome());
+		
+		int r2 = service.updateAccount(map);
+		int result = service.insertAccountBook(ab);	
+		
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -241,7 +249,7 @@ public class AccountBookController {
 	public ModelAndView insertAccount(Account account) {
 		ModelAndView mv = new ModelAndView();
 		
-		account.setAccount_Balance(1000000);
+		account.setAccount_Balance(10000000);
 
 		System.out.println(account);
 		

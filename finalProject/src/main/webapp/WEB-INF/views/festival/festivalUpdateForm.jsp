@@ -7,6 +7,8 @@
 	<jsp:param name="pageTitle" value="" />
 </jsp:include>
 <style>
+
+
 .pink-textarea textarea .md-textarea :focus :not([readonly])
 {
 	border-bottom:1px solid #f48fb1;
@@ -70,11 +72,43 @@ textarea {
         cursor: pointer;
         margin-left: 8px;
     }
+    
+ /* 해시태그  */
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #fff;
+        color: #f38181;
+    }
+
+    .tag-item:hover {
+        background-color: #f38181;
+        color: #fff;
+    }
+    ul#tag-list {
+        padding: 16px 0;
+    }
+
+    ul#tag-list li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
+
+    
 </style>
+    <section class="content">
     <body>
-
-
-	<section id="content">
+	<div class="site-section" style="padding-top: 0px">
+	  <!-- Page Content -->
+	<div id="container">
+	
 		<form
 			id="frm"
 			action="${pageContext.request.contextPath}/festival/festivalUpdateFormEnd.do?festival_No=${festival.festival_No}"
@@ -84,8 +118,8 @@ textarea {
 			<div class="site-section pb-0">
 				<div class="row">
 					<!-- 새로운 뷰 -->
-					<div class="container" style="background-color: white;">
-						<div class="card col-md-12" style="border: 3px solid #ffc9c9;">
+					<div class="container p-0 pr-auto pl-auto" style="background-color: white;">
+						<div class="card col-md-12 pb-0" style="border: 3px solid #ffc9c9;">
 
 							<div class="wrapper row" style="background-color: white;">
 								<div class="preview col-md-5">
@@ -96,8 +130,8 @@ textarea {
 												src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
 											<!-- 썸네일 부분   -->
 										<div class="pull-left ml-2 mt-2" style="display:inline;">
-											<input type="file" value="파일 선택" name="upFile" id="upFile"/>
-											<input type="hidden" name="festival_Thumbnail" value="${festival.festival_Thumbnail }">
+											<input class="check" type="file" value="파일 선택" name="upFile" id="upFile"/>
+											<input class="check" type="hidden" name="festival_Thumbnail" value="${festival.festival_Thumbnail }">
 										</div>
 										
 										</div>
@@ -107,7 +141,7 @@ textarea {
 								</div>
 								<div class="details col-md-7">
 									<h3 class="product-title">
-										<input id="festival_Title" name="festival_Title" type="text" value="${festival.festival_Title }" placeholder="00축제" >
+										<input class="check" id="festival_Title" name="festival_Title" type="text" value="${festival.festival_Title }" placeholder="00축제" >
 									</h3>
 									<div class="rating">
 										<div class="stars">
@@ -121,34 +155,22 @@ textarea {
 									<p class="product-description" />
 
 									<div>
-										<textarea name="festival_Content" id="festival_Content" cols="40"
+										<textarea class="check" name="festival_Content" id="festival_Content" cols="40"
 											rows="40" placeholder="축제 내용을 입력하세요">${festival.festival_Content }</textarea>
 										<br> <span class="txsub">남은글자수 : <input size="5"
 											style="background-color: white; border: 0px solid white"
-											type="text" readonly disabled value="2000" name="counter"
+											type="text" readonly disabled value="4000" name="counter"
 											id="counter"></span>
 									</div>
-									<div class="action" style="display: inline-block;">
-										<button class="add-to-cart btn btn-default" type="button">
-									 		<span class="icon-heart" id="heart"></span>
-										</button>
-									</div>
-									<div style="display: inline-block;">
-									<p class="vote">
-										<b id="count">${festival.festival_Count}</b>이 글에 좋아요를 누른 회원수 입니다. 
-										<b id="count">(${festival.festival_Count} votes)</b>
-									</p>
-									</div>
+									
 									<br>
 									<div style="display: inline-block">
-										<p>해시태그 :</p>
-
-										<div class="content">
-											<input type="hidden" value="" name="festival_Hashtag" value=""
-												id="festival_Hashtag" />
-											<ul id="tag-list">
+										<div class="content-tag">
+											<input class="check" type="hidden" name="festival_Tag" value="${festival.festival_Tag }"
+												id="festival_Hashtag">
+											<ul class="p-0" id="tag-list">
 											</ul>
-											<input type="text" id="tag" size="7" placeholder="태그입력" />
+											<input class="check" type="text" id="tag" size="7" placeholder="태그입력" />
 										</div>
 									</div>
 								</div>
@@ -160,13 +182,13 @@ textarea {
 				</div>
 			</div>
 			<div class="row">
-				<div class="container">
-					<div class="col-md-12 mt-0 pt-0"
+				<div class="container p-0">
+					<div class="col-md-12  mt-0 pt-0"
 						style="border: 3px solid #ffc9c9; border-top: 0px solid white;">
 
 						<!-- 더 보기 버튼 생성  -->
 
-						<input value="상세설명" class="btn btn-danger btn-block"
+						<input value="상세설명" class="btn btn-danger pl-0 pr-0 btn-block"  style="background-color: #f38181; border: none;"
 							readonly="readonly" />
 						<div
 							class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
@@ -180,14 +202,14 @@ textarea {
 										<div class="alert alert-danger1">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-											<input id="festival_StartDate" name="festival_StartDate" type="date" value=${festival.festival_StartDate} />
+											<input class="check" id="festival_StartDate" name="festival_StartDate" type="date" value=${festival.festival_StartDate} />
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger2">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-											<input id="festival_EndDate" name="festival_EndDate" type="date" value=${festival.festival_EndDate} />
+											<input class="check" id="festival_EndDate" name="festival_EndDate" type="date" value=${festival.festival_EndDate} />
 										</div>
 									</td>
 								</tr>
@@ -196,15 +218,17 @@ textarea {
 										<div class="alert alert-danger3">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">전화번호</a> <strong>:</strong>
-											<input type="tel" id="festival_Phone" name="festival_Phone"  value="${festival.festival_Phone}"
-												pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+											<input class="check" type="tel" id="festival_Phone" name="festival_Phone"  value="${festival.festival_Phone}"
+												pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" placeholder="02(0)-123(4)-5678" 
+												title="하이픈(-)을  넣어 입력해주세요"
+												 required>
 										</div>
 									</td>
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">홈페이지</a> <strong>:</strong>
-											<input type="url" id="festival_Homepage" name="festival_Homepage" value="${festival.festival_Homepage}">
+											<input class="check" type="url" id="festival_Homepage" name="festival_Homepage" value="${festival.festival_Homepage}">
 
 										</div>
 									</td>
@@ -213,7 +237,7 @@ textarea {
 									<td scope="row">
 										<div class="alert alert-danger4" style="display: inline-block">
 											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주 소</a> <strong>:</strong> <input
+												style="background-color: #fff;">주 소</a> <strong>:</strong> <input class="check"
 												type="text" name="festival_Address" id="festival_Address" value="${festival.festival_Address}" >
 										</div>
 
@@ -221,8 +245,8 @@ textarea {
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주 최</a> <strong>:</strong> <input
-												type="text" name="festival_Host" id="festival_Host" value="${festival.festival_Host}" >
+												style="background-color: #fff;">주 최</a> <strong>:</strong> 
+												<input class="check" type="text" name="festival_Host" id="festival_Host" value="${festival.festival_Host}" >
 										</div>
 									</td>
 								</tr>
@@ -230,7 +254,7 @@ textarea {
 									<td>
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
-												style="background-color: #fff;">주 관</a> <strong>:</strong> <input
+												style="background-color: #fff;">주 관</a> <strong>:</strong> <input class="check"
 												type="text" name="festival_Sub" id="festival_Sub" value="${festival.festival_Sub}">
 										</div>
 									</td>
@@ -238,7 +262,7 @@ textarea {
 										<div class="alert alert-danger4">
 											<a class="btn btn-xs btn-danger pull-right"
 												style="background-color: #fff;">이용요금</a> <strong>:</strong>
-											<input type="text" name="festival_Price" id="festival_Price" value="${festival.festival_Price}" >
+											<input class="check" type="text" name="festival_Price" id="festival_Price" value="${festival.festival_Price}" >
 										</div>
 									</td>
 								</tr>
@@ -247,109 +271,122 @@ textarea {
 					</div>
 				</div>
 			</div>
-			<div class="site-navbar col-13 col-md-9 d-none d-xl-block"
-				style="background-color: white;">
-				<nav class="site-navigation position-relative text-right"
-					role="navigation">
-
-					<ul
-						class="site-menu js-clone-nav mr-auto ml-auto d-none d-lg-block">
+			<div class="site-navbar" style="background-color: white; justify-content: center;">
+				<nav class="site-navigation position-relative text-center" role="navigation">
+					<ul class=" justify-content-center">
 						<li class="list-inline-item">
-							<input type="submit" href="#" value="수정완료" style="background-color: #f23a2e;">
-							</input>
+							<input type="submit" value="저장" style="background-color: #f38181;border-color: #f38181;">
 						</li>
 						<li class="list-inline-item">
-							<a href="festival/festivalList">
-								<span style="background-color: #f23a2e;">취소</span>
-							</a>
+							<button class="btn-cancel" type="button" onclick="btn-cancel();" style="background-color: #f38181; border-color: #f38181; " >
+								<span>취소</span>
+							</button>
 						</li>
 					</ul>
 				</nav>
 			</div>
 		</form>
+	</div>
+	</div>
+
+	
+	</body>
 		
-		<script>
+	<script>
 		
 	/*글자 수 제한*/
 			$('#festival_Content').keyup(function (e){
 	      var content = $(this).val();       
-	      $('#counter').val(100-content.length);
+	      $('#counter').val(4000-content.length);
 	
-	          if(content.length > 2000) {
-	            $(this).val($(this).val().substring(0, 2000));
+	          if(content.length > 4000) {
+	            $(this).val($(this).val().substring(0, 4000));
 	          }
 	      });
-      
-		
-		
+	</script>
+	<script>
 	/* 해시태그 */
-	//해시태그 기능
-        var tag = {};
-        var counter = 0;
-
-        // 태그를 추가한다.
-        function addTag (value) {
-            tag[counter] = value; // 태그를 Object 안에 추가
-            counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
-        }
-        
-        $("#tag").on("keypress", function (e) {
-            // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
-            if (e.key === "Enter" || e.keyCode == 32) {
-                var tagValue = $(this).val(); // 값 가져오기
-                // 값이 없으면 동작 ㄴㄴ
-                if (tagValue !== "") {
-                    // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
-                    var result = Object.values(tag).filter(function (word) {
-                        return word === tagValue;
-                    })
-                    // 태그 중복 검사
-                    if (result.length == 0) { 
-                        $("#tag-list").append("<li class='tag-item'>"+"#"+tagValue+"<span class='del-btn' idx='"+counter+"'>x</span></li>");
-                        addTag(tagValue);
-                        $(this).val("");
-                    } else {
-                        alert("태그값이 중복됩니다.");
-                    }
-                }
-                e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
-            }
-        });
-
-        // 해시 태그 삭제 버튼 
-        // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
-        $(document).on("click", ".del-btn", function (e) {
-            var index = $(this).attr("idx");
-            tag[index] = "";
-            $(this).parent().remove();
-        });
-        
-        function submit(){
-			var tags = "";
-			
-			for(var i=0; i<counter; i++){
-				if(i==counter-1){
-					tags += tag[i];
-				}
-				else if(tag[i] != "") {
-					tags += tag[i] + ",";											
-				}
+		var tags = "${festival.festival_Tag}".split(',');
+		var counter = 0;
+		var tag = {};
+		
+		$.each(tags,function(i,item){
+			if(tags[i]!='null'){
+			addTag(tags[i]);
+			$("#tag-list").append("<li class='tag-item'>"+"#"+item+"<span class='del-btn' idx='"+i+"'>x</span></li>");
 			}
-			$("#festival_Hashtag").val(tags);
-			$("#frm").submit();
-			return true;
-        };
+		});
+		
+		// 태그를 추가한다.
+	    function addTag (value) {
+	        tag[counter] = value; // 태그를 Object 안에 추가
+	        counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+	    }
+	    
+	    $("#tag").on("keypress", function (e) {
+	        // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
+	        if (e.key === "Enter" || e.keyCode == 32) {
+	            var tagValue = $(this).val(); // 값 가져오기
+	            // 값이 없으면 동작 ㄴㄴ
+	            if (tagValue !== "") {
+	                // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
+	                var result = Object.values(tag).filter(function (word) {
+	                    return word === tagValue;
+	                })
+	                // 태그 중복 검사
+	                if (result.length == 0) { 
+	                    $("#tag-list").append("<li class='tag-item'>"+"#"+tagValue+"<span class='del-btn' idx='"+counter+"'>x</span></li>");
+	                    addTag(tagValue);
+	                    $(this).val("");
+	                } else {
+	                    alert("태그값이 중복됩니다.");
+	                }
+	            }
+	            e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+	        
+	            tags = "";
+				
+				for(var i=0; i<counter; i++){
+					if(i==counter-1){
+						tags += tag[i];
+					}
+					else if(tag[i] != "") {
+						tags += tag[i] + ",";											
+					}
+				}
+				$("#festival_Hashtag").val(tags);
+	            
+	        }
+	    });
+	
+	    // 삭제 버튼 
+	    // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
+	    $(document).on("click", ".del-btn", function (e) {
+	        var index = $(this).attr("idx");
+	        tag[index] = "";
+	        $(this).parent().remove();
+	    });
+
+	    
+        </script>
         
+        <script>
         /* 각 input 태그 체크이벤트  */
 
-        $("input").change(function(){
-        	if($(this).val()!="" && $(this).attr("id")!='tag'){
-        		var img = "<img src='https://media.istockphoto.com/vectors/tick-icon-vector-symbol-marker-red-checkmark-isolated-on-white-icon-vector-id897303186?k=6&m=897303186&s=170667a&w=0&h=Z5Z6OQfZFwns6G5saUzBQMSpBviQaKPqISaU6_dcRKY=' alt='check' width='100px' height='100px'/>"
-        		$(this).parent().append(img);
+        $(".check").change(function(){
+        	if($(this).val()!=""&&$(this).attr("id")!='tag'){
+        		if($(this).attr("class").includes("already")){
+        			false;    			   			
+        		}else{
+        			var img = "<img src='https://img.icons8.com/cotton/2x/like--v3.png' alt='check' width='50px' height='50px'/>";
+    				$(this).parent().append(img);   
+        			$(this).addClass("already");
+        		}
         	}
         });
-	
-    	
+        
+		</script>
+    	<script>
 		/* 썸네일 사진 */
 		 $('#upFile').on('change',function (e) {
 		        var get_file = e.target.files;
@@ -371,12 +408,15 @@ textarea {
 		            console.log(2);
 		        }
 		    });
-	
-	</script>
-	</section>
+		</script>
+		<script>
+		/* 취소버튼 */
+		 $('.btn-cancel').on("click",function(){
+        	location.href = "${pageContext.request.contextPath }/festival/festivalList";
+	    });
+		</script>
 
-
-
+</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
     

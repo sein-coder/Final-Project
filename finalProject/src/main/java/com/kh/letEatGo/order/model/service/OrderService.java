@@ -23,7 +23,6 @@ public interface OrderService {
 	int insertOrder(Order order);
 	List<ReviewComment> selectReviewComment(int comment_To);
 	List<Menu> selectMenuList(Menu m);
-	
 	List<Partner> selectMenuTruckList(int cPage, int numPerPage, String menu_Name);
 	int selectMenuCount(String menu_Name);
 }

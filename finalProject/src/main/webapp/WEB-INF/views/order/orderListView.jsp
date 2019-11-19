@@ -196,8 +196,13 @@ $(function(){
 	      });
 	   });
 	
+<<<<<<< HEAD
 	if(parseInt($('#pay-total').text()) <= 0){
 		$('#completeOrder').prop("disabled", "true");
+=======
+	if(parseInt($('#pay-total').text()) == 0){
+		/* $('#completeOrder').prop("disabled", "true"); */
+>>>>>>> branch 'mergeTest' of https://github.com/sein-coder/Final-Project
 	}
 })
 /* 	// 평점 별 출력 부분
@@ -298,7 +303,6 @@ function toOrderHistory(){
 	$("#list tr.orderdata").each(function(){
 		orderlists += $(this).children().eq(0).text() + "-" + $(this).children().eq(1).text() + "/";
 	})
-	
 	$.ajax({
 		url : "${path}/order/orderEnd",
 		type: "POST",
@@ -312,12 +316,37 @@ function toOrderHistory(){
 		},
 		success : function(data){
 			alert("결제 정보가 전송 중 입니다.");
-			location.href="${path}/order/complete";
+			var dt = new Date();
+			var date = dt.getFullYear() - 1;
+			date += new String(dt.getMonth()+1);
+			date += new String(dt.getDate());
+			console.log(date);
+			$.ajax({
+				url: "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/DailyWeatherStation/1/5/"+date,
+				type : "get",
+				success : function(data){
+					var temperature = 0;
+					var precipitation = 0;
+					
+					console.log(data);
+					
+					for(var i=0; i<data['DailyWeatherStation']['row'].length; i++){						
+						temperature += data['DailyWeatherStation']['row'][i]['SAWS_TA_AVG'];
+						precipitation += data['DailyWeatherStation']['row'][i]['SAWS_RN_SUM'];
+					}
+					
+					temperature /= data['DailyWeatherStation']['row'].length;
+					precipitation /= data['DailyWeatherStation']['row'].length;					
+			
+					location.href="${path}/order/complete?temperature="+temperature+"&precipitation="+precipitation;
+				}
+			});
 		},
 		fail : function(data){
 			alert("결제 처리에 실패하였습니다. 관리자에게 문의하세요.");
 		}
 	})
+
 }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

@@ -115,7 +115,8 @@
 			    </div>
 			    <div class="form-group">
 					<label for="form-label">인허가번호</label>
-			    <input type="text" class="form-control" placeholder="인허가번호" id="partner_Permission_No" name="partner_Permission_No"/>
+			    <input type="text" class="form-control" placeholder="인허가번호" id="partner_Permission_No" name="partner_Permission_No" required/>
+			    <button type="button" class="btn btn-outline-primary" id="permission_check" name="permission_check">인허가 조회</button>
 			    </div>
 			    <div class="form-group">
 					<label for="form-label">사업장 대표이미지</label><br/>
@@ -212,18 +213,36 @@
 		$("#partner_Phone").css("border-color", "green");
     }
     });
-     //인허가 번호조회
-    /*  $('#partner_Permission_No').keyup(function(){
-    	var permission_no = $('#partner_Permission_No').val();
-    	$.ajax({
-    		url : '${pageContext.request.contextPath}/partner/permission.do',
-    		type : "get",
-    	 	data : {"partner_Permission_No":partner_Permission_No}, 
-    		success : function(data){
-    		console.log(data);
-    		}	
-    	});
-    }) ;  */
+    //인허가 번호조회
+    $('#permission_check').click(function(){
+   	var permission_no = $('#partner_Permission_No').val();
+	    		
+        $.ajax({
+           url : "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/foodTruckInfo/1/510/",
+           type : "get",
+           data : {
+           },
+           success : function(data){
+           	var flag=false;  //var flag값을 false로 두고 true인것을 찾는다.
+               for(var i=0; i<data['foodTruckInfo']['row'].length; i++ == permission_no){
+               	//3000000-104-2017-00165 ,3220000-104-2017-00558
+               	console.log(data['foodTruckInfo']['row'][i]['PERMISSION_NO']);
+               if(data['foodTruckInfo']['row'][i]['PERMISSION_NO']==permission_no){
+           	   $("#permission_check").text("조회성공 ");
+           	   $("#permission_check").css("color", "green");
+				   $("#partner_Permission_No").css("border-color", "green");
+				   flag=true;  
+				   break;
+              }else{
+           	   $("#permission_check").text("조회결과없음 ");
+           	   $("#permission_check").css("color", "red");
+				   $("#partner_Permission_No").css("border-color", "red");
+              } 
+               	
+              } 
+           }
+        });
+   }) ;  
      
  	$("#upFile").on("change",function(){
 

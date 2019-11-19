@@ -27,7 +27,9 @@
 	<insert id="insertAccountBook" parameterType="accountBook">
 		INSERT INTO AccountBook VALUES(SEQ_Account_No.nextval, #{account_Date},
 			#{account_Type}, #{account_Clause}, #{account_Item}, #{account_Summary},
-			#{account_Outcome}, #{account_Income}, #{account_Predict}, #{account_Balance}, #{partner_No})
+			#{account_Outcome}, #{account_Income}, #{account_Predict}, 
+			(SELECT ACCOUNT_BALANCE FROM ACCOUNT WHERE PARTNER_NO = #{partner_No})
+			, #{partner_No})
 	</insert>
 	
 	<delete id="deleteAccountBook" parameterType="_int">
