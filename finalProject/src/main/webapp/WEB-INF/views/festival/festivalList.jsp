@@ -17,9 +17,6 @@
 
 <style>
 /* Reset */
-a:hover {
-    color: #fff;
-}
 ul {
     list-style: none
 }
@@ -249,6 +246,15 @@ body.play ul li.active .down .shadow {
         opacity: 0;
     }
 }
+
+span.show{
+	display: inline-block;
+}
+
+span.hide {
+	display: none;
+}
+
 </style>
 
 <section>
@@ -375,144 +381,99 @@ body.play ul li.active .down .shadow {
 		            	</div>
 	                	<button class="btn btn-secondary" type="submit">Go!</button>
 						</div>
-						<div class="head_main_text">
-							<!-- 과정명 글자수가(length) 30이상이면 font-sizn를 13px로 한다.-->
-							
-							 
-						</div>
-             		
              		</form>
             </div>
           </div>
         </div>
-
-		<div class="row justify-content-center">
-			<div class="col-pl-0">
-			    <ul class="flip minutePlay" style="list-style-type: none;">
-			        <li>
-			            <a href="#">
-			                <div class="up">
-			                    <div class="shadow"></div>
-			                    <div class="inn">0</div>
-			                </div>
-			                <div class="down">
-			                    <div class="shadow"></div>
-			                    <div class="inn">0</div>
-			                </div>
-			            </a>
-			        </li>
-			        <li>
-			            <a href="#">
-			                <div class="up">
-			                    <div class="shadow"></div>
-			                    <div class="inn">1</div>
-			                </div>
-			                <div class="down">
-			                    <div class="shadow"></div>
-			                    <div class="inn">1</div>
-			                </div>
-			            </a>
-			        </li>
-			    </ul>
-			    <ul class="flip secondPlay">
-			        <li>
-			            <a href="#">
-			                <div class="up">
-			                    <div class="shadow"></div>
-			                    <div class="inn">0</div>
-			                </div>
-			                <div class="down">
-			                    <div class="shadow"></div>
-			                    <div class="inn">0</div>
-			                </div>
-			            </a>
-			        </li>
-			        <li>
-			            <a href="#">
-			                <div class="up">
-			                    <div class="shadow"></div>
-			                    <div class="inn">1</div>
-			                </div>
-			                <div class="down">
-			                    <div class="shadow"></div>
-			                    <div class="inn">1</div>
-			                </div>
-			            </a>
-			        </li>
-			    </ul>
-		    </div>		    
-		
-			<div class="col-pl-0">
-			    <ul class="flip thirdPlay" style="list-style-type: none;">
-			        <li>
-			            <a href="#">
-			                <div class="up">
-			                    <div class="shadow"></div>
-			                    <div class="inn">0</div>
-			                </div>
-			                <div class="down">
-			                    <div class="shadow"></div>
-			                    <div class="inn">0</div>
-			                </div>
-			            </a>
-			        </li>
-			       	<li>
-			            <a href="#">
-			                <div class="up">
-			                    <div class="shadow"></div>
-			                    <div class="inn">1</div>
-			                </div>
-			                <div class="down">
-			                    <div class="shadow"></div>
-			                    <div class="inn">1</div>
-			                </div>
-			            </a>
-			        </li>
-			    </ul>
-			    <ul class="flip fourthPlay">
-			        <li>
-			            <a href="#">
-			                <div class="up">
-			                    <div class="shadow"></div>
-			                    <div class="inn">0</div>
-			                </div>
-			                <div class="down">
-			                    <div class="shadow"></div>
-			                    <div class="inn">0</div>
-			                </div>
-			            </a>
-			        </li>
-			        <li>
-			            <a href="#">
-			                <div class="up">
-			                    <div class="shadow"></div>
-			                    <div class="inn">1</div>
-			                </div>
-			                <div class="down">
-			                    <div class="shadow"></div>
-			                    <div class="inn">1</div>
-			                </div>
-			            </a>
-			        </li>
-			    </ul>
-		    </div>
-			
-			
-		</div>
-		
-		
-
-
+        
+        
+        <!-- 우측 예정된 축제 이름 및 날짜 -->
+       	<div class="card my-4" style="margin-top: 0px !important;">
+          <h5 class="card-header" style="background-color:#ffc9c9;">현재 예정중인 축제</h5>
+          <div class="card-body">
+            <div class="input-group justify-content-center">
+	            	<div class="row justify-content-center">
+						<div class="col-pl-0">
+						    <ul class="flip minutePlay" style="list-style-type: none;">
+						        <li>
+						            <a>
+						                <div class="up">
+						                    <div class="shadow"></div>
+						                    <div class="inn">0</div>
+						                </div>
+						                <div class="down">
+						                    <div class="shadow"></div>
+						                    <div class="inn">0</div>
+						                </div>
+						            </a>
+						        </li>
+						    </ul>
+						    <ul class="flip secondPlay">
+						        <li>
+						            <a>
+						                <div class="up">
+						                    <div class="shadow"></div>
+						                    <div class="inn">0</div>
+						                </div>
+						                <div class="down">
+						                    <div class="shadow"></div>
+						                    <div class="inn">0</div>
+						                </div>
+						            </a>
+						        </li>
+						    </ul>
+					    </div>		    
+						<div class="col-pl-pr-0" style="font-size: 40px; line-height: 43.5px; margin-top: 5px;" >월</div>
+						
+						<div class="col-pl-0">
+						    <ul class="flip thirdPlay" style="list-style-type: none;">
+						        <li>
+						            <a>
+						                <div class="up">
+						                    <div class="shadow"></div>
+						                    <div class="inn">0</div>
+						                </div>
+						                <div class="down">
+						                    <div class="shadow"></div>
+						                    <div class="inn">0</div>
+						                </div>
+						            </a>
+						        </li>
+						    </ul>
+						    <ul class="flip fourthPlay">
+						        <li>
+						            <a>
+						                <div class="up">
+						                    <div class="shadow"></div>
+						                    <div class="inn">0</div>
+						                </div>
+						                <div class="down">
+						                    <div class="shadow"></div>
+						                    <div class="inn">0</div>
+						                </div>
+						            </a>
+						        </li>
+						    </ul>
+					    </div>
+						<div class="col-pl-pr-0" style="font-size: 40px; line-height: 43.5px; margin-top: 5px;" >일</div>
+					</div>
+            </div>
+            <div id="scheduledFestival" class="row justify-content-center">
+            	<span class="show">-</span>
+            </div>
+          </div>
+        </div>
 
         <!-- Side Widget -->
-        	<div class="row">	
-        		<div class="ml-3" style="display: inline-block">
-					<img src="https://item.kakaocdn.net/do/13223be410903921ff0f5725340e04aff43ad912ad8dd55b04db6a64cddaf76d" style="width:50px; height=50px;">
-				</div>
-	        	<div class="col"style="display: inline-block">
-	        		<a href="#"><b>가장 많이 본 축제</b></a>
-     			</div>
-     		</div>
+      	<div class="row">	
+      		<div class="ml-3" style="display: inline-block">
+			<img src="https://item.kakaocdn.net/do/13223be410903921ff0f5725340e04aff43ad912ad8dd55b04db6a64cddaf76d" style="width:50px; height=50px;">
+		</div>
+       	<div class="col"style="display: inline-block">
+       		<a href="#"><b>가장 많이 본 축제</b></a>
+   			</div>
+   		</div>
+   		
         <c:if test="${not empty list2}">
         	<c:forEach items="${list2}" var="v" varStatus="s">
 	        <div class="card my-4" style="margin-top: 0px !important;">
@@ -589,9 +550,9 @@ body.play ul li.active .down .shadow {
 	
 	<script>
 	$(document).ready(function(){
-		var lastP = Math.ceil("${totalCount}"/3); 
 		
-		console.log(lastP);
+		/* 페이징 처리 파트 */
+		var lastP = Math.ceil("${totalCount}"/3); 
 		
 		var nowP = ${cPage};
 
@@ -605,15 +566,52 @@ body.play ul li.active .down .shadow {
 				$("#prePage").addClass("disabled");
 			}
 		}
+		
+		/* 예정축제값 가져오기 */
+		$.ajax({
+			url : "${pageContext.request.contextPath}/festival/selectNowProceeding",
+			success : function(data){
+				if(data.nplist.length!=0){
+
+					for(var i=0; i<data.nplist.length; i++){
+						var name = data.nplist[i].festival_Title;
+						
+						var date = new Date(data.nplist[i].festival_StartDate);
+						
+						var dates = new Array();
+						
+						dates.push((""+(date.getMonth()+1)).substring(0,1));
+						dates.push((""+(date.getMonth()+1)).substring(1,2));
+						dates.push((""+date.getDate()).substring(0,1));
+						dates.push((""+date.getDate()).substring(1,2));
+						
+						var plays = ["minutePlay","secondPlay","thirdPlay","fourthPlay"];
+						
+						for(var j = 0; j<dates.length; j++){
+							var tags  = '<li><a><div class="up"><div class="shadow"></div>';
+			                tags += '<div class="inn">'+dates[j]+'</div></div><div class="down">';
+			                tags += '<div class="shadow"></div>';
+			                tags += '<div class="inn">'+dates[j]+'</div></div></a></li>';
+			                $("ul."+plays[j]).append(tags);
+						}
+						
+		                $("#scheduledFestival").append("<span class='hide'>"+name+"</span>");
+						
+		                
+					}
+					
+				    setInterval(function () {
+				        minutePlay()
+				    }, 5000);
+				}
+			}
+		});
+		
+		
 	});
 	</script>
 	<script>
-	/* 이번달 축제  */	
-	
-    setInterval(function () {
-        minutePlay()
-    }, 3000);
-	
+	/* 이번달 축제  */		
 	function minutePlay() {
 		
 		$("body").removeClass("play");
@@ -646,8 +644,6 @@ body.play ul li.active .down .shadow {
 	            .closest("body")
 	            .addClass("play");
 	    }
-		
-		
 		
 	    $("body").removeClass("play");
 	    var aa = $("ul.minutePlay li.active");
@@ -710,9 +706,7 @@ body.play ul li.active .down .shadow {
 	            .closest("body")
 	            .addClass("play");
 	    }
-		
-		
-		
+
 	    $("body").removeClass("play");
 	    var aa = $("ul.fourthPlay li.active");
 	
@@ -743,9 +737,24 @@ body.play ul li.active .down .shadow {
 	            .closest("body")
 	            .addClass("play");
 	    }
-	
+	    
+	    var bb = $("#scheduledFestival").children(".show");
+
+	    if(!(bb.is($("#scheduledFestival").children("span").last())) ){
+	    	bb.removeClass("show");
+	    	bb.addClass("hide");
+	    	bb.next("span").addClass("show");
+	    	bb.next("span").removeClass("hide");
+	    }
+	    else if(bb.is($("#scheduledFestival").children("span").last())){
+	    	bb.removeClass("show");
+	    	bb.addClass("hide");
+	    	$("#scheduledFestival").children("span").first().addClass("show");
+	    	$("#scheduledFestival").children("span").first().removeClass("hide");
+	    }
 	}
 	</script>
+
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

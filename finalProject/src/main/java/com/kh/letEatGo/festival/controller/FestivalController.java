@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -282,5 +283,16 @@ public class FestivalController {
 	 }
 	
 	
-	
+	@RequestMapping("/festival/selectNowProceeding")
+	public ModelAndView selectNowProceeding(HttpServletResponse res) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Festival> nplist = service.selectNowProceeding();
+
+		res.setContentType("application/text; charset=UTF-8");
+		
+		mv.addObject("nplist", nplist);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 }

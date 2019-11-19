@@ -65,6 +65,12 @@ public class FestivalDaoImpl implements FestivalDao {
 		return session.selectOne("festival.selectSearchTotal",searchKeyword);
 	}
 
+	@Override
+	public List<Festival> selectNowProceeding(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("festival.selectNowProceeding");
+	}
+
 	
 	
 }

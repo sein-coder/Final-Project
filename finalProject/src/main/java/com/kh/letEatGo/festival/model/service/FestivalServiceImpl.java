@@ -76,6 +76,12 @@ public class FestivalServiceImpl implements FestivalService {
 	public int selectSearchTotal(String searchKeyword) {
 		return dao.selectSearchTotal(session, searchKeyword);
 	}
+
+	@Override
+	public List<Festival> selectNowProceeding() {
+		// TODO Auto-generated method stub
+		return dao.selectNowProceeding(session);
+	}
 	
 	
 	
