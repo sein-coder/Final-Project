@@ -145,12 +145,14 @@ public class PageController {
                result=partner_service.deletePartnerPage(p);
             }
             String msg="";
-            String loc="/Logout.do";
+            String loc="";
             if(result>0) {
                msg="회원 탈퇴 성공";
+               loc="/Logout.do";
                session.invalidate();
             }else {
                msg="회원 탈퇴 실패";
+               loc="";
             }
             model.addAttribute("msg",msg);
             model.addAttribute("loc",loc);
