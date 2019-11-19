@@ -58,7 +58,7 @@
     			<label for="pay-total">총 금액</label>
     			<h4 class="pay-total" id="pay-total">0</h4>
     		</div>
-    			<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#payModal">주문완료</button>
+    			<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#payModal" id="completeOrder">주문완료</button>
     	</div>
     </div>
     </div>
@@ -202,6 +202,7 @@
 $(function(){
 	$("input[name=data_No]").each(function(){
 	      var starCount = $(this).val();
+	      	console.log(starCount);
 	      $($(this).siblings()).each(function(){
 	         if(starCount >= $(this).data('rating')){
 	            return $(this).removeClass('text-secondary').addClass('text-warning');
@@ -210,8 +211,12 @@ $(function(){
 	         }
 	      });
 	   });
+	
+	if(parseInt($('#pay-total').text()) == 0){
+		/* $('#completeOrder').prop("disabled", "true"); */
+	}
 })
-	// 평점 별 출력 부분
+/* 	// 평점 별 출력 부분
 var star_rating = $('.star-rating .icon-star');
 var SetRatingStar = function() {
   return star_rating.each(function() {
@@ -221,7 +226,7 @@ var SetRatingStar = function() {
       return $(this).removeClass('text-warning').addClass('text-secondary');
     }
   });
-};
+}; */
 var payment = 0;
 function orderPlusMinus(data){
 	
@@ -322,7 +327,31 @@ function toOrderHistory(){
 		},
 		success : function(data){
 			alert("결제 정보가 전송 중 입니다.");
-			location.href="${path}/order/complete";
+			var dt = new Date();
+			var date = dt.getFullYear() - 1;
+			date += new String(dt.getMonth()+1);
+			date += new String(dt.getDate());
+			console.log(date);
+			$.ajax({
+				url: "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/DailyWeatherStation/1/5/"+date,
+				type : "get",
+				success : function(data){
+					var temperature = 0;
+					var precipitation = 0;
+					
+					console.log(data);
+					
+					for(var i=0; i<data['DailyWeatherStation']['row'].length; i++){						
+						temperature += data['DailyWeatherStation']['row'][i]['SAWS_TA_AVG'];
+						precipitation += data['DailyWeatherStation']['row'][i]['SAWS_RN_SUM'];
+					}
+					
+					temperature /= data['DailyWeatherStation']['row'].length;
+					precipitation /= data['DailyWeatherStation']['row'].length;					
+			
+					location.href="${path}/order/complete?temperature="+temperature+"&precipitation="+precipitation;
+				}
+			});
 		},
 		fail : function(data){
 			alert("결제 처리에 실패하였습니다. 관리자에게 문의하세요.");

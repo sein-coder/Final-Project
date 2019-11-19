@@ -1,6 +1,7 @@
 package com.kh.letEatGo.order.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,26 @@ public class OrderServiceImpl implements OrderService {
 	SqlSessionTemplate session;
 
 	@Override
-	public int selectCount() {
-		int count = dao.selectCount(session);
+	public int selectDefaultCount() {
+		int totalCount = dao.selectDefaultCount(session);
+		return totalCount;
+	}
+
+	@Override
+	public List<Partner> selectDefaultTruckList(int cPage, int numPerPage) {
+		List<Partner> list = dao.selectDefaultTruckList(session, cPage, numPerPage);
+		return list;
+	}
+
+	@Override
+	public int selectCount(Map<String, Object> menu) {
+		int count = dao.selectCount(session, menu);
 		return count;
 	}
 
 	@Override
-	public List<Partner> selectTruckList(int cPage, int numPerPage) {
-		List<Partner> list = dao.selectTruckList(session, cPage, numPerPage);
+	public List<Partner> selectTruckList(int cPage, int numPerPage, Map<String, Object> menu) {
+		List<Partner> list = dao.selectTruckList(session, cPage, numPerPage, menu);
 		return list;
 	}
 
@@ -75,5 +88,22 @@ public class OrderServiceImpl implements OrderService {
 		List<ReviewComment> list = dao.selectReviewComment(session, comment_To);
 		return list;
 	}
-	
+
+	@Override
+	public List<Menu> selectMenuList(Menu m) {
+		List<Menu> menuList = dao.selectMenuList(session, m);
+		return menuList;
+	}
+
+	@Override
+	public List<Partner> selectMenuTruckList(int cPage, int numPerPage, String menu_Name) {
+		List<Partner> list = dao.selectMenuTruckList(session, cPage, numPerPage, menu_Name);
+		return list;
+	}
+
+	@Override
+	public int selectMenuCount(String menu_Name) {
+		int result = dao.selectMenuCount(session, menu_Name);
+		return result;
+	}
 }

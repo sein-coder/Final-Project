@@ -169,45 +169,8 @@
 		              </div>
 		            </div>
 		        </div>
-	
-				<!-- 차트화면 구역 -->
-				<div class="row ml-2 mb-3 justify-content-start">
-					<h3>일별 예상매출 대비 매출 (월 단위)</h3>
-				</div>
-				<div class="mb-4 m-3" style="border: 1px solid #f38181; border-radius: 10px"">
-					<div class="row m-3" id="areaChart"></div>
-				</div>
-	
-				<!-- 작은 차트 구역 -->
-				<h3 class="mb-3 ml-2">예상 매출 및 순수익</h3>
-				<div class="row m-3 pb-2 justify-content-start">
-					<div class="col mr-1" style="border: 1px solid #f38181; border-radius: 10px">
-						<h5 class="mt-2">-일별 순수익 경향 그래프 (월 단위)-</h5>
-						<div id="areaChart2"></div>				
-					</div>
-					<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
-						<h5 class="mt-2">-최근 일별 수익 분류 매출액-</h5>
-						<div id="barChart"></div>
-					</div>
-				</div>
-				
-				<!-- 작은 원형 차트 구역 -->
-				<h3 class="mb-3 ml-2">연령대 및 성별 선호도</h3>
-				<div class="row m-3 pb-5 justify-content-start">
-					<div class="col-md-3 mr-1" style="border: 1px solid #f38181; border-radius: 10px">
-						<h5 class="mt-2">-연령대별 선호도-</h5>
-						<div id="pieChart"></div>			
-					</div>
-					<div class="col-md-3 ml-1" style="border: 1px solid #f38181; border-radius: 10px">
-						<h5 class="mt-2">-성별 선호도-</h5>
-						<div id="pieChart2"></div>
-					</div>
-					<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
-						뭐넣을까...
-					</div>
-				</div>
-	
-				<!-- 장부 구역 -->
+		        
+		        				<!-- 장부 구역 -->
 				<div id="accountBookList" class="row justify-content-center m-2 mb-3">
 					<table id="tbl" class="table table-bordered table-hover" style="text-align: center;">
 						<thead style="background-color: #ffc9c9; color: #fff;">
@@ -255,35 +218,155 @@
 					
 					${pageBar }
 					
+				</div>	
+	
+				<!-- 차트화면 구역 -->
+				<div class="row ml-2 mb-3 justify-content-start">
+					<h3>일별 예상매출 대비 매출 (월 단위)</h3>
+				</div>
+				<div class="mb-4 m-3" style="border: 1px solid #f38181; border-radius: 10px"">
+					<div class="row m-3" id="areaChart"></div>
 				</div>
 	
-				<!-- 간략정보 구역 -->
-				<div class="row flex-row-reverse mb-1 pb-5">
-					<div class="col-md-5">
-						<div class="d-flex justify-content-end">
-							<table class="table table-borderless">
-								<tr>
-									<td>일일 최고수입 : <fmt:formatNumber value="${maxIncome }" type="currency" /></td>
-									<td>일일 최저수입 : <fmt:formatNumber value="${minIncome }" type="currency" /></td>
-	
-								</tr>
-								<tr>
-									<td>일일 최고지출 : <fmt:formatNumber value="${maxOutcome }" type="currency" /></td>
-									<td>일일 최저지출 : <fmt:formatNumber value="${minOutcome }" type="currency" /></td>
-	
-								</tr>
-								<tr>
-									<td>일일 평균수입 : <fmt:formatNumber value="${avgIncome }" type="currency" /></td>
-									<td>일일 평균지출 : <fmt:formatNumber value="${avgOutcome }" type="currency" /></td>
-								</tr>
-							</table>
-						</div>
+				<!-- 작은 차트 구역 -->
+				<h3 class="mb-3 ml-2">예상 매출 및 순수익</h3>
+				<div class="row m-3 pb-2 justify-content-start">
+					<div class="col mr-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<h5 class="mt-2">-일별 순수익 경향 그래프 (월 단위)-</h5>
+						<div id="areaChart2"></div>				
+					</div>
+					<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<h5 class="mt-2">-최근 일별 수익 분류 매출액-</h5>
+						<div id="barChart"></div>
 					</div>
 				</div>
 				
+				<!-- 작은 원형 차트 구역 -->
+				<h3 class="mb-3 ml-2">연령대 및 성별 선호도</h3>
+				<div class="row m-3 pb-5 justify-content-start">
+					<div class="col-md-3 mr-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<h5 class="mt-2">-연령대별 선호도-</h5>
+						<div id="pieChart"></div>			
+					</div>
+					<div class="col-md-3 ml-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<h5 class="mt-2">-성별 선호도-</h5>
+						<div id="pieChart2"></div>
+					</div>
+					<!-- 소규모통계자료 추가 -->
+					<div class="col ml-1" style="border: 1px solid #f38181; border-radius: 10px">
+						<div class="row pt-3 mt-2">
+							<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">일일&nbsp;최고수입&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${maxIncome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				            
+				            <div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">일일&nbsp;최저수입&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${minIncome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
 
-				
-				
+							<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">일일&nbsp;최고지출&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${maxOutcome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				            
+				            <div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">일일&nbsp;최저지출&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${minOutcome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+			            
+			            	<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">일일&nbsp;평균수입&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+				                      	<fmt:formatNumber value="${avgIncome }" type="currency" />
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+
+			            	<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-primary shadow h-100 py-2">
+				                <div class="card-body p-2">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">일일&nbsp;평균지출&nbsp;(월 단위)</div>
+				                      <div id="monthlyIncome" class="h5 mb-0 font-weight-bold text-gray-800">
+										<fmt:formatNumber value="${avgOutcome }" type="currency" />
+									  </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+
+						</div>
+					</div>
+				</div>
+		
 				</c:if>
 				<c:if test="${empty account }">
 	

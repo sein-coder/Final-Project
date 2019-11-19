@@ -10,4 +10,11 @@
 			#{account_Number},#{account_Bank},#{partner_No},#{account_Name},#{account_Balance}
 		) 
 	</insert>	
+	
+	<update id="updateAccount" parameterType="java.util.HashMap">
+		UPDATE ACCOUNT SET 
+			ACCOUNT_BALANCE = ACCOUNT_BALANCE-#{account_Balance} 
+		WHERE PARTNER_NO = #{partner_No}
+	</update>
+	
 </mapper>

@@ -43,6 +43,15 @@ public class MemberDaoImpl implements MemberDao {
 	public int insertKakao(SqlSessionTemplate session, Member m) {
 		return session.insert("member.insertKakao",m);
 	}
+	
+	@Override
+	public Member selectMemberEmail(SqlSessionTemplate session, Member m) {
+		return session.selectOne("member.selectMemberEmail",m);
+	}
 
+	@Override
+	public int updateMemberPassword(SqlSessionTemplate session, Member m) {
+		return session.update("member.updateMemberPassword",m);
+	}
 
 }

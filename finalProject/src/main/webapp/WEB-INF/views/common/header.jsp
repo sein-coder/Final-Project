@@ -87,7 +87,8 @@
                         <div class="cover"></div>
                      </div>
 
-                     <div class="description align-middle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let It Go.mp3</div>
+                     <div class="description align-middle">Something from
+                        nothing</div>
 
                      <div class="visualizer">
                         <div></div>
@@ -252,6 +253,12 @@
                                  <div></div>
                               </div>
                            </div>
+                            <div class="tmp-set-nav">
+						        <ul class="nav nav-pills">
+						            <li><a href="${pageContext.request.contextPath }/findIp">아이디/비밀번호찾기</a></li>
+						        </ul>
+						    </div>
+                           
                             <div id="html_element" class=""></div>
                              <script type="text/javascript">
                                var onloadCallback = function() {

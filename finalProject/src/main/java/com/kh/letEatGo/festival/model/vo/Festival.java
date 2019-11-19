@@ -12,8 +12,10 @@ import lombok.NoArgsConstructor;
 public class Festival {
 	
 	private int festival_No;
+	private int festival_date;
 	private String festival_Title;
 	private String festival_Content;
+	private int festival_Like;
 	private int festival_Count;
 	private String festival_Thumbnail;
 	private String festival_StartDate;
@@ -24,6 +26,7 @@ public class Festival {
 	private String festival_Host;
 	private String festival_Sub;
 	private String festival_Price;
+	private String festival_Tag;
 	private String festival_Proceeding;
 
 	

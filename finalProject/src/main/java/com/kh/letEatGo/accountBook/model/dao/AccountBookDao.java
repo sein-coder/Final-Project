@@ -39,4 +39,6 @@ public interface AccountBookDao {
 	
 	List<Map<String,String>> selectCalRoundChart(SqlSessionTemplate session, int partner_No);
 	
+	int updateAccount(SqlSessionTemplate session, Map<String,Integer> map);
+	
 }

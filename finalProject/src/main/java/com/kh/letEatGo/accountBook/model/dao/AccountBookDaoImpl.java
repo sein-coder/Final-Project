@@ -103,6 +103,12 @@ public class AccountBookDaoImpl implements AccountBookDao {
 		// TODO Auto-generated method stub
 		return session.selectList("accountBook.selectCalRoundChart",partner_No);
 	}
+
+	@Override
+	public int updateAccount(SqlSessionTemplate session, Map<String,Integer> map) {
+		// TODO Auto-generated method stub
+		return session.update("account.updateAccount",map);
+	}
 	
 	
 	

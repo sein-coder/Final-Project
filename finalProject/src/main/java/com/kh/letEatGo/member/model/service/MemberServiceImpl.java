@@ -50,6 +50,16 @@ public class MemberServiceImpl implements MemberService {
 	public int updateAdminPage(Member m) {
 		return dao.updateAdminPage(session,m);
 	}
+	
+	@Override
+	public Member selectMemberEmail(Member m) {
+		
+		return dao.selectMemberEmail(session,m);
+	}
 
+	@Override
+	public int updateMemberPassword(Member m) {
+		return dao.updateMemberPassword(session,m);
+	}
 
 }

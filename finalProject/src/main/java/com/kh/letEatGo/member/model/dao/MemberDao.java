@@ -19,4 +19,9 @@ public interface MemberDao {
 	int updateAdminPage(SqlSessionTemplate session,Member m);
 	
 	int insertKakao(SqlSessionTemplate session,Member m);
+
+	Member selectMemberEmail(SqlSessionTemplate session, Member m);
+
+	int updateMemberPassword(SqlSessionTemplate session, Member m);
+
 }

@@ -1,4 +1,4 @@
-package com.kh.letEatGo.partner.chatting;
+package com.kh.letEatGo.common.chatting;
 
 public class Sdp {
 	private String type;

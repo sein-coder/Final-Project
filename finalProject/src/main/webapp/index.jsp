@@ -89,35 +89,35 @@
 
 				<div class="row align-items-stretch p-4">
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href='${pageContext.request.contextPath}/order/orderListSearch?keyword=한식' class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/한식.png">
 						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=중식" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/중식.png">
 						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=일식" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/일식.png">
 						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=양식" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/양식.png">
 						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=디저트" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/디저트.png">
 						</span> <span class="caption mb-2 d-block">디저트</span> <span
@@ -125,7 +125,7 @@
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=기타" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/기타.png">
 						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">0</span>
@@ -219,14 +219,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/S_2.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴1<span>부메뉴1</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -237,14 +229,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_1.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴2<span>부메뉴2</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -255,14 +239,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_4.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴3<span>부메뉴3</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -273,14 +249,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/S_6.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴4<span>부메뉴4</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -291,14 +259,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/S_1.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴5<span>부메뉴5</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -309,14 +269,6 @@
 						<img class="img-fluid"
 							src="${pageContext.request.contextPath }/resources/images/main_Data/L_3.png"
 							alt="Card image cap">
-						<figcaption>
-							<h2>
-								메뉴6<span>부메뉴6</span>
-							</h2>
-							<p>
-								<a href="#"><span class="icon icon-search"></span></a>
-							</p>
-						</figcaption>
 					</figure>
 				</div>
 				<!-- Grid column -->
@@ -358,16 +310,15 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_2_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/이지연.jfif"
 								alt="Free Website Template by Free-Template.co"
 								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>이지연</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;A small river named Duden flows by their place and
-								supplies it with the necessary regelialia. It is a paradisematic
-								country, in which roasted parts of sentences fly into your
-								mouth.&rdquo;</p>
+							<p>&ldquo;안녕하세요.저는 Let Eat Go에서 축제알리미와 1:1문의를 맡은 이지연입니다.<br>
+							積土成山이란 흙이 쌓여 산이된다는 말로 작은것도 많이 모이면 커진다는 것을 의미합니다 .<br>
+							비록 지금은 조그마한 흙이지만 개발자의 한사람으로서 전문성을 갖출수 있도록 노력하는 사람이 되겠습니다.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -376,16 +327,13 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_4_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/강보승.jpg"
 								alt="Free Website Template by Free-Template.co"
 								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>강보승</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;Even the all-powerful Pointing has no control about
-								the blind texts it is an almost unorthographic life One day
-								however a small line of blind text by the name of Lorem Ipsum
-								decided to leave for the far World of Grammar.&rdquo;</p>
+							<p>&ldquo;안녕하세요!<br>직장인이 되고싶은 강보승입니다.<br>회사원이 되는 그날까지 열심히 달리겠습니다. .&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -411,17 +359,15 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/국푸름.jpg"
 								alt="Free Website Template by Free-Template.co"
 								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>국푸름</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;The Big Oxmox advised her not to do so, because
-								there were thousands of bad Commas, wild Question Marks and
-								devious Semikoli, but the Little Blind Text didn’t listen. She
-								packed her seven versalia, put her initial into the belt and
-								made herself on the way.&rdquo;</p>
+							<p>&ldquo;안녕하세요 Error is Life 팀의 팀원 국푸름입니다.<br>
+							담당파트는 MAP , 카카오톡 로그인 , 리캡챠 API입니다.<br>
+							앞으로도 열심히 하겠습니다!.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -429,17 +375,13 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/박영진.jpg"
 								alt="Free Website Template by Free-Template.co"
 								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>박영진</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;The Big Oxmox advised her not to do so, because
-								there were thousands of bad Commas, wild Question Marks and
-								devious Semikoli, but the Little Blind Text didn’t listen. She
-								packed her seven versalia, put her initial into the belt and
-								made herself on the way.&rdquo;</p>
+							<p>&ldquo;회원 페이지 관리와 일정관리 맡은 박영진입니다.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
