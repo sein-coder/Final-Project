@@ -30,7 +30,7 @@
           <div class="col-md-5 ml-auto">
             <h2 class="text-primary mb-3">${partner.partner_TruckName }</h2>
 				<div class="star-rating" id="truck-star">
-					<h4 class="font-size-regular">리뷰 평점</h2>
+					<h4 class="font-size-regular">평균별점</h2>
 					<span class="icon-star" data-rating="1"></span>
 					<span class="icon-star" data-rating="2"></span>
 					<span class="icon-star" data-rating="3"></span>
@@ -109,6 +109,9 @@
 				<c:forEach var="rv" items="${reviewList}">
 					<ul class="comment-list">
 						<li class="comment">
+						<div class="vcard bio">
+							<img src="${path }/resources/images/${rv.oriname_File}" alt="리뷰작성자 이미지">
+						</div>
 						<div class="comment-body">
 							<h3>${rv.member_Id}</h3>
 							<div class="meta">
@@ -133,6 +136,19 @@
 							</c:forEach>
 						</div>
 						</li>
+						<!-- 사장님 댓글영역 -->
+						<ul class="children">
+							<li class="comment">
+								<div class="vcard bio">
+								<img src="${path }/resources/images/person_4.jpg" alt="사장님 이미지">
+								</div>
+							<div class="comment-body">
+								<h3>Jean Doe</h3>
+								<div class="meta">January 9, 2018 at 2:21pm</div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+							</div>
+							</li>
+						</ul>
 					</ul>
 				</c:forEach>
 		</div>
@@ -196,13 +212,8 @@ $(function(){
 	      });
 	   });
 	
-<<<<<<< HEAD
-	if(parseInt($('#pay-total').text()) <= 0){
-		$('#completeOrder').prop("disabled", "true");
-=======
 	if(parseInt($('#pay-total').text()) == 0){
 		/* $('#completeOrder').prop("disabled", "true"); */
->>>>>>> branch 'mergeTest' of https://github.com/sein-coder/Final-Project
 	}
 })
 /* 	// 평점 별 출력 부분
@@ -311,8 +322,8 @@ function toOrderHistory(){
 			"add_Request" : $("#add_request").val(),
 			"order_Price" : payment,
 			"reservation_YN" : "N",
-			"partner_No" : ${partner.partner_No}
-			,"member_No" : ${loginMember.member_No}
+			"partner_No" : ${partner.partner_No},
+			"member_No" : ${loginMember.member_No}
 		},
 		success : function(data){
 			alert("결제 정보가 전송 중 입니다.");
