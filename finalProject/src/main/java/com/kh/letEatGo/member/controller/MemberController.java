@@ -47,8 +47,8 @@ public class MemberController {
 		  System.out.println(m);
 			logger.debug(m.getMember_Password());
 			
+			m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
 			try {
-				  m.setMember_Password(enc.encrypt(m.getMember_Password()));
 				  m.setMember_Email(enc.encrypt(m.getMember_Email()));
 		          m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
 
@@ -131,18 +131,32 @@ public class MemberController {
 		  Member result2;
 		  
 		  result2 = service.selectMemberOne(m);
-		  
+		  mv.setViewName("redirect:/");
 		  if(result2==null) {
 			  int result=service.insertKakao(m);
 			  result2 = service.selectMemberOne(m);
+			  mv.setViewName("/mypage/memberPage");
 		  }
+		  try {
+			result2.setMember_Phone(enc.decrypt(result2.getMember_Phone()));
+			result2.setMember_Email(enc.decrypt(result2.getMember_Email()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 
 		  session.setAttribute("loginMember", result2);
 		  session.setAttribute("type", "member");
 		  Member result3=service.selectMemberOne(m);
 		  session.setAttribute("member",result3);
+		  try {
+			result3.setMember_Phone(enc.decrypt(result3.getMember_Phone()));
+			result3.setMember_Email(enc.decrypt(result3.getMember_Email()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		  //mv.setViewName("redirect:/");
-		  mv.setViewName("/mypage/memberPage");
 		return mv;
 
 	  }

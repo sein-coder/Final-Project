@@ -85,10 +85,12 @@
 				<c:if test="${not empty account }">
 				
 				<!-- 이용자 아이디 출력 구역 -->
-				<div class="row pl-4 pt-3 mb-4 justify-content-start">
+				<div class="row pl-4 pt-3 mb-1 justify-content-start">
 					<h2>${loginMember.partner_TruckName }님의 11월 통계 및 장부</h2>
 				</div>
-				
+				<div class="row pl-4 mb-4 justify-content-start">
+					<h4>${account.account_Bank}&nbsp;${account.account_Number }(예금주 : ${account.account_Name})&nbsp;계좌의 현재 잔액은&nbsp; :&nbsp; <span id="balance"></span>입니다.</h4>				
+				</div>				
 				<!-- Content Row -->
 		        <div class="row m-1 mb-4">
 		
@@ -183,7 +185,6 @@
 								<th scope="col">적요</th>
 								<th scope="col">수입</th>
 								<th scope="col">지출</th>
-								<th scope="col">잔액</th>
 								<th scope="col"
 									style="background-color: #fff; border-color: #fff;"></th>
 								<th scope="col"
@@ -203,7 +204,6 @@
 									<td>${ab.account_Summary }</td>
 									<td><fmt:formatNumber value="${ab.account_Income }" type="currency" /></td>
 									<td><fmt:formatNumber value="${ab.account_Outcome }" type="currency" /></td>
-									<td><fmt:formatNumber value="${ab.account_Balance }" type="currency" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -760,10 +760,9 @@
 		function addRow() {
 			if (flag) {
 				var inputNames = ['account_No','account_Date','account_Type',
-					'account_Clause','account_Item','account_Summary','account_Income','account_Outcome',
-					'account_Balance']
+					'account_Clause','account_Item','account_Summary','account_Income','account_Outcome']
 				
-				var maxlength = [ 3, 8, 7, 4, 4, 15, 8, 8, 8 ];
+				var maxlength = [ 3, 8, 7, 4, 4, 15, 8, 8];
 
 				var tbody = $("#tbody");
 
@@ -802,10 +801,9 @@
 		$("tr").on('dblclick',function() {
 			if (flag) {
 				var data = $(this).children();
-				var maxlength = [ 3, 8, 7, 4, 4, 15, 8, 8, 8 ];
+				var maxlength = [ 3, 8, 7, 4, 4, 15, 8, 8];
 				var inputNames = ['account_No','account_Date','account_Type',
-					'account_Clause','account_Item','account_Summary','account_Income','account_Outcome',
-					'account_Balance']
+					'account_Clause','account_Item','account_Summary','account_Income','account_Outcome']
 				if (data[0].innerText != '행 추가하기') {
 					for (var i = 0; i < maxlength.length; i++) {
 						var input;
@@ -820,7 +818,7 @@
 							input += '<option value="계좌이체">계좌이체</option>';
 							input += '<option value="기타">기타</option>';
 							input += '</select></div>';
-						} else if (i == 6 || i == 7 || i == 8){
+						} else if (i == 6 || i == 7 ){
 							var money;
 							money = replaceAll(data[i].innerText,",","");
 							money = money.substring(1,money.length);
@@ -890,6 +888,8 @@
 			var date = $("#account_Date").val().replace($("#account_Date").val().split("-")[0],$("#account_Date").val().split("-")[0]-1);
 			date = replaceAll(date,"-","");
 			
+			alert(date);
+			
 			$.ajax({
 				url: "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/DailyWeatherStation/1/5/"+date,
 				type : "get",
@@ -901,6 +901,9 @@
 					
 					temperature /= data['DailyWeatherStation']['row'].length;
 					precipitation /= data['DailyWeatherStation']['row'].length;
+					
+					console.log(temperature);
+					console.log(precipitation);
 					
 					$.ajax({
 						url : "${pageContext.request.contextPath}/accountBook/insertAccountBook.do?partner_No=${partner_No}",
@@ -914,8 +917,7 @@
 							'account_Item':$("#account_Item").val(),
 							'account_Summary':$("#account_Summary").val(),
 							'account_Outcome':$("#account_Outcome").val(),
-							'account_Income':$("#account_Income").val(),
-							'account_Balance':$("#account_Balance").val()
+							'account_Income':$("#account_Income").val()
 						},
 						success : function(data){
 							location.reload(); 
@@ -976,8 +978,7 @@
 							'account_Item':$("#account_Item").val(),
 							'account_Summary':$("#account_Summary").val(),
 							'account_Outcome':$("#account_Outcome").val(),
-							'account_Income':$("#account_Income").val(),
-							'account_Balance':$("#account_Balance").val()
+							'account_Income':$("#account_Income").val()
 						},
 						success : function(data){
 							location.reload();
@@ -1039,6 +1040,19 @@
 			}
 		});
 		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/accountBook/Balance.do?partner_No=${partner_No}",
+			type : "post",
+			success : function(data){
+				console.log(data.sum["SUM(ACCOUNT_INCOME)"]);
+				console.log(data.sum["SUM(ACCOUNT_OUTCOME)"]);
+				var balance = parseInt("${account.account_Balance}");
+				balance += (data.sum["SUM(ACCOUNT_INCOME)"]-data.sum["SUM(ACCOUNT_OUTCOME)"]);
+				
+				$("#balance").text(preprocessing(balance));
+				
+			}
+		});
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/accountBook/calculate.do?partner_No=${partner_No}",

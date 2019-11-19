@@ -17,7 +17,6 @@ public class AccountBook {
 	private int account_Outcome;
 	private int account_Income;
 	private int account_Predict;
-	private int account_Balance;
 	private int partner_No;
 	private int account_Revenue;
 }

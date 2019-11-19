@@ -232,9 +232,9 @@
                            <p>로그인</p>
                            <ul class="nav nav-tabs">
                               <li class="nav-item"><a class="nav-link active"
-                              data-toggle="tab" href="#member_log">사용자</a></li>
+                              data-toggle="tab" href="#member_log" onclick="openkakao();">사용자</a></li>
                               <li class="nav-item"><a class="nav-link"
-                              data-toggle="tab" href="#partner_log">사업자</a></li>   
+                              data-toggle="tab" href="#partner_log" onclick="closekakao();">사업자</a></li>   
                            </ul>
                            <div class="tab-content">
                               <div class="tab-pane fade " id="partner_log">
@@ -281,7 +281,7 @@
                </div>
                <!-- Modal footer -->
                <div class="modal-footer">
-                  <a id="kakao"   onclick="kakao();" style="cursor:pointer"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="240"/></a>
+                  <a id="kakao"  onclick="kakao();" style="cursor:pointer;display: unset"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="240"/></a>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                </div>
             </div>
@@ -337,7 +337,12 @@
 					 location.href='${pageContext.request.contextPath}/Logout.do';
  		    		 });
 			}
-		     
+		     function openkakao() {
+		    	 document.getElementById('kakao').style.display = 'block';
+				}
+           	function closekakao() {
+           		 document.getElementById('kakao').style.display = 'none';
+			}
 			</script>
 
    <script type="text/javascript"

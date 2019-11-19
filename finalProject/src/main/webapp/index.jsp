@@ -11,6 +11,7 @@
 	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif); 
 	min-height: 750px;"
 	data-aos="fade" data-stellar-background-ratio="0.5">
+	
 	<div class="container">
 		<div class="row align-items-center justify-content-center text-center"
 			style="min-height: 750px;">
@@ -37,53 +38,61 @@
 					data-aos-delay="200">
 						<div class="row align-items-center">
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
-								<input type="text" name="" class="form-control"
-									placeholder="메뉴검색 ex)스테이크..."></input>
+								<input type="text" id="menu_Name" name="searchBook" class="form-control" placeholder="메뉴검색 ex)스테이크..."></input>
 							</div>
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<div class="wrap-icon">
 								<!-- =================================================================================================== -->
 									<button class="icon icon-room" style="background:none;border:none;cursor:pointer" onclick="map_gps();"></button>
-									<input type="text" id="mapAddress" class="form-control" placeholder="푸드트럭 위치찾기">
+									<input type="text" id="mapAddress" name="searchBook" class="form-control" placeholder="푸드트럭 위치찾기">
 								</div>
 							</div>
 							<div class="col-lg-12 col-xl-2 ml-auto text-right">
-								<button  class="btn text-white btn-primary" onclick="mapSerach();">검색하기</button>
+								<button id="main_Search" class="btn text-white btn-primary" onclick="Serach();">검색하기</button>
 							</div>
 						</div>
 				</div>
 				<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 				<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 				<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
-					<script>
-					var places = new kakao.maps.services.Places();
-					function mapSerach() {
-						var mapSeacrh1= function(result, status) {
-						    if (status === kakao.maps.services.Status.OK) {
-						location.href="${pageContext.request.contextPath}/mapSearch?mapAddress="+$('#mapAddress').val();
-						    }else{	
-						    	alert("주소를 확인하세요.ex)도깨비야시장");
-						    }
-						};
-						places.keywordSearch($('#mapAddress').val(), mapSeacrh1);
-					}
-					
-					
-					function map_gps(){
-						if (navigator.geolocation) {
-						    navigator.geolocation.getCurrentPosition(showPosition);
-						  } else {
-							  alert("지원하지 않는 브라우저입니다.");
-						  }
-					}
-					function showPosition(position) {
-						var latitude=position.coords.latitude;
-						var longitude=position.coords.longitude;
-						location.href="${pageContext.request.contextPath}/mapGps?latitude="+latitude+"&longitude="+longitude;
-						}
-					
-					
-					</script>
+<script>
+	$(document).ready(function(){
+	    $("input[name=searchBook]").keydown(function (key) {
+	        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+	        	Serach();
+	        }
+	    });
+	});
+
+	var places = new kakao.maps.services.Places();
+	function Serach() {
+		if($("#menu_Name").val()!=""){
+			location.href = "${pageContext.request.contextPath}/order/orderListSearch?menu_Name="+$("#menu_Name").val();
+		}else{
+			 var mapSeacrh1= function(result, status) {
+			    if (status === kakao.maps.services.Status.OK) {
+					location.href="${pageContext.request.contextPath}/mapSearch?mapAddress="+$('#mapAddress').val();
+			    }else{	
+			    	alert("주소를 확인하세요.ex)도깨비야시장");
+			    }
+			};
+			places.keywordSearch($('#mapAddress').val(), mapSeacrh1);			
+		}
+	}
+	
+	function map_gps(){
+		if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(showPosition);
+		  } else {
+			  alert("지원하지 않는 브라우저입니다.");
+		  }
+	}
+	function showPosition(position) {
+		var latitude=position.coords.latitude;
+		var longitude=position.coords.longitude;
+		location.href="${pageContext.request.contextPath}/mapGps?latitude="+latitude+"&longitude="+longitude;
+		}
+</script>
 					<!-- =================================================================================================== -->
 
 				<div class="row align-items-stretch p-4">

@@ -241,7 +241,7 @@ function displayArea(area) {
                     '        </div>' + 
                     '        <div class="body">' + 
                     '            <div class="img">' +
-                    '                <img src="'+area.img+'" width="73" height="70">' +
+                    '                <img src="${pageContext.request.contextPath}/resources/images/festival/'+area.img+'" width="73" height="70">' +
                     '           </div>' + 
                     '            <div class="desc">' + 
                     '                <div class="ellipsis">'+area.address+'</div>' + 

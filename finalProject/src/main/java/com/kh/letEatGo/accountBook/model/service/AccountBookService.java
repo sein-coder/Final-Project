@@ -39,4 +39,7 @@ public interface AccountBookService {
 	
 	int updateAccount(Map<String,Integer> map);
 	
+	Map<String,Integer> selectSumInOutcome(int partner_No);
+	
+	
 }
