@@ -40,6 +40,25 @@
 
    $(document).ready(function() {
       setCalendar();
+       <c:forEach items="${calendar}" var="calendar1">
+      SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+      String a='${calendar1.end_Date}';
+      Date to = transFormat.parse(a);
+	  console.log(a);
+    </c:forEach>  
+    
+    <c:forEach items="${calendar}" var="calendar1">
+    //console.log('${calendar1.end_Date}');
+    /* '${calendar1.end_Date}'.replace('${calendar1.end_Date}'.indexOf('${calendar1.end_Date}'.length-1),parseInt('${calandar1.end_Date}'.indexOf('${calendar1.end_Date}'.length-1))+1);
+    console.log('${calendar1.end_Date}'); */
+    
+    
+   /*  var date = new Date('${calandar1.end_Date}'); //안된다 ㅜㅜ
+    date.setDate(date.getDate() + 1);
+    console.log(date.getDate()); */
+    
+    
+    </c:forEach>
    });
    
    function setCalendar(){

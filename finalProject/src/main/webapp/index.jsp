@@ -11,6 +11,7 @@
 	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif); 
 	min-height: 750px;"
 	data-aos="fade" data-stellar-background-ratio="0.5">
+	
 	<div class="container">
 		<div class="row align-items-center justify-content-center text-center"
 			style="min-height: 750px;">
