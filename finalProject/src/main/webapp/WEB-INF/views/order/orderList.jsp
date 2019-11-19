@@ -95,7 +95,7 @@
 			<div class="col-md-8 offset-md-2">
 				<!-- 여기서 부터 DIV가 업체 리스트에 맞춰 반복되야함, image변경 필! -->
 				<c:forEach var="p" items="${list }" varStatus="v">
-				<div class="d-block d-md-flex listing-horizontal" id="truck-container" onClick="truckInfo();">
+				<div class="d-block d-md-flex listing-horizontal" id="truck-container" onClick="truckInfo(this);">
 					<!-- 푸드트럭 별 대표이미지 -->
 					<a href="${path }/order/orderListView?partner_No=${p.partner_No}" class="img d-block" style="background-image: url('${path}/resources/images/foodtruck/${p.profile_Re }')">
 						<span class="category"><c:out value="${p.partner_Menu }"/></span>
@@ -114,19 +114,24 @@
 									<input type="hidden" name="data_No" class="rating-value" value="${p.starCount}">
 									<span>(${p.reviewCount }개의 리뷰)</span>
 								</div>
-								<div class="row">
+								<p></p>
+								<div>
 									<!-- 메뉴이미지 추가부분 고려해보자 대안, 메뉴 이름을 대표메뉴로 추가? -->
-									<%-- <c:forEach var="img" items="${menuList[v.count-1] }" varStatus="vs">
-										<img class="img-fluid" src="${path }/resources/images/menu/${img.menu_Oriname_File }"/>
-									</c:forEach> --%>
-									
+									<div class="listing-item">
+										<div class="listing-item-content">
+											<c:forEach var="menu" items="${menuList[v.count-1] }" begin="1" end="3" step="1" varStatus="vs">
+												<span class="px-3 mb-3 category">${menu.menu_Name }</span></a>
+											</c:forEach>
+										</div>
+									</div>
 								</div>
 							</div>
 					</div>
 				</div>
 				<script>
-				function truckInfo(){
-					location.href="${path }/order/orderListView?partner_No=${p.partner_No}";
+				function truckInfo(data){
+					var url = $(data).children().siblings().eq(0).attr('href');
+					location.href=url;
 				}
 				</script>
 				</c:forEach>

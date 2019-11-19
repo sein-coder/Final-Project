@@ -63,9 +63,6 @@
     </div>
     </div>
     
-    
-    
-    
     <div class="row">
     	<div class="col-md-8">
 			<div class="container">
@@ -109,9 +106,6 @@
 				<c:forEach var="rv" items="${reviewList}">
 					<ul class="comment-list">
 						<li class="comment">
-						<div class="vcard bio">
-							<img src="${path }/resources/images/${rv.oriname_File}" alt="리뷰작성자 이미지">
-						</div>
 						<div class="comment-body">
 							<h3>${rv.member_Id}</h3>
 							<div class="meta">
@@ -128,27 +122,11 @@
 							</div>
 							<p>${rv.review_Content}</p>
 							<c:forEach var="cmt" items="${comment }">
-							<!-- session에서 partner가 확인되고, 번호가 같으면 답글 버튼 출력! -->
-							<%-- <c:if test="${rv.order_No eq cmt.order_No && (loginMember.partner_No eq null? 0 : loginMember.partner_No )eq cmt.comment_From }">
-								<button class="btn btn-primary" onClick="reply(${cmt.order_No});">답글달기</button> <!-- reply()매개변수로 댓글번호 전달 -->
-							</c:if> --%>
 							<input type="hidden" class="order_No" value="${rv.order_No}"/>
 							</c:forEach>
 						</div>
 						</li>
 						<!-- 사장님 댓글영역 -->
-						<ul class="children">
-							<li class="comment">
-								<div class="vcard bio">
-								<img src="${path }/resources/images/person_4.jpg" alt="사장님 이미지">
-								</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-							</div>
-							</li>
-						</ul>
 					</ul>
 				</c:forEach>
 		</div>
@@ -178,15 +156,20 @@
 					<div class="text-center">
 						<h4 class="bg-light">총 결제 금액</h4>
 						<span class="text-center pay-total">원</span>
+						<input type="hidden" id="total_price" value="0"/>
 					</div>
 					
 					<div class="text-center">
 						<h4 class="bg-light">주문요청사항</h4>
 						<textarea rows="1" cols="30" placeholder="30자 이내로 기재" name="add_request" id="add_request"></textarea>	
 					</div>
+					<div class="text-center" id="reserve_box">
+						<h4 class="bg-light">예약설정</h4>
+						<input type="datetime-local" id="reserve_time"/>
+					</div>
      					<div class="row">
        					<div class="col">
-			         		<button class="form-control btn btn-info" onClick="">주문예약하기</button>
+			         		<button class="form-control btn btn-info" id="reserve">주문예약하기</button>
 			         		<button type="button" class="form-control btn btn-primary" onClick="fadeModal();">결제하기</button>
 							<!-- onClick="payOrders();" -->
 						</div>
@@ -200,6 +183,8 @@
 </section>
 <script>
 $(function(){
+	$('#reserve_box').hide();
+    
 	$("input[name=data_No]").each(function(){
 	      var starCount = $(this).val();
 	      	console.log(starCount);
@@ -212,21 +197,19 @@ $(function(){
 	      });
 	   });
 	
-	if(parseInt($('#pay-total').text()) == 0){
-		/* $('#completeOrder').prop("disabled", "true"); */
-	}
+
+	$('#reserve').click(function(){
+		$('#reserve_box').toggle(function(){
+			
+		}, function(){
+			
+		})
+		
+	})
 })
-/* 	// 평점 별 출력 부분
-var star_rating = $('.star-rating .icon-star');
-var SetRatingStar = function() {
-  return star_rating.each(function() {
-    if (parseInt(star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-      return $(this).removeClass('text-secondary').addClass('text-warning');
-    } else {
-      return $(this).removeClass('text-warning').addClass('text-secondary');
-    }
-  });
-}; */
+
+	
+	
 var payment = 0;
 function orderPlusMinus(data){
 	
@@ -292,22 +275,27 @@ function orderPlusMinus(data){
 		}
 	}
 	$('.pay-total').html(payment).val();
-}
-function changeValue(elementInput){
-	var value=$(elementInput).val();
-}
-SetRatingStar();
-// 결제포트 실행전 첫 번째 모달 숨기기
-function fadeModal(){
-	$('#payModal').modal('hide');
-	var windowWidth = 650;
-	var windowHeight = 650;
-	var windowLeft = parseInt((screen.availWidth/2) - (windowWidth/2));
-	var windowTop = parseInt((screen.availHeight/2) - (windowHeight/2));
-	var windowSize = "width=" + windowWidth + ",height=" + windowHeight + ",left=" + windowLeft + ",top=" + windowTop + ",screenX=" + windowLeft + ",screenY=" + windowTop;
-	var open = window.open('${path}/order/payment.do?order_Price='+payment, "_target ", windowSize);
+	$('#total_price').val(payment);
+	
 	
 }
+
+// 결제포트 실행전 첫 번째 모달 숨기기
+function fadeModal(){
+	if(parseInt($('#pay-total').text()) <= 0){
+		alert('올바른 결제금액이 아닙니다. 다시 확인하세요.');
+		$('#payModal').modal('hide');
+	} else {
+		$('#payModal').modal('hide');
+		var windowWidth = 650;
+		var windowHeight = 650;
+		var windowLeft = parseInt((screen.availWidth/2) - (windowWidth/2));
+		var windowTop = parseInt((screen.availHeight/2) - (windowHeight/2));
+		var windowSize = "width=" + windowWidth + ",height=" + windowHeight + ",left=" + windowLeft + ",top=" + windowTop + ",screenX=" + windowLeft + ",screenY=" + windowTop;
+		var open = window.open('${path}/order/payment.do?order_Price='+payment, "_target ", windowSize);
+	}
+}
+
 function toOrderHistory(){
 	var orderlists = "";
 	

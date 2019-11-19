@@ -173,8 +173,9 @@
                         <c:if test="${not empty loginMember && type == 'partner' }">
 	                        <li><a href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=${loginMember.partner_No}"><span>장부관리</span></a></li>
                         </c:if>
-                        
-                        <li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
+                        <c:if test="${ type != 'partner' }">
+                        	<li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
+                        </c:if>
                         <li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존 찾기</span></a></li>
                         <li><a href="${pageContext.request.contextPath }/festival/festivalList" style="font-family: BinggraeMelona !important;"><span>축제알리미</span></a></li>
                         <c:if test="${empty loginMember }">

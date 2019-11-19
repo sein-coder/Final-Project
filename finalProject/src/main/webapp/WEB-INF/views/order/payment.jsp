@@ -27,8 +27,8 @@
 		//결제창에서 보여질 이름
 		amount: ${order_Price},
 		//가격
-		buyer_email: 'das@naver.com',
-		buyer_name: '유연성',
+		buyer_email: 'admin@letEatGo.com',
+		buyer_name: 'letEatGo',
 		buyer_tel: '010-1234-1234',
 		buyer_addr: '서울시 강남구',
 		}, function (rsp) {
