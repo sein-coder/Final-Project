@@ -102,6 +102,7 @@
 					</a>
 					<div class="lh-content">
 							<h3><a href="${path }/order/orderListView?partner_No=${p.partner_No}"><c:out value="${p.partner_TruckName }"/></a></h3>
+							<p><span class="icon-restaurant_menu"></span> 대표메뉴 &nbsp [<c:forEach var="item" items="${menuList[v.count-1]}" begin="1" end="3" step="1"> ${item.menu_Name} </c:forEach>]<p>
 							<!-- 별점 -->
 							<div class="row">
 								<span>리뷰 평점</span>
@@ -113,17 +114,6 @@
 									<span class="icon-star" data-rating="5"></span>
 									<input type="hidden" name="data_No" class="rating-value" value="${p.starCount}">
 									<span>(${p.reviewCount }개의 리뷰)</span>
-								</div>
-								<p></p>
-								<div>
-									<!-- 메뉴이미지 추가부분 고려해보자 대안, 메뉴 이름을 대표메뉴로 추가? -->
-									<div class="listing-item">
-										<div class="listing-item-content">
-											<c:forEach var="menu" items="${menuList[v.count-1] }" begin="1" end="3" step="1" varStatus="vs">
-												<span class="px-3 mb-3 category">${menu.menu_Name }</span></a>
-											</c:forEach>
-										</div>
-									</div>
 								</div>
 							</div>
 					</div>

@@ -1,6 +1,7 @@
 package com.kh.letEatGo.order.controller;
 
-import java.text.ParseException;
+import static com.kh.letEatGo.common.ml.Linear_Regression.predict;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,14 +28,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.letEatGo.accountBook.model.service.AccountBookService;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
 import com.kh.letEatGo.common.page.PageFactory;
+import com.kh.letEatGo.member.model.vo.Member;
 import com.kh.letEatGo.order.model.service.OrderService;
 import com.kh.letEatGo.order.model.vo.Menu;
 import com.kh.letEatGo.order.model.vo.Order;
 import com.kh.letEatGo.order.model.vo.Review;
 import com.kh.letEatGo.order.model.vo.ReviewComment;
 import com.kh.letEatGo.partner.model.vo.Partner;
-
-import static com.kh.letEatGo.common.ml.Linear_Regression.predict;
 
 @Controller
 public class OrderController {
@@ -173,7 +173,6 @@ public class OrderController {
 		int result = service.insertOrder(o);
 		session.setAttribute("order", o);
 		session.setAttribute("result", result);
-
 		return "redirect:/order/complete";
 	}
 	
@@ -233,5 +232,17 @@ public class OrderController {
 		}
 		res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
+	}
+	
+	////////////////리뷰작성페이지 전환//////////////////////
+	@RequestMapping("/order/review")
+	public ModelAndView writeReview(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		Order ord = (Order)session.getAttribute("order");
+		
+		mv.addObject("loginMember", loginMember);
+		mv.setViewName("order/review");
+		return mv;
 	}
 }
