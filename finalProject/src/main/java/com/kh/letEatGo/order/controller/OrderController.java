@@ -170,7 +170,10 @@ public class OrderController {
 	
 	@RequestMapping("/order/orderEnd") 
 	public String orderEnd(Order o, HttpSession session) {
+		int result = service.insertOrder(o);
 		session.setAttribute("order", o);
+		session.setAttribute("result", result);
+
 		return "redirect:/order/complete";
 	}
 	
@@ -179,7 +182,7 @@ public class OrderController {
 			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
 			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
 		Order order = (Order)session.getAttribute("order");
-		int result = service.insertOrder(order);
+		int result = (int)(session.getAttribute("result"));
 		
 		String msg = "";
 		String loc = "/order/orderListView?partner_No="+order.getPartner_No();
