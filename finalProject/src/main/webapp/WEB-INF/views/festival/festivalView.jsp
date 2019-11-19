@@ -364,9 +364,7 @@ h1 {
 
 </style>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
+
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="" />
 </jsp:include>
@@ -569,7 +567,8 @@ h1 {
 				$(this).val($(this).val().substring(0, 4000));
 			}
 		});
-
+		
+		$(document).ready(function(){
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 		    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -607,8 +606,11 @@ h1 {
 		    map.setCenter(coords);
 		} 
 		});    
-	
+		});
 	</script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 	<script>
 	/* count */
 	$("#heart").click(function() {
