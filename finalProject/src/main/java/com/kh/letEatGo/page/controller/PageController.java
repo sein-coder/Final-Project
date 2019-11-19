@@ -44,7 +44,7 @@ public class PageController {
       Partner result2=partner_service.selectPartnerOne(p);
       result2.setPartner_Address(result2.getPartner_Address());
       result2.setPartner_Email(result2.getPartner_Email());
-      result2.setPartner_Permission_No(enc.decrypt(result2.getPartner_Permission_No()));
+      result2.setPartner_Permission_No(result2.getPartner_Permission_No());
       result2.setPartner_Phone(result2.getPartner_Phone());
       model.addAttribute("partner",result2);
       
@@ -111,7 +111,7 @@ public class PageController {
          try {
             p.setPartner_Address(p.getPartner_Address());
             p.setPartner_Email(p.getPartner_Email());
-            p.setPartner_Permission_No(enc.encrypt(p.getPartner_Permission_No()));
+            p.setPartner_Permission_No(p.getPartner_Permission_No());
             p.setPartner_Phone(p.getPartner_Phone());
             result=partner_service.updatePartnerPage(p);
          } catch (Exception e) {

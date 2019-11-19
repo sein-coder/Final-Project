@@ -83,7 +83,7 @@ public class PartnerController {
 			p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));
 			
 			try {
-				p.setPartner_Permission_No(enc.encrypt(p.getPartner_Permission_No()));
+				p.setPartner_Permission_No(p.getPartner_Permission_No());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
