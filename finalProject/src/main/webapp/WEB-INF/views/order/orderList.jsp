@@ -95,13 +95,14 @@
 			<div class="col-md-8 offset-md-2">
 				<!-- 여기서 부터 DIV가 업체 리스트에 맞춰 반복되야함, image변경 필! -->
 				<c:forEach var="p" items="${list }" varStatus="v">
-				<div class="d-block d-md-flex listing-horizontal" id="truck-container" onClick="truckInfo();">
+				<div class="d-block d-md-flex listing-horizontal" id="truck-container" onClick="truckInfo(this);">
 					<!-- 푸드트럭 별 대표이미지 -->
 					<a href="${path }/order/orderListView?partner_No=${p.partner_No}" class="img d-block" style="background-image: url('${path}/resources/images/foodtruck/${p.profile_Re }')">
 						<span class="category"><c:out value="${p.partner_Menu }"/></span>
 					</a>
 					<div class="lh-content">
 							<h3><a href="${path }/order/orderListView?partner_No=${p.partner_No}"><c:out value="${p.partner_TruckName }"/></a></h3>
+							<p><span class="icon-restaurant_menu"></span> 대표메뉴 &nbsp [<c:forEach var="item" items="${menuList[v.count-1]}" begin="1" end="3" step="1"> ${item.menu_Name} </c:forEach>]<p>
 							<!-- 별점 -->
 							<div class="row">
 								<span>리뷰 평점</span>
@@ -114,19 +115,13 @@
 									<input type="hidden" name="data_No" class="rating-value" value="${p.starCount}">
 									<span>(${p.reviewCount }개의 리뷰)</span>
 								</div>
-								<div class="row">
-									<!-- 메뉴이미지 추가부분 고려해보자 대안, 메뉴 이름을 대표메뉴로 추가? -->
-									<%-- <c:forEach var="img" items="${menuList[v.count-1] }" varStatus="vs">
-										<img class="img-fluid" src="${path }/resources/images/menu/${img.menu_Oriname_File }"/>
-									</c:forEach> --%>
-									
-								</div>
 							</div>
 					</div>
 				</div>
 				<script>
-				function truckInfo(){
-					location.href="${path }/order/orderListView?partner_No=${p.partner_No}";
+				function truckInfo(data){
+					var url = $(data).children().siblings().eq(0).attr('href');
+					location.href=url;
 				}
 				</script>
 				</c:forEach>
@@ -225,18 +220,6 @@ $(document).ready(function(){
 			}
 	});
 	
-	/////////////////////// 지금 안되는 거  
-	/////////////////////// 1) 검색어 클릭 해제 시 주소창에 keyword= 남아있음
-	/////////////////////// 2) 카테고리 검색 후 평점 검색 시 평점만 나옴
-	/////////////////////// 3) 리뷰평점 버튼 CSS 변경이 안됨
-	/////////////////////// 4) ordering값이 있는 경우 $ 받아오게끔 하는데 안받아와짐
-	
-	
-	///////////////////// 페이지 로딩 후 주소값으로 보낸 querystring과 검색하기 버튼 설정하는 부분 ///////////////////
-	//keyword가 null or 빈칸이 아닐때(설정 : 버튼 css, url설정!)
-	//1) keyword가 없을 때
-	//2) ordering이 없을 떄
-	//3) 둘다 있을 때
 	if(keyword != null && keyword != ' '){
 		// keyword가 빈칸이 아닐 때
 		var keywords = keyword.split('/');

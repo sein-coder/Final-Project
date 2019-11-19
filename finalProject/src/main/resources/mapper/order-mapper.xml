@@ -56,15 +56,6 @@
 			</choose>
 		</if>
   </select>
-  
-<!--   <select id="selectTruckList" resultType="partner">
-  	SELECT PARTNER.PARTNER_NO, PARTNER.PARTNER_TRUCKNAME, PARTNER.PARTNER_MENU, AVG(REVIEW_STAR) FROM PARTNER 
-  	JOIN REVIEW ON PARTNER.PARTNER_NO = REVIEW.PARTNER_NO 
-  	WHERE 1 = 1
-	GROUP BY (PARTNER.PARTNER_NO, PARTNER.PARTNER_TRUCKNAME, PARTNER.PARTNER_MENU)
-	ORDER BY PARTNER_NO
-  </select> -->
-  
   <select id="selectMenu" parameterType="_int" resultType="menu">
 	SELECT * FROM MENU WHERE PARTNER_NO = #{partner_No}  
   </select>
@@ -95,5 +86,4 @@
   <select id="selectMenuTruckList" parameterType="String" resultType="partner">
   	SELECT DISTINCT PARTNER_NO FROM MENU  WHERE MENU_NAME LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
   </select> 
-  
 </mapper>
