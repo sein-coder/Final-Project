@@ -11,9 +11,9 @@
 	<!-- DB설정하기 with mybatis -->
 	<bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="spring"/>
-		<property name="password" value="spring"/>
+		<property name="url" value="jdbc:oracle:thin:@rclass.iptime.org:1521:xe"/>
+		<property name="username" value="leteatgo"/>
+		<property name="password" value="leteatgo"/>
 	</bean>
 	
 	<!-- log를 출력하기 위한 프록시객체 등록 -->
@@ -26,8 +26,7 @@
 			</bean>
 		</property>
 	</bean>
-	
-	
+
 	<!-- mybatis에서 이용하는 SessionFactory만들기 -->
 	<!-- mybatis-config envirments 에서 설정했던 것 -->
 	<bean id="sessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">

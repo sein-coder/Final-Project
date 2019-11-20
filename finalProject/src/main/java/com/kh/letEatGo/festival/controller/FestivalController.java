@@ -1,19 +1,5 @@
 package com.kh.letEatGo.festival.controller;
 
-<<<<<<< HEAD
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-public class FestivalController {
-	@RequestMapping("/festivalList")
-	private String festivalList() {
-		return "festival/festivalList";
-	}
-	
-	
-}
-=======
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -310,4 +296,3 @@ public class FestivalController {
 		return mv;
 	}
 }
->>>>>>> refs/remotes/origin/sein

@@ -17,6 +17,14 @@ RSS Feed: https://feeds.feedburner.com/Free-templateco
 /* Base */
 @font-face { font-family: 'BinggraeMelona'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+div.site-section{
+	background-color: #f4f4f4 !important;
+}
+
+div.site-section .container {
+	background-color: white;
+}
+
 body {
   line-height: 1.7;
   color: #4d4d4d;
@@ -130,7 +138,7 @@ h1, h2, h3, h4, h5,
   @media (min-width: 768px) {
     .site-section {
       padding: 2em 0;
-      padding-top: 10em; } }
+      padding-top: 12em; } }
   .site-section.site-section-sm {
  	
     padding: 6em 0; }
@@ -1494,7 +1502,7 @@ h1, h2, h3, h4, h5,
       .form-search-wrap .btn {
         width: 100% !important;
         display: block; } }
-
+    
 .popular-category {
   background: #fff;
   display: block;
@@ -1562,7 +1570,7 @@ h1, h2, h3, h4, h5,
     bottom: 0;
     top: 0;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.4); }
+    background: rgba(255, 255, 255, 0.1); }
   .listing-item img {
     -o-object-fit: cover;
     object-fit: cover;
@@ -1751,8 +1759,7 @@ h1, h2, h3, h4, h5,
     border-radius: 50%;
     background: #eee;
     margin-bottom: 15px; }
-  .how-it-work-step .img-wrap {
-    height: 270px; }
+
   .how-it-work-step img {
     max-width: 250px;
     margin-left: auto;
@@ -1977,7 +1984,24 @@ figure.effect-gallery:hover p span:empty {
     opacity: 1;
 }
 /* 갤러리 관련 설정 종료 */
+
+/* waves-effect 효과(갤러리 버튼 효과 추가) */
+.waves-effect {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; }
       
-      
-      
+site-blocks-padding {
+	min-height: 3em;
+	@media(max-width:992px){
+		site-blocks-padding mobile{
+			min-height: 8em;
+		}
+	}
+}
       

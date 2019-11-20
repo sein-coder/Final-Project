@@ -70,33 +70,8 @@
       </div>
       <header class="site-navbar" role="banner">
 
-<<<<<<< HEAD
-      <div class="container">
-        <div class="row align-items-center">
-          
-          <div class="col-11 col-xl-3">
-          	<a href="${pageContext.request.contextPath }">
-          	<img src="${pageContext.request.contextPath }/resources/images/logo.png" class="img-fluid" />
-          	</a>
-          </div>
-          <div class="col-12 col-md-9 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href="${pageContext.request.contextPath }"><span>Home</span></a></li>
-                <!-- nav-bar 메뉴부분 -->
-                <li><a href="${pageContext.request.contextPath }/accountBookView"><span>장부관리</span></a></li>
-                <li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
-                <li><a href="#"><span>푸드트럭존 찾기</span></a></li>
-                <li><a href="${pageContext.request.contextPath }/festivalList"><span>축제알리미</span></a></li>
-                <li><button class="btn btn-outline-primary">로그인</button></li>
-                <li><button class="btn btn-outline-primary">회원가입</button></li>
-              </ul>
-            </nav>
-          </div>
-=======
          <div class="container">
             <div class="row d-flex justify-content-end">
->>>>>>> refs/remotes/origin/sein
 
                <div class="wrap">
                   <iframe src="${pageContext.request.contextPath }/resources/music/silence.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>

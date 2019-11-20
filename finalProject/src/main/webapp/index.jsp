@@ -8,15 +8,19 @@
 	rel="stylesheet" type="text/css">
 
 <div class="site-blocks-cover overlay"
-	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif);"
+	style="background-image: url(${pageContext.request.contextPath }/resources/images/ft.gif); 
+	min-height: 750px;"
 	data-aos="fade" data-stellar-background-ratio="0.5">
+	
 	<div class="container">
-		<div class="row align-items-center justify-content-center text-center">
+		<div class="row align-items-center justify-content-center text-center"
+			style="min-height: 750px;">
 
 			<div class="col-md-10">
 
 				<!-- 텍스트 타이핑 효과 -->
-				<div class="row justify-content-center mb-4">
+				<div class="row justify-content-center mb-4"
+					style="margin-top: 9rem !important">
 					<div class="col-md-12 text-center">
 						<h1 data-aos="fade-up">
 							렛잇고만의 <span class="typed-words"></span> 푸드트럭
@@ -30,84 +34,122 @@
 
 
 				<!-- 중간 검색 박스 -->
-				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up"
+				<div class="form-search-wrap p-2" id="medium-box" data-aos="fade-up" 
 					data-aos-delay="200">
-					<form method="post">
 						<div class="row align-items-center">
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
-								<input type="text" name="" class="form-control"
-									placeholder="메뉴검색 ex)스테이크...">
+								<input type="text" id="menu_Name" name="searchBook" class="form-control" placeholder="메뉴검색 ex)스테이크..."></input>
 							</div>
 							<div class="col-lg-12 col-xl-5 no-sm-border border-right">
 								<div class="wrap-icon">
-									<span class="icon icon-room"></span> <input type="text"
-										class="form-control" placeholder="푸드트럭 위치찾기">
+								<!-- =================================================================================================== -->
+									<button class="icon icon-room" style="background:none;border:none;cursor:pointer" onclick="map_gps();"></button>
+									<input type="text" id="mapAddress" name="searchBook" class="form-control" placeholder="푸드트럭 위치찾기">
 								</div>
 							</div>
 							<div class="col-lg-12 col-xl-2 ml-auto text-right">
-								<input type="submit" class="btn text-white btn-primary"
-									value="검색하기">
+								<button id="main_Search" class="btn text-white btn-primary" onclick="Serach();">검색하기</button>
 							</div>
 						</div>
-					</form>
 				</div>
+				<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+				<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
+				<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
+<script>
+	$(document).ready(function(){
+	    $("input[name=searchBook]").keydown(function (key) {
+	        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+	        	Serach();
+	        }
+	    });
+	});
+
+	var places = new kakao.maps.services.Places();
+	function Serach() {
+		if($("#menu_Name").val()!=""){
+			location.href = "${pageContext.request.contextPath}/order/orderListSearch?menu_Name="+$("#menu_Name").val();
+		}else{
+			 var mapSeacrh1= function(result, status) {
+			    if (status === kakao.maps.services.Status.OK) {
+					location.href="${pageContext.request.contextPath}/mapSearch?mapAddress="+$('#mapAddress').val();
+			    }else{	
+			    	alert("주소를 확인하세요.ex)도깨비야시장");
+			    }
+			};
+			places.keywordSearch($('#mapAddress').val(), mapSeacrh1);			
+		}
+	}
+	
+	function map_gps(){
+		if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(showPosition);
+		  } else {
+			  alert("지원하지 않는 브라우저입니다.");
+		  }
+	}
+	function showPosition(position) {
+		var latitude=position.coords.latitude;
+		var longitude=position.coords.longitude;
+		location.href="${pageContext.request.contextPath}/mapGps?latitude="+latitude+"&longitude="+longitude;
+		}
+</script>
+					<!-- =================================================================================================== -->
 
 				<div class="row align-items-stretch p-4">
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href='${pageContext.request.contextPath}/order/orderListSearch?keyword=한식' class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/한식.png">
-						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">489</span>
+						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=중식" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/중식.png">
-						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">482</span>
+						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=일식" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/일식.png">
-						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">191</span>
+						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=양식" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/양식.png">
-						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">395</span>
+						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=디저트" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/디저트.png">
 						</span> <span class="caption mb-2 d-block">디저트</span> <span
-							class="number">124</span>
+							class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="#" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=기타" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/기타.png">
-						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">187</span>
+						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">0</span>
 						</a>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 </div>
 <section id="content">
 
+
 	<div class="site-section" style="padding-top: 4em;">
 		<div class="container">
-			<div class="row justify-content-center mb-5">
+			<div class="row justify-content-center mb-8">
 				<div class="col-md-7 text-center border-primary">
 					<h2 class="font-weight-light text-primary">Let Eat Go</h2>
 					<p class="color-black-opacity-5">사용자와 사업자 모두를 만족시키는 서비스</p>
@@ -165,133 +207,84 @@
 	<!-- 갤러리 시작 -->
 	<div class="site-section" style="padding: 0">
 		<div class="container">
-				<div class="row">
-					<div class="col-md-12 d-flex justify-content-center">
-						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="all">All</button>
-						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button>
-						<button type="button"
-							class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button>
-					</div>
-					<!-- Grid column -->
+			<div class="row">
+				<div class="col-md-12 d-flex justify-content-center">
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="all">All</button>
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="1">Festival</button>
+					<button type="button"
+						class="btn btn-outline-info waves-effect filter" data-rel="2">Food</button>
 				</div>
-				<!-- Grid row -->
-				<div class="gallery" id="gallery" style="color: white;">
-				
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
-							<img class="img-fluid"
-								src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
-								alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+				<!-- Grid column -->
+			</div>
+			<!-- Grid row -->
+			<div class="gallery" id="gallery" style="color: white;">
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_2.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_1.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_4.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_6.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+					</figure>
+				</div>
+				<!-- Grid column -->
 
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<figure class="effect-gallery">
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 2">
+					<figure class="effect-gallery">
 						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/S_1.png"
 							alt="Card image cap">
-							<figcaption>
-								<h2>
-									메뉴<span>부메뉴</span>
-								</h2>
-								<p>
-									<a href="#"><span class="icon icon-search"></span></a>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- Grid column -->
+					</figure>
+				</div>
+				<!-- Grid column -->
 
+				<!-- Grid column -->
+				<div class="mb-3 pics animation all 1">
+					<figure class="effect-gallery">
+						<img class="img-fluid"
+							src="${pageContext.request.contextPath }/resources/images/main_Data/L_3.png"
+							alt="Card image cap">
+					</figure>
+				</div>
+				<!-- Grid column -->
 				<!-- Grid row -->
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 팀원 소개 파트 -->
 	<div class="site-section bg-light" style="padding: 0">
 		<div class="container">
@@ -307,14 +300,15 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_3_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/박세인.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>박세인</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
 							<p>
-								&ldquo;안녕하세요 @@@조의 Let Eat Go프로젝트를 총괄하는 박세인이라고 합니다. <br>
+								&ldquo;안녕하세요 Error is Life팀의 Let Eat Go프로젝트 팀장을 맡은 박세인이라고 합니다. <br>
+								담당 파트는 메인페이지와 장부관리시스템을 담당하였습니다. <br> 
 								부족한 실력으로 구현해보았지만 좋게 봐주셨으면 감사하겠습니다.&rdquo;
 							</p>
 						</blockquote>
@@ -324,16 +318,15 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_2_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/이지연.jfif"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>이지연</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;A small river named Duden flows by their place and
-								supplies it with the necessary regelialia. It is a paradisematic
-								country, in which roasted parts of sentences fly into your
-								mouth.&rdquo;</p>
+							<p>&ldquo;안녕하세요.저는 Let Eat Go에서 축제알리미와 1:1문의를 맡은 이지연입니다.<br>
+							積土成山이란 흙이 쌓여 산이된다는 말로 작은것도 많이 모이면 커진다는 것을 의미합니다 .<br>
+							비록 지금은 조그마한 흙이지만 개발자의 한사람으로서 전문성을 갖출수 있도록 노력하는 사람이 되겠습니다.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -342,16 +335,13 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_4_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/강보승.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>강보승</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;Even the all-powerful Pointing has no control about
-								the blind texts it is an almost unorthographic life One day
-								however a small line of blind text by the name of Lorem Ipsum
-								decided to leave for the far World of Grammar.&rdquo;</p>
+							<p>&ldquo;안녕하세요!<br>직장인이 되고싶은 강보승입니다.<br>회사원이 되는 그날까지 열심히 달리겠습니다. .&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -360,17 +350,16 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/유연성.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>유연성</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;The Big Oxmox advised her not to do so, because
-								there were thousands of bad Commas, wild Question Marks and
-								devious Semikoli, but the Little Blind Text didn’t listen. She
-								packed her seven versalia, put her initial into the belt and
-								made herself on the way.&rdquo;</p>
+							<p>&ldquo;안녕하세요 신입개발자 유연성입니다. 짧고 파이팅 넘치게 세 마디만 하겠습니다.<br>
+								BUG를 JAVA라! <br>
+								C Perl GNOME JAVA!<br>
+								알고리즘을 알고있쯤!&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -378,17 +367,15 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/국푸름.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>국푸름</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;The Big Oxmox advised her not to do so, because
-								there were thousands of bad Commas, wild Question Marks and
-								devious Semikoli, but the Little Blind Text didn’t listen. She
-								packed her seven versalia, put her initial into the belt and
-								made herself on the way.&rdquo;</p>
+							<p>&ldquo;안녕하세요 Error is Life 팀의 팀원 국푸름입니다.<br>
+							담당파트는 MAP , 카카오톡 로그인 , 리캡챠 API입니다.<br>
+							앞으로도 열심히 하겠습니다!.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -396,17 +383,13 @@
 					<div class="testimonial">
 						<figure class="mb-4">
 							<img
-								src="${pageContext.request.contextPath }/resources/images/person_5_sq.jpg"
+								src="${pageContext.request.contextPath }/resources/images/박영진.jpg"
 								alt="Free Website Template by Free-Template.co"
-								class="img-fluid mb-3" style="max-width: 200px;">
+								class="img-fluid mb-3" style="max-width: 250px; max-height: 300px;">
 							<p>박영진</p>
 						</figure>
 						<blockquote style="font-size: 1rem;">
-							<p>&ldquo;The Big Oxmox advised her not to do so, because
-								there were thousands of bad Commas, wild Question Marks and
-								devious Semikoli, but the Little Blind Text didn’t listen. She
-								packed her seven versalia, put her initial into the belt and
-								made herself on the way.&rdquo;</p>
+							<p>&ldquo;회원 페이지 관리와 일정관리 맡은 박영진입니다.&rdquo;</p>
 						</blockquote>
 					</div>
 				</div>
@@ -418,6 +401,11 @@
 
 <!-- 메인 음식메뉴파트 hover이벤트 -->
 <script type="text/javascript">
+
+
+
+
+
 	$(".popular-category").hover(
 			function() {
 				var img = $(this).children().eq(0).children();
@@ -451,14 +439,11 @@
 		loop : true,
 		showCursor : true
 	});
-</script>
-<script>
+
 	$(function() {
 		$(".site-navbar").css("background-color", "transparent");
 	})
-</script>
 
-<script>
 	$(function() {
 		var selectedClass = "";
 		$(".filter").click(
@@ -473,6 +458,53 @@
 					}, 300);
 				});
 	});
+</script>
+
+<script type="text/javascript">
+
+/* 갤러리 랜덤 사진 */
+$(document).ready(function(){
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingMainData.do",
+		type : "post",
+		success: function(data){
+	
+			for(var i=0; i<3; i++){
+				var img = $("div.1 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fllist[i].data_Name+"."+data.fllist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.1 img").eq(i).attr("src",replace);
+			}
+			
+			for(var i=0; i<3; i++){
+				var img = $("div.2 img").eq(i).attr("src");
+				var oriimgName = img.substring(img.lastIndexOf("/")+1,img.length);
+				var reimgName = data.fslist[i].data_Name+"."+data.fslist[i].data_Type.toLowerCase();
+				var replace = img.replace(oriimgName,reimgName);
+				$("div.2 img").eq(i).attr("src",replace);
+			}
+		}
+	});
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/loadingTypeCount.do",
+		type:"post",
+		success: function(data){
+			$("a.popular-category span.number").each(function(){
+				for(var i =0; i<data.list.length; i++){
+					if(data.list[i].PARTNER_MENU == $(this).prev().text()){
+						$(this).text(data.list[i].MENU_COUNT);
+						break;
+					}else{
+						$(this).text(0);
+					}
+				}
+			});
+		}
+	});
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
