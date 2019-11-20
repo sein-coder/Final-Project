@@ -49,12 +49,12 @@ textarea {
 /* 해시태그  */
     ul li.tag-item {
         padding: 4px 8px;
-        background-color: #777;
-        color: #000;
+        background-color: #fff;
+        color: #f38181;
     }
 
     .tag-item:hover {
-        background-color: #262626;
+        background-color: #f38181;
         color: #fff;
     }
     ul#tag-list {
@@ -120,11 +120,10 @@ textarea {
 									<input size="5" style="background-color: white; border: 0px solid white;" type="text" readonly disabled value="4000" name="counter" id="counter">
 								</span>
 							</div>
-							<br>
 							<div style="display: inline-block">
+							<br>
 								<p>해시태그 :</p>
-
-								<div class="content">
+								<div class="content col-pb-0">
 									<input type="hidden" value="" name="festival_Tag" id="festival_Hashtag" />
 									<ul id="tag-list"></ul>
 									<input type="text" id="tag" size="7" placeholder="태그입력" />
@@ -134,7 +133,6 @@ textarea {
 					</div>
 				</div>
 			</div>
-			
 			<div class="row">
 				<div class="col-md-12 mt-0 p-0" style="border-top: 0px solid white; background-color: white;">
 					<!-- 더 보기 버튼 생성  -->
@@ -171,7 +169,6 @@ textarea {
 									<div class="alert alert-danger4">
 										<a class="btn btn-xs btn-danger pull-right" style="background-color: #fff;">홈페이지</a>
 										<input class="check form-control" type="url" id="festival_Homepage" name="festival_Homepage" placeholder="https://www.letEatGo.com"	required>
-
 									</div>
 								</td>
 							</tr>
@@ -226,8 +223,7 @@ textarea {
 		</form>
 	</div>
 	</div>
-
-		<script>
+<script>
 		
 	/*글자 수 제한*/
 			$('#festival_Content').keyup(function (e){
@@ -314,10 +310,6 @@ textarea {
         });
         
         
-        
-        
-        
-        
         /* [썸네일] */
         
 	    $('#upFile').on('change',function (e) {
@@ -345,10 +337,6 @@ textarea {
 	    $('.btn-cancel').on("click",function(){
         	location.href = "${pageContext.request.contextPath }/festival/festivalList";
 	    });
-
-
    </script>
-
 	</section>
-	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
