@@ -104,6 +104,7 @@ public class PageController {
          model.addAttribute("loc",loc);
          return "common/msg";     
          }
+    
     @RequestMapping("/partner/updatePartner") //멤버 회원 정보 수정
       public String updatePartnerPage(Partner p,Model model) {
          p.setPartner_Password(pwEncoder.encode(p.getPartner_Password()));

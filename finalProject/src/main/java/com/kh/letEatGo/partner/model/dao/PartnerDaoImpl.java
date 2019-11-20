@@ -9,6 +9,13 @@ import com.kh.letEatGo.partner.model.vo.Partner;
 @Repository
 public class PartnerDaoImpl implements PartnerDao {
 
+	
+	
+	@Override
+	public Partner selectIdAndEmail(SqlSessionTemplate session, Partner p) {
+		return session.selectOne("partner.selectPartnerIdAndEmail",p);
+	}
+
 	@Override
 	public int insertPartner(SqlSessionTemplate session, Partner p) {
 		

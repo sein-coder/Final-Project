@@ -142,6 +142,18 @@ public class PartnerController {
 		}
 	}
 
+	@RequestMapping("/partner/checkIdAndEmail.do")
+	public void checkIdAndEmail(Partner p, HttpServletResponse res) {
+		Partner result=service.selectIdAndEmail(p);
+		String flag=result!=null?"false":"true";
+		res.setContentType("application/json;charset=utf-8");
+		try {
+			res.getWriter().write(flag);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+	}
+	
 
 	@RequestMapping("/partner/permission.do")
 	public void permissionCheck(

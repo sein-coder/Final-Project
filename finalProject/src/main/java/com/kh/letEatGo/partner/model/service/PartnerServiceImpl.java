@@ -19,6 +19,13 @@ public class PartnerServiceImpl implements PartnerService {
 	
 	
 	@Override
+	public Partner selectIdAndEmail(Partner p) {
+		return dao.selectIdAndEmail(session,p);
+	}
+
+
+
+	@Override
 	public int insertPartner(Partner p) {
 		
 		return dao.insertPartner(session,p);

@@ -12,6 +12,8 @@ public interface PartnerDao {
 	
 	Partner selectPartnerOne(SqlSessionTemplate session,Partner p);
 	
+	Partner selectIdAndEmail(SqlSessionTemplate session,Partner p);
+	
 	int updatePartnerPage(SqlSessionTemplate session,Partner p);
 
 	Partner selectPartnerNo(SqlSessionTemplate session, Partner p);
