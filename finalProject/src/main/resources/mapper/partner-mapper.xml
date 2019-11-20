@@ -15,11 +15,19 @@
 <select id="selectPartnerList" resultType="partner">
   		select * from PARTNER
   	</select>
+  	<select id="selectPartnerEmail" parameterType="partner" resultType="partner">
+  		select * from PARTNER WHERE PARTNER_EMAIL=#{partner_Email}
+  	</select>
+  	<update id="updatePartnerPassword">
+  		UPDATE PARTNER SET 
+  						PARTNER_PASSWORD=#{partner_Password} where PARTNER_ID=#{partner_Id}
+  	</update>
   	
   	<!-- 파트너 회원 정보 수정 -->
   	<update id="updatePartnerPage">
   	  UPDATE PARTNER SET
   	                     PARTNER_ID=#{partner_Id},
+  	                     PARTNER_PASSWORD=#{partner_Password},
   	                     PARTNER_TRUCKNAME=#{partner_TruckName},
   	                     PARTNER_ADDRESS=#{partner_Address},
   	                     PARTNER_EMAIL=#{partner_Email},
