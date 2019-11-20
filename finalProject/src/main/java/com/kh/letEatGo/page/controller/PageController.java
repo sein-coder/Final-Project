@@ -156,8 +156,8 @@ public class PageController {
             }
        
        @RequestMapping("/member/updateAdmin") //멤버 회원 정보 수정
-         public String updateAdminPage(Member m,Model model) {
-            m.setMember_Password(m.getMember_Password());
+         public String updateAdminPage(Member m,Model model) throws Exception {
+            m.setMember_Password(enc.encrypt(m.getMember_Password()));
             int result=0;
             try {
                m.setMember_Email(m.getMember_Email());

@@ -16,7 +16,6 @@
 			style="min-height: 750px;">
 
 			<div class="col-md-10">
-
 				<!-- 텍스트 타이핑 효과 -->
 				<div class="row justify-content-center mb-4"
 					style="margin-top: 9rem !important">

@@ -48,10 +48,8 @@ public class PartnerController {
 			Partner p,
 			@RequestParam(value="upFile",required=false)MultipartFile[] upFile,
 			HttpServletRequest req
-			) throws Exception {
-		  
+			) throws Exception { 
 		  ModelAndView mv=new ModelAndView();
-		  
 		  String saveDir=req.getSession().getServletContext().getRealPath("/resources/images/foodtruck");
 		  File dir=new File(saveDir);
 		  if(!dir.exists()) logger.debug("폴더생성 "+dir.mkdirs());
@@ -214,8 +212,8 @@ public class PartnerController {
 			}
 			return "/member/findIp";
 		}
-	 @RequestMapping("/partner_Email.do")
-		public void findEmail(Partner p, HttpServletResponse res)  {
+	 @RequestMapping("/partnerid/partner_Email.do")
+		public void findIdEmail(Partner p, HttpServletResponse res)  {
 		 Partner result=service.selectPartnerEmail(p);
 		 String flag=result!=null?"false":"true";
 		 res.setContentType("application/json;charset=utf-8");
@@ -224,6 +222,19 @@ public class PartnerController {
 		 } catch (IOException e) {
 			 e.printStackTrace();
 		 }
+	 }
+	 @RequestMapping("/password/partner_Email.do")
+		public void findPwEmail(Partner p, HttpServletResponse res)  {
+		 Partner result=service.selectPartnerEmail(p);
+		 String flag=result!=null?"false":"true";
+		 res.setContentType("application/json;charset=utf-8");
+		 try {
+			 res.getWriter().write(flag);
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+	 }
+	
 		 
 				
 		 
@@ -231,7 +242,6 @@ public class PartnerController {
 		 	//select * from service가져와서
 		 	
 //		 	List<Partner> list=service.selectPartnerList();\
-	}
 		 	
 		 	
 	 

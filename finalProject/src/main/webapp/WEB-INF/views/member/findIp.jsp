@@ -173,7 +173,6 @@ $("#partner_Id").keyup(function(){
 							$("#id_check").text("일치하는 아이디가 없습니다.");
 							$("#id_check").css("color", "red");
 							$("#partner_Id").css("border-color", "red");
-							
 					} 
 				}
 			});
@@ -181,38 +180,38 @@ $("#partner_Id").keyup(function(){
  $("#partner_Email").keyup(function(){
 		var partner_Email = $('#partner_Email').val();
 		$.ajax({
-			url : '${pageContext.request.contextPath}/partner_Email.do',
+			url : '${pageContext.request.contextPath}/password/partner_Email.do',
 			type : "get",
 			data : {"partner_Email":partner_Email},
 			success : function(data) {
 				console.log(data);
 					 if (data == false) {
-						$("#email_check3").text("확인");
-						$("#email_check3").css("color", "green");
+						$("#email_check2").text("확인");
+						$("#email_check2").css("color", "green");
 						$("#partner_Email").css("border-color", "green");
 					} else{
-						$("#email_check3").text("잘못된이메일입니다.");
-						$("#email_check3").css("color", "red");
-						$("#partner_Email").css("border-color", "red");			
-						}  
+						$("#email_check2").text("잘못된이메일입니다.");
+						$("#email_check2").css("color", "red");
+						$("#partner_Email").css("border-color", "red");
+						}
 					} 
 				});
 			});
  $("#partnerEmail").keyup(function(){
 		var partnerEmail = $('#partnerEmail').val();
 		$.ajax({
-			url : '${pageContext.request.contextPath}/partner_Email.do',
+			url : '${pageContext.request.contextPath}/partnerid/partner_Email.do',
 			type : "get",
 			data : {"partner_Email":partnerEmail},
 			success : function(data) { 	
 				console.log(data);
 					 if (data == false) {
-						$("#email_check2").text("확인");
-						$("#email_check2").css("color", "green");
+						$("#email_check3").text("확인");
+						$("#email_check3").css("color", "green");
 						$("#partnerEmail").css("border-color", "green");
 					} else{
-						$("#email_check2").text("잘못된이메일입니다.");
-						$("#email_check2").css("color", "red");
+						$("#email_check3").text("잘못된이메일입니다.");
+						$("#email_check3").css("color", "red");
 						$("#partnerEmail").css("border-color", "red");			
 						}  
 					} 
