@@ -90,6 +90,7 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
 <script>
+
 var places = new kakao.maps.services.Places();
 function selectMap(str) {
 	var callback = function(result, status) {
