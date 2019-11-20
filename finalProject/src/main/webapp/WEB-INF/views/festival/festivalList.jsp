@@ -352,21 +352,27 @@ span.hide {
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-		<div class="row">
-			<div class="col">
-				<div class="site-menu js-clone-nav d-none d-lg-block" style="color:#f38181;text-align: right;">
-					<div class="dropdown mt-2">
-					  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black; background-color:#ffc9c9;border-color: white; ">
-					   	<img src="https://svgsilh.com/svg_v2/1295308.svg" style="width:25px; height=25px;">
-					   	설정
-					  </button>
-					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/festivalForm">등록</a>
-					  </div>
+			<div class="row">
+				<div class="col">
+				<c:if test="${ !(type == 'member' && loginMember.member_Id == 'jy9503') }">
+					<div class="site-menu js-clone-nav d-none d-lg-block mt-5" style="color:#f38181;text-align: right;">
 					</div>
+				</c:if>
+				<c:if test="${ type == 'member' && loginMember.member_Id == 'jy9503' }">
+					<div class="site-menu js-clone-nav d-none d-lg-block" style="color:#f38181;text-align: right;">
+						<div class="dropdown mt-2">
+						  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black; background-color:#ffc9c9;border-color: white; ">
+						   	<img src="https://svgsilh.com/svg_v2/1295308.svg" style="width:25px; height=25px;">
+						   	설정
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/festivalForm">등록</a>
+						  </div>
+						</div>
+					</div>
+				</c:if>
 				</div>
 			</div>
-		</div>
 		
         <!-- Search Widget -->
         <div class="card my-4" style="margin-top: 0px !important;">

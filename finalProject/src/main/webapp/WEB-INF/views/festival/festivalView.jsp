@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <style>
@@ -421,184 +423,183 @@ h1 {
 </jsp:include>
 <section id="content">
 	<div class="site-section pb-4">
-			<div class="container pb-0" style="background-color: white;">
-				<div class="row">
-					<div class="col justify-content-end">
-						<div class="site-menu js-clone-nav mr-3 d-none d-lg-block" style="color:#f38181; text-align: right;">
-								<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black; background-color:#ffc9c9;border-color: white; ">
-								   	<img src="https://svgsilh.com/svg_v2/1295308.svg" style="width:25px; height=25px;">
-								   	설정
-								  </button>
-								  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }">축제 수정</a>
-								    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/deleteFestival?festival_No=${festival.festival_No }">축제 삭제</a>
-								  </div>
-								</div>
+		<div class="container pb-0" style="background-color: white;">
+			<div class="row">
+				<div class="col justify-content-end">
+					<c:if test="${ (type == 'member' && loginMember.member_Id == 'jy9503') }">
+					<div class="site-menu js-clone-nav mr-3 d-none d-lg-block pb-0" style="color:#f38181; text-align: right;">
+						<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black; background-color:#ffc9c9;border-color: white; ">
+						   	<img src="https://svgsilh.com/svg_v2/1295308.svg" style="width:25px; height=25px;">
+						   	설정
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/updateFestival?festival_No=${festival.festival_No }">축제 수정</a>
+						    <a class="dropdown-item" href="${pageContext.request.contextPath}/festival/deleteFestival?festival_No=${festival.festival_No }">축제 삭제</a>
+						  </div>
 						</div>
 					</div>
-				</div>
-					<!-- 새로운 뷰 -->
-			
-				<div class="card pr-auto pl-auto" style="border: 3px solid #ffc9c9;" >
-
-					<div class="wrapper row" style="background-color: white;">
-						<div class="preview col-md-5">
-
-							<div class="preview-pic tab-content">
-								<div class="tab-pane active" id="pic-1">
-									<img alt="없음" width="400px" height="252px"
-									src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
-								</div>
-
-							</div>
+					</c:if>
+					<c:if test="${ !(type == 'member' && loginMember.member_Id == 'jy9503') }">
+						<div class="mb-5 site-menu js-clone-nav mr-3 d-none d-lg-block pb-0" style="color:#f38181; text-align: right;">
 						</div>
-						<div class="details col-md-7">
-							<h3 class="product-title">${festival.festival_Title }</h3>
-							<div class="rating">
-								<div class="stars">
-									<span class="fa fa-star checked"></span> <span
-										class="fa fa-star checked"></span> <span
-										class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-								</div>
-
-							</div>
-							<div type="hidden" id="festival_No" style="disaplay:none;">
-								${festival.festival_No}
-							</div>
-							<p class="product-description">
-							<button id="proceeding" style="color: #fff; text-align: center; border: none;">
-								${festival.festival_Proceeding }
-							</button>
-							<p class="text-break">
-								${festival.festival_Content }
-							</p>
-							<div>
-								<div class="action" style="display: inline-block;">
-											<button class="add-to-cart btn btn-default" type="button">
-										 		<span class="icon-heart" id="heart"></span>
-											</button>
-								</div>
-								<div style="display: inline-block;">
-								<p class="vote">
-									이 글에 좋아요를 누른 회원수 입니다. 
-									<b id="count">(${festival.festival_Like} votes)</b>
-								</p>
-								</div>
-								</div>
-									<div style="display: inline-block">
-										<div class="content-tag">
-											<ul class="p-0" id="tag-list"></ul>
-										</div>
-									</div>
-						</div>
-					</div>
-
+					</c:if>
 				</div>
-				
-				<div class="row">
-					<div class="col-md-12 mt-0 pt-0">
-						<!-- 더 보기 버튼 생성  -->
-						<div
-							class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
-							style="padding-left: 0; padding-right: 0;">
-							<input value="더보기" style="background-color: f38181;border: none;"
-								onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display != ''){this.parentNode.getElementsByTagName('div')[0].style.display = '';this.value = '숨기기';}
-														else{this.parentNode.getElementsByTagName('div')[0].style.display = 'none'; this.value = '더보기';}"
-								type="button" class="btn btn-danger btn-block" />
-							<div style="display: none;">
-								<!-- 내용 추가 부분  -->
-								<table class="table" style="margin: auto; text-align: left">
-									<tr>
-										<td scope="row">
-											<div class="alert alert-danger1">
-												<a class="btn btn-xs btn-danger pull-right"
-													style="background-color: #fff;">시 작 일</a> <strong>:</strong>
-														${festival.festival_StartDate}
-											</div>
-										</td>
-										<td>
-											<div class="alert alert-danger2">
-												<a class="btn btn-xs btn-danger pull-right"
-													style="background-color: #fff;">종 료 일</a> <strong>:</strong>
-												${festival.festival_EndDate }
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td scope="row">
-											<div class="alert alert-danger3">
-												<a class="btn btn-xs btn-danger pull-right"
-													style="background-color: #fff;">전화번호</a> <strong>:</strong>
-												${festival.festival_Phone }
-											</div>
-										</td>
-										<td>
-											<div class="alert alert-danger4">
-												<a class="btn btn-xs btn-danger pull-right"
-													style="background-color: #fff;">홈페이지</a> <strong>:</strong>
-												${festival.festival_Homepage }
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td scope="row">
-											<div class="alert alert-danger4">
-												<a class="btn btn-xs btn-danger pull-right"
-													style="background-color: #fff;">주 소</a> <strong>:</strong>
-												${festival.festival_Address }
-											</div>
-										</td>
-										<td>
-											<div class="alert alert-danger4">
-												<a class="btn btn-xs btn-danger pull-right"
-													style="background-color: #fff;">주 최</a> <strong>:</strong>
-												${festival.festival_Host}
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="alert alert-danger4">
-												<a class="btn btn-xs btn-danger pull-right"
-													style="background-color: #fff;">주 관</a> <strong>:</strong>
-												${festival.festival_Sub }
-											</div>
-										</td>
-										<td>
-											<div class="alert alert-danger4">
-												<a class="btn btn-xs btn-danger pull-right"
-													style="background-color: #fff;">이용요금</a> <strong>:</strong>
-												${festival.festival_Price }
-											</div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--지도 -->
-				<div class="row mt-5">
-					<div class="col-md-12">
-						<div class="row">
-						</div>
-					</div>
-			
-					<h2>축제장 소개</h2>
-					
-					<br>
-					<br>
-					<div id="map" style="width:100%;height:350px;"></div>
-				</div>
-	
-				<div class="row justify-content-center pt-5 pb-5" style="background-color: white;">
-					<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
-						onclick="location.href='${pageContext.request.contextPath}/festival/festivalList'">목록</button>
-				</div>
-			</div>				
 			</div>
+				<!-- 새로운 뷰 -->
+		
+			<div class="card pr-auto pl-auto mt-0" style="border: 3px solid #ffc9c9;" >
+				<div class="wrapper row" style="background-color: white;">
+					<div class="preview col-md-5">
+						<div class="preview-pic tab-content">
+							<div class="tab-pane active" id="pic-1">
+								<img alt="없음" width="400px" height="252px" src="${pageContext.request.contextPath}/resources/images/festival/${festival.festival_Thumbnail }">
+							</div>
+						</div>
+					</div>
+					
+					<div class="details col-md-7">
+						<h3 class="product-title">${festival.festival_Title }</h3>
+						<div class="rating">
+							<div class="stars">
+								<span class="fa fa-star checked"></span> <span
+									class="fa fa-star checked"></span> <span
+									class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+						</div>
+						<div type="hidden" id="festival_No" style="disaplay:none;">
+							${festival.festival_No}
+						</div>
+						<p class="product-description">
+						<button id="proceeding" style="color: #fff; text-align: center; border: none;">
+							${festival.festival_Proceeding }
+						</button>
+						<p class="text-break">
+							${festival.festival_Content }
+						</p>
+						<div>
+							<div class="action" style="display: inline-block;">
+										<button class="add-to-cart btn btn-default" type="button">
+									 		<span class="icon-heart" id="heart"></span>
+										</button>
+							</div>
+							<div style="display: inline-block;">
+							<p class="vote">
+								이 글에 좋아요를 누른 회원수 입니다. 
+								<b id="count">(${festival.festival_Like} votes)</b>
+							</p>
+							</div>
+							</div>
+								<div style="display: inline-block">
+									<div class="content-tag">
+										<ul class="p-0" id="tag-list"></ul>
+									</div>
+								</div>
+					</div>
+				</div>
+
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12 mt-0 pt-0">
+					<!-- 더 보기 버튼 생성  -->
+					<div
+						class="btn btn-default btn-pressure btn-sensitive col-md pl-10 pr-8 mt-6"
+						style="padding-left: 0; padding-right: 0;">
+						<input value="더보기" style="background-color: f38181;border: none;"
+							onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display != ''){this.parentNode.getElementsByTagName('div')[0].style.display = '';this.value = '숨기기';}
+													else{this.parentNode.getElementsByTagName('div')[0].style.display = 'none'; this.value = '더보기';}"
+							type="button" class="btn btn-danger btn-block" />
+						<div style="display: none;">
+							<!-- 내용 추가 부분  -->
+							<table class="table" style="margin: auto; text-align: left">
+								<tr>
+									<td scope="row">
+										<div class="alert alert-danger1">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">시 작 일</a> <strong>:</strong>
+													${festival.festival_StartDate}
+										</div>
+									</td>
+									<td>
+										<div class="alert alert-danger2">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">종 료 일</a> <strong>:</strong>
+											${festival.festival_EndDate }
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td scope="row">
+										<div class="alert alert-danger3">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">전화번호</a> <strong>:</strong>
+											${festival.festival_Phone }
+										</div>
+									</td>
+									<td>
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">홈페이지</a> <strong>:</strong>
+											${festival.festival_Homepage }
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td scope="row">
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">주 소</a> <strong>:</strong>
+											${festival.festival_Address }
+										</div>
+									</td>
+									<td>
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">주 최</a> <strong>:</strong>
+											${festival.festival_Host}
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">주 관</a> <strong>:</strong>
+											${festival.festival_Sub }
+										</div>
+									</td>
+									<td>
+										<div class="alert alert-danger4">
+											<a class="btn btn-xs btn-danger pull-right"
+												style="background-color: #fff;">이용요금</a> <strong>:</strong>
+											${festival.festival_Price }
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--지도 -->
+			<div class="row mt-5">
+				<div class="col-md-12">
+					<div class="row"></div>
+				</div>
+				<h2>축제장 소개</h2>
+				<br>
+				<br>
+				<div id="map" style="width:100%;height:350px;"></div>
+			</div>
+
+			<div class="row justify-content-center pt-5 pb-5" style="background-color: white;">
+				<button type="button" class="col-md-2 ml mt-1 btn btn-danger btn-block" style="background-color: f38181;border: none;"
+					onclick="location.href='${pageContext.request.contextPath}/festival/festivalList'">목록</button>
+			</div>
+		</div>				
+	</div>
 
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
