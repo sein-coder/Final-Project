@@ -73,7 +73,6 @@
             <div class="row d-flex justify-content-end">
 
                <div class="wrap">
-                  <iframe src="${pageContext.request.contextPath }/resources/music/silence.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
                   <audio id="audio"
                      src="${pageContext.request.contextPath }/resources/music/Let It Go.mp3"></audio>
 
@@ -86,8 +85,7 @@
                         <div class="cover"></div>
                      </div>
 
-                     <div class="description align-middle">Something from
-                        nothing</div>
+                     <div class="description align-middle">Let It Go</div>
 
                      <div class="visualizer">
                         <div></div>

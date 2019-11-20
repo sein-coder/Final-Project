@@ -145,6 +145,7 @@
 </div>
 <section id="content">
 
+	<div class="site-section p-0 m-0">
 
 	<div class="site-section" style="padding-top: 4em;">
 		<div class="container">
@@ -204,7 +205,7 @@
 
 	<!-- 갤러리 -->
 	<!-- 갤러리 시작 -->
-	<div class="site-section" style="padding: 0">
+	<div class="site-section p-0">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 d-flex justify-content-center">
@@ -285,7 +286,7 @@
 	</div>
 
 	<!-- 팀원 소개 파트 -->
-	<div class="site-section bg-light" style="padding: 0">
+	<div class="site-section bg-light p-0">
 		<div class="container">
 
 			<div class="row justify-content-center mb-5">
@@ -396,6 +397,9 @@
 			</div>
 		</div>
 	</div>
+
+	</div>
+
 </section>
 
 <!-- 메인 음식메뉴파트 hover이벤트 -->
