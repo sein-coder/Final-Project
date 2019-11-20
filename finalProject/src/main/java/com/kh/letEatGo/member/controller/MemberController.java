@@ -1,6 +1,7 @@
 package com.kh.letEatGo.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,7 +44,6 @@ public class MemberController {
 	
 	  @RequestMapping("/member/memberEnrollEnd.do") 
 	  public String insertMember(Member m,Model model) {
-		  System.out.println(m);
 			logger.debug(m.getMember_Password());
 			m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
 			try {
@@ -70,7 +70,6 @@ public class MemberController {
 	  }
 	  @RequestMapping("/login_modal.do") 
 	  public String login_Modal() {
-		  System.out.println("실행");
 		  return "member/login_modal";
 	  }
 	  
@@ -172,7 +171,6 @@ public class MemberController {
 	  
 	  @RequestMapping("/member/checkId.do")
 		public void checkId(Member m, HttpServletResponse res) {
-			System.out.println(m);
 			Member result=service.selectMemberOne(m);
 			String flag=result!=null?"false":"true";
 			res.setContentType("application/json;charset=utf-8");
@@ -226,14 +224,12 @@ public class MemberController {
 				htmlemail.setHtmlMsg(msg);
 				htmlemail.send();
 			} catch (Exception e) {
-				System.out.println("메일발송 실패 : " + e);
 			}
 			return "/member/findIp";
 		}
 	 
 	 @RequestMapping("/memberEmail.do")
 		public void findEmail(Member m, HttpServletResponse res) {
-//			System.out.println(m);
 			Member result=service.selectMemberEmail(m);
 			String flag=result!=null?"false":"true";
 			res.setContentType("application/json;charset=utf-8");
@@ -322,7 +318,6 @@ public class MemberController {
 			int result=service.updateMemberPassword(m);
 			
 		} catch (Exception e) {
-			System.out.println("메일발송 실패 : " + e);
 		}
 		
 		mv.setViewName("/member/findIp");

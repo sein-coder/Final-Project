@@ -40,7 +40,7 @@
 
 	<!--아이디찾기 -->
 	<select id="selectMemberEmail" parameterType="member" resultType="member">
-		select * from  Member WHERE MEMBER_EMAIL=#{member_Email}
+		select * from  Member WHERE MEMBER_EMAIL=#{member_Email} AND MEMBER_ID = #{member_Id}
 	</select>
 	<!--updateMemberPassword -->
 	<update id="updateMemberPassword" parameterType="member">
