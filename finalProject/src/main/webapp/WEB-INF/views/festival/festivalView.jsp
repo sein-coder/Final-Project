@@ -309,7 +309,7 @@ h1 {
     ul li.tag-item {
         padding: 4px 8px;
         background-color: #777;
-        color: #000;
+        color: #f38181;
     }
 
     .tag-item:hover {
@@ -584,14 +584,14 @@ h1 {
 				</div>
 			</div>
 			<!--지도 -->
-			<div class="row mt-5">
-				<div class="col-md-12">
-					<div class="row"></div>
+			<div class="row mt-5 m-1 pb-4" style="border: 3px solid #ffc9c9;" >
+				<div class="col-md-12 p-0 ">
+					<h2>축제장 소개</h2>
+				<br>
+				<div class="row justify-content-center">
+					<div class="col-mp-0 " id="map" style="width: 95%; height:500px;"></div>
 				</div>
-				<h2>축제장 소개</h2>
-				<br>
-				<br>
-				<div id="map" style="width:100%;height:350px;"></div>
+				</div>
 			</div>
 
 			<div class="row justify-content-center pt-5 pb-5" style="background-color: white;">
@@ -604,7 +604,7 @@ h1 {
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
-	<script>
+<script>
 		$('#contentText').keyup(function(e) {
 			var content = $(this).val();
 			$('#counter').val(4000 - content.length);
