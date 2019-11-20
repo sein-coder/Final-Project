@@ -9,7 +9,7 @@
   	)
   </insert>
   <select id="selectFestival" resultType="festival">
-  	SELECT * FROM FESTIVAL
+  	SELECT * FROM FESTIVAL order by festival_StartDate desc
   </select>
   <select id="selectFestivalOne" parameterType="_int" resultType="festival">
   	SELECT * FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
