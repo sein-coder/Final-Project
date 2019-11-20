@@ -22,7 +22,7 @@
             <div class="tab-content" id="find_member">
               <div class="tab-pane fade show active" id="find_Member">
               
-            <form action="${pageContext.request.contextPath}/member/find_id.do" method="post"  onsubmit="return validate();">            
+            <form action="${pageContext.request.contextPath}/member/find_id.do" method="post"  onsubmit="return memberfindid();">            
 					<div class="form-group">
 						<label for="form-label">계정 찾기</label>
 						<div>
@@ -97,17 +97,18 @@ $("#member_Email").keyup(function(){
 				} else{
 					$("#email_check").text("잘못된이메일입니다.");
 					$("#email_check").css("color", "red");
-					$("#member_Email").css("border-color", "red");			
+					$("#member_Email").css("border-color", "red");	
 					} 
 				}
 			});
 		});
-$("#memberEmail").keyup(function(){
+ $("#memberEmail").keyup(function(){
 	var member_Email = $('#memberEmail').val();
+	var memberId = $('#memberId').val();
 	$.ajax({
-		url : '${pageContext.request.contextPath}/memberEmail.do',
+		url : '${pageContext.request.contextPath}/member/checkIdAndEmail.do',
 		type : "get",
-		data : {"member_Email":member_Email},
+		data : {"member_Email":member_Email,"member_Id":memberId},
 		success : function(data) {
 				if (data == false) {
 					$("#email_check1").text("확인");
@@ -116,11 +117,12 @@ $("#memberEmail").keyup(function(){
 				} else{
 					$("#email_check1").text("잘못된이메일입니다.");
 					$("#email_check1").css("color", "red");
-					$("#memberEmail").css("border-color", "red");			
+					$("#memberEmail").css("border-color", "red");	
+				
 					} 
 				}
 			});
-		});
+		}); 
 $("#memberId").keyup(function(){
 	var memberId = $('#memberId').val();
 	$.ajax({
@@ -133,31 +135,37 @@ $("#memberId").keyup(function(){
 					$("#id_check1").css("color", "green");
 					$("#memberId").css("border-color", "green");
 				} else{
-							$("#id_check1").text("일치하는 아이디가 없습니다.");
-							$("#id_check1").css("color", "red");
-							$("#memberId").css("border-color", "red");
+					$("#id_check1").text("일치하는 아이디가 없습니다.");
+					$("#id_check1").css("color", "red");
+					$("#memberId").css("border-color", "red");
 					} 
 				}
 			});
 		});
 		
-		
-/* $("#find_Id_partner").click(function(){
-    var idSearchModal = document.getElementById('idSearchModal');
-    var idSearchclose = document.getElementById("idSearchclose");                                          
-    var idSearchclose1 = document.getElementById("idSearchclose1"); 
-       idSearchModal.style.display = "block";
-       idSearchModal.style.display = "block";
-    idSearchclose.onclick = function() {
-       idSearchModal.style.display = "none";
-    }
-    idSearchclose1.onclick = function() {
-       idSearchModal.style.display = "none";
-    } 
- }); */		
-		
-	
-		
+
+
+
+ $("#partner_Email").keyup(function(){
+		var partner_Email = $('#partner_Email').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/partner_Email.do',
+			type : "get",
+			data : {"partner_Email":partner_Email},
+			success : function(data) {
+				console.log(data);
+					 if (data == false) {
+						$("#email_check2").text("확인");
+						$("#email_check2").css("color", "green");
+						$("#partner_Email").css("border-color", "green");
+					} else{
+						$("#email_check2").text("잘못된이메일입니다.");
+						$("#email_check2").css("color", "red");
+						$("#partner_Email").css("border-color", "red");			
+						}  
+					} 
+				});
+			});
 $("#partner_Id").keyup(function(){
 	var partner_Id = $('#partner_Id').val();
 	$.ajax({
@@ -173,46 +181,26 @@ $("#partner_Id").keyup(function(){
 							$("#id_check").text("일치하는 아이디가 없습니다.");
 							$("#id_check").css("color", "red");
 							$("#partner_Id").css("border-color", "red");
-							
 					} 
 				}
 			});
 		});
- $("#partner_Email").keyup(function(){
-		var partner_Email = $('#partner_Email').val();
+ $("#partnerEmail").keyup(function(){
+		var partnerEmail = $('#partnerEmail').val();
+		var partner_Id = $('#partner_Id').val();
 		$.ajax({
-			url : '${pageContext.request.contextPath}/partner_Email.do',
+			url : '${pageContext.request.contextPath}/partner/checkIdAndEmail.do',
 			type : "get",
-			data : {"partner_Email":partner_Email},
-			success : function(data) {
+			data : {"partner_Email":partnerEmail,"partner_Id":partner_Id},
+			success : function(data) { 	
 				console.log(data);
 					 if (data == false) {
 						$("#email_check3").text("확인");
 						$("#email_check3").css("color", "green");
-						$("#partner_Email").css("border-color", "green");
+						$("#partnerEmail").css("border-color", "green");
 					} else{
 						$("#email_check3").text("잘못된이메일입니다.");
 						$("#email_check3").css("color", "red");
-						$("#partner_Email").css("border-color", "red");			
-						}  
-					} 
-				});
-			});
- $("#partnerEmail").keyup(function(){
-		var partnerEmail = $('#partnerEmail').val();
-		$.ajax({
-			url : '${pageContext.request.contextPath}/partner_Email.do',
-			type : "get",
-			data : {"partner_Email":partnerEmail},
-			success : function(data) { 	
-				console.log(data);
-					 if (data == false) {
-						$("#email_check2").text("확인");
-						$("#email_check2").css("color", "green");
-						$("#partnerEmail").css("border-color", "green");
-					} else{
-						$("#email_check2").text("잘못된이메일입니다.");
-						$("#email_check2").css("color", "red");
 						$("#partnerEmail").css("border-color", "red");			
 						}  
 					} 

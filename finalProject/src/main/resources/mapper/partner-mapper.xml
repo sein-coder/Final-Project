@@ -9,6 +9,9 @@
   <select id="selectPartnerOne" parameterType="partner" resultType="partner">
         select * from PARTNER WHERE PARTNER_ID=#{partner_Id}
      </select>
+     <select id="selectPartnerIdAndEmail" parameterType="partner" resultType="partner">
+	SELECT * from PARTNER where PARTNER_ID=#{partner_Id} and PARTNER_EMAIL=#{partner_Email}
+	</select>
      <select id="selectPartnerNo" parameterType="partner" resultType="partner">
         select * from PARTNER WHERE partner_Permission_No=#{partner_Permission_No}
      </select>     

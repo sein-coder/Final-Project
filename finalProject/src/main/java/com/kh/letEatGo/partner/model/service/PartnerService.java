@@ -11,6 +11,8 @@ public interface PartnerService {
 	
 	Partner selectPartnerOne(Partner p);
 	
+	Partner selectIdAndEmail(Partner p);
+	
 	int updatePartnerPage(Partner p);
 
 	Partner selectPartnerNo(Partner p);

@@ -170,7 +170,6 @@ public class MemberController {
 	     }
 	  @RequestMapping("/member/checkId.do")
 		public void checkId(Member m, HttpServletResponse res) {
-			System.out.println(m);
 			Member result=service.selectMemberOne(m);
 			String flag=result!=null?"false":"true";
 			res.setContentType("application/json;charset=utf-8");
@@ -181,7 +180,20 @@ public class MemberController {
 				e.printStackTrace();
 			}
 		}
-
+	  @RequestMapping("/member/checkIdAndEmail.do")
+		public void checkIdAndEmail(Member m, HttpServletResponse res) {
+			Member result=service.selectIdAndEmail(m);
+			String flag=result!=null?"false":"true";
+			res.setContentType("application/json;charset=utf-8");
+			try {
+				res.getWriter().write(flag);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	  
+	  
 	  @RequestMapping("/findIp")
 	  public String findmember() {
 		  return "member/findIp";		  
@@ -244,12 +256,9 @@ public class MemberController {
 	 @RequestMapping("/member/find_pw.do")
 	 public ModelAndView send_mailPw(Member m) throws Exception {
 		 ModelAndView mv = new ModelAndView();
-		 
 		 //난수발생시켜
-		 
 		 //난수값을 enc로 encode
 		 //원래메일로 보낼애 하나
-		 
 		 String  pswd = "";
 		 StringBuffer sb = new StringBuffer();
 		 StringBuffer sc = new StringBuffer("!@#$%^&*-=?~");  // 특수문자 모음, {}[] 같은 비호감문자는 뺌

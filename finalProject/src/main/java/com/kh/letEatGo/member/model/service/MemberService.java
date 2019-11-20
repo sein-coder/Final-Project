@@ -9,6 +9,8 @@ public interface MemberService {
 	int insertMember(Member m);
 
 	Member selectMemberOne(Member m);
+	
+	Member selectIdAndEmail(Member m);
 
 	Member selectMemberOne2(Member m);
 	 

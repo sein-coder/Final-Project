@@ -9,6 +9,11 @@ import com.kh.letEatGo.member.model.vo.Member;
 public class MemberDaoImpl implements MemberDao {
 
 	@Override
+	public Member selectIdAndEmail(SqlSessionTemplate session, Member m) {
+		return session.selectOne("member.selectIdAndEmail",m);
+	}
+
+	@Override
 	public Member selectMemberOne2(SqlSessionTemplate session, Member m) {
 		 return session.selectOne("member.selectMemberOne2",m);
 

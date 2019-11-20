@@ -17,6 +17,10 @@
      	select * from  Member WHERE MEMBER_ID=#{member_Id}
  	</select>
 	
+	<select id="selectIdAndEmail" parameterType="member" resultType="member">
+	SELECT * from member where member_id=#{member_Id} and member_email=#{member_Email}
+	</select>
+	
    <!-- 회원 정보 수정 -->
    <update id="updateMemberPage">
      UPDATE MEMBER SET 
