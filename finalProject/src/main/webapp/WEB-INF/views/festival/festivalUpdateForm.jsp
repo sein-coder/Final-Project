@@ -395,9 +395,7 @@ textarea {
 		        var reader = new FileReader();
 		        
 		        reader.onload = (function (aImg) {
-		            console.log(1);
 		            return function (e) {
-		                console.log(3);
 		                aImg.attr("src",e.target.result);
 		                aImg.attr({"width":"400px","height":"252px"});
 		            }
@@ -405,7 +403,6 @@ textarea {
 		 
 		        if(get_file){
 		            reader.readAsDataURL(get_file[0]);
-		            console.log(2);
 		        }
 		    });
 		</script>

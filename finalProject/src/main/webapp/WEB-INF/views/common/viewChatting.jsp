@@ -126,7 +126,6 @@
 		
 		function caller_signal_handler(event){
 			var signal=JSON.parse(event.data);
-			console.log(signal);
 			//서버에서 보낸 자바스크립트 객체로 메세지 파싱
 			//메제지 flag값을 통해서 분기처리 * type
 			if(signal.type=="callee_arrived"){

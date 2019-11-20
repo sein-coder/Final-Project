@@ -57,9 +57,6 @@ public class MainPageController {
 				}
 			}
 			
-			System.out.println(fslist);
-			System.out.println(fllist);
-			
 			mv.addObject("fslist",fslist);	
 			mv.addObject("fllist",fllist);	
 		}	

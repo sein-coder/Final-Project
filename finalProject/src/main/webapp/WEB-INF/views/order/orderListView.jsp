@@ -214,7 +214,6 @@ $(function(){
 var payment = 0;
 
 function orderPlusMinus(data){
-	console.log($(data));
 	var countInput;
 	var el;
 	
@@ -318,9 +317,7 @@ function toOrderHistory(){
 		success : function(data){
 			var temperature = 0;
 			var precipitation = 0;
-			
-			console.log(data);
-			
+
 			for(var i=0; i<data['DailyWeatherStation']['row'].length; i++){						
 				temperature += data['DailyWeatherStation']['row'][i]['SAWS_TA_AVG'];
 				precipitation += data['DailyWeatherStation']['row'][i]['SAWS_RN_SUM'];

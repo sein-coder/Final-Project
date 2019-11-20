@@ -2,7 +2,6 @@ package com.kh.letEatGo.festival.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -132,8 +131,6 @@ public class FestivalController {
 		ModelAndView mv=new ModelAndView();
 		Festival festival=service.selectFestivalOne(festival_No);
 		
-		System.out.println(festival);
-		
 		mv.addObject("festival",festival);
 		mv.setViewName("festival/festivalView");
 	
@@ -178,8 +175,6 @@ public class FestivalController {
 	@RequestMapping("/festival/festivalUpdateFormEnd.do")
 	public ModelAndView updateFormFestival(Festival festival,@RequestParam(value="upFile", required=false) MultipartFile upFile,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
-		
-		System.out.println(festival.getFestival_Tag());
 	
 		String saveDir = req.getSession().getServletContext()
 				.getRealPath("/resources/images/festival"); 		
@@ -199,8 +194,6 @@ public class FestivalController {
 		  
 		  Calendar calendar2 = Calendar.getInstance();
 		  calendar2.set(Integer.parseInt(enddate[0]), Integer.parseInt(enddate[1])-1, Integer.parseInt(enddate[2]));
-
-		  System.out.println(calendar1.getTime());
 		  
 		  if(nowdate.compareTo(calendar1) >= 0) {
 			  if(nowdate.compareTo(calendar2) <= 0) {

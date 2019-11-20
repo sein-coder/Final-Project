@@ -143,7 +143,6 @@
 			type : "get",
 			data : {"partner_Id":partner_Id},
 			success : function(data) {
-			console.log("1 = 중복o / 0 = 중복x : "+data);
 					if (data == false) {
 						$("#id_check2").text("사용중인 아이디입니다 ");
 						$("#id_check2").css("color", "red");
@@ -226,7 +225,6 @@
            	var flag=false;  //var flag값을 false로 두고 true인것을 찾는다.
                for(var i=0; i<data['foodTruckInfo']['row'].length; i++ == permission_no){
                	//3000000-104-2017-00165 ,3220000-104-2017-00558
-               	console.log(data['foodTruckInfo']['row'][i]['PERMISSION_NO']);
                if(data['foodTruckInfo']['row'][i]['PERMISSION_NO']==permission_no){
            	   $("#permission_check").text("조회성공 ");
            	   $("#permission_check").css("color", "green");
@@ -249,7 +247,6 @@
  		var img = $("#upFile").val();
  		
  		var filename = img.substring(img.lastIndexOf("/")-1,img.length)
- 		console.log(img.lastIndexOf("/"));
  		
  		var reader = new FileReader();
 
@@ -276,7 +273,6 @@
     		type : "get",
     		data : {"member_Id":member_Id},
     		success : function(data) {
-    		console.log("1 = 중복o / 0 = 중복x : "+data);
     				if (data == false) {
     					$("#id_check1").text("사용중인 아이디입니다 ");
     					$("#id_check1").css("color", "red");

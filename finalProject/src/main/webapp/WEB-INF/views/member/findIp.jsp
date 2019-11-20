@@ -185,7 +185,6 @@ $("#partner_Id").keyup(function(){
 			type : "get",
 			data : {"partner_Email":partner_Email},
 			success : function(data) {
-				console.log(data);
 					 if (data == false) {
 						$("#email_check3").text("확인");
 						$("#email_check3").css("color", "green");
@@ -205,7 +204,6 @@ $("#partner_Id").keyup(function(){
 			type : "get",
 			data : {"partner_Email":partnerEmail},
 			success : function(data) { 	
-				console.log(data);
 					 if (data == false) {
 						$("#email_check2").text("확인");
 						$("#email_check2").css("color", "green");

@@ -23,27 +23,27 @@
          <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p %l - %m%n" />
       </layout>
    	</appender>
-   	
-   	<!-- DB로그를 출력하기 위한 appender등록 -->
+<!--    	
+   	DB로그를 출력하기 위한 appender등록
    	<appender name="sqlLogger" class="org.apache.log4j.ConsoleAppender">
    		<layout class="org.apache.log4j.PatternLayout">
    			<param name = "ConversionPattern" value="%-5p: %m%n"/>
    		</layout>
    	</appender>
-   	<!-- 실행하는 sql문을 출력하는 logger -->
+   	실행하는 sql문을 출력하는 logger
    	<logger name="jdbc.sqlonly" additivity="false">
    		<level value="info"/>
    		<appender-ref ref="sqlLogger"/>
    	</logger>
-   	<!-- 실형결과의 테이블을 를 출력하는 logger -->
-   	<logger name = "jdbc.resultsettable" additivity="false"> <!-- additivity="false"속성은 위에 다른 root에도 영향을 미칠것인지 유무 -->
-   		<level value="info"/>								 <!-- false는 해당하는 곳에서만 logger를 실행한다는 뜻이다. -->
+   	실형결과의 테이블을 를 출력하는 logger
+   	<logger name = "jdbc.resultsettable" additivity="false"> additivity="false"속성은 위에 다른 root에도 영향을 미칠것인지 유무
+   		<level value="info"/>								 false는 해당하는 곳에서만 logger를 실행한다는 뜻이다.
    		<appender-ref ref="sqlLogger"/>
-   	</logger>
+   	</logger> -->
    	
 	<!-- Application Loggers -->
 	<logger name="com.kh.spring">
-		<level value="debug" />
+		<level value="info" />
 		<!-- <appender-ref ref="" 이런식으로 별도로 appender등록이 가능하다.-->
 	</logger>
 	

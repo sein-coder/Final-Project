@@ -902,9 +902,6 @@
 					temperature /= data['DailyWeatherStation']['row'].length;
 					precipitation /= data['DailyWeatherStation']['row'].length;
 					
-					console.log(temperature);
-					console.log(precipitation);
-					
 					$.ajax({
 						url : "${pageContext.request.contextPath}/accountBook/insertAccountBook.do?partner_No=${partner_No}",
 						type : "post",
@@ -1044,8 +1041,6 @@
 			url : "${pageContext.request.contextPath}/accountBook/Balance.do?partner_No=${partner_No}",
 			type : "post",
 			success : function(data){
-				console.log(data.sum["SUM(ACCOUNT_INCOME)"]);
-				console.log(data.sum["SUM(ACCOUNT_OUTCOME)"]);
 				var balance = parseInt("${account.account_Balance}");
 				balance += (data.sum["SUM(ACCOUNT_INCOME)"]-data.sum["SUM(ACCOUNT_OUTCOME)"]);
 				

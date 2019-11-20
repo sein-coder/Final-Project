@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -245,8 +244,6 @@ public class AccountBookController {
 		ModelAndView mv = new ModelAndView();
 		
 		account.setAccount_Balance(10000000);
-
-		System.out.println(account);
 		
 		int result = service.insertAccount(account);
 		
@@ -257,7 +254,6 @@ public class AccountBookController {
 		if(result>0) {
 			msg = "계좌등록이 성공했습니다.";
 			loc = "/accountBook/accountBookView?partner_No="+account.getPartner_No();
-			System.out.println(loc);
 		}else {
 			msg = "계좌등록이 실패했습니다.";
 			loc = "/";
@@ -380,7 +376,6 @@ public class AccountBookController {
 		List<String> countList = new ArrayList();
 		
 		for(Map<String,String> m : roundCharList) {
-			System.out.println(m);
 			labelList.add(String.valueOf(m.get("연령대"))+String.valueOf(m.get("성별")));
 			countList.add(String.valueOf(m.get("명")));
 		}
@@ -396,7 +391,6 @@ public class AccountBookController {
 	@RequestMapping("/accountBook/Balance.do")
 	public ModelAndView balance(int partner_No) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(partner_No);
 		Map<String,Integer> sum = service.selectSumInOutcome(partner_No);
 		
 		mv.addObject("sum", sum);
