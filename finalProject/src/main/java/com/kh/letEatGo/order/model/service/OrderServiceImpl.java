@@ -106,4 +106,11 @@ public class OrderServiceImpl implements OrderService {
 		int result = dao.selectMenuCount(session, menu_Name);
 		return result;
 	}
+
+	@Override
+	public int insertReview(Review review) {
+		int result = dao.insertReview(session, review);
+		return result;
+	}
+	
 }

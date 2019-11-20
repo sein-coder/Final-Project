@@ -2,6 +2,8 @@ package com.kh.letEatGo.order.controller;
 
 import static com.kh.letEatGo.common.ml.Linear_Regression.predict;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -213,7 +216,10 @@ public class OrderController {
 		int result_InsertAccount = abservice.insertAccountBook(ab);
 		
 		//종료
+		int order_No = 0;
 		int result = service.insertOrder(o);
+		order_No = o.getOrder_No();
+		o.setOrder_No(order_No);
 		session.setAttribute("order", o);
 		session.setAttribute("result", result);
 		return "redirect:/order/complete";
@@ -225,15 +231,21 @@ public class OrderController {
 		int result = (int)(session.getAttribute("result"));
 		
 		String msg = "";
-		String loc = "/order/orderListView?partner_No="+order.getPartner_No();
+		String loc_true = "/order/review";
+		String loc_false = "/order/orderListView?partner_No="+order.getPartner_No();
 		if(result > 0) {
-			msg = "결제가 완료 되었습니다.";
+			msg = "결제가 완료 되었습니다. 지금 바로 리뷰를 작성하시겠습니까?";
+			model.addAttribute("loc_true", loc_true);
+			model.addAttribute("loc_false", loc_false);
+			model.addAttribute("msg", msg);
+			return "common/select";
 		} else {
 			msg = "결제 데이터 전송 중 오류 발생 - 관리자에게 문의하세요.";
+			model.addAttribute("msg", msg);
+			model.addAttribute("loc_false", loc_false);
+			return "common/msg";
 		}
-		model.addAttribute("msg", msg);
-		model.addAttribute("loc", loc);
-		return "common/msg";
+		
 	}
 	
 	@RequestMapping("/order/selectMenu")
@@ -257,9 +269,62 @@ public class OrderController {
 		ModelAndView mv = new ModelAndView();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		Order ord = (Order)session.getAttribute("order");
-		
+		mv.addObject("order", ord);
 		mv.addObject("loginMember", loginMember);
 		mv.setViewName("order/review");
+		return mv;
+	}
+	
+	@RequestMapping("/order/reviewEnd")
+	public ModelAndView insertReview(Review rv,
+			@RequestParam(value="oriname_File",required=false)MultipartFile[] oriname_File,
+			HttpServletRequest req) {
+		
+		System.out.println(rv.toString());
+		ModelAndView mv = new ModelAndView();
+		
+		String saveDir=req.getSession().getServletContext().getRealPath("/resources/images/review");
+		  File dir=new File(saveDir);
+		  if(!dir.exists()) dir.mkdirs();
+			//다중파일 서버에 저장로직
+			for(MultipartFile f : oriname_File) {
+				if(!f.isEmpty()) {
+					//파일명설정(renamed)
+					String oriFileName=f.getOriginalFilename();
+					/* 파일명에서 확장자빼기 */
+					String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
+					//rename규칙설정
+					SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+					int rnd=(int)(Math.random()*1000);
+					String reName=sdf.format(System.currentTimeMillis())+"_"+rnd+ext;
+					//reName된 파일명으로 저장하기
+					try {
+						f.transferTo(new File(saveDir+"/"+reName));
+					}catch(IOException e) {
+						e.printStackTrace();
+					}
+					//서버에 실제 파일 저장완료!
+					rv.setOriname_File1(oriFileName);
+					rv.setRename_File(reName);
+				}
+			}
+
+		
+		int result=service.insertReview(rv);
+		
+		String msg="";
+	 	String loc="";
+	 	
+		 if(result>0) {
+			 msg="성공적으로 리뷰 등록 완료하였습니다.";
+			 loc="/order";
+		 }else {
+			 msg="리뷰 등록 실패, 다시 확인해주세요.";
+			 loc="/order/review";
+		 }
+	 	mv.addObject("msg",msg);
+	 	mv.addObject("loc",loc);
+	 	mv.setViewName("common/msg");
 		return mv;
 	}
 }

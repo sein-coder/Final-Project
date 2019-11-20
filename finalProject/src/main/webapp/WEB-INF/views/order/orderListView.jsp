@@ -115,7 +115,7 @@
 		<span class="category">[리뷰는 최근 3개만 노출됩니다]</span>
 	<div>
 	<div class="row">
-		<c:forEach var="rv" items="${reviewList}" varStatus="v" begin="1" end="3" step="1">
+		<c:forEach var="rv" items="${reviewList}" varStatus="v" begin="0" end="2" step="1">
 		<div class="col-md-4 col-lg-4">
 			<div class="how-it-work-step">
 				<div class="img-wrap mb-2">
