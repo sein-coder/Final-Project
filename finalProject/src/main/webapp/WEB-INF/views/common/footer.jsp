@@ -4,33 +4,15 @@
   <!-- Footer -->
 <footer class="site-footer">
       <div class="container">
-        <div class="row">
-          <div class="col-md-9">
-            <div class="row">
-              <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                <h2 class="footer-heading mb-4">사이트 메뉴</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">팀원 소개</a></li>
-                  <li><a href=""  onclick="viewChatting();">1:1문의</a></li>
-                  <li><a href="#">주소</a></li>
-                  <li><a href="#">이용약관</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                <h2 class="footer-heading mb-4">SNS</h2>
-                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row pt-5 mt-5">
           <div class="col-12 text-md-center text-left">
+          	<h4>LetEatGo</h4>
+          	<p>(주)렛잇고</p>
+          	<p>
+          	서울특별시 강남구 테헤란로 14길 6, 남도빌딩 4층
+          	</p>
             <p>
-              <!-- Link back to Free-Template.co can't be removed. Template is licensed under CC BY 3.0. -->
-          &copy; 2019 <strong class="text-black">LetEatGo[렛잇고]</strong> All Rights Reserved. <br> by<a href="#" target="_blank" class="text-black">LetEatGo</a>
+          &copy; COPYRIGHT@LetEatGo INC <strong class="text-black">LetEatGo</strong> All Rights Reserved.</a>
           </p>
           </div>
         </div>

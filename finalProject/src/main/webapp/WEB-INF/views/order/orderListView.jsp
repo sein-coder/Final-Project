@@ -31,16 +31,16 @@
           <div class="col-md-5 ml-auto">
             <h2 class="text-primary mb-3">${partner.partner_TruckName }</h2>
 				<div class="truck-rating" id="truck-star">
-					<span class="font-size-regular">리뷰 평점 ${partner.starCount }점</span>
+					<span class="font-size-regular">리뷰 평점 <fmt:formatNumber value="${partner.starCount }" pattern="0.0"/>점</span>
 				</div>
 				<label>총 리뷰 수
 				<span>${partner.reviewCount }</span>
 				</label>
 				<div>
-					<span class="font-size-regular">연락처 ${partner.partner_Phone }</span>
+					<span class="font-size-regular">연락처 </span><p>${partner.partner_Phone}</p>
 				</div>
 				<div>
-					<span class="font-size-regular">주소 ${partner.partner_Address }</span>
+					<span class="font-size-regular">주소 </span><p>${partner.partner_Address}</p>
 				</div>
           </div>
         </div>
@@ -164,24 +164,17 @@
 						<table class="table-hover orderList col-md-12 text-center" id="list">
 						</table>
 					</div>
-					
 					<div class="text-center">
 						<h4 class="bg-light">총 결제 금액</h4>
 						<span class="text-center pay-total">원</span>
 						<input type="hidden" id="total_price" value="0"/>
 					</div>
-					
 					<div class="text-center">
 						<h4 class="bg-light">주문요청사항</h4>
 						<textarea rows="1" cols="30" placeholder="30자 이내로 기재" name="add_request" id="add_request"></textarea>	
 					</div>
-					<div class="text-center" id="reserve_box">
-						<h4 class="bg-light">예약설정</h4>
-						<input type="datetime-local" id="reserve_time"/>
-					</div>
      					<div class="row">
        					<div class="col">
-			         		<button class="form-control btn btn-info" id="reserve">주문예약하기</button>
 			         		<button type="button" class="form-control btn btn-primary" onClick="fadeModal();">결제하기</button>
 							<!-- onClick="payOrders();" -->
 						</div>
@@ -192,11 +185,10 @@
 	</div>
 </div>
 </div>
+</div>
 </section>
 <script>
 $(function(){
-	$('#reserve_box').hide();
-	
 	$("input[name=data_No]").each(function(){
 	      var starCount = $(this).val();
 	      $($(this).siblings()).each(function(){
@@ -214,7 +206,6 @@ $(function(){
 var payment = 0;
 
 function orderPlusMinus(data){
-	console.log($(data));
 	var countInput;
 	var el;
 	
@@ -319,7 +310,6 @@ function toOrderHistory(){
 			var temperature = 0;
 			var precipitation = 0;
 			
-			console.log(data);
 			
 			for(var i=0; i<data['DailyWeatherStation']['row'].length; i++){						
 				temperature += data['DailyWeatherStation']['row'][i]['SAWS_TA_AVG'];

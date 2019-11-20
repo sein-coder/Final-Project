@@ -157,9 +157,7 @@ public class OrderController {
 		result.setReviewCount(service.selectReviewCount(p.getPartner_No()));
 		List<Menu> list = service.selectMenu(p.getPartner_No());
 		List<Review> reviewList = service.selectReview(p.getPartner_No());
-		List<ReviewComment> commentList = service.selectReviewComment(p.getPartner_No());
 		
-		mv.addObject("comment", commentList);
 		mv.addObject("menu", list);
 		mv.addObject("partner", result); 
 		mv.addObject("reviewList", reviewList);
@@ -263,7 +261,6 @@ public class OrderController {
 		return jsonStr;
 	}
 	
-	////////////////리뷰작성페이지 전환//////////////////////
 	@RequestMapping("/order/review")
 	public ModelAndView writeReview(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -280,7 +277,6 @@ public class OrderController {
 			@RequestParam(value="oriname_File",required=false)MultipartFile[] oriname_File,
 			HttpServletRequest req) {
 		
-		System.out.println(rv.toString());
 		ModelAndView mv = new ModelAndView();
 		
 		String saveDir=req.getSession().getServletContext().getRealPath("/resources/images/review");

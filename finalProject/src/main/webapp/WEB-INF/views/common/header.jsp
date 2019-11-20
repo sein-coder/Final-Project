@@ -372,7 +372,6 @@
    <!-- 바꾸고, 마커변경하는거, 경로안내 -->
    <script type="text/javascript">
       function permissionAPI(){
-         console.log("api실행")
          $.ajax({
             url : "http://openapi.seoul.go.kr:8088/757875684374706436365a78455477/json/foodTruckInfo/1/510/",
             type : "get",
