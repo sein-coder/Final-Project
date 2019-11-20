@@ -396,7 +396,7 @@
 																<input type="text" placeholder="계좌번호를 입력해주세요('-빼고')" name="account_Number" size="40"/>
 															</div>
 															<div class="row justify-content-start pb-3 pl-5">
-																<span class="pr-1">계좌 번호 : </span>
+																<span class="pr-1">예금주 명 : </span>
 																<input type="text" placeholder="예금주명" name="account_Name" /> 
 															</div> 
 															<div class="row justify-content-center">
@@ -774,7 +774,7 @@
 					if (i == 0) {
 						tags += '<td scope="row" size='+maxlength[i]+'>추가중</td>'
 					} else if (i == 1) {
-						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date"></td>';
+						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" required></td>';
 					} else if (i == 2) {
 						tags += '<td>';
 						tags += '<div class="btn-group">';
@@ -786,7 +786,7 @@
 						tags += '</select></div>'
 						tags += '</td>';
 					} else {
-						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="text" size='+maxlength[i]+' maxlength='+maxlength[i]+'></td>';
+						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="text" size='+maxlength[i]+' maxlength='+maxlength[i]+' required></td>';
 					}
 				}
 
@@ -811,7 +811,7 @@
 						var input;
 
 						if (i == 1) {
-							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" value='+data[i].innerText+'>';
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="date" value='+data[i].innerText+' required>';
 						} else if (i == 2) {
 							input = '<div class="btn-group">';
 							input += '<select id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" style="background-color : #ffc9c9">';
@@ -824,9 +824,9 @@
 							var money;
 							money = replaceAll(data[i].innerText,",","");
 							money = money.substring(1,money.length);
-							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+money+'>';
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+money+' required>';
 						} else {
-							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+'>';
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+' required>';
 						}
 
 						if (i != 0) {
@@ -1027,6 +1027,17 @@
 	<script>
 	$(document).ready(function(){
 		$.ajax({
+			url : "${pageContext.request.contextPath}/accountBook/Balance.do?partner_No=${partner_No}",
+			type : "post",
+			success : function(data){
+				var balance = parseInt("${account.account_Balance}");
+				balance += (data.sum["SUM(ACCOUNT_INCOME)"]-data.sum["SUM(ACCOUNT_OUTCOME)"]);
+				
+				$("#balance").text(preprocessing(balance));
+			}
+		});
+		
+		$.ajax({
 			url : "${pageContext.request.contextPath}/accountBook/cardCalculate.do?partner_No=${partner_No}",
 			success : function(data){
 				$("#monthlyIncome").html(preprocessing(data.monthlyIncome));
@@ -1036,19 +1047,7 @@
 				$("#goalMonthlyBar").width(data.goalMonthly);
 			}
 		});
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/accountBook/Balance.do?partner_No=${partner_No}",
-			type : "post",
-			success : function(data){
-				var balance = parseInt("${account.account_Balance}");
-				balance += (data.sum["SUM(ACCOUNT_INCOME)"]-data.sum["SUM(ACCOUNT_OUTCOME)"]);
-				
-				$("#balance").text(preprocessing(balance));
-				
-			}
-		});
-		
+
 		$.ajax({
 			url : "${pageContext.request.contextPath}/accountBook/calculate.do?partner_No=${partner_No}",
 			type : "post",

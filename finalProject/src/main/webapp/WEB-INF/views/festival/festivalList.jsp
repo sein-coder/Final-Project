@@ -638,11 +638,18 @@ span.hide {
 						
 						var dates = new Array();
 						
+						
 						dates.push((""+(date.getMonth()+1)).substring(0,1));
 						dates.push((""+(date.getMonth()+1)).substring(1,2));
-						dates.push((""+date.getDate()).substring(0,1));
-						dates.push((""+date.getDate()).substring(1,2));
+						if(date.getDate()>=1 && date.getDate()<=9){
+							dates.push("0");
+							dates.push((""+date.getDate()).substring(0,1));
+						}else{
+							dates.push((""+date.getDate()).substring(0,1));
+							dates.push((""+date.getDate()).substring(1,2));							
+						}
 						
+						console.log(dates);
 						var plays = ["minutePlay","secondPlay","thirdPlay","fourthPlay"];
 						
 						for(var j = 0; j<dates.length; j++){

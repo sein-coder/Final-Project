@@ -137,9 +137,10 @@ public class PageController {
         public String deletePartnerPage(Partner p,HttpSession session,Model model) {
             int result=0;
             Partner resultPartner=partner_service.selectPartnerOne(p);
-            if(pwEncoder.matches(resultPartner.getPartner_Password(), p.getPartner_Password())) {   
+            if(pwEncoder.matches(p.getPartner_Password(), resultPartner.getPartner_Password())) {   
                result=partner_service.deletePartnerPage(p);
             }
+
             String msg="";
             String loc="";
             if(result>0) {
@@ -157,7 +158,8 @@ public class PageController {
        
        @RequestMapping("/member/updateAdmin") //멤버 회원 정보 수정
          public String updateAdminPage(Member m,Model model) throws Exception {
-            m.setMember_Password(enc.encrypt(m.getMember_Password()));
+            m.setMember_Password(pwEncoder.encode(m.getMember_Password()));
+            System.out.println(m.getMember_Password());
             int result=0;
             try {
                m.setMember_Email(m.getMember_Email());

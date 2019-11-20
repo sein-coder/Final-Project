@@ -32,7 +32,7 @@ $(document).ready(function(){
          </tr>
          <tr>
             <td scope="col">비밀번호</td>
-            <td><input type="password"  name="partner_Password" value="${loginMember.partner_Password }"></td>
+            <td><input type="password"  name="partner_Password" value=""></td>
          </tr>
          <tr>
             <td colspan=2 align="center">

@@ -135,25 +135,11 @@ public class MemberController {
             result2 = service.selectMemberOne(m);
             mv.setViewName("/mypage/memberPage");
          }
-         try {
-          result2.setMember_Phone(enc.decrypt(result2.getMember_Phone()));
-          result2.setMember_Email(enc.decrypt(result2.getMember_Email()));
-       } catch (Exception e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-       }
         
          session.setAttribute("loginMember", result2);
          session.setAttribute("type", "member");
          Member result3=service.selectMemberOne(m);
          session.setAttribute("member",result3);
-         try {
-          result3.setMember_Phone(enc.decrypt(result3.getMember_Phone()));
-          result3.setMember_Email(enc.decrypt(result3.getMember_Email()));
-       } catch (Exception e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-       }
          //mv.setViewName("redirect:/");
        return mv;
 
