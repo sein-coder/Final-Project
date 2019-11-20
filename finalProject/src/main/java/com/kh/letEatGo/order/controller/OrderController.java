@@ -1,6 +1,7 @@
 package com.kh.letEatGo.order.controller;
 
-import java.text.ParseException;
+import static com.kh.letEatGo.common.ml.Linear_Regression.predict;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +22,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,14 +31,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.letEatGo.accountBook.model.service.AccountBookService;
 import com.kh.letEatGo.accountBook.model.vo.AccountBook;
 import com.kh.letEatGo.common.page.PageFactory;
+import com.kh.letEatGo.member.model.vo.Member;
 import com.kh.letEatGo.order.model.service.OrderService;
 import com.kh.letEatGo.order.model.vo.Menu;
 import com.kh.letEatGo.order.model.vo.Order;
 import com.kh.letEatGo.order.model.vo.Review;
 import com.kh.letEatGo.order.model.vo.ReviewComment;
 import com.kh.letEatGo.partner.model.vo.Partner;
-
-import static com.kh.letEatGo.common.ml.Linear_Regression.predict;
 
 @Controller
 public class OrderController {
@@ -167,48 +170,64 @@ public class OrderController {
 		m.addAttribute("order_Price", order_Price);
 		return "order/payment";
 	}
-	
+
 	@RequestMapping("/order/orderEnd") 
-	public String orderEnd(Order o, HttpSession session) {
+	public String orderEnd(String order_List,String add_Request ,int order_Price 
+			,String reservation_YN ,int partner_No ,int member_No , HttpSession session,
+			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
+			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
+		
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+		
+		Order o = new Order();
+		o.setAdd_Request(add_Request);
+		o.setMember_No(member_No);
+		o.setOrder_List(order_List);
+		o.setOrder_Price(order_Price);
+		o.setPartner_No(partner_No);
+		o.setReservation_YN(reservation_YN);
+		
+		//결제 확정시 장부에 insert하는 부분
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		
+		int day = cal.get(Calendar.DAY_OF_WEEK);
+		if(day == 1) {
+			day = 7;
+		}else {
+			day -=1;
+		}
+		AccountBook ab = new AccountBook();
+		ab.setAccount_Type("카드");
+		ab.setAccount_Clause("요식업");
+		ab.setAccount_Date(sdf.format(date));
+		ab.setAccount_Item(o.getOrder_List());
+		ab.setAccount_Summary("letEatGo 대리 주문:"+o.getAdd_Request());
+		ab.setAccount_Outcome(0);
+		ab.setAccount_Income(o.getOrder_Price());
+		ab.setAccount_Predict((int)predict(req,temperature,precipitation,day));
+		ab.setPartner_No(o.getPartner_No());
+		
+		int result_InsertAccount = abservice.insertAccountBook(ab);
+		
+		//종료
+		int result = service.insertOrder(o);
 		session.setAttribute("order", o);
+		session.setAttribute("result", result);
 		return "redirect:/order/complete";
 	}
 	
 	@RequestMapping("/order/complete")
-	public String orderComplete(HttpSession session, Model model,
-			@RequestParam(value = "temperature", required = false, defaultValue = "0")double temperature, 
-			@RequestParam(value = "precipitation", required = false, defaultValue = "0")double precipitation) {
+	public String orderComplete(HttpSession session, Model model) {
 		Order order = (Order)session.getAttribute("order");
-		int result = service.insertOrder(order);
+		int result = (int)(session.getAttribute("result"));
 		
 		String msg = "";
 		String loc = "/order/orderListView?partner_No="+order.getPartner_No();
 		if(result > 0) {
 			msg = "결제가 완료 되었습니다.";
-			//결제 확정시 장부에 insert하는 부분
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = new Date();
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(date);
-			
-			int day = cal.get(Calendar.DAY_OF_WEEK);
-			if(day == 1) {
-				day = 7;
-			}else {
-				day -=1;
-			}
-			AccountBook ab = new AccountBook();
-			ab.setAccount_Type("카드");
-			ab.setAccount_Clause("요식업");
-			ab.setAccount_Date(sdf.format(date));
-			ab.setAccount_Item(order.getOrder_List());
-			ab.setAccount_Summary("letEatGo 대리 주문");
-			ab.setAccount_Outcome(0);
-			ab.setAccount_Income(order.getOrder_Price());
-			ab.setAccount_Predict((int)predict(temperature,precipitation,day));
-			ab.setAccount_Balance(0);
-			ab.setPartner_No(order.getPartner_No());
-			int result_InsertAccount = abservice.insertAccountBook(ab);
 		} else {
 			msg = "결제 데이터 전송 중 오류 발생 - 관리자에게 문의하세요.";
 		}
@@ -230,5 +249,17 @@ public class OrderController {
 		}
 		res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
+	}
+	
+	////////////////리뷰작성페이지 전환//////////////////////
+	@RequestMapping("/order/review")
+	public ModelAndView writeReview(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		Order ord = (Order)session.getAttribute("order");
+		
+		mv.addObject("loginMember", loginMember);
+		mv.setViewName("order/review");
+		return mv;
 	}
 }

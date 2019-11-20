@@ -62,4 +62,9 @@
   	WHERE FESTIVAL_TITLE LIKE '%' || #{searchKeyword} || '%'   OR
   		  FESTIVAL_CONTENT LIKE '%' || #{searchKeyword} || '%'
   </select>
+  
+  <select id="selectNowProceeding" resultType="festival">
+  	SELECT * FROM FESTIVAL WHERE FESTIVAL_PROCEEDING = '예정'
+  </select>
+  
 </mapper>

@@ -28,7 +28,7 @@ public interface FestivalService{
 
 	int selectSearchTotal(String searchKeyword);
 
-
+	List<Festival> selectNowProceeding();
 	
 	
 

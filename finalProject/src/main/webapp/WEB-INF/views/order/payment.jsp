@@ -27,16 +27,10 @@
 		//결제창에서 보여질 이름
 		amount: ${order_Price},
 		//가격
-		buyer_email: 'das@naver.com',
-		buyer_name: '유연성',
+		buyer_email: 'admin@letEatGo.com',
+		buyer_name: 'letEatGo',
 		buyer_tel: '010-1234-1234',
 		buyer_addr: '서울시 강남구',
-		//m_redirect_url: 'https://www.yourdomain.com/payments/complete'
-		/*
-		모바일 결제시,
-		결제가 끝나고 랜딩되는 URL을 지정
-		(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
-		*/
 		}, function (rsp) {
 		if (rsp.success) {
 			var msg = '결제가 완료되었습니다.';

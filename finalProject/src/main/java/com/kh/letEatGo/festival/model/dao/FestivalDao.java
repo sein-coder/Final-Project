@@ -28,4 +28,6 @@ public interface FestivalDao {
 	List<Festival> selectSearchFestival(SqlSessionTemplate session, String searchKeyword, int cPage, int numPerPage);
 
 	int selectSearchTotal(SqlSessionTemplate session, String searchKeyword);
+	
+	List<Festival> selectNowProceeding(SqlSessionTemplate session);
 }

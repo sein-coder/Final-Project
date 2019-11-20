@@ -43,6 +43,10 @@
 			<beans:bean class="com.kh.letEatGo.common.interceptor.LoggerInterceptor"/>
 		</interceptor>
 		<interceptor>
+			<mapping path="/order/orderListView"/> <!-- /** 은 전체파일을 의미하는 url값이다. -->
+			<beans:bean class="com.kh.letEatGo.common.interceptor.OrderInterceptor"/>
+		</interceptor>
+		<interceptor>
 			<mapping path="/demo/*"/>
 			<mapping path="/board/*"/> <!-- 각각에 mapping값마다 여러개를 등록할 수 있다. -->
 			<beans:bean class="com.kh.letEatGo.common.interceptor.Logincheck"/>

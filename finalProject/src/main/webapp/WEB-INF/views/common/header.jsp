@@ -173,8 +173,9 @@
                         <c:if test="${not empty loginMember && type == 'partner' }">
 	                        <li><a href="${pageContext.request.contextPath }/accountBook/accountBookView?partner_No=${loginMember.partner_No}"><span>장부관리</span></a></li>
                         </c:if>
-                        
-                        <li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
+                        <c:if test="${empty loginMember || type != 'partner' }">
+                        	<li><a href="${pageContext.request.contextPath }/order"><span>주문하기</span></a></li>
+                        </c:if>
                         <li><a href="${pageContext.request.contextPath }/map"><span>푸드트럭존 찾기</span></a></li>
                         <li><a href="${pageContext.request.contextPath }/festival/festivalList" style="font-family: BinggraeMelona !important;"><span>축제알리미</span></a></li>
                         <c:if test="${empty loginMember }">
@@ -209,7 +210,6 @@
                   </a>
                </div>
             </div>
-
          </div>
       </header>
 
@@ -219,9 +219,8 @@
             <div class="modal-content">
 
                <!-- Modal Header -->
-               <div class="modal-header">
+               <div class="modal-header text-center" style="display: table;">
                   <h4 class="modal-title">로그인</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
                </div>
 
                <!-- Modal body -->
@@ -229,42 +228,46 @@
                   <div class="container">
                      <div class="row">
                         <div class="col">
-                           <p>로그인</p>
-                           <ul class="nav nav-tabs">
+                           <ul class="nav nav-tabs nav-justified">
                               <li class="nav-item"><a class="nav-link active"
-                              data-toggle="tab" href="#member_log">사용자</a></li>
+                              data-toggle="tab" href="#member_log" onclick="openkakao();">사용자</a></li>
                               <li class="nav-item"><a class="nav-link"
-                              data-toggle="tab" href="#partner_log">사업자</a></li>   
+                              data-toggle="tab" href="#partner_log" onclick="closekakao();">사업자</a></li>   
                            </ul>
                            <div class="tab-content">
                               <div class="tab-pane fade " id="partner_log">
-                                 <form id="frm" action="${pageContext.request.contextPath}/partner/partnerLogin.do" method="POST" onsubmit="return reCapchar();">
-                                    <input type="text" placeholder="아이디" name="partner_Id" /> 
-                                    <input type="password" placeholder="비밀번호" name="partner_Password" />
-                                    <input type="submit" class="btn btn-primary" value="로그인" />
+                                 <form class="form" id="frm" action="${pageContext.request.contextPath}/partner/partnerLogin.do" method="POST" onsubmit="return reCapchar();">
+                                    <div class="form-group">
+	                                    <input class="form-control" type="text" placeholder="아이디" name="partner_Id" /> 
+	                                    <input class="form-control" type="password" placeholder="비밀번호" name="partner_Password" />
+	                                    <input class="form-control btn btn-outline-primary" type="submit" class="btn btn-outline-primary" value="로그인" />
+                                    </div>
                                  </form>
                               </div>
                               <div class="tab-pane fade show active" id="member_log">
-                                 <form action="${pageContext.request.contextPath}/member/memberLogin.do" method="POST" onsubmit="return reCapchar();">
-                                    <input type="text" placeholder="아이디" name="member_Id" /> 
-                                    <input type="password" placeholder="비밀번호" name="member_Password" />
-                                    <input type="submit" class="btn btn-primary" value="로그인" />
+                                 <form action="${pageContext.request.contextPath}/member/memberLogin.do" method="POST" class="form" onsubmit="return reCapchar();">
+                                    <div class="form-group">
+	                                   <input class="form-control" type="text" placeholder="아이디" name="member_Id" /> 
+	                                   <input class="form-control" type="password" placeholder="비밀번호" name="member_Password" />
+                                   	</div>
+                                   	<div class="form-group row">
+	                                    <a class="col-md-6" id="kakao" onclick="kakao();" style="cursor:pointer">
+	                                    	<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="240"/>
+	                                    </a>
+                  						<input type="submit" class="btn btn-primary col-md-6" value="로그인" />
+                                   	</div>
                                  </form>
                                  <div></div>
                               </div>
                            </div>
-                            <div class="tmp-set-nav">
-						        <ul class="nav nav-pills">
-						            <li><a href="${pageContext.request.contextPath }/findIp">아이디/비밀번호찾기</a></li>
-						        <c:if test="">
-						            </c:if>
-						        <c:if test="">
-						            <li><a href="${pageContext.request.contextPath }/findIpPartner">아이디/비밀번호찾기</a></li>
-						        </c:if>
+                            <div class="tmp-set-nav col-*-12 mb-2">
+						        <ul class="nav nav-pills" >		          
+						        	<li><a href="${pageContext.request.contextPath }/findIp">아이디/비밀번호찾기</a></li>
+						            <li style="border-left: 2px solid #ddd; margin-left: 1em; padding-left: 1em;"><a href="${pageContext.request.contextPath }/member/memberEnrollEnd">회원가입</a></li>
 						        </ul>
 						    </div>
                            
-                            <div id="html_element" class=""></div>
+                            <div id="html_element" style="margin: 0 auto;display: table;"></div>
                              <script type="text/javascript">
                                var onloadCallback = function() {
                                  grecaptcha.render('html_element', {
@@ -286,8 +289,7 @@
                </div>
                <!-- Modal footer -->
                <div class="modal-footer">
-                  <a id="kakao"   onclick="kakao();" style="cursor:pointer"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="240"/></a>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                  <button class="col-md-12 btn btn-outline-info" type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                </div>
             </div>
          </div>
@@ -342,7 +344,12 @@
 					 location.href='${pageContext.request.contextPath}/Logout.do';
  		    		 });
 			}
-		     
+		     function openkakao() {
+		    	 document.getElementById('kakao').style.display = 'block';
+				}
+           	function closekakao() {
+           		 document.getElementById('kakao').style.display = 'none';
+			}
 			</script>
 
    <script type="text/javascript"

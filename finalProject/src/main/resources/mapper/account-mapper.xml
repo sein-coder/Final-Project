@@ -13,7 +13,7 @@
 	
 	<update id="updateAccount" parameterType="java.util.HashMap">
 		UPDATE ACCOUNT SET 
-			ACCOUNT_BALANCE = ACCOUNT_BALANCE-#{account_Balance} 
+			ACCOUNT_BALANCE = ACCOUNT_BALANCE+#{account_Balance} 
 		WHERE PARTNER_NO = #{partner_No}
 	</update>
 	

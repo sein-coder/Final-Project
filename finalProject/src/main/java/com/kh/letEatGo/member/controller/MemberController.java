@@ -50,7 +50,6 @@ public class MemberController {
 			try {
 //				  m.setMember_Email(enc.encrypt(m.getMember_Email()));
 //		          m.setMember_Phone(enc.encrypt(m.getMember_Phone()));
-
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -103,6 +102,7 @@ public class MemberController {
 		return mv;
 
 	  }
+	  
 	  @RequestMapping("/kakao")
 	  public ModelAndView login(String email,String gender,String id, HttpSession session) {
 		  ModelAndView mv=new ModelAndView();
@@ -145,8 +145,7 @@ public class MemberController {
 		  session.setAttribute("member",result3);
 		  //mv.setViewName("redirect:/");
 		return mv;
-
-	  }
+	     }
 	  
 	  @RequestMapping("/Logout.do")
 		public String logout(HttpSession session,SessionStatus s) {
@@ -318,7 +317,4 @@ public class MemberController {
 		mv.setViewName("/member/findIp");
 		return mv;
 	 }
-
-
-	  
 }

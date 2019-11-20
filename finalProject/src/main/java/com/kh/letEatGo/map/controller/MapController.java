@@ -32,8 +32,14 @@ public class MapController {
 		List<TruckMap> truckList=service.categoryList();
 		List<ZoneMap> zonelist=service.selectMapList();
 		List<Partner> partnerlist=service.selectPartnerList();
-		
-		
+		for(Partner p:partnerlist) {
+			try {
+				p.setPartner_Phone(enc.decrypt(p.getPartner_Phone()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		/*
 		 * for(Partner p : partnerlist) { try {
 		 * p.setPartner_Password(enc.decrypt(p.getPartner_Password())); }catch(Exception

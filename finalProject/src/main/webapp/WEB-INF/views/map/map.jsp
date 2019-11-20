@@ -241,7 +241,7 @@ function displayArea(area) {
                     '        </div>' + 
                     '        <div class="body">' + 
                     '            <div class="img">' +
-                    '                <img src="'+area.img+'" width="73" height="70">' +
+                    '                <img src="${pageContext.request.contextPath}/resources/images/festival/'+area.img+'" width="73" height="70">' +
                     '           </div>' + 
                     '            <div class="desc">' + 
                     '                <div class="ellipsis">'+area.address+'</div>' + 
@@ -332,7 +332,7 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     '            <div class="desc">' + 
     '                <div class="ellipsis">영업시간:'+positions[i].time+'</div>' + 
     '                <div class="jibun ellipsis">전화번호:'+positions[i].phone+'</div>' + 
-    '                <div><a href="${path}/order/orderListView?partner_No='+positions[i].partner+'" class="link">홈페이지</a></div>' + 
+    '                <div><a class="link" onclick="order();">주문하기</a></div>' + 
     '            </div>' + 
     '        </div>' + 
     '    </div>' +    
@@ -359,7 +359,20 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
     		overlays[i].setMap(map);
     		}); 
     });
-   
+    
+    function order() {
+    <c:if test="${empty loginMember }">
+    $(document).ready(function() {
+		$("#myModal").modal();
+	});
+    </c:if>
+    <c:if test="${not empty loginMember }">
+    	 for(var i=0; i<positions.length; i++){
+    location.href="${path}/order/orderListView?partner_No="+positions[i].partner
+    	 }
+  	</c:if>
+	}
+    
 </script>
             
             
