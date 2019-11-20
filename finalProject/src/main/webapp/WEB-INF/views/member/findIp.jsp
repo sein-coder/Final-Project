@@ -115,7 +115,7 @@ $("#member_Email").keyup(function(){
 					$("#email_check1").css("color", "green");
 					$("#memberEmail").css("border-color", "green");
 				} else{
-					$("#email_check1").text("잘못된이메일입니다.");
+					$("#email_check1").text("아이디나 이메일이 잘못되었습니다.");
 					$("#email_check1").css("color", "red");
 					$("#memberEmail").css("border-color", "red");	
 				
@@ -173,14 +173,15 @@ $("#partner_Id").keyup(function(){
 		type : "get",
 		data : {"partner_Id":partner_Id},
 		success : function(data) {
+				console.log(data);
 				if (data == false) {
 					$("#id_check").text("아이디 일치합니다.");
 					$("#id_check").css("color", "green");
 					$("#partner_Id").css("border-color", "green");
 				} else{
-							$("#id_check").text("일치하는 아이디가 없습니다.");
-							$("#id_check").css("color", "red");
-							$("#partner_Id").css("border-color", "red");
+					$("#id_check").text("일치하는 아이디가 없습니다.");
+					$("#id_check").css("color", "red");
+					$("#partner_Id").css("border-color", "red");
 					} 
 				}
 			});
@@ -199,9 +200,9 @@ $("#partner_Id").keyup(function(){
 						$("#email_check3").css("color", "green");
 						$("#partnerEmail").css("border-color", "green");
 					} else{
-						$("#email_check3").text("잘못된이메일입니다.");
+						$("#email_check3").text("아이디나 이메일이 잘못되었습니다.");
 						$("#email_check3").css("color", "red");
-						$("#partnerEmail").css("border-color", "red");			
+						$("#partnerEmail").css("border-color", "red");										
 						}  
 					} 
 				});

@@ -785,7 +785,10 @@
 						tags += '<option value="기타">기타</option>';
 						tags += '</select></div>'
 						tags += '</td>';
-					} else {
+					} else if(i==6 || i==7){
+						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="number" size='+maxlength[i]+' maxlength='+maxlength[i]+' step="1000" required></td>';
+					}
+					else {
 						tags += '<td><input id='+inputNames[i]+' name='+inputNames[i]+' class="form-control" type="text" size='+maxlength[i]+' maxlength='+maxlength[i]+' required></td>';
 					}
 				}
@@ -824,7 +827,7 @@
 							var money;
 							money = replaceAll(data[i].innerText,",","");
 							money = money.substring(1,money.length);
-							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+money+' required>';
+							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="number" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' step="1000" value='+money+' required>';
 						} else {
 							input = '<input id='+inputNames[i]+' name='+inputNames[i]+' type="text" class="form-control" size='+maxlength[i]+' maxlength='+maxlength[i]+' value='+data[i].innerText+' required>';
 						}
@@ -1044,7 +1047,11 @@
 				$("#yt_IncomeRate").html(data.yt_IncomeRate+"% ("+preprocessing(data.yt_Income)+")");
 				$("#sumRevenue").html(preprocessing(data.sumRevenue));
 				$("#goalMonthly").html(data.goalMonthly+"%");
-				$("#goalMonthlyBar").width(data.goalMonthly);
+				if(data.goalMonthly>=100){
+					$("#goalMonthlyBar").width(111);	
+				}else{
+					$("#goalMonthlyBar").width(data.goalMonthly);				
+				}
 			}
 		});
 

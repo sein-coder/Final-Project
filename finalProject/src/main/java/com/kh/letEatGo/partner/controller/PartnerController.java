@@ -48,8 +48,10 @@ public class PartnerController {
 			Partner p,
 			@RequestParam(value="upFile",required=false)MultipartFile[] upFile,
 			HttpServletRequest req
-			) throws Exception { 
+			) throws Exception {
+		  
 		  ModelAndView mv=new ModelAndView();
+		  
 		  String saveDir=req.getSession().getServletContext().getRealPath("/resources/images/foodtruck");
 		  File dir=new File(saveDir);
 		  if(!dir.exists()) logger.debug("폴더생성 "+dir.mkdirs());
@@ -58,6 +60,7 @@ public class PartnerController {
 				if(!f.isEmpty()) {
 					//파일명설정(renamed)
 					String oriFileName=f.getOriginalFilename();
+					System.out.println(oriFileName);
 					/* 파일명에서 확장자빼기 */
 					String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
 					//rename규칙설정
@@ -197,7 +200,7 @@ public class PartnerController {
 			String subject = "아이디 찾기 인증 메일입니다.\r\n";
 			String msg ="";
 			msg += "<div align='center'>";
-			msg += "<input type=text value='"+p.getPartner_Id()+"'";
+			msg += "<p>'임시 비밀번호는"+ p.getPartner_Id()+"입니다.'</p>";
 			msg += "<div style='font-size: 130%'>";
 			msg += "</div><br/>";
 		
@@ -219,11 +222,12 @@ public class PartnerController {
 				htmlemail.setHtmlMsg(msg);
 				htmlemail.send();
 			} catch (Exception e) {
+				//System.out.println("메일발송 실패 : " + e);
 			}
 			return "/member/findIp";
 		}
-	 @RequestMapping("/partnerid/partner_Email.do")
-		public void findIdEmail(Partner p, HttpServletResponse res)  {
+	 @RequestMapping("/partner_Email.do")
+		public void findEmail(Partner p, HttpServletResponse res)  {
 		 Partner result=service.selectPartnerEmail(p);
 		 String flag=result!=null?"false":"true";
 		 res.setContentType("application/json;charset=utf-8");
@@ -232,19 +236,6 @@ public class PartnerController {
 		 } catch (IOException e) {
 			 e.printStackTrace();
 		 }
-	 }
-	 @RequestMapping("/password/partner_Email.do")
-		public void findPwEmail(Partner p, HttpServletResponse res)  {
-		 Partner result=service.selectPartnerEmail(p);
-		 String flag=result!=null?"false":"true";
-		 res.setContentType("application/json;charset=utf-8");
-		 try {
-			 res.getWriter().write(flag);
-		 } catch (IOException e) {
-			 e.printStackTrace();
-		 }
-	 }
-	
 		 
 				
 		 
@@ -252,12 +243,14 @@ public class PartnerController {
 		 	//select * from service가져와서
 		 	
 //		 	List<Partner> list=service.selectPartnerList();\
+	}
 		 	
 		 	
 	 
 	 @RequestMapping("/partner/find_pw.do")
 	 public ModelAndView send_mailPw(Partner p) throws Exception {
 		 ModelAndView mv = new ModelAndView();
+//		 System.out.println(p);
 		 //난수발생시켜
 		 
 		 //난수값을 enc로 encode
@@ -334,7 +327,22 @@ public class PartnerController {
 			
 			p.setPartner_Password(pwEncoder.encode((pswd)));
 			int result=service.updatePartnerPassword(p);
+			List<Partner> list =service.selectPartnerList();
+		 	
+		 	for(Partner p2:list) {
+		 		try {
+		 			if(p.getPartner_Email().equals(p2.getPartner_Email())) {
+		 				p.setPartner_No(p2.getPartner_No());
+		 				p.setPartner_Id(p2.getPartner_Id());
+		 			}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		 	}
+			
 		} catch (Exception e) {
+			System.out.println("메일발송 실패 : " + e);
 		}
 		
 		mv.setViewName("/member/findIp");
