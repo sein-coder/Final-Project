@@ -73,6 +73,9 @@
   </select>
   <insert id="insertOrder" parameterType="order">
   	INSERT INTO ORDER_HISTORY VALUES(SEQ_ORDER_NO.NEXTVAL, #{order_List}, #{add_Request}, #{order_Price}, DEFAULT, #{reservation_YN}, #{partner_No}, #{member_No})
+  	<selectKey keyProperty="order_No" resultType="_int" order="AFTER">
+		SELECT SEQ_ORDER_NO.CURRVAL FROM DUAL
+  	</selectKey>
   </insert>
   <select id="selectReviewComment" parameterType="_int" resultType="comment">
   	SELECT * FROM REVIEW_COMMENT WHERE COMMENT_TO = #{comment_To}
@@ -86,4 +89,7 @@
   <select id="selectMenuTruckList" parameterType="String" resultType="partner">
   	SELECT DISTINCT PARTNER_NO FROM MENU  WHERE MENU_NAME LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
   </select> 
+  <insert id="insertReview" parameterType="review">
+  	INSERT INTO REVIEW VALUES(SEQ_REVIEW_NO.NEXTVAL, #{review_Content}, DEFAULT, #{review_Star}, #{oriname_File1}, #{rename_File}, #{order_No}, #{member_No}, #{partner_No})
+  </insert>
 </mapper>

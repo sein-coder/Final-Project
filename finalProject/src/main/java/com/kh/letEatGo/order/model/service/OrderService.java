@@ -25,4 +25,5 @@ public interface OrderService {
 	List<Menu> selectMenuList(Menu m);
 	List<Partner> selectMenuTruckList(int cPage, int numPerPage, String menu_Name);
 	int selectMenuCount(String menu_Name);
+	int insertReview(Review review);
 }

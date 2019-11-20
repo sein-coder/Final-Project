@@ -27,4 +27,5 @@ public interface OrderDao {
 	List<Menu> selectMenuList(SqlSessionTemplate session, Menu m);
 	List<Partner> selectMenuTruckList(SqlSessionTemplate session, int cPage, int numPerPage, String menu_Name);
 	int selectMenuCount(SqlSessionTemplate session, String menu_Name);
+	int insertReview(SqlSessionTemplate session, Review review);
 }
