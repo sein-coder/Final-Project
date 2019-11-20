@@ -16,7 +16,7 @@ public class Logincheck extends HandlerInterceptorAdapter {
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			return false;
 		}else {
-			return super.preHandle(request, response, handler);			
+			return super.preHandle(request, response, handler);
 		}
 	}
 	

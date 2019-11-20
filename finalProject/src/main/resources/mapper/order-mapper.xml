@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="order">
+  <select id="selectDefaultCount" resultType="_int">
+  	SELECT COUNT(*) FROM PARTNER
+  </select>
+  <select id="selectDefaultTruckList" resultType="partner">
+  	SELECT * FROM PARTNER
+  </select>
+  <select id="selectCount" resultType="_int" parameterType="java.util.HashMap">
+  	SELECT COUNT(*) FROM PARTNER WHERE 1 = 1
+  	<if test="category != null">
+		AND PARTNER_MENU IN
+		<foreach collection="category" item="item" index="index" separator="," open="(" close=")">
+			 #{item}
+		</foreach>
+	</if>
+  </select>
+  
+  <select id="selectTruckList" resultType="partner" parameterType="java.util.HashMap">
+  	SELECT PARTNER.PARTNER_NO, PARTNER.PARTNER_ID, PARTNER.PARTNER_TRUCKNAME, PROFILE_OLD, PROFILE_RE, PARTNER.PARTNER_MENU, NVL(AVG(REVIEW_STAR), 0) AS STARCOUNT FROM PARTNER
+  	LEFT JOIN REVIEW ON PARTNER.PARTNER_NO = REVIEW.PARTNER_NO 
+  	WHERE 1 = 1
+		<if test="category != null">
+			AND PARTNER.PARTNER_MENU IN
+			<foreach collection="category" item="item" index="index" separator="," open=" (" close=")">
+				 #{item}
+			</foreach>
+			GROUP BY (PARTNER.PARTNER_NO, PARTNER.PARTNER_ID, PARTNER.PARTNER_TRUCKNAME, PROFILE_OLD, PROFILE_RE, PARTNER.PARTNER_MENU)
+			<if test="ordering != null and ordering != ''">
+				<choose>
+				<when test="ordering.equals('desc/')">
+					ORDER BY AVG(REVIEW_STAR) DESC NULLS LAST
+				</when>
+				<when test="ordering.equals('asc/')">
+					ORDER BY AVG(REVIEW_STAR) ASC NULLS LAST
+				</when>
+				<otherwise>
+					ORDER BY PARTNER.PARTNER_NO NULLS LAST
+				</otherwise>
+			</choose>
+			</if>
+		</if>
+		<if test="category == null and ordering != null and ordering != ''">
+			GROUP BY (PARTNER.PARTNER_NO, PARTNER.PARTNER_ID, PARTNER.PARTNER_TRUCKNAME, PROFILE_OLD, PROFILE_RE, PARTNER.PARTNER_MENU)
+			<choose>
+				<when test="ordering.equals('desc/')">
+					ORDER BY AVG(REVIEW_STAR) DESC NULLS LAST
+				</when>
+				<when test="ordering.equals('asc/')">
+					ORDER BY AVG(REVIEW_STAR) ASC NULLS LAST
+				</when>
+				<otherwise>
+					ORDER BY PARTNER.PARTNER_NO NULLS LAST
+				</otherwise>
+			</choose>
+		</if>
+  </select>
+  <select id="selectMenu" parameterType="_int" resultType="menu">
+	SELECT * FROM MENU WHERE PARTNER_NO = #{partner_No}  
+  </select>
+  <select id="selectStar" parameterType="_int" resultType="_double">
+  	SELECT AVG(REVIEW_STAR) FROM REVIEW WHERE PARTNER_NO = #{partner_No}
+  </select>
+  <select id="selectReviewCount" parameterType="_int" resultType="_int">
+  	SELECT COUNT(*) FROM REVIEW WHERE PARTNER_NO = #{partner_No}
+  </select>
+  <select id="selectTruck" parameterType="_int" resultType="partner">
+  	SELECT * FROM PARTNER WHERE PARTNER_NO=#{p.partner_No}
+  </select>
+  <select id="selectReview" parameterType="_int" resultType="review">
+  	SELECT A.*,MEMBER_ID FROM (SELECT REVIEW_NO, REVIEW_CONTENT, REVIEW_TIME, REVIEW_STAR, ORINAME_FILE, RENAME_FILE, R.ORDER_NO, R.MEMBER_NO FROM ORDER_HISTORY O, REVIEW R WHERE O.ORDER_NO = R.ORDER_NO AND O.PARTNER_NO = #{partner_No} ORDER BY REVIEW_TIME DESC) A, MEMBER B WHERE B.MEMBER_NO = A.MEMBER_NO
+  </select>
+  <insert id="insertOrder" parameterType="order">
+  	INSERT INTO ORDER_HISTORY VALUES(SEQ_ORDER_NO.NEXTVAL, #{order_List}, #{add_Request}, #{order_Price}, DEFAULT, #{reservation_YN}, #{partner_No}, #{member_No})
+  </insert>
+  <select id="selectReviewComment" parameterType="_int" resultType="comment">
+  	SELECT * FROM REVIEW_COMMENT WHERE COMMENT_TO = #{comment_To}
+  </select>
+  <select id="selectMenuList" parameterType="menu" resultType="menu">
+  	SELECT * FROM MENU WHERE MENU_NAME LIKE #{menu_Name}
+  </select>
+  <select id="selectMenuCount" parameterType="String" resultType="_int">
+  	SELECT COUNT(DISTINCT PARTNER_NO) FROM MENU WHERE MENU_NAME LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
+  </select>
+  <select id="selectMenuTruckList" parameterType="String" resultType="partner">
+  	SELECT DISTINCT PARTNER_NO FROM MENU  WHERE MENU_NAME LIKE '%'||#{menu_Name}||'%' ORDER BY PARTNER_NO
+  </select> 
+</mapper>

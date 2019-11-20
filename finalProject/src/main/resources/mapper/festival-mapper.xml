@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="festival">
+  <insert id="insertFestival" parameterType="festival">
+  	INSERT INTO FESTIVAL VALUES(SEQ_Festival_No.nextval, #{festival_Title},#{festival_Content},
+  		default,default,#{festival_Thumbnail},#{festival_StartDate},#{festival_EndDate},
+  		#{festival_Phone},#{festival_Homepage},#{festival_Address},#{festival_Host},
+  		#{festival_Sub},#{festival_Price},#{festival_Tag},#{festival_Proceeding}
+  	)
+  </insert>
+  <select id="selectFestival" resultType="festival">
+  	SELECT * FROM FESTIVAL
+  </select>
+  <select id="selectFestivalOne" parameterType="_int" resultType="festival">
+  	SELECT * FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
+  </select>
+  <delete id="deleteFestival" parameterType="_int">
+  	Delete FROM FESTIVAL WHERE FESTIVAL_NO=#{festival_No}
+  </delete>
+  <update id="updateFormFestival" parameterType="festival">
+  	UPDATE FESTIVAL 
+  	SET 
+  		FESTIVAL_TITLE=#{festival_Title},
+  		FESTIVAL_CONTENT=#{festival_Content},
+  		FESTIVAL_THUMBNAIL=#{festival_Thumbnail},
+  		FESTIVAL_STARTDATE=#{festival_StartDate},
+  		FESTIVAL_ENDDATE=#{festival_EndDate},
+  		FESTIVAL_PHONE=#{festival_Phone},
+  		FESTIVAL_HOMEPAGE=#{festival_Homepage},
+  		FESTIVAL_ADDRESS=#{festival_Address},
+  		FESTIVAL_HOST=#{festival_Host},
+  		FESTIVAL_SUB=#{festival_Sub},
+  		FESTIVAL_PRICE=#{festival_Price},
+  		FESTIVAL_TAG=#{festival_Tag},
+  		FESTIVAL_PROCEEDING=#{festival_Proceeding}
+  	WHERE FESTIVAL_NO=#{festival_No}
+  </update>
+  <update id="updateFestivalLike" parameterType="festival">
+	  UPDATE FESTIVAL
+	  SET FESTIVAL_LIKE = #{festival_Like} +1 
+	  WHERE FESTIVAL_NO= #{festival_No}
+  </update>
+  <select id="selectLikeCount" resultType="festival">
+	select <![CDATA[rownum ]]>,f2.* from (
+	    SELECT f.*, DECODE(festival_proceeding,'진행',1,'예정',2,'종료',3) as fp
+	    FROM FESTIVAL f
+	    order by fp asc, f.festival_count desc ) f2
+	where <![CDATA[rownum <= 3 ]]> 
+  </select>
+  <select id="selectFestivalCount" resultType="_int">
+  	SELECT COUNT(*) FROM FESTIVAL
+  </select>
+  <select id="selectSearchFestival" parameterType="string" resultType="festival" >
+  	SELECT  *
+  	FROM FESTIVAL 
+  	WHERE FESTIVAL_TITLE LIKE '%' || #{searchKeyword} || '%'   OR
+  		  FESTIVAL_CONTENT LIKE '%' || #{searchKeyword} || '%'
+  </select>
+  <select id="selectSearchTotal" parameterType="string" resultType="_int">
+  	SELECT  COUNT(*)
+  	FROM FESTIVAL 
+  	WHERE FESTIVAL_TITLE LIKE '%' || #{searchKeyword} || '%'   OR
+  		  FESTIVAL_CONTENT LIKE '%' || #{searchKeyword} || '%'
+  </select>
+  
+  <select id="selectNowProceeding" resultType="festival">
+  	SELECT * FROM FESTIVAL WHERE FESTIVAL_PROCEEDING = '예정'
+  </select>
+  
+</mapper>
