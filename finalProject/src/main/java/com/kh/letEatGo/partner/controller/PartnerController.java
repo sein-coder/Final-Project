@@ -58,7 +58,6 @@ public class PartnerController {
 				if(!f.isEmpty()) {
 					//파일명설정(renamed)
 					String oriFileName=f.getOriginalFilename();
-					System.out.println(oriFileName);
 					/* 파일명에서 확장자빼기 */
 					String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
 					//rename규칙설정
@@ -208,7 +207,6 @@ public class PartnerController {
 				htmlemail.setHtmlMsg(msg);
 				htmlemail.send();
 			} catch (Exception e) {
-				//System.out.println("메일발송 실패 : " + e);
 			}
 			return "/member/findIp";
 		}
@@ -248,7 +246,6 @@ public class PartnerController {
 	 @RequestMapping("/partner/find_pw.do")
 	 public ModelAndView send_mailPw(Partner p) throws Exception {
 		 ModelAndView mv = new ModelAndView();
-//		 System.out.println(p);
 		 //난수발생시켜
 		 
 		 //난수값을 enc로 encode
@@ -325,22 +322,7 @@ public class PartnerController {
 			
 			p.setPartner_Password(pwEncoder.encode((pswd)));
 			int result=service.updatePartnerPassword(p);
-			List<Partner> list =service.selectPartnerList();
-		 	
-		 	for(Partner p2:list) {
-		 		try {
-		 			if(p.getPartner_Email().equals(p2.getPartner_Email())) {
-		 				p.setPartner_No(p2.getPartner_No());
-		 				p.setPartner_Id(p2.getPartner_Id());
-		 			}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		 	}
-			
 		} catch (Exception e) {
-			System.out.println("메일발송 실패 : " + e);
 		}
 		
 		mv.setViewName("/member/findIp");

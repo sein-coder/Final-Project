@@ -263,7 +263,7 @@
                             <div class="tmp-set-nav col-*-12 mb-2">
 						        <ul class="nav nav-pills" >		          
 						        	<li><a href="${pageContext.request.contextPath }/findIp">아이디/비밀번호찾기</a></li>
-						            <li style="border-left: 2px solid #ddd; margin-left: 1em; padding-left: 1em;"><a href="${pageContext.request.contextPath }/member/memberEnrollEnd">회원가입</a></li>
+						            <li style="border-left: 1px solid #ddd; margin-left: 1em; padding-left: 1em;"><a href="${pageContext.request.contextPath }/member/memberEnrollEnd">회원가입</a></li>
 						        </ul>
 						    </div>
                            

@@ -137,7 +137,7 @@ public class PageController {
         public String deletePartnerPage(Partner p,HttpSession session,Model model) {
             int result=0;
             Partner resultPartner=partner_service.selectPartnerOne(p);
-            if(pwEncoder.matches(p.getPartner_Password(), resultPartner.getPartner_Password())) {   
+            if(pwEncoder.matches(resultPartner.getPartner_Password(), p.getPartner_Password())) {   
                result=partner_service.deletePartnerPage(p);
             }
             String msg="";
