@@ -214,7 +214,7 @@
       </header>
 
       <!-- 모달창 -->
-      <div class="modal fade" id="myModal">
+      <div class="modal fade" id="myModal" style="z-index:3000;">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 

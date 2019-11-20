@@ -104,48 +104,62 @@ public class MemberController {
 	  }
 	  
 	  @RequestMapping("/kakao")
-	  public ModelAndView login(String email,String gender,String id, HttpSession session) {
-		  ModelAndView mv=new ModelAndView();
-		  Member m=new Member();
-		  String msg="dd";
-		  String loc="";
-		  m.setMember_Id(id);
-		  m.setMember_Password("비밀번호를 입력하시오.");
-		  m.setMember_Age("나이를 입력하시오.");
-		  m.setMember_Phone("전화번호를 입력하시오.");
-		  if(gender!=null) {
-			  if(gender==("male")) {
-			  m.setMember_Gender("남");
-			  }else {
-			  m.setMember_Gender("여");
-			  }
-		  }else {
-		  m.setMember_Gender("성별을 입력하시오.");
-		  }
-		  if(email!=null) {
-			  m.setMember_Email(email);
-		  }else {
-			  m.setMember_Email("이메일을 입력하시오.");
-		  }
-		  
-		  Member result2;
-		  
-		  result2 = service.selectMemberOne(m);
-		  mv.setViewName("redirect:/");
-		  if(result2==null) {
-			  int result=service.insertKakao(m);
-			  result2 = service.selectMemberOne(m);
-			  mv.setViewName("/mypage/memberPage");
-		  }
-	
-		 
-		  session.setAttribute("loginMember", result2);
-		  session.setAttribute("type", "member");
-		  Member result3=service.selectMemberOne(m);
-		  session.setAttribute("member",result3);
-		  //mv.setViewName("redirect:/");
-		return mv;
-	     }
+      public ModelAndView login(String email,String gender,String id, HttpSession session) {
+         ModelAndView mv=new ModelAndView();
+         Member m=new Member();
+         String msg="dd";
+         String loc="";
+         m.setMember_Id(id);
+         m.setMember_Password("비밀번호를 입력하시오.");
+         m.setMember_Age("20");
+         m.setMember_Phone("전화번호를 입력하시오.");
+         if(gender!=null) {
+            if(gender.equals("male")) {
+            m.setMember_Gender("남");
+            }else {
+            m.setMember_Gender("여");
+            }
+         }else {
+            m.setMember_Gender("남");
+         }
+         if(email!=null) {
+            m.setMember_Email(email);
+         }else {
+            m.setMember_Email("이메일을 입력하시오.");
+         }
+         
+         Member result2;
+         
+         result2 = service.selectMemberOne(m);
+         mv.setViewName("redirect:/");
+         if(result2==null) {
+            int result=service.insertKakao(m);
+            result2 = service.selectMemberOne(m);
+            mv.setViewName("/mypage/memberPage");
+         }
+         try {
+          result2.setMember_Phone(enc.decrypt(result2.getMember_Phone()));
+          result2.setMember_Email(enc.decrypt(result2.getMember_Email()));
+       } catch (Exception e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+       }
+        
+         session.setAttribute("loginMember", result2);
+         session.setAttribute("type", "member");
+         Member result3=service.selectMemberOne(m);
+         session.setAttribute("member",result3);
+         try {
+          result3.setMember_Phone(enc.decrypt(result3.getMember_Phone()));
+          result3.setMember_Email(enc.decrypt(result3.getMember_Email()));
+       } catch (Exception e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+       }
+         //mv.setViewName("redirect:/");
+       return mv;
+
+      }
 	  
 	  @RequestMapping("/Logout.do")
 		public String logout(HttpSession session,SessionStatus s) {
@@ -156,6 +170,7 @@ public class MemberController {
 			}
 			return "redirect:/";
 		}
+	  
 	  @RequestMapping("/member/checkId.do")
 		public void checkId(Member m, HttpServletResponse res) {
 			System.out.println(m);
@@ -174,6 +189,7 @@ public class MemberController {
 	  public String findmember() {
 		  return "member/findIp";		  
 	  }
+	  
 	 @RequestMapping("/member/find_id.do")
 		 public String send_mailId(Member m) throws Exception { 
 		 	Member result=service.selectMemberEmail(m);
@@ -215,6 +231,7 @@ public class MemberController {
 			}
 			return "/member/findIp";
 		}
+	 
 	 @RequestMapping("/memberEmail.do")
 		public void findEmail(Member m, HttpServletResponse res) {
 //			System.out.println(m);
@@ -258,20 +275,15 @@ public class MemberController {
 		 for( int i = 0; i<2; i++) {
 		     sb.append((char)((Math.random() * 10)+48)); //아스키번호 48(1) 부터 10글자 중에서 택일
 		 }
-
-
+		 
 		 // 특수문자를 두개  발생시켜 랜덤하게 중간에 끼워 넣는다 
 		 sb.setCharAt(((int)(Math.random()*3)+1), sc.charAt((int)(Math.random()*sc.length()-1))); //대문자3개중 하나   
 		 sb.setCharAt(((int)(Math.random()*4)+4), sc.charAt((int)(Math.random()*sc.length()-1))); //소문자4개중 하나
 
 		 pswd = sb.toString();
-		 
 		
 		 //주의할꺼는 변수를 두개로 나눠 하나는(원래였던) 메일로 보내, 하나는 암호화해서 저장
-		 
-		 
-	
-		 
+
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com";

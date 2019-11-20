@@ -514,8 +514,63 @@ span.hide {
 
   </div>
   </div>
- </body>
 
+
+<div class="modal fade justify-content-center" style="z-index:3000;"id="festivalModal">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 1280px !important; width: 1280px !important; max-height: 580px !important; height: 580px !important;">
+       <div class="modal-content">
+           <div id="player"></div>
+       </div>
+    </div>
+ </div>
+
+
+
+
+</body>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '480',
+          width: '1280',
+          videoId: 'R3Fwdnij49o',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          /* setTimeout(stopVideo, 6000); */
+          done = true;
+        }
+      }
+      /* function stopVideo() {
+        player.stopVideo();
+      } */
+    </script>
 
 	<script>
 	/*  축제 진행여부 */
@@ -612,7 +667,8 @@ span.hide {
 				}
 			}
 		});
-		
+
+		$("#festivalModal").modal();
 		
 	});
 	</script>
@@ -760,6 +816,7 @@ span.hide {
 	    }
 	}
 	</script>
+
 
 </section>
 
