@@ -118,6 +118,7 @@
 							</div>
 					</div>
 				</div>
+				
 				<script>
 				function truckInfo(data){
 					var url = $(data).children().siblings().eq(0).attr('href');

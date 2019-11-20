@@ -49,14 +49,11 @@
    href="${pageContext.request.contextPath }/resources/css/rangeslider.css">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath }/resources/css/style.css">
-</head>
-<!-- HTTPS required. HTTP will give a 403 forbidden response -->
-<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+</head> 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4524f2a578ce5b005f1a8157e72c3d3a&libraries=services"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5360adbac3952b61ac35a4e1cc59e4c3&libraries=services"></script>
- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-        async defer>
+ <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
     </script>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <body>

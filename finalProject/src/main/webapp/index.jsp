@@ -97,35 +97,35 @@
 
 				<div class="row align-items-stretch p-4">
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href='${pageContext.request.contextPath}/order/orderListSearch?keyword=한식' class="popular-category h-100"> <span
+						<a href='${pageContext.request.contextPath}/order/orderListSearch?keyword=한식/' class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/한식.png">
 						</span> <span class="caption mb-2 d-block">한식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=중식" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=중식/" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/중식.png">
 						</span> <span class="caption mb-2 d-block">중식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=일식" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=일식/" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/일식.png">
 						</span> <span class="caption mb-2 d-block">일식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=양식" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=양식/" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/양식.png">
 						</span> <span class="caption mb-2 d-block">양식</span> <span class="number">0</span>
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=디저트" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=디저트/" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/디저트.png">
 						</span> <span class="caption mb-2 d-block">디저트</span> <span
@@ -133,7 +133,7 @@
 						</a>
 					</div>
 					<div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=기타" class="popular-category h-100"> <span
+						<a href="${pageContext.request.contextPath}/order/orderListSearch?keyword=기타/" class="popular-category h-100"> <span
 							class="icon mb-3"> <img
 								src="${pageContext.request.contextPath }/resources/icon/기타.png">
 						</span> <span class="caption mb-2 d-block">기타</span> <span class="number">0</span>
